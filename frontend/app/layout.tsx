@@ -2,20 +2,20 @@ import './globals.css'
 
 import {SpeedInsights} from '@vercel/speed-insights/next'
 import type {Metadata} from 'next'
-import {Bricolage_Grotesque, Poppins} from 'next/font/google'
+import {Playfair_Display, Rubik} from 'next/font/google'
 
-const poppins = Poppins({
-  variable: '--font-poppins',
+const rubik = Rubik({
+  variable: '--font-rubik',
   subsets: ['latin'],
   display: 'swap',
   weight: ['400', '500', '600'],
 })
 
-const bricolage = Bricolage_Grotesque({
+const playfair = Playfair_Display({
   variable: '--font-heading',
   subsets: ['latin'],
   display: 'swap',
-  weight: ['400', '500', '600', '700'],
+  weight: ['400', '500', '600'],
 })
 import {draftMode} from 'next/headers'
 import {toPlainText} from 'next-sanity'
@@ -95,7 +95,7 @@ export async function generateMetadata(): Promise<Metadata> {
     query: settingsQuery,
     stega: false,
   })
-  const title = settings?.title || 'Hound Around Resort'
+  const title = settings?.title || 'Boxers Bed & Biscuits'
   const description = settings?.description
 
   const ogImage = resolveOpenGraphImage(settings?.ogImage)
@@ -158,7 +158,7 @@ export default async function RootLayout({children}: {children: React.ReactNode}
   })
 
   return (
-    <html lang="en" className={`${poppins.variable} ${bricolage.variable} bg-cream text-forest`}>
+    <html lang="en" className={`${rubik.variable} ${playfair.variable} bg-cream text-forest`}>
       <head>
         <link rel="preconnect" href="https://cdn.sanity.io" />
         <link rel="dns-prefetch" href="https://cdn.sanity.io" />

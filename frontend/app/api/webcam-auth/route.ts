@@ -6,7 +6,7 @@ const COOKIE_NAME = 'webcam_auth'
 const COOKIE_MAX_AGE = 30 * 24 * 60 * 60 // 30 days
 
 function hashPassword(password: string): string {
-  return crypto.createHmac('sha256', 'houndaround-webcam').update(password).digest('hex')
+  return crypto.createHmac('sha256', 'boxers-webcam').update(password).digest('hex')
 }
 
 function parseTime(timeStr: string): {hour: number; minute: number} {

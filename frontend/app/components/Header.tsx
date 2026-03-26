@@ -58,7 +58,7 @@ export default function Header({navItems, ctaButton, logo}: HeaderProps) {
             {logo?.asset?._ref ? (
               <Image
                 id={logo.asset._ref}
-                alt="Hound Around Resort"
+                alt="Boxers Bed & Biscuits"
                 width={220}
                 className="w-[160px] lg:w-[220px] h-auto"
               />

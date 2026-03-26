@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://houndaroundresort.com/sitemap.xml',
+    sitemap: 'https://boxersbedandbiscuits.com/sitemap.xml',
   }
 }
