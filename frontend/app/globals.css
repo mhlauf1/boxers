@@ -27,8 +27,8 @@
   --color-text-muted-dark: rgba(250, 246, 239, 0.7);
 
   /* Font families */
-  --font-heading: 'Playfair Display', Georgia, serif;
-  --font-sans: var(--font-rubik, 'Rubik', system-ui, sans-serif);
+  --font-heading: 'Outfit', system-ui, sans-serif;
+  --font-sans: var(--font-bricolage, 'Bricolage Grotesque', system-ui, sans-serif);
 
   /* Font sizes — hero/heading scale */
   --font-size-hero: 84px;

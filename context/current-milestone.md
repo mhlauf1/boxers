@@ -1,90 +1,66 @@
 # Current Milestone
 
-## Milestone 3: Core Pages — Homepage & Core Services
+## Milestone 4: New Service Pages
 
 ### Status
 Complete — ready for review
 
 ### Goals
-- ~~Homepage: Hero, services tabs, stats bar, photo strip, BEC spotlight, Why Boxers differentiators, Vet Clinic spotlight, webcam section, testimonials, CTA banner~~
-- ~~Daycare page: Hero, features grid, pricing calculator, CTA~~
-- ~~Boarding page: Hero, features grid, pricing calculator, CTA~~
-- ~~Grooming page: Hero, features grid, pricing calculator, CTA~~
-- ~~Footer: Three-location contact block with hours/phone/email per location, social links (including YouTube)~~
-- ~~Pricing data rewrite: Replace Hound Around rates with Boxers pricing model~~
-- ~~All pages responsive~~
+- ~~Enrichment Center (BEC) page: Hero with BEC branding, enrichment vs. daycare explanation, pricing section ($45/day, $65/night, packages, New Client Intro offer), BEC location info, CTA~~
+- ~~Vet Clinic (Meds & Fixits) page: Hero with Meds & Fixits branding, location info (Suite A, different phone/hours/email), pharmacy link, scaffolded with available content~~
+- ~~Training page: Scaffolded with [PLACEHOLDER] content (waiting on Alexis), hero + basic structure~~
 
 ### What's Done
 
-**Pricing Data Rewrite:**
-- Rewrote `pricingData.ts` with Boxers pricing model:
-  - Daycare: $39/day flat, 50% off additional dogs, packages 10/25/40 visits with expiration dates
-  - Boarding: $59/night flat, 50% off additional dogs, no add-ons
-  - Grooming: Exit baths by size (S $29, M $39, L $59, XL $69), 4 add-ons (nail trim $19, brush out $25, ear cleaning $15, anal glands $25)
-- Updated `DaycareCalculator.tsx` — removed half-day option, new package options with expiration labels
-- Updated `BoardingCalculator.tsx` — removed add-ons, simplified to dogs + nights
-- Updated `GroomingCalculator.tsx` — exit baths by size + 4 add-ons, no mode toggle
-- Updated `CalculatorInputs.tsx` — removed ModeToggle, removed HairType, cleaned up imports
-- Fixed hardcoded Hound Around phone number (651-788-9797 → 740-423-7777) in ContactNotice
+**Enrichment Center (BEC) Page — 5 sections:**
+1. HeroSplit — "Boxers Enrichment Center" eyebrow, "A Premium, Individualized Experience" heading, BEC description from intake, Book Now + View Pricing CTAs
+2. FeatureCards (6 features, dark mode) — Private Play Sessions, Guided Enrichment, Personalized Approach, Safe & Supportive, Separate Facility (4474 Braun Rd), New Client Intro Offer
+3. PricingTable — Enrichment Daycare ($45/day, highlighted) and Enrichment Boarding ($65/night) as side-by-side tiers with feature lists and Book Now CTAs
+4. PricingList — BEC packages (10-visit $390, 25-visit $900, 40-visit $1,325) + New Client Intro offer, 2-column layout, sand background
+5. CtaBanner — "Ready to Experience Enrichment?" + Book Now CTA
 
-**Footer Three-Location Redesign:**
-- Replaced single `contactInfo` column with `locations[]` block showing all three locations
-- Each location card: name, address, phone (clickable), email (clickable), formatted hours
-- Added YouTube to social links (SVG icon)
-- Updated `layout.tsx` to pass `locations` prop instead of `contactInfo`
+**Vet Clinic (Meds & Fixits) Page — 4 sections:**
+1. HeroSplit — "Boxers Meds & Fixits" eyebrow, "Veterinary Care Under One Roof" heading, location/description, Call 740-525-3333 + Online Pharmacy CTAs
+2. FeatureCards (6 features, dark mode) — On-Site Clinic, Core Vaccinations, Routine Exams, Online Pharmacy, Convenient Hours, Integrated Care
+3. SplitContent — "Visit Meds & Fixits" with full contact info (address, phone, fax, email, hours), Online Pharmacy link, sand background
+4. CtaBanner — "Schedule a Visit" + Call CTA
 
-**Homepage Content (10 sections seeded):**
-1. Hero — "Elevating Pet Care to a Higher Standard" + Book Now / View Pricing CTAs + trust line
-2. ServiceTabs — references Daycare, Boarding, Grooming services
-3. StatsBar — 2 Locations, 6+ Services, Live Webcams, Full-Service Pet Care Center
-4. ImageRow — placeholder (images to be added via Studio)
-5. SplitContent (BEC Spotlight) — enrichment center description, Learn More CTA → /services/enrichment
-6. FeatureCards (Why Boxers) — 5 differentiators from intake with MDI icons, dark mode
-7. SplitContent (Vet Spotlight) — Meds & Fixits description, Learn More CTA → /services/vet-clinic
-8. WebcamPreview — "Peace of Mind" / "Live Webcams"
-9. Testimonials — 4 reviews from intake form
-10. CtaBanner — "Ready to Get Started?" + Book Now CTA
+**Training Page — 2 sections (scaffolded):**
+1. HeroSplit — "Training" eyebrow, "Professional Dog Training" heading, [PLACEHOLDER] body noting content pending from Alexis, Book Now + Call CTAs
+2. CtaBanner — "Interested in Training?" + Contact Us CTA
 
-**Service Pages (3 pages seeded):**
-- Each with: HeroSplit, FeatureCards (6 features each), PricingCalculator (single mode), CtaBanner
-- Added `tabCta` and `heading` to all 3 core services for ServiceTabs component
-- Daycare: "Structured Play & Purposeful Enrichment"
-- Boarding: "Comfort, Care & Consistency Around the Clock"
-- Grooming: "Patient, Personalized Grooming Care"
+**All pages also received:**
+- `heading` field for page detail display
+- `tabCta` field for ServiceTabs homepage component
+- Updated `shortDescription` (vet clinic and training had placeholders updated)
 
 **All content published to Sanity production dataset.**
 **`npm run build` passes.**
-**No Hound Around references remaining in codebase.**
+**No code changes needed — all content delivered via Sanity page builder blocks.**
 
 ### What's Remaining
-- Commit and push to `feature/core-pages` branch
+- Commit context doc updates and push to `feature/new-services` branch
 - Visual review in dev server
 - Merge to main
 
 ### Notes
-- Images not yet added to Sanity — all image fields empty. Components render gracefully without images. Upload via Sanity Studio when photos are available.
-- `yearEstablished` still null — waiting on Lori.
-- OG image still not uploaded.
-- Compact navbar logo variant still pending — flagged for Alexis (available 4/2).
-- Testimonial author names still "Boxers Customer" — waiting on real names from Alexis.
-- No new Sanity schema types were needed — all homepage sections use existing block types.
+- BEC pricing uses static pricingTable + pricingList blocks (not interactive calculator). Interactive BEC calculator deferred to M5 pricing page.
+- No new Sanity schema types were needed — all sections use existing block types (heroSplit, featureCards, pricingTable, pricingList, splitContent, ctaBanner).
+- Images not yet added — components render gracefully without them.
+- Training page is minimal scaffolding — content blocked on Alexis Foster (available 4/2).
+- Vet clinic service details still pending — feature cards use available info + reasonable inferences from the on-site clinic model.
 
 ### Files Modified
-- `frontend/app/data/pricingData.ts` — full rewrite with Boxers pricing
-- `frontend/app/components/pricing/DaycareCalculator.tsx` — simplified for Boxers model
-- `frontend/app/components/pricing/BoardingCalculator.tsx` — removed add-ons
-- `frontend/app/components/pricing/GroomingCalculator.tsx` — exit baths + 4 add-ons
-- `frontend/app/components/pricing/CalculatorInputs.tsx` — removed ModeToggle, HairType
-- `frontend/app/components/Footer.tsx` — three-location layout + YouTube social
-- `frontend/app/layout.tsx` — pass locations to Footer
+- `context/current-milestone.md` — updated to M4
+- `context/milestones.md` — M3 added to completed, M4 status updated
+- `context/sanity-schema.md` — updated with BEC pricing notes
 
 ### Definition of Done
-- ~~Homepage fully built with all sections including BEC and Vet spotlights~~
-- ~~Three core service pages populated with intake form content~~
-- ~~Pricing calculators functional with Boxers rates~~
-- ~~Footer displays all three location contact blocks~~
-- ~~Mobile responsive~~
+- ~~BEC page fully built with all available content and pricing~~
+- ~~Vet Clinic page built with available info, clear placeholders for missing content~~
+- ~~Training page scaffolded with placeholder blocks~~
+- ~~All pages responsive~~
 - ~~`npm run build` passes~~
 
 ### History
-- 2026-03-26: Pricing data rewritten, calculators updated. Footer redesigned for 3 locations. Homepage seeded with 10 sections. Daycare, Boarding, Grooming service pages seeded with 4 sections each. All published. Build passes.
+- 2026-03-26: BEC enrichment page seeded (5 sections: hero, features, pricing table, packages list, CTA). Vet clinic page seeded (4 sections: hero, features, contact info, CTA). Training page scaffolded (2 sections: hero, CTA). All published. Build passes.

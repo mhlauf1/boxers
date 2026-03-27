@@ -2,20 +2,20 @@ import './globals.css'
 
 import {SpeedInsights} from '@vercel/speed-insights/next'
 import type {Metadata} from 'next'
-import {Playfair_Display, Rubik} from 'next/font/google'
+import {Outfit, Bricolage_Grotesque} from 'next/font/google'
 
-const rubik = Rubik({
-  variable: '--font-rubik',
+const bricolage = Bricolage_Grotesque({
+  variable: '--font-bricolage',
   subsets: ['latin'],
   display: 'swap',
-  weight: ['400', '500', '600'],
+  weight: ['400', '500', '600', '700'],
 })
 
-const playfair = Playfair_Display({
+const outfit = Outfit({
   variable: '--font-heading',
   subsets: ['latin'],
   display: 'swap',
-  weight: ['400', '500', '600'],
+  weight: ['400', '500', '600', '700'],
 })
 import {draftMode} from 'next/headers'
 import {toPlainText} from 'next-sanity'
@@ -158,7 +158,7 @@ export default async function RootLayout({children}: {children: React.ReactNode}
   })
 
   return (
-    <html lang="en" className={`${rubik.variable} ${playfair.variable} bg-cream text-forest`}>
+    <html lang="en" className={`${bricolage.variable} ${outfit.variable} bg-cream text-forest`}>
       <head>
         <link rel="preconnect" href="https://cdn.sanity.io" />
         <link rel="dns-prefetch" href="https://cdn.sanity.io" />

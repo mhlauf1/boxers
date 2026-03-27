@@ -67,7 +67,7 @@ export default function Hero({block, index}: HeroProps) {
       />
 
       <div className="container relative z-10 pt-20 pb-4 lg:pt-[12vh] lg:pb-12">
-        <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
+        <div className="flex flex-col items-center text-center  mx-auto">
           {eyebrow && (
             <Wrap>
               <Badge className="mb-5 md:mb-6">{eyebrow}</Badge>
@@ -76,7 +76,7 @@ export default function Hero({block, index}: HeroProps) {
 
           {heading && (
             <Wrap delay={0.1}>
-              <h1 className="text-[48px] md:text-[56px] lg:text-[84px] leading-[104%] tracking-tight font-semibold mb-5">
+              <h1 className="text-[48px] md:text-[56px] lg:text-[84px] leading-[104%] md:max-w-[18ch] tracking-tight font-medium mb-5">
                 {heading}
               </h1>
             </Wrap>
@@ -84,7 +84,7 @@ export default function Hero({block, index}: HeroProps) {
 
           {subtext && (
             <Wrap delay={0.2}>
-              <p className="font-sans md:text-base lg:text-lg text-text-muted leading-[150%] max-w-xl mb-6">
+              <p className="font-sans md:text-base lg:text-lg text-text-muted leading-[150%] max-w-4xl mb-6">
                 {subtext}
               </p>
             </Wrap>
@@ -149,7 +149,7 @@ export default function Hero({block, index}: HeroProps) {
 
         {heroImage?.asset?._ref &&
           (isFirst ? (
-            <div className="mt-10 lg:mt-16 max-w-4xl mx-auto">
+            <div className="mt-10 lg:mt-16 mx-auto">
               <Image
                 id={heroImage.asset._ref}
                 alt="Hero image"
@@ -163,7 +163,7 @@ export default function Hero({block, index}: HeroProps) {
             </div>
           ) : (
             <FadeIn delay={0.5}>
-              <div className="mt-10 lg:mt-16 max-w-4xl mx-auto">
+              <div className="mt-10 lg:mt-16  mx-auto">
                 <Image
                   id={heroImage.asset._ref}
                   alt="Hero image"

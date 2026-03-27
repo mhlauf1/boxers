@@ -102,9 +102,9 @@ The pricing calculator (`pricingCalculator` block type) has a `calculatorType` f
 - Daycare: $39/day flat (no half day), packages 10/25/40 visits with expiration dates, 50% off additional dogs
 - Boarding: $59/night flat, 50% off additional dogs, no add-ons
 - Grooming: exit baths by size (S $29, M $39, L $59, XL $69), 4 add-ons (nail trim $19, brush out $25, ear cleaning $15, anal glands $25)
-- BEC pricing ($45/day, $65/night, packages) and Memberships (Play $450/mo, Premier $599/mo) not yet implemented — deferred to Milestones 4-5
+- BEC pricing ($45/day, $65/night, packages) displayed on enrichment page via `pricingTable` + `pricingList` blocks (M4). Interactive BEC calculator and Memberships (Play $450/mo, Premier $599/mo) deferred to M5 pricing page
 
-## Seeded Content (Milestone 2)
+## Seeded Content (Milestones 2–4)
 
 ### Document IDs
 - **Settings:** `siteSettings` (singleton)
@@ -113,10 +113,16 @@ The pricing calculator (`pricingCalculator` block type) has a `calculatorType` f
 - **Pages:** `page-homepage`, `page-pricing`, `page-petcams`, `page-our-staff`, `page-employment`
 
 ### What's seeded
-- Settings: title, tagline, contactInfo, 3 locations with hours, socialLinks, ctaButton, footerTagline/Text/TextLink, footerColumns (Services + Quick Links), navItems (4 items), localBusiness structured data
-- Testimonials: 4 quotes from intake form (author: "Boxers Customer" — real names TBD)
-- Services: 6 documents with titles, slugs, shortDescriptions (enrichment has full description, vet-clinic and training have [PLACEHOLDER])
-- Pages: 5 documents with names and slugs (empty pageBuilder arrays — content blocks in M3-M5)
+- **Settings:** title, tagline, contactInfo, 3 locations with hours, socialLinks (incl YouTube), ctaButton, footerTagline/Text/TextLink, footerColumns (Services + Quick Links), navItems (4 items), localBusiness structured data
+- **Testimonials:** 4 quotes from intake form (author: "Boxers Customer" — real names TBD)
+- **Homepage (M3):** 10 pageBuilder blocks — Hero, ServiceTabs, StatsBar, ImageRow, BEC Spotlight (splitContent), Why Boxers (featureCards), Vet Spotlight (splitContent), WebcamPreview, Testimonials, CtaBanner
+- **Daycare (M3):** HeroSplit, FeatureCards (6), PricingCalculator (daycare, single mode), CtaBanner
+- **Boarding (M3):** HeroSplit, FeatureCards (6), PricingCalculator (boarding, single mode), CtaBanner
+- **Grooming (M3):** HeroSplit, FeatureCards (6), PricingCalculator (grooming, single mode), CtaBanner
+- **Enrichment/BEC (M4):** HeroSplit, FeatureCards (6), PricingTable ($45/day + $65/night tiers), PricingList (3 packages + New Client Intro), CtaBanner
+- **Vet Clinic (M4):** HeroSplit (call + pharmacy CTAs), FeatureCards (6), SplitContent (contact info), CtaBanner
+- **Training (M4):** HeroSplit ([PLACEHOLDER] body), CtaBanner — content pending Alexis Foster
+- **Pages:** pricing, petcams, our-staff, employment have names/slugs but empty pageBuilder arrays (content in M5)
 
 ## Notes
 

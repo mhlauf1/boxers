@@ -116,20 +116,28 @@ The Boxers website is built in milestones, not features. Each milestone represen
 
 ## Milestone 4: New Service Pages
 
-**Status:** Not Started
+**Status:** Complete
 **Branch:** `feature/new-services`
 
 ### Goals
-- **Enrichment Center (BEC) page:** Hero with BEC mascot, enrichment vs. daycare explanation, pricing section ($45/day, $65/night, packages, New Client Intro offer), BEC location info (4474 Braun Rd, hours), CTA
-- **Vet Clinic (Meds & Fixits) page:** Hero with Meds & Fixits mascot, location info (Suite A, different phone/hours/email), pharmacy link, scaffolded with `[PLACEHOLDER]` for service details (waiting on Alexis)
-- **Training page:** Scaffolded with `[PLACEHOLDER]` content (waiting on Alexis), hero + basic structure
+- ~~**Enrichment Center (BEC) page:** Hero with BEC mascot, enrichment vs. daycare explanation, pricing section ($45/day, $65/night, packages, New Client Intro offer), BEC location info (4474 Braun Rd, hours), CTA~~
+- ~~**Vet Clinic (Meds & Fixits) page:** Hero with Meds & Fixits mascot, location info (Suite A, different phone/hours/email), pharmacy link, scaffolded with `[PLACEHOLDER]` for service details (waiting on Alexis)~~
+- ~~**Training page:** Scaffolded with `[PLACEHOLDER]` content (waiting on Alexis), hero + basic structure~~
+
+### What Was Done
+- BEC page: HeroSplit, FeatureCards (6 enrichment benefits), PricingTable ($45/day daycare + $65/night boarding tiers), PricingList (3 packages + New Client Intro), CtaBanner
+- Vet Clinic page: HeroSplit with call + pharmacy CTAs, FeatureCards (6 features), SplitContent with full contact info, CtaBanner
+- Training page: HeroSplit with [PLACEHOLDER] body, CtaBanner (content pending Alexis)
+- All services received `heading`, `tabCta`, updated `shortDescription`
+- No code changes — all content via Sanity page builder blocks
+- No new schema types needed
 
 ### Definition of Done
-- BEC page fully built with all available content and pricing
-- Vet Clinic page built with available info, clear placeholders for missing content
-- Training page scaffolded with placeholder blocks
-- All pages responsive
-- `npm run build` passes
+- ~~BEC page fully built with all available content and pricing~~
+- ~~Vet Clinic page built with available info, clear placeholders for missing content~~
+- ~~Training page scaffolded with placeholder blocks~~
+- ~~All pages responsive~~
+- ~~`npm run build` passes~~
 
 ---
 
@@ -212,3 +220,4 @@ The Boxers website is built in milestones, not features. Each milestone represen
 - **Milestone 1: Foundation & Brand System** — 2026-03-26. Codebase stripped of Hound Around content, brand colors/fonts implemented, mascot logos added, Sanity project connected.
 - **Milestone 2: Sanity Schema & Content Seeding** — 2026-03-26. Settings schema extended for multi-location, all content seeded (settings, 4 testimonials, 6 services, 5 pages), nav/footer configured.
 - **Milestone 3: Core Pages — Homepage & Core Services** — 2026-03-26. Pricing data rewritten for Boxers model, footer redesigned for 3 locations, homepage seeded (10 sections), 3 service pages seeded (hero, features, calculator, CTA each).
+- **Milestone 4: New Service Pages** — 2026-03-26. BEC enrichment page (5 sections with pricing table + packages), vet clinic page (4 sections with contact info + pharmacy link), training page scaffolded with placeholders. All via Sanity page builder — no code changes needed.
