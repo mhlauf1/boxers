@@ -1241,6 +1241,29 @@ export type Settings = {
     phone?: string
     email?: string
   }
+  locations?: Array<{
+    name: string
+    slug?: string
+    address?: string
+    phone?: string
+    fax?: string
+    email?: string
+    hours?: Array<{
+      days?: string
+      open?: string
+      close?: string
+      _key: string
+    }>
+    logo?: {
+      asset?: SanityImageAssetReference
+      media?: unknown
+      hotspot?: SanityImageHotspot
+      crop?: SanityImageCrop
+      alt?: string
+      _type: 'image'
+    }
+    _key: string
+  }>
   footerText?: string
   footerTextLink?: {
     label?: string
@@ -1255,6 +1278,7 @@ export type Settings = {
   socialLinks?: {
     facebook?: string
     instagram?: string
+    youtube?: string
     google?: string
   }
   ogImage?: {

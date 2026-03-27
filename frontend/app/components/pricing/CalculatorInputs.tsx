@@ -1,38 +1,7 @@
 'use client'
 
-import type {DogConfig, DogSize, GroomingMode} from '@/app/data/pricingData'
+import type {DogConfig, DogSize} from '@/app/data/pricingData'
 import {sizeLabels} from '@/app/data/pricingData'
-
-// ─── Mode Toggle ────────────────────────────────────────────
-type ModeToggleProps = {
-  mode: GroomingMode
-  onChange: (mode: GroomingMode) => void
-}
-
-export function ModeToggle({mode, onChange}: ModeToggleProps) {
-  return (
-    <div className="bg-forest-card rounded-full p-1 flex">
-      <button
-        type="button"
-        onClick={() => onChange('fullService')}
-        className={`flex-1 font-sans text-[14px] font-medium px-4 py-2.5 rounded-full transition-all ${
-          mode === 'fullService' ? 'bg-terracotta text-white' : 'text-cream/70 hover:text-cream'
-        }`}
-      >
-        Full Service
-      </button>
-      <button
-        type="button"
-        onClick={() => onChange('alaCarte')}
-        className={`flex-1 font-sans text-[14px] font-medium px-4 py-2.5 rounded-full transition-all ${
-          mode === 'alaCarte' ? 'bg-terracotta text-white' : 'text-cream/70 hover:text-cream'
-        }`}
-      >
-        A La Carte
-      </button>
-    </div>
-  )
-}
 
 // ─── Dog Card ───────────────────────────────────────────────
 type DogCardProps = {
@@ -45,7 +14,7 @@ type DogCardProps = {
   onRemove: () => void
 }
 
-export function DogCard({dog, index, total, showHairType, availableSizes, onUpdate, onRemove}: DogCardProps) {
+export function DogCard({dog, index, total, availableSizes, onUpdate, onRemove}: DogCardProps) {
   return (
     <div className="bg-forest-card border border-border-dark rounded-lg p-4 space-y-4">
       <div className="flex items-center justify-between">
@@ -85,34 +54,6 @@ export function DogCard({dog, index, total, showHairType, availableSizes, onUpda
           ))}
         </div>
       </div>
-
-      {/* Hair Type */}
-      {showHairType && (
-        <div>
-          <span className="block text-cream/70 font-sans text-[12px] font-medium uppercase tracking-wider mb-1.5">
-            Hair Type
-          </span>
-          <div className="flex gap-1.5">
-            {([
-              {value: 'short', label: 'Short Hair'},
-              {value: 'long', label: 'Long Hair'},
-            ] as const).map((opt) => (
-              <button
-                key={opt.value}
-                type="button"
-                onClick={() => onUpdate({...dog, hairType: opt.value})}
-                className={`font-sans text-[13px] font-medium px-3 py-1.5 rounded-full border transition-all ${
-                  dog.hairType === opt.value
-                    ? 'bg-terracotta text-white border-terracotta'
-                    : 'bg-transparent text-cream/70 border-border-dark hover:border-cream/40 hover:text-cream'
-                }`}
-              >
-                {opt.label}
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
     </div>
   )
 }

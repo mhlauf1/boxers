@@ -20,22 +20,40 @@ type FooterBottomLink = {
   link?: any
 }
 
+type LocationHours = {
+  _key: string
+  days?: string
+  open?: string
+  close?: string
+}
+
+type Location = {
+  _key: string
+  name?: string
+  slug?: string
+  address?: string
+  phone?: string
+  fax?: string
+  email?: string
+  hours?: LocationHours[]
+}
+
 type FooterProps = {
   tagline?: string
   columns?: FooterColumn[]
-  contactInfo?: {address?: string; phone?: string; email?: string}
+  locations?: Location[]
   footerText?: string
   footerTextLink?: {label?: string; href?: string}
   bottomLinks?: FooterBottomLink[]
   logo?: {asset?: {_ref: string}; alt?: string}
-  socialLinks?: {facebook?: string; instagram?: string; google?: string}
+  socialLinks?: {facebook?: string; instagram?: string; youtube?: string; google?: string}
   footerSticker?: {asset?: {_ref: string}; alt?: string}
 }
 
 export default function Footer({
   tagline,
   columns,
-  contactInfo,
+  locations,
   footerText,
   footerTextLink,
   bottomLinks,
@@ -49,7 +67,8 @@ export default function Footer({
       <div className="h-1.5 bg-sand" />
 
       <div className="px-6 md:px-20 py-12 lg:py-20">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
+        {/* Top section: Brand + Nav Columns */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-8">
           {/* Brand column */}
           <div className="flex flex-col justify-between">
             <div>
@@ -70,7 +89,7 @@ export default function Footer({
                   {tagline}
                 </p>
               )}
-              {(socialLinks?.facebook || socialLinks?.instagram || socialLinks?.google) && (
+              {(socialLinks?.facebook || socialLinks?.instagram || socialLinks?.youtube || socialLinks?.google) && (
                 <div className="flex gap-4 mt-4">
                   {socialLinks.facebook && (
                     <a
@@ -95,6 +114,19 @@ export default function Footer({
                     >
                       <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+                      </svg>
+                    </a>
+                  )}
+                  {socialLinks.youtube && (
+                    <a
+                      href={socialLinks.youtube}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="YouTube"
+                      className="text-forest/50 hover:text-forest transition-colors"
+                    >
+                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
                       </svg>
                     </a>
                   )}
@@ -142,28 +174,49 @@ export default function Footer({
               </ul>
             </div>
           ))}
-
-          {/* Contact column */}
-          {contactInfo && (
-            <div>
-              <p className="font-sans text-[16px] font-medium mb-4">Contact</p>
-              <div className="space-y-3 font-sans text-[15px] text-text-muted">
-                {contactInfo.address && (
-                  <p className="whitespace-pre-line">{contactInfo.address}</p>
-                )}
-                {contactInfo.phone && <p>{contactInfo.phone}</p>}
-                {contactInfo.email && (
-                  <a
-                    href={`mailto:${contactInfo.email}`}
-                    className="block hover:text-forest transition-colors"
-                  >
-                    {contactInfo.email}
-                  </a>
-                )}
-              </div>
-            </div>
-          )}
         </div>
+
+        {/* Locations section */}
+        {locations && locations.length > 0 && (
+          <div className="mt-12 pt-10 border-t border-border-light">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {locations.map((loc) => (
+                <div key={loc._key}>
+                  <p className="font-sans text-[16px] font-medium mb-3">{loc.name}</p>
+                  <div className="space-y-2 font-sans text-[14px] text-text-muted">
+                    {loc.address && (
+                      <p className="whitespace-pre-line leading-relaxed">{loc.address}</p>
+                    )}
+                    {loc.phone && (
+                      <p>
+                        <a href={`tel:${loc.phone.replace(/\D/g, '')}`} className="hover:text-forest transition-colors">
+                          {loc.phone}
+                        </a>
+                      </p>
+                    )}
+                    {loc.email && (
+                      <p>
+                        <a href={`mailto:${loc.email}`} className="hover:text-forest transition-colors break-all">
+                          {loc.email}
+                        </a>
+                      </p>
+                    )}
+                    {loc.hours && loc.hours.length > 0 && (
+                      <div className="mt-2 space-y-0.5 text-[13px]">
+                        {loc.hours.map((h) => (
+                          <p key={h._key}>
+                            <span className="text-forest/70">{h.days}:</span>{' '}
+                            {h.open} &ndash; {h.close}
+                          </p>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Bottom bar */}
@@ -175,7 +228,7 @@ export default function Footer({
                 ? footerTextLink?.label && footerTextLink?.href
                   ? renderFooterTextWithLink(footerText, footerTextLink.label, footerTextLink.href)
                   : footerText
-                : `\u00A9 ${new Date().getFullYear()} Boxers Bed & Biscuits. All rights reserved.`}
+                : `\u00A0 ${new Date().getFullYear()} Boxers Bed & Biscuits. All rights reserved.`}
             </p>
             <p className="font-sans text-[14px] text-text-muted">
               Designed and developed by{' '}

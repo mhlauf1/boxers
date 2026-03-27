@@ -1,10 +1,10 @@
 'use client'
 
 import {useState, useMemo, useCallback} from 'react'
-import {NumberStepper, CheckboxGroup, AddDogButton, ContactNotice} from './CalculatorInputs'
+import {NumberStepper, AddDogButton, ContactNotice} from './CalculatorInputs'
 import PriceOutputCard from './PriceOutputCard'
-import {calculateBoardingPerDog, boardingAddOnOptions} from '@/app/data/pricingData'
-import type {BoardingAddOn, BoardingDogConfig} from '@/app/data/pricingData'
+import {calculateBoardingPerDog} from '@/app/data/pricingData'
+import type {BoardingDogConfig} from '@/app/data/pricingData'
 import type {DereferencedLink} from '@/sanity/lib/types'
 
 type BoardingCalculatorProps = {
@@ -16,7 +16,7 @@ type BoardingCalculatorProps = {
 let dogIdCounter = 1
 
 function createDog(): BoardingDogConfig {
-  return {id: String(dogIdCounter++), nights: 1, addOns: []}
+  return {id: String(dogIdCounter++), nights: 1}
 }
 
 export default function BoardingCalculator({ctaText, ctaLink, taxNote}: BoardingCalculatorProps) {
@@ -52,7 +52,7 @@ export default function BoardingCalculator({ctaText, ctaLink, taxNote}: Boarding
           total={0}
           lineItems={[]}
           ctaText="Call Us"
-          ctaLink={{_type: 'link', linkType: 'href', href: 'tel:6517889797'}}
+          ctaLink={{_type: 'link', linkType: 'href', href: 'tel:7404237777'}}
           taxNote={taxNote}
           disabled
           disabledMessage="Please call for custom pricing for 4+ dogs."
@@ -91,7 +91,6 @@ export default function BoardingCalculator({ctaText, ctaLink, taxNote}: Boarding
         ctaLink={ctaLink}
         taxNote={taxNote}
         includes={result.includes}
-        badge={result.isExtendedStay ? 'Extended Stay' : null}
       />
     </div>
   )
@@ -107,8 +106,6 @@ type BoardingDogCardProps = {
 }
 
 function BoardingDogCard({dog, index, total, onUpdate, onRemove}: BoardingDogCardProps) {
-  const isExtended = dog.nights >= 10
-
   return (
     <div className="bg-forest-card border border-border-dark rounded-lg p-4 space-y-4">
       <div className="flex items-center justify-between">
@@ -132,19 +129,13 @@ function BoardingDogCard({dog, index, total, onUpdate, onRemove}: BoardingDogCar
         min={1}
         max={30}
         onChange={(v) => onUpdate({nights: v})}
-        badge={isExtended ? 'Extended stay rate!' : null}
       />
 
-      <CheckboxGroup
-        label="Add-Ons"
-        options={boardingAddOnOptions.map((a) => ({
-          id: a.id,
-          label: a.label,
-          detail: `$${a.perDay}/day`,
-        }))}
-        selected={dog.addOns}
-        onChange={(selected) => onUpdate({addOns: selected as BoardingAddOn[]})}
-      />
+      {index === 0 && total > 1 && (
+        <p className="font-sans text-[12px] text-cream/50">
+          Additional dogs receive 50% off
+        </p>
+      )}
     </div>
   )
 }

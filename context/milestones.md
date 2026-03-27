@@ -82,7 +82,7 @@ The Boxers website is built in milestones, not features. Each milestone represen
 
 ## Milestone 3: Core Pages — Homepage & Core Services
 
-**Status:** Not Started
+**Status:** Complete
 **Branch:** `feature/core-pages`
 
 ### Goals
@@ -94,12 +94,22 @@ The Boxers website is built in milestones, not features. Each milestone represen
 - **Pricing data rewrite:** Replace Hound Around rates in `pricingData.ts` with Boxers pricing model
 - All pages responsive across desktop, tablet, mobile
 
+### What Was Done
+- Rewrote `pricingData.ts`: Daycare $39/day flat + 10/25/40 packages, Boarding $59/night flat, Grooming exit baths by size + 4 add-ons. 50% off additional dogs across all services.
+- Updated all 3 calculator components (DaycareCalculator, BoardingCalculator, GroomingCalculator) and CalculatorInputs for simplified Boxers pricing model
+- Redesigned Footer with three-location block (PAW-PLEX, BEC, Meds & Fixits) using `settings.locations[]`. Added YouTube social link.
+- Seeded homepage pageBuilder with 10 sections: Hero, ServiceTabs, StatsBar, ImageRow, BEC Spotlight (splitContent), Why Boxers (featureCards), Vet Spotlight (splitContent), WebcamPreview, Testimonials, CtaBanner
+- Seeded 3 service pages (daycare, boarding, grooming) with HeroSplit, FeatureCards (6 each), PricingCalculator, CtaBanner
+- Added `tabCta` and `heading` to core services for ServiceTabs homepage component
+- No new Sanity schema types needed — all sections use existing block types
+- Images deferred — components render gracefully without images
+
 ### Definition of Done
-- Homepage fully built with all sections including new BEC and Vet spotlights
-- Three core service pages populated with intake form content
-- Pricing calculators functional with Boxers rates
-- Footer displays all three location contact blocks
-- Mobile responsive
+- ~~Homepage fully built with all sections including new BEC and Vet spotlights~~
+- ~~Three core service pages populated with intake form content~~
+- ~~Pricing calculators functional with Boxers rates~~
+- ~~Footer displays all three location contact blocks~~
+- ~~Mobile responsive~~
 - `npm run build` passes
 
 ---
@@ -201,3 +211,4 @@ The Boxers website is built in milestones, not features. Each milestone represen
 
 - **Milestone 1: Foundation & Brand System** — 2026-03-26. Codebase stripped of Hound Around content, brand colors/fonts implemented, mascot logos added, Sanity project connected.
 - **Milestone 2: Sanity Schema & Content Seeding** — 2026-03-26. Settings schema extended for multi-location, all content seeded (settings, 4 testimonials, 6 services, 5 pages), nav/footer configured.
+- **Milestone 3: Core Pages — Homepage & Core Services** — 2026-03-26. Pricing data rewritten for Boxers model, footer redesigned for 3 locations, homepage seeded (10 sections), 3 service pages seeded (hero, features, calculator, CTA each).

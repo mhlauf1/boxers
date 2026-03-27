@@ -242,7 +242,7 @@ export default async function RootLayout({children}: {children: React.ReactNode}
         <Footer
           tagline={settings?.footerTagline ?? undefined}
           columns={settings?.footerColumns as any}
-          contactInfo={settings?.contactInfo as any}
+          locations={settings?.locations as any}
           footerText={settings?.footerText ?? undefined}
           footerTextLink={settings?.footerTextLink as any}
           bottomLinks={settings?.footerBottomLinks as any}

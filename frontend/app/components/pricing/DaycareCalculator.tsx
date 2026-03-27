@@ -3,8 +3,8 @@
 import {useState, useMemo, useCallback} from 'react'
 import {NumberStepper, RadioGroup, AddDogButton, ContactNotice} from './CalculatorInputs'
 import PriceOutputCard from './PriceOutputCard'
-import {calculateDaycarePerDog} from '@/app/data/pricingData'
-import type {DayType, DaycarePackage, DaycareDogConfig} from '@/app/data/pricingData'
+import {calculateDaycarePerDog, daycarePackageOptions} from '@/app/data/pricingData'
+import type {DaycarePackage, DaycareDogConfig} from '@/app/data/pricingData'
 import type {DereferencedLink} from '@/sanity/lib/types'
 
 type DaycareCalculatorProps = {
@@ -16,7 +16,7 @@ type DaycareCalculatorProps = {
 let dogIdCounter = 1
 
 function createDog(): DaycareDogConfig {
-  return {id: String(dogIdCounter++), dayType: 'full', pkg: 'single', days: 1}
+  return {id: String(dogIdCounter++), pkg: 'single', days: 1}
 }
 
 export default function DaycareCalculator({ctaText, ctaLink, taxNote}: DaycareCalculatorProps) {
@@ -52,7 +52,7 @@ export default function DaycareCalculator({ctaText, ctaLink, taxNote}: DaycareCa
           total={0}
           lineItems={[]}
           ctaText="Call Us"
-          ctaLink={{_type: 'link', linkType: 'href', href: 'tel:6517889797'}}
+          ctaLink={{_type: 'link', linkType: 'href', href: 'tel:7404237777'}}
           taxNote={taxNote}
           disabled
           disabledMessage="Please call for custom pricing for 4+ dogs."
@@ -125,23 +125,12 @@ function DaycareDogCard({dog, index, total, onUpdate, onRemove}: DaycareDogCardP
       </div>
 
       <RadioGroup
-        label="Day Type"
-        options={[
-          {label: 'Full Day', value: 'full'},
-          {label: 'Half Day (4 hrs)', value: 'half'},
-        ]}
-        value={dog.dayType}
-        onChange={(v) => onUpdate({dayType: v as DayType})}
-      />
-
-      <RadioGroup
         label="Package"
-        options={[
-          {label: 'Single Days', value: 'single'},
-          {label: '5-Day Package', value: '5-day'},
-          {label: '10-Day Package', value: '10-day'},
-          {label: '20-Day Package', value: '20-day'},
-        ]}
+        options={daycarePackageOptions.map((opt) => ({
+          label: opt.label,
+          value: opt.id,
+          description: opt.expiration ? `${opt.detail} \u00B7 ${opt.expiration} exp.` : opt.detail,
+        }))}
         value={dog.pkg}
         onChange={(v) => onUpdate({pkg: v as DaycarePackage})}
       />

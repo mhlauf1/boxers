@@ -98,13 +98,11 @@ All queries live in `frontend/sanity/lib/queries.ts`.
 
 The pricing calculator (`pricingCalculator` block type) has a `calculatorType` field (`daycare` | `boarding` | `grooming`) and supports `single` or `tabbed` display mode. **Actual pricing data is hardcoded in `frontend/app/data/pricingData.ts`**, not in Sanity. The Sanity block only configures which calculator to show and the CTA link.
 
-**Boxers note:** The pricing data file currently contains Hound Around's rates and will need a full rewrite in Milestone 3:
-- Daycare: $39/day flat (no half day), packages 10/25/40 visits with expiration dates
-- Boarding: $59/night flat, additional dogs 50% off
-- BEC: $45/day enrichment daycare, $65/night enrichment boarding, own packages
-- Memberships: Play $450/mo, Premier $599/mo with feature lists
-- Grooming: exit baths priced by size (Small/Medium/Large/XL), add-ons (nail trim $19, brush out $25, ear cleaning $15, anal glands $25)
-- Multi-dog discounts: 50% off additional dogs (daycare/boarding), 20% off memberships
+**Boxers note:** The pricing data file was rewritten in Milestone 3 with Boxers rates:
+- Daycare: $39/day flat (no half day), packages 10/25/40 visits with expiration dates, 50% off additional dogs
+- Boarding: $59/night flat, 50% off additional dogs, no add-ons
+- Grooming: exit baths by size (S $29, M $39, L $59, XL $69), 4 add-ons (nail trim $19, brush out $25, ear cleaning $15, anal glands $25)
+- BEC pricing ($45/day, $65/night, packages) and Memberships (Play $450/mo, Premier $599/mo) not yet implemented — deferred to Milestones 4-5
 
 ## Seeded Content (Milestone 2)
 

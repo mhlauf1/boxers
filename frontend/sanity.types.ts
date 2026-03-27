@@ -1241,6 +1241,29 @@ export type Settings = {
     phone?: string
     email?: string
   }
+  locations?: Array<{
+    name: string
+    slug?: string
+    address?: string
+    phone?: string
+    fax?: string
+    email?: string
+    hours?: Array<{
+      days?: string
+      open?: string
+      close?: string
+      _key: string
+    }>
+    logo?: {
+      asset?: SanityImageAssetReference
+      media?: unknown
+      hotspot?: SanityImageHotspot
+      crop?: SanityImageCrop
+      alt?: string
+      _type: 'image'
+    }
+    _key: string
+  }>
   footerText?: string
   footerTextLink?: {
     label?: string
@@ -1255,6 +1278,7 @@ export type Settings = {
   socialLinks?: {
     facebook?: string
     instagram?: string
+    youtube?: string
     google?: string
   }
   ogImage?: {
@@ -1875,6 +1899,29 @@ export type SettingsQueryResult = {
     phone?: string
     email?: string
   } | null
+  locations: Array<{
+    name: string
+    slug?: string
+    address?: string
+    phone?: string
+    fax?: string
+    email?: string
+    hours?: Array<{
+      days?: string
+      open?: string
+      close?: string
+      _key: string
+    }>
+    logo: {
+      asset?: SanityImageAssetReference
+      media?: unknown
+      hotspot?: SanityImageHotspot
+      crop?: SanityImageCrop
+      alt?: string
+      _type: 'image'
+    } | null
+    _key: string
+  }> | null
   footerText: string | null
   footerTextLink: {
     label?: string
@@ -1897,6 +1944,7 @@ export type SettingsQueryResult = {
   socialLinks: {
     facebook?: string
     instagram?: string
+    youtube?: string
     google?: string
   } | null
   ogImage?: {
@@ -1941,7 +1989,6 @@ export type SettingsQueryResult = {
     }>
     priceRange?: string
   } | null
-  locations: null
   faviconUrl: string | null
 } | null
 
