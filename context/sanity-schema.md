@@ -4,7 +4,7 @@
 
 ## Status
 
-Connected to Boxers Sanity project. Schemas inherited from Hound Around — not yet evaluated for Boxers-specific additions.
+Connected to Boxers Sanity project. Schema deployed to cloud. Extended with `locations[]` array for multi-location support and `youtube` social link. All content seeded (settings, 4 testimonials, 6 services, 5 pages).
 
 ## Sanity Project Details
 
@@ -22,9 +22,11 @@ The only standalone reference documents are `testimonial` and `webcam`.
 ## Document Types
 
 ### `settings` (singleton)
-Global site config: title, tagline, logo, nav items, CTA button, footer columns, contact info, social links, business hours, SEO (OG image, favicon, GA4, GTM, GSC), local business structured data.
+Global site config: title, tagline, logo, nav items, CTA button, footer columns, contact info, **locations array**, social links (including YouTube), business hours, SEO (OG image, favicon, GA4, GTM, GSC), local business structured data.
 
-**Boxers note:** The settings schema may need extension to support multiple locations (PAW-PLEX, BEC, Meds & Fixits) each with their own address, phone, hours, and email. Evaluate whether this should be a nested object array in settings or a separate `location` document type.
+**`locations` field (added for Boxers):** Array of location objects, each with: `name` (string, required), `slug` (string), `address` (text), `phone`, `fax`, `email`, `hours` (array of `{days, open, close}`), `logo` (image with alt). Currently seeded with 3 entries: PAW-PLEX, BEC, Meds & Fixits. Used for the three-location footer and per-location structured data.
+
+**`socialLinks`** now includes `youtube` (url) alongside facebook, instagram, google.
 
 ### `page`
 Generic pages (homepage, pricing, petcams, our-staff, employment). Fields: name, slug, seo, pageBuilder (44 block types).
@@ -32,7 +34,7 @@ Generic pages (homepage, pricing, petcams, our-staff, employment). Fields: name,
 ### `service`
 Service detail pages (daycare, boarding, grooming, enrichment, vet-clinic, training). Fields: title, slug, sticker, shortDescription, tabImage, tabCta, heading, seo, pageBuilder (37 block types).
 
-**Boxers note:** Enrichment, vet-clinic, and training are new service types not in Hound Around. The enrichment and vet-clinic pages have their own mascot logos, contact info, and in the vet clinic's case, a completely different phone number and hours. Evaluate whether the `service` schema needs additional fields for location-specific contact info.
+**Boxers note:** Enrichment, vet-clinic, and training are new service types not in Hound Around. Location-specific contact info (BEC address/hours, Meds & Fixits phone/hours) is stored in `settings.locations` and can be queried by slug — no additional fields needed on the `service` schema.
 
 ### `testimonial`
 Customer reviews. Fields: quote, authorName, authorLabel, rating (1-5, default 5).
@@ -104,9 +106,24 @@ The pricing calculator (`pricingCalculator` block type) has a `calculatorType` f
 - Grooming: exit baths priced by size (Small/Medium/Large/XL), add-ons (nail trim $19, brush out $25, ear cleaning $15, anal glands $25)
 - Multi-dog discounts: 50% off additional dogs (daycare/boarding), 20% off memberships
 
+## Seeded Content (Milestone 2)
+
+### Document IDs
+- **Settings:** `siteSettings` (singleton)
+- **Testimonials:** `testimonial-1` through `testimonial-4`
+- **Services:** `service-daycare`, `service-boarding`, `service-grooming`, `service-enrichment`, `service-vet-clinic`, `service-training`
+- **Pages:** `page-homepage`, `page-pricing`, `page-petcams`, `page-our-staff`, `page-employment`
+
+### What's seeded
+- Settings: title, tagline, contactInfo, 3 locations with hours, socialLinks, ctaButton, footerTagline/Text/TextLink, footerColumns (Services + Quick Links), navItems (4 items), localBusiness structured data
+- Testimonials: 4 quotes from intake form (author: "Boxers Customer" — real names TBD)
+- Services: 6 documents with titles, slugs, shortDescriptions (enrichment has full description, vet-clinic and training have [PLACEHOLDER])
+- Pages: 5 documents with names and slugs (empty pageBuilder arrays — content blocks in M3-M5)
+
 ## Notes
 
 - Keep schemas structurally aligned with Hound Around for future multi-site template extraction
 - Don't add fields you don't need yet — only add what the current content requires
 - When adding Boxers-specific schema types, document them clearly so they can be evaluated for the shared template
-- Schema deployed to cloud via `npx sanity@latest schema deploy` from `studio/` directory
+- Schema deployed to cloud via `npx sanity@latest schema deploy` from `studio/` directory (requires Node >=20.19.1 or >=22.12)
+- The `locations[]` field in settings is the Boxers-specific addition — a generic pattern any Embark site can use (single-location sites have one entry)

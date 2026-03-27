@@ -1,53 +1,61 @@
 # Current Milestone
 
-## Milestone 1: Foundation & Brand System
+## Milestone 2: Sanity Schema & Content Seeding
 
 ### Status
-Nearly Complete — pending commit and deploy verification
+Complete — pending commit
 
 ### Goals
-- ~~Strip all Hound Around-specific content, images, and references from the cloned codebase~~
-- ~~Implement the Boxers brand color system (orange, green, gold, cream palette derived from mascot logos)~~
-- ~~Remove the three-theme toggle system~~ (none existed — confirmed clean)
-- ~~Select and load font pairing for headings and body text~~
-- ~~Add the three mascot logos to `/public/illustrations/`~~
-- Determine compact navbar logo variant (wordmark only, character head, or flag for Alexis to provide)
-- ~~Update all meta tags, site title, favicon, OG images for Boxers Bed & Biscuits~~
-- ~~Update `.env` / `.env.example` with Boxers-specific values~~
-- ~~Set up new Sanity project/dataset and connect it~~
-- Verify clean Vercel deployment with brand colors rendering correctly
+- ~~Evaluate Hound Around schemas for Boxers-specific additions~~
+- ~~Extend settings schema with `locations` array for multi-location support~~
+- ~~Add `youtube` to social links schema~~
+- ~~Seed site settings (title, tagline, contact, locations, social, CTA, footer, localBusiness)~~
+- ~~Seed 4 testimonials from intake form~~
+- ~~Seed 6 service documents (daycare, boarding, grooming, enrichment, vet-clinic, training)~~
+- ~~Seed 5 page documents (homepage, pricing, petcams, our-staff, employment)~~
+- ~~Configure nav items with page references and services dropdown~~
+- ~~Configure footer columns (Services + Quick Links) with document references~~
+- ~~Update settingsQuery to fetch locations~~
+- ~~Verify all GROQ queries return correct data~~
+- ~~`npm run build` passes~~
 
 ### What's Done
-- **16 files** with hardcoded Hound Around strings found and replaced (package.json, both sanity configs, layout.tsx, page.tsx, Header, Footer, TextLogo, CalculatorInputs, WebcamGrid, contact API route, webcam auth route, robots.ts, settings schema)
-- **Brand colors** implemented in globals.css: orange #E8872D (primary/CTAs), dark green #1B5E20 (forest/dark sections), gold #D4A24E (accents), cream #FAF6EF (bg), sand #F0EBE3 (alt sections)
-- **Fonts** loaded: Playfair Display (400 weight, lightest available) for headings + Rubik for all body/UI text
-- **Mascot logos** (B&B tuxedo, BEC hoodie, Meds & Fixits lab coat) copied to `public/illustrations/`
-- **Favicon** paw print updated to brand orange #E8872D
-- **Hound Around illustrations** removed from `public/illustrations/`
-- **Vestigial files removed**: `tailwind.config.ts` (v3 config), `content-guide.md`, `pricing-calculator.md`
-- **Sanity project** connected: project ID `hw1f15qc`, dataset `production`, env files set for both frontend and studio workspaces
-- **`npm run build` passes** — all pages compile and render without errors
-- **`npm run dev` runs** — both frontend and studio start successfully
+- **Schema changes**: Added `locations[]` array to settings singleton (name, slug, address, phone, fax, email, hours, logo per location). Added `youtube` URL to `socialLinks`. Schema deployed to Sanity cloud.
+- **Settings seeded** (`siteSettings`): Title, tagline, primary contactInfo (PAW-PLEX), 3 locations with full contact/hours, social links (Facebook, Instagram, YouTube), CTA button (Book Now → Gingr portal), footer tagline/text/link, localBusiness structured data (Kennel type, PAW-PLEX address/hours)
+- **Nav items**: Services (auto-populates dropdown from servicesNavQuery), Pricing (→ page ref), Petcams (→ page ref), Our Staff (→ page ref)
+- **Footer columns**: "Services" (6 href links to service pages), "Quick Links" (Pricing, Petcams, Our Staff, Employment as page refs)
+- **4 testimonials** seeded with stable IDs (`testimonial-1` through `testimonial-4`)
+- **6 services** seeded: Daycare, Boarding, Grooming, Enrichment (with descriptions from intake), Vet Clinic & Training (with [PLACEHOLDER] descriptions)
+- **5 pages** seeded: Homepage, Pricing, Petcams, Our Staff, Employment (empty pageBuilder arrays — content blocks built in M3-M5)
+- **GROQ query updated**: `settingsQuery` now fetches `locations[]` with logo expansion
+- **All documents published** to production dataset
+- **`npm run build` passes**
 
 ### What's Remaining
-- Commit and push to `chore/foundation` branch
-- Verify Vercel preview deployment renders correctly
-- Compact navbar logo variant — flagged as dependency for Alexis Foster (marketing director, available 4/2)
-- OG image — needs to be created/uploaded to Sanity (no source image yet)
+- Commit and push to `content/sanity-seed` branch
+- Verify Vercel preview deployment
 
 ### Notes
-- No HAFH multi-theme system existed in the codebase — the clone was directly from Hound Around's single-theme setup
-- Playfair Display's lightest weight is 400 (not 300) — still elegant, not heavy
-- The `price-data/*.csv` files still contain Hound Around pricing rates — these will be fully replaced when the pricing calculator is rewritten in Milestone 3
-- The hardcoded pricing in `frontend/app/data/pricingData.ts` is still Hound Around's rates — full rewrite in Milestone 3
+- Node 22.12.0 required for `sanity schema deploy` (v20.19.0 was too old). Installed via nvm.
+- Testimonials have no real author names — "Boxers Customer" used for all 4. Flag for Alexis to provide real names.
+- Service pageBuilder arrays are empty — content blocks will be built in Milestones 3 and 4.
+- Page pageBuilder arrays are empty — content blocks will be built in Milestones 3-5.
+- `yearEstablished` left null — waiting on Lori.
+- OG image not yet uploaded — no source image available.
+- Compact navbar logo variant still pending — flagged for Alexis (available 4/2).
+- The `price-data/*.csv` files and `pricingData.ts` still contain Hound Around pricing rates — full rewrite in Milestone 3.
+
+### Files Modified
+- `studio/src/schemaTypes/singletons/settings.tsx` — added `locations[]` + `youtube` social
+- `frontend/sanity/lib/queries.ts` — added `locations` to `settingsQuery`
 
 ### Definition of Done
-- ~~Site deploys to Vercel with zero references to Hound Around or HAFH~~ (code clean, deploy pending)
-- ~~Brand colors render correctly across all components~~
-- ~~All pages render without errors (content can be placeholder)~~
-- ~~Mascot logos load and display~~
-- ~~No theme toggle widget or multi-theme CSS remains~~
+- ~~Settings schema extended for multi-location support~~
+- ~~All "have now" content seeded in Sanity~~
+- ~~Nav items configured with correct page references~~
+- ~~Footer columns configured with service and page links~~
+- ~~GROQ queries return correct data~~
 - ~~`npm run build` passes~~
 
 ### History
-- 2026-03-26: Full codebase audit completed. All 16 Hound Around string references identified and replaced. Brand color system implemented. Playfair Display + Rubik fonts loaded. Three mascot logos added. Favicon updated. Sanity project connected. Hound Around docs removed. Build passes. Dev server runs.
+- 2026-03-26: Schema extended (locations array, youtube social). All content seeded: settings with 3 locations, 4 testimonials, 6 services, 5 pages. Nav and footer configured with document references. All documents published. Build passes.

@@ -206,10 +206,82 @@ export const settings = defineType({
       name: 'contactInfo',
       title: 'Contact Information',
       type: 'object',
+      description: 'Primary location contact info (PAW-PLEX)',
       fields: [
         defineField({name: 'address', title: 'Address', type: 'text', rows: 2}),
         defineField({name: 'phone', title: 'Phone', type: 'string'}),
         defineField({name: 'email', title: 'Email', type: 'string'}),
+      ],
+    }),
+    defineField({
+      name: 'locations',
+      title: 'Locations',
+      type: 'array',
+      description: 'All facility locations with contact info and hours',
+      of: [
+        defineArrayMember({
+          type: 'object',
+          fields: [
+            defineField({
+              name: 'name',
+              title: 'Location Name',
+              type: 'string',
+              validation: (Rule) => Rule.required(),
+            }),
+            defineField({
+              name: 'slug',
+              title: 'Slug',
+              type: 'string',
+              description: 'Identifier for programmatic lookups (e.g. paw-plex, bec, meds-and-fixits)',
+            }),
+            defineField({name: 'address', title: 'Address', type: 'text', rows: 2}),
+            defineField({name: 'phone', title: 'Phone', type: 'string'}),
+            defineField({name: 'fax', title: 'Fax', type: 'string'}),
+            defineField({name: 'email', title: 'Email', type: 'string'}),
+            defineField({
+              name: 'hours',
+              title: 'Business Hours',
+              type: 'array',
+              of: [
+                defineArrayMember({
+                  type: 'object',
+                  fields: [
+                    defineField({
+                      name: 'days',
+                      title: 'Days',
+                      type: 'string',
+                      description: 'e.g. Mo-Fr, Sa, Su',
+                    }),
+                    defineField({name: 'open', title: 'Open', type: 'string', description: 'e.g. 07:00'}),
+                    defineField({name: 'close', title: 'Close', type: 'string', description: 'e.g. 19:00'}),
+                  ],
+                  preview: {
+                    select: {days: 'days', open: 'open', close: 'close'},
+                    prepare({days, open, close}) {
+                      return {title: `${days}: ${open} – ${close}`}
+                    },
+                  },
+                }),
+              ],
+            }),
+            defineField({
+              name: 'logo',
+              title: 'Location Logo',
+              type: 'image',
+              description: 'Sub-brand mascot logo for this location',
+              fields: [
+                defineField({
+                  name: 'alt',
+                  title: 'Alt Text',
+                  type: 'string',
+                }),
+              ],
+            }),
+          ],
+          preview: {
+            select: {title: 'name', subtitle: 'phone'},
+          },
+        }),
       ],
     }),
     defineField({
@@ -257,6 +329,7 @@ export const settings = defineType({
       fields: [
         defineField({name: 'facebook', title: 'Facebook URL', type: 'url'}),
         defineField({name: 'instagram', title: 'Instagram URL', type: 'url'}),
+        defineField({name: 'youtube', title: 'YouTube URL', type: 'url'}),
         defineField({name: 'google', title: 'Google Business URL', type: 'url'}),
       ],
     }),

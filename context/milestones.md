@@ -10,7 +10,7 @@ The Boxers website is built in milestones, not features. Each milestone represen
 
 ## Milestone 1: Foundation & Brand System
 
-**Status:** Nearly Complete (pending commit + deploy verification)
+**Status:** Complete
 **Branch:** `chore/foundation`
 
 ### Goals
@@ -46,7 +46,7 @@ The Boxers website is built in milestones, not features. Each milestone represen
 
 ## Milestone 2: Sanity Schema & Content Seeding
 
-**Status:** Not Started
+**Status:** Complete
 **Branch:** `content/sanity-seed`
 
 ### Goals
@@ -61,10 +61,22 @@ The Boxers website is built in milestones, not features. Each milestone represen
 - Upload mascot logos and available facility photos to Sanity media library
 - Verify all GROQ queries return correct data
 
+### What Was Done
+- Extended settings schema with `locations[]` array (name, slug, address, phone, fax, email, hours, logo per location)
+- Added `youtube` URL to `socialLinks` schema
+- Seeded settings singleton with all brand info, 3 locations with full contact/hours, social links, CTA, footer config, localBusiness structured data
+- Seeded 4 testimonials, 6 services (daycare, boarding, grooming, enrichment, vet-clinic, training), 5 pages (homepage, pricing, petcams, our-staff, employment)
+- Configured nav items with page references and auto-populating Services dropdown
+- Configured footer columns (Services + Quick Links) with document references
+- Updated settingsQuery to fetch locations
+- All documents published to production dataset
+- Pricing data seeding deferred to Milestone 3 (hardcoded in pricingData.ts, not Sanity)
+- Logo/photo upload to Sanity media library deferred to Milestone 3 (when building page sections)
+
 ### Definition of Done
-- Sanity Studio loads with all seeded content
-- All content renders on the site through GROQ queries
-- No hardcoded content in components — everything from Sanity
+- ~~Sanity Studio loads with all seeded content~~
+- ~~All content renders on the site through GROQ queries~~
+- No hardcoded content in components — everything from Sanity (pricing data is the exception — handled in M3)
 
 ---
 
@@ -187,4 +199,5 @@ The Boxers website is built in milestones, not features. Each milestone represen
 
 ## Completed Milestones
 
-_None yet — Milestone 1 pending commit._
+- **Milestone 1: Foundation & Brand System** — 2026-03-26. Codebase stripped of Hound Around content, brand colors/fonts implemented, mascot logos added, Sanity project connected.
+- **Milestone 2: Sanity Schema & Content Seeding** — 2026-03-26. Settings schema extended for multi-location, all content seeded (settings, 4 testimonials, 6 services, 5 pages), nav/footer configured.
