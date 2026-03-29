@@ -143,43 +143,55 @@ The Boxers website is built in milestones, not features. Each milestone represen
 
 ## Milestone 5: Supporting Pages
 
-**Status:** Not Started
+**Status:** Complete
 **Branch:** `feature/supporting-pages`
 
 ### Goals
-- **Pricing page:** Comprehensive pricing layout — tabbed or segmented: PAW-PLEX (daycare + boarding + packages), BEC (enrichment daycare + boarding + packages + New Client Intro), Memberships (Play + Premier tiers with feature comparison), Grooming (exit baths by size + add-ons)
-- **Petcams page:** Mirror Hound Around's webcams page pattern, scaffolded for webcam embeds
-- **Our Staff page:** Team grid with photos, names, roles — scaffolded with available photos, `[PLACEHOLDER]` for missing bios
-- **Employment page:** Description of working at Boxers, contact CTA (BoxersGM1@outlook.com)
+- ~~**Pricing page:** Comprehensive pricing layout — pricingPageTabs for PAW-PLEX (daycare + boarding + grooming with calculators), BEC pricing/packages, Memberships (Play + Premier comparison), Grooming (exit baths + add-ons)~~
+- ~~**Petcams page:** Webcam grid scaffolded with placeholder webcam documents~~
+- ~~**Our Staff page:** Team grid scaffolded with placeholder members (names/bios/photos pending Alexis)~~
+- ~~**Employment page:** Description of working at Boxers, mailto CTA (BoxersGM1@outlook.com)~~
+
+### What Was Done
+- Pricing page: HeroMinimal, PricingPageTabs (PAW-PLEX 3-tab with calculators), PricingTable (BEC rates), PricingList (BEC packages), PricingTable (Memberships Play vs Premier), CtaBanner
+- Employment page: HeroMinimal, SplitContent ([PLACEHOLDER] for details), CtaBanner with mailto CTA
+- Our Staff page: HeroMinimal, TeamGrid (6 placeholder members), CtaBanner linking to employment
+- Petcams page: HeroMinimal, WebcamGrid, CtaBanner + 4 disabled webcam placeholder documents
+- No code changes — all content via Sanity page builder blocks
+- No new schema types needed
 
 ### Definition of Done
-- Pricing page displays all service pricing in an organized, scannable layout
-- Petcams page scaffolded
-- Our Staff page scaffolded with available photos
-- Employment page built
-- All pages responsive
-- `npm run build` passes
+- ~~Pricing page displays all service pricing in organized layout with working calculators~~
+- ~~Petcams page scaffolded with webcam grid~~
+- ~~Our Staff page scaffolded with team grid~~
+- ~~Employment page built with contact CTA~~
+- ~~All pages responsive~~
+- ~~`npm run build` passes~~
 
 ---
 
 ## Milestone 6: Content Finalization
 
-**Status:** Not Started
-**Branch:** `content/finalize`
+**Status:** Phase 1 Complete — Phase 2 blocked on Alexis Foster (available 4/2)
+**Branch:** `feature/supporting-pages` (bundled with M5)
 
-### Goals
-- Fill content gaps from Alexis Foster (available starting 4/2):
-  - Training page content
-  - Vet clinic service details
-  - Our Staff bios and any additional team photos
-  - Service-specific FAQs for each service page
-  - Daily schedule timelines for daycare and boarding
-  - Vaccination / health requirements
-  - Any additional facility photos
-- Add FAQ accordions to service pages once content is received
-- Add "How it works" timeline sections to daycare and boarding once daily schedules are provided
-- Fill in any remaining `[PLACEHOLDER]` markers
-- Embed YouTube videos where appropriate
+### Phase 1 Goals (Done)
+- ~~Training page: real content from current website (Amanda Ingraham / Band of Canines) + 6 featureCards~~
+- ~~Employment page: real benefits and positions from Indeed/current site~~
+- ~~Staff page: 3 real names with bios (Lori Shultz, Alexis Foster, Haley Gates)~~
+- ~~Homepage: "Since 2011" stat + "Our Story" founding narrative section~~
+
+### Phase 2 Goals (Waiting on Alexis Foster — available 4/2)
+- 3 remaining staff member names + bios + photos
+- Vet clinic service details (procedures offered)
+- Service-specific FAQs for each service page
+- Daily schedule timelines for daycare and boarding
+- Vaccination / health requirements
+- Training pricing (if any)
+- Webcam camera IDs
+- Additional facility photos
+- YouTube video embeds
+- FAQ accordions + "How it works" timeline sections
 
 ### Definition of Done
 - All `[PLACEHOLDER]` markers replaced with real content (or confirmed as not needed)
@@ -221,3 +233,5 @@ The Boxers website is built in milestones, not features. Each milestone represen
 - **Milestone 2: Sanity Schema & Content Seeding** — 2026-03-26. Settings schema extended for multi-location, all content seeded (settings, 4 testimonials, 6 services, 5 pages), nav/footer configured.
 - **Milestone 3: Core Pages — Homepage & Core Services** — 2026-03-26. Pricing data rewritten for Boxers model, footer redesigned for 3 locations, homepage seeded (10 sections), 3 service pages seeded (hero, features, calculator, CTA each).
 - **Milestone 4: New Service Pages** — 2026-03-26. BEC enrichment page (5 sections with pricing table + packages), vet clinic page (4 sections with contact info + pharmacy link), training page scaffolded with placeholders. All via Sanity page builder — no code changes needed.
+- **Milestone 5: Supporting Pages** — 2026-03-26. Pricing page (6 sections: tabbed PAW-PLEX with calculators, BEC rates/packages, Membership comparison, CTA). Employment, Our Staff, Petcams pages seeded. 4 webcam placeholder docs created. All via Sanity page builder — no code changes needed.
+- **Milestone 6 Phase 1: Content Finalization** — 2026-03-26. Training page filled with Amanda Ingraham/Band of Canines content + 6 featureCards. Employment page placeholder replaced with real benefits/positions. Staff page: 3 real names + bios (Lori Shultz GM, Alexis Foster Marketing, Haley Gates Reception). Homepage: "Since 2011" stat added, "Our Story" founding narrative section inserted. Phase 2 blocked on Alexis Foster (4/2).

@@ -146,36 +146,36 @@ export default function Hero({block, index}: HeroProps) {
             </Wrap>
           )}
         </div>
+      </div>
 
-        {heroImage?.asset?._ref &&
-          (isFirst ? (
-            <div className="mt-10 lg:mt-16 mx-auto">
+      {heroImage?.asset?._ref &&
+        (isFirst ? (
+          <div className="max-w-[1600px] mx-auto px-4 md:px-8 mt-10 lg:mt-16 pb-4 lg:pb-12">
+            <Image
+              id={heroImage.asset._ref}
+              alt="Hero image"
+              width={1600}
+              crop={heroImage.crop}
+              className="rounded-xl w-full object-cover"
+              sizes="100vw"
+              loading="eager"
+              fetchPriority="high"
+            />
+          </div>
+        ) : (
+          <FadeIn delay={0.5}>
+            <div className="max-w-[1600px] mx-auto px-4 md:px-8 mt-10 lg:mt-16 pb-4 lg:pb-12">
               <Image
                 id={heroImage.asset._ref}
                 alt="Hero image"
-                width={960}
+                width={1600}
                 crop={heroImage.crop}
                 className="rounded-xl w-full object-cover"
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 960px"
-                loading="eager"
-                fetchPriority="high"
+                sizes="100vw"
               />
             </div>
-          ) : (
-            <FadeIn delay={0.5}>
-              <div className="mt-10 lg:mt-16  mx-auto">
-                <Image
-                  id={heroImage.asset._ref}
-                  alt="Hero image"
-                  width={960}
-                  crop={heroImage.crop}
-                  className="rounded-xl w-full object-cover"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 960px"
-                />
-              </div>
-            </FadeIn>
-          ))}
-      </div>
+          </FadeIn>
+        ))}
     </section>
   )
 }

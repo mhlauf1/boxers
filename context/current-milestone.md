@@ -1,66 +1,79 @@
 # Current Milestone
 
-## Milestone 4: New Service Pages
+## Milestone 6: Content Finalization (Phase 1)
 
 ### Status
 Complete — ready for review
 
 ### Goals
-- ~~Enrichment Center (BEC) page: Hero with BEC branding, enrichment vs. daycare explanation, pricing section ($45/day, $65/night, packages, New Client Intro offer), BEC location info, CTA~~
-- ~~Vet Clinic (Meds & Fixits) page: Hero with Meds & Fixits branding, location info (Suite A, different phone/hours/email), pharmacy link, scaffolded with available content~~
-- ~~Training page: Scaffolded with [PLACEHOLDER] content (waiting on Alexis), hero + basic structure~~
+- ~~**Training page:** Replace placeholder content with real trainer info (Amanda Ingraham / Band of Canines) and add featureCards block~~
+- ~~**Employment page:** Replace placeholder with real benefits (medical/dental/vision, discounted pet services, positions)~~
+- ~~**Staff page:** Update placeholder names with Lori Shultz (GM), Haley Gates (Reception Manager), add bios~~
+- ~~**Homepage stats bar:** Add "Since 2011" stat~~
+- ~~**Homepage history section:** New "Our Story" splitContent block with founding story~~
 
 ### What's Done
 
-**Enrichment Center (BEC) Page — 5 sections:**
-1. HeroSplit — "Boxers Enrichment Center" eyebrow, "A Premium, Individualized Experience" heading, BEC description from intake, Book Now + View Pricing CTAs
-2. FeatureCards (6 features, dark mode) — Private Play Sessions, Guided Enrichment, Personalized Approach, Safe & Supportive, Separate Facility (4474 Braun Rd), New Client Intro Offer
-3. PricingTable — Enrichment Daycare ($45/day, highlighted) and Enrichment Boarding ($65/night) as side-by-side tiers with feature lists and Book Now CTAs
-4. PricingList — BEC packages (10-visit $390, 25-visit $900, 40-visit $1,325) + New Client Intro offer, 2-column layout, sand background
-5. CtaBanner — "Ready to Experience Enrichment?" + Book Now CTA
+**Training Page (`service-training`) — 3 sections:**
+1. HeroSplit — real body text about Amanda Ingraham, Band of Canines, retired U.S. Army master trainer, classes for puppies to seniors
+2. FeatureCards (NEW) — 6 cards: Puppy Classes, Basic Obedience, Advanced Training, Senior Dog Programs, Military-Grade Expertise, Confidence Building
+3. CtaBanner — "Interested in Training?" + Contact Us CTA
 
-**Vet Clinic (Meds & Fixits) Page — 4 sections:**
-1. HeroSplit — "Boxers Meds & Fixits" eyebrow, "Veterinary Care Under One Roof" heading, location/description, Call 740-525-3333 + Online Pharmacy CTAs
-2. FeatureCards (6 features, dark mode) — On-Site Clinic, Core Vaccinations, Routine Exams, Online Pharmacy, Convenient Hours, Integrated Care
-3. SplitContent — "Visit Meds & Fixits" with full contact info (address, phone, fax, email, hours), Online Pharmacy link, sand background
-4. CtaBanner — "Schedule a Visit" + Call CTA
+**Employment Page (`page-employment`) — updated:**
+- SplitContent placeholder replaced with real benefits: competitive pay, medical/dental/vision after 90-day probation, discounted pet services, open positions (receptionists, groomers, bathers, caregivers)
 
-**Training Page — 2 sections (scaffolded):**
-1. HeroSplit — "Training" eyebrow, "Professional Dog Training" heading, [PLACEHOLDER] body noting content pending from Alexis, Book Now + Call CTAs
-2. CtaBanner — "Interested in Training?" + Contact Us CTA
+**Staff Page (`page-our-staff`) — updated:**
+- Lori Shultz — General Manager (with bio)
+- Alexis Foster — Marketing Director (with bio)
+- Haley Gates — Reception Manager (with bio, role updated from Lead Groomer)
+- 3 remaining placeholders: Daycare Supervisor, Enrichment Specialist, Veterinary Staff (names pending Alexis)
 
-**All pages also received:**
-- `heading` field for page detail display
-- `tabCta` field for ServiceTabs homepage component
-- Updated `shortDescription` (vet clinic and training had placeholders updated)
+**Homepage (`page-homepage`) — updated:**
+- StatsBar: Added "Serving Pets Since: 2011" as first stat, removed "Full-Service" stat to keep 4 items
+- New "Our Story" splitContent block inserted between "Why Boxers" featureCards and "Meds & Fixits" vet spotlight
+  - Founded 2011 in converted home (20 suites)
+  - Moved to converted church (2014)
+  - Expanded to 48,000+ sq ft facility (2018, former Lee Middleton Doll factory)
+  - 2 locations, 175 suites, 160+ dog capacity
+  - SBA Spark Award recipient
 
 **All content published to Sanity production dataset.**
 **`npm run build` passes.**
-**No code changes needed — all content delivered via Sanity page builder blocks.**
+**No frontend code changes — all content delivered via Sanity page builder blocks.**
 
-### What's Remaining
-- Commit context doc updates and push to `feature/new-services` branch
-- Visual review in dev server
-- Merge to main
+### What's Remaining (Still Waiting on Alexis Foster / Facility Team)
+- 3 staff member names + bios (Daycare Supervisor, Enrichment Specialist, Veterinary Staff)
+- Staff photos for all team members
+- Vet clinic service details (what procedures/services are offered)
+- Service-specific FAQs for each service page
+- Daily schedule timelines for daycare and boarding
+- Vaccination/health requirements
+- Training pricing (if any)
+- Webcam camera IDs (4 placeholder docs exist, all disabled)
+- Additional facility photos
 
 ### Notes
-- BEC pricing uses static pricingTable + pricingList blocks (not interactive calculator). Interactive BEC calculator deferred to M5 pricing page.
-- No new Sanity schema types were needed — all sections use existing block types (heroSplit, featureCards, pricingTable, pricingList, splitContent, ctaBanner).
-- Images not yet added — components render gracefully without them.
-- Training page is minimal scaffolding — content blocked on Alexis Foster (available 4/2).
-- Vet clinic service details still pending — feature cards use available info + reasonable inferences from the on-site clinic model.
+- Training content sourced from current Boxers website and public sources (Amanda Ingraham / Band of Canines)
+- Employment benefits sourced from Indeed.com listings and current website
+- Year founded (2011) confirmed via PetVet Sales profile and news articles
+- Facility history (home → church → 48k sqft) sourced from News and Sentinel article (May 2018)
+- Haley Gates found via LinkedIn — confirmed Reception Manager
+- No new Sanity schema types needed
+- History section tone is professional/community-rooted — does not reference original founder by name (business acquired by Embark/Cadence)
 
 ### Files Modified
-- `context/current-milestone.md` — updated to M4
-- `context/milestones.md` — M3 added to completed, M4 status updated
-- `context/sanity-schema.md` — updated with BEC pricing notes
+- `context/current-milestone.md` — updated to M6
+- `context/milestones.md` — M6 status updated
+- `context/sanity-schema.md` — M6 notes added
 
 ### Definition of Done
-- ~~BEC page fully built with all available content and pricing~~
-- ~~Vet Clinic page built with available info, clear placeholders for missing content~~
-- ~~Training page scaffolded with placeholder blocks~~
-- ~~All pages responsive~~
+- ~~Training page has real content (no PLACEHOLDER)~~
+- ~~Employment page has real benefits/positions (no PLACEHOLDER)~~
+- ~~Staff page has 3 real names with bios~~
+- ~~Homepage has "Since 2011" stat~~
+- ~~Homepage has founding story section~~
+- ~~All content published~~
 - ~~`npm run build` passes~~
 
 ### History
-- 2026-03-26: BEC enrichment page seeded (5 sections: hero, features, pricing table, packages list, CTA). Vet clinic page seeded (4 sections: hero, features, contact info, CTA). Training page scaffolded (2 sections: hero, CTA). All published. Build passes.
+- 2026-03-26: Training page updated (hero body + shortDescription + heading filled, featureCards added with 6 training program cards). Employment page placeholder replaced with real benefits/positions. Staff page updated with Lori Shultz, Alexis Foster (bio added), Haley Gates (new, Reception Manager). Homepage statsBar updated with "Since 2011", new "Our Story" splitContent section added. All published. Build passes.

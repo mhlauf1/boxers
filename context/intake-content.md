@@ -41,7 +41,7 @@
   - Monday–Friday: 8 am – 6 pm
 
 ### General
-- **Year Opened:** TBD — waiting on Lori
+- **Year Opened:** 2011
 - **Service Area:** Belpre, Parkersburg, Vienna, and the surrounding Mid-Ohio Valley communities
 
 ---

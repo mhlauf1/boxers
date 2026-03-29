@@ -167,9 +167,8 @@ External link in nav: **Gingr Portal** → https://boxersbedandbiscuits.portal.g
 ### Nav Structure
 
 - **Services dropdown:** Daycare · Boarding · Grooming · Enrichment Center · Vet Clinic · Training
-- **Top-level:** Pricing · Petcams · Our Staff
+- **Top-level:** Pricing · Petcams · Our Staff · Careers
 - **CTA button:** Book Now (→ Gingr portal)
-- **Secondary/footer:** Employment
 
 ### Homepage Sections (top to bottom)
 
@@ -278,12 +277,12 @@ Likely needs a tabbed or segmented layout to organize all of this without overwh
 
 ### Waiting on facility team (Alexis Foster — Marketing Director)
 - Domain/hosting info (who controls boxersbedandbiscuits.com — Biztec? Wix? Someone else?)
-- Year opened
+- ~~Year opened~~ → **2011** (confirmed via public sources)
 - Compact/simplified logo versions for navbar use
-- Training page content (services, pricing, descriptions)
+- ~~Training page content~~ → **Filled** (Amanda Ingraham / Band of Canines from current site)
 - Vet clinic service details (what procedures/services are offered)
-- Employment page content
-- Our Staff page content (team member names, roles, bios)
+- ~~Employment page content~~ → **Filled** (benefits from Indeed/current site)
+- ~~Our Staff page content~~ → **Partially filled** (3 of 6 names from public sources; 3 remaining + all bios/photos still needed)
 - Daily schedule timelines for daycare and boarding
 - Service-specific FAQs
 - Additional photos as needed
@@ -324,7 +323,7 @@ Likely needs a tabbed or segmented layout to organize all of this without overwh
 - **Pharmacy:** https://boxersmedsandfixits.covetruspharmacy.com/
 
 ### General
-- **Year opened:** TBD (waiting on Lori)
+- **Year opened:** 2011 (founded by Angela Beck; current 48,000+ sqft facility at Washington Blvd since 2018)
 - **Service area:** Belpre, Parkersburg, Vienna, and the surrounding Mid-Ohio Valley communities
 - **Booking platform:** Gingr — https://boxersbedandbiscuits.portal.gingrapp.com/secure/home
 - **Services:** Daycare, boarding (dogs & cats), grooming, enrichment/private play, veterinary, training

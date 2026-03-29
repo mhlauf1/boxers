@@ -104,7 +104,7 @@ The pricing calculator (`pricingCalculator` block type) has a `calculatorType` f
 - Grooming: exit baths by size (S $29, M $39, L $59, XL $69), 4 add-ons (nail trim $19, brush out $25, ear cleaning $15, anal glands $25)
 - BEC pricing ($45/day, $65/night, packages) displayed on enrichment page via `pricingTable` + `pricingList` blocks (M4). Interactive BEC calculator and Memberships (Play $450/mo, Premier $599/mo) deferred to M5 pricing page
 
-## Seeded Content (Milestones 2–4)
+## Seeded Content (Milestones 2–6)
 
 ### Document IDs
 - **Settings:** `siteSettings` (singleton)
@@ -115,14 +115,18 @@ The pricing calculator (`pricingCalculator` block type) has a `calculatorType` f
 ### What's seeded
 - **Settings:** title, tagline, contactInfo, 3 locations with hours, socialLinks (incl YouTube), ctaButton, footerTagline/Text/TextLink, footerColumns (Services + Quick Links), navItems (4 items), localBusiness structured data
 - **Testimonials:** 4 quotes from intake form (author: "Boxers Customer" — real names TBD)
-- **Homepage (M3):** 10 pageBuilder blocks — Hero, ServiceTabs, StatsBar, ImageRow, BEC Spotlight (splitContent), Why Boxers (featureCards), Vet Spotlight (splitContent), WebcamPreview, Testimonials, CtaBanner
+- **Homepage (M3, updated M6):** 11 pageBuilder blocks — Hero, ServiceTabs, StatsBar (with "Since 2011"), ImageRow, BEC Spotlight (splitContent), Why Boxers (featureCards), **Our Story** (splitContent, founding narrative — NEW M6), Vet Spotlight (splitContent), WebcamPreview, Testimonials, CtaBanner
 - **Daycare (M3):** HeroSplit, FeatureCards (6), PricingCalculator (daycare, single mode), CtaBanner
 - **Boarding (M3):** HeroSplit, FeatureCards (6), PricingCalculator (boarding, single mode), CtaBanner
 - **Grooming (M3):** HeroSplit, FeatureCards (6), PricingCalculator (grooming, single mode), CtaBanner
 - **Enrichment/BEC (M4):** HeroSplit, FeatureCards (6), PricingTable ($45/day + $65/night tiers), PricingList (3 packages + New Client Intro), CtaBanner
 - **Vet Clinic (M4):** HeroSplit (call + pharmacy CTAs), FeatureCards (6), SplitContent (contact info), CtaBanner
-- **Training (M4):** HeroSplit ([PLACEHOLDER] body), CtaBanner — content pending Alexis Foster
-- **Pages:** pricing, petcams, our-staff, employment have names/slugs but empty pageBuilder arrays (content in M5)
+- **Training (M4, updated M6):** HeroSplit (Amanda Ingraham / Band of Canines content), FeatureCards (6 training programs — NEW M6), CtaBanner
+- **Pricing (M5):** HeroMinimal, PricingPageTabs (PAW-PLEX 3-tab: daycare tiers + boarding tier + grooming matrix, all with calculators), PricingTable (BEC rates), PricingList (BEC packages, 2-col sand), PricingTable (Memberships Play vs Premier), CtaBanner
+- **Employment (M5, updated M6):** HeroMinimal, SplitContent (real benefits: competitive pay, medical/dental/vision, discounted pet services, positions), CtaBanner (mailto CTA)
+- **Our Staff (M5, updated M6):** HeroMinimal, TeamGrid (3 real: Lori Shultz GM, Alexis Foster Marketing, Haley Gates Reception + 3 placeholder roles), CtaBanner (link to employment)
+- **Petcams (M5):** HeroMinimal, WebcamGrid, CtaBanner
+- **Webcams:** 4 placeholder documents (2 indoor, 2 outdoor), all `enabled: false` — real camera IDs needed from facility team
 
 ## Notes
 
