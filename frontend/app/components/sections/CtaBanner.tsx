@@ -147,7 +147,7 @@ export default function CtaBanner({block, index}: CtaBannerProps) {
               className="w-full h-full object-cover"
               {...(isEarly && {loading: 'eager' as const, fetchPriority: 'high' as const})}
             />
-            <div className="absolute inset-0 bg-forest/20" />
+            <div className="absolute inset-0 bg-black/50" />
           </div>
         )}
 

@@ -101,6 +101,18 @@ const pageBuilderExpansion = /* groq */ `
         tabCta ${buttonFields}
       }
     },
+    _type == "serviceTabsSidebar" => {
+      ...,
+      tabs[]->{
+        _id,
+        title,
+        slug,
+        sticker{asset, alt},
+        shortDescription,
+        tabImage{asset, crop, hotspot, alt},
+        tabCta ${buttonFields}
+      }
+    },
     _type == "testimonials" => {
       ...,
       reviews[]->{

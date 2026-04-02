@@ -2,20 +2,21 @@ import './globals.css'
 
 import {SpeedInsights} from '@vercel/speed-insights/next'
 import type {Metadata} from 'next'
-import {Outfit, Bricolage_Grotesque} from 'next/font/google'
+import {Geist} from 'next/font/google'
+import {Bricolage_Grotesque} from 'next/font/google'
 
-const bricolage = Bricolage_Grotesque({
-  variable: '--font-heading',
+const geist = Geist({
+  variable: '--font-geist',
   subsets: ['latin'],
   display: 'swap',
   weight: ['400', '500', '600', '700'],
 })
 
-const outfit = Outfit({
-  variable: '--font-body',
+const bricolage = Bricolage_Grotesque({
+  variable: '--font-bricolage',
   subsets: ['latin'],
   display: 'swap',
-  weight: ['400', '500', '600', '700'],
+  weight: ['400', '500', '600', '700', '800'],
 })
 import {draftMode} from 'next/headers'
 import {toPlainText} from 'next-sanity'
@@ -207,7 +208,7 @@ export default async function RootLayout({children}: {children: React.ReactNode}
   })
 
   return (
-    <html lang="en" className={`${bricolage.variable} ${outfit.variable} bg-cream text-forest`}>
+    <html lang="en" className={`${geist.variable} ${bricolage.variable} bg-cream text-forest`}>
       <head>
         <link rel="preconnect" href="https://cdn.sanity.io" />
         <link rel="dns-prefetch" href="https://cdn.sanity.io" />

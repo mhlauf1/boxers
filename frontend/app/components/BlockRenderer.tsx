@@ -4,6 +4,7 @@ import React, {Suspense, lazy} from 'react'
 import Hero from '@/app/components/sections/Hero'
 import HeroSplit from '@/app/components/sections/HeroSplit'
 import HeroBanner from '@/app/components/sections/HeroBanner'
+import HeroMarquee from '@/app/components/sections/HeroMarquee'
 import HeroMinimal from '@/app/components/sections/HeroMinimal'
 import CtaBanner from '@/app/components/sections/CtaBanner'
 import ContactFormComponent from '@/app/components/sections/ContactForm'
@@ -14,6 +15,7 @@ const Info = lazy(() => import('@/app/components/InfoSection'))
 const ImageRow = lazy(() => import('@/app/components/sections/ImageRow'))
 const FeatureCards = lazy(() => import('@/app/components/sections/FeatureCards'))
 const ServiceTabs = lazy(() => import('@/app/components/sections/ServiceTabs'))
+const ServiceTabsSidebar = lazy(() => import('@/app/components/sections/ServiceTabsSidebar'))
 const StatsBar = lazy(() => import('@/app/components/sections/StatsBar'))
 const WebcamPreview = lazy(() => import('@/app/components/sections/WebcamPreview'))
 const Testimonials = lazy(() => import('@/app/components/sections/Testimonials'))
@@ -44,6 +46,7 @@ const GalleryShowcase = lazy(() => import('@/app/components/sections/GalleryShow
 const GalleryPage = lazy(() => import('@/app/components/sections/GalleryPage'))
 const ValuePillars = lazy(() => import('@/app/components/sections/ValuePillars'))
 const PricingPageTabs = lazy(() => import('@/app/components/sections/PricingPageTabs'))
+import Spacer from '@/app/components/sections/Spacer'
 import {dataAttr} from '@/sanity/lib/utils'
 import {PageBuilderSection} from '@/sanity/lib/types'
 
@@ -63,7 +66,7 @@ function ContactForm(props: BlockProps) {
 }
 
 // Hero types are eagerly loaded, everything else is lazy
-const eagerTypes = new Set(['hero', 'heroSplit', 'heroBanner', 'heroMinimal', 'ctaBanner', 'galleryPage', 'pricingPageTabs', 'contactForm'])
+const eagerTypes = new Set(['hero', 'heroSplit', 'heroBanner', 'heroMarquee', 'heroMinimal', 'ctaBanner', 'galleryPage', 'pricingPageTabs', 'contactForm', 'spacer'])
 
 type BlocksType = {
   [key: string]: React.FC<BlockProps>
@@ -76,6 +79,7 @@ const Blocks = {
   imageRow: ImageRow,
   featureCards: FeatureCards,
   serviceTabs: ServiceTabs,
+  serviceTabsSidebar: ServiceTabsSidebar,
   statsBar: StatsBar,
   webcamPreview: WebcamPreview,
   testimonials: Testimonials,
@@ -88,6 +92,7 @@ const Blocks = {
   contactForm: ContactForm,
   heroSplit: HeroSplit,
   heroBanner: HeroBanner,
+  heroMarquee: HeroMarquee,
   heroMinimal: HeroMinimal,
   serviceCards: ServiceCards,
   featureList: FeatureList,
@@ -111,6 +116,7 @@ const Blocks = {
   galleryPage: GalleryPage,
   valuePillars: ValuePillars,
   pricingPageTabs: PricingPageTabs,
+  spacer: Spacer,
 } as BlocksType
 
 export default function BlockRenderer({block, index, pageId, pageType}: BlockProps) {

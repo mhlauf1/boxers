@@ -1,4 +1,5 @@
 import {FadeIn} from '@/app/components/ui/FadeIn'
+import Button from '@/app/components/ui/Button'
 
 type PricingTierCardsProps = {
   categories?: Array<{
@@ -31,7 +32,7 @@ export default function PricingTierCards({categories}: PricingTierCardsProps) {
           )}
 
           {category.tiers && category.tiers.length > 0 && (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               {category.tiers.map((tier, i) => (
                 <FadeIn key={tier._key} delay={0.1 * i}>
                   <div
@@ -92,6 +93,12 @@ export default function PricingTierCards({categories}: PricingTierCardsProps) {
           )}
         </div>
       ))}
+
+      <FadeIn delay={0.3}>
+        <div className="flex justify-center mt-10">
+          <Button href="/pricing">View More Details</Button>
+        </div>
+      </FadeIn>
     </>
   )
 }

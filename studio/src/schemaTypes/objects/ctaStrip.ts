@@ -8,6 +8,20 @@ export const ctaStrip = defineType({
   icon: BoltIcon,
   fields: [
     defineField({
+      name: 'icon',
+      title: 'Icon',
+      type: 'image',
+      description: 'Optional small icon or mascot displayed to the left of the text',
+      fields: [
+        defineField({
+          name: 'alt',
+          title: 'Alt Text',
+          type: 'string',
+          description: 'Describe this image for accessibility',
+        }),
+      ],
+    }),
+    defineField({
       name: 'heading',
       title: 'Heading',
       type: 'string',

@@ -119,6 +119,11 @@ export type MatrixData = {
   footnotes?: Array<string>
 }
 
+export type Spacer = {
+  _type: 'spacer'
+  size?: 'sm' | 'md' | 'lg' | 'xl'
+}
+
 export type PricingPageTabs = {
   _type: 'pricingPageTabs'
   eyebrow?: string
@@ -361,6 +366,14 @@ export type LogoBar = {
 
 export type CtaStrip = {
   _type: 'ctaStrip'
+  icon?: {
+    asset?: SanityImageAssetReference
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    _type: 'image'
+  }
   heading: string
   subtext?: string
   cta: Button
@@ -494,6 +507,28 @@ export type HeroMinimal = {
   headingAccent?: string
   subtext?: string
   backgroundColor?: 'cream' | 'sand' | 'forest'
+}
+
+export type HeroMarquee = {
+  _type: 'heroMarquee'
+  eyebrow?: string
+  heading: string
+  subtext?: string
+  primaryCta?: Button
+  secondaryCta?: Button
+  reviewRating?: number
+  reviewText?: string
+  trustLine?: string
+  bubbleText?: string
+  marqueeImages?: Array<{
+    asset?: SanityImageAssetReference
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    _type: 'image'
+    _key: string
+  }>
 }
 
 export type HeroBanner = {
@@ -660,6 +695,7 @@ export type FaqAccordion = {
 
 export type SplitContent = {
   _type: 'splitContent'
+  eyebrow?: string
   heading: string
   body?: BlockContent
   link?: SplitContentLink
@@ -788,6 +824,17 @@ export type ServiceReference = {
   _type: 'reference'
   _weak?: boolean
   [internalGroqTypeReferenceTo]?: 'service'
+}
+
+export type ServiceTabsSidebar = {
+  _type: 'serviceTabsSidebar'
+  eyebrow?: string
+  heading: string
+  tabs?: Array<
+    {
+      _key: string
+    } & ServiceReference
+  >
 }
 
 export type ServiceTabs = {
@@ -1050,6 +1097,9 @@ export type Service = {
       } & ServiceTabs)
     | ({
         _key: string
+      } & ServiceTabsSidebar)
+    | ({
+        _key: string
       } & StatsBar)
     | ({
         _key: string
@@ -1113,6 +1163,9 @@ export type Service = {
       } & LogoBar)
     | ({
         _key: string
+      } & HeroMarquee)
+    | ({
+        _key: string
       } & HeroMinimal)
     | ({
         _key: string
@@ -1147,6 +1200,9 @@ export type Service = {
     | ({
         _key: string
       } & ValuePillars)
+    | ({
+        _key: string
+      } & Spacer)
   >
 }
 
@@ -1358,6 +1414,9 @@ export type Page = {
       } & ServiceTabs)
     | ({
         _key: string
+      } & ServiceTabsSidebar)
+    | ({
+        _key: string
       } & StatsBar)
     | ({
         _key: string
@@ -1392,6 +1451,9 @@ export type Page = {
     | ({
         _key: string
       } & HeroBanner)
+    | ({
+        _key: string
+      } & HeroMarquee)
     | ({
         _key: string
       } & HeroMinimal)
@@ -1461,6 +1523,9 @@ export type Page = {
     | ({
         _key: string
       } & PricingPageTabs)
+    | ({
+        _key: string
+      } & Spacer)
   >
 }
 
@@ -1710,6 +1775,7 @@ export type AllSanitySchemaTypes =
   | ItemsObjectImage
   | TableData
   | MatrixData
+  | Spacer
   | PricingPageTabs
   | ValuePillars
   | GalleryPage
@@ -1733,6 +1799,7 @@ export type AllSanitySchemaTypes =
   | FeatureList
   | ServiceCards
   | HeroMinimal
+  | HeroMarquee
   | HeroBanner
   | HeroSplit
   | ContactForm
@@ -1747,6 +1814,7 @@ export type AllSanitySchemaTypes =
   | WebcamPreview
   | StatsBar
   | ServiceReference
+  | ServiceTabsSidebar
   | ServiceTabs
   | FeatureCards
   | ImageRow

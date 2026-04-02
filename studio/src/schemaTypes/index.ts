@@ -8,6 +8,7 @@ import {hero} from './objects/hero'
 import {imageRow} from './objects/imageRow'
 import {featureCards} from './objects/featureCards'
 import {serviceTabs} from './objects/serviceTabs'
+import {serviceTabsSidebar} from './objects/serviceTabsSidebar'
 import {statsBar} from './objects/statsBar'
 import {webcamPreview} from './objects/webcamPreview'
 import {testimonials} from './objects/testimonials'
@@ -20,6 +21,7 @@ import {galleryGrid} from './objects/galleryGrid'
 import {contactForm} from './objects/contactForm'
 import {heroSplit} from './objects/heroSplit'
 import {heroBanner} from './objects/heroBanner'
+import {heroMarquee} from './objects/heroMarquee'
 import {heroMinimal} from './objects/heroMinimal'
 import {serviceCards} from './objects/serviceCards'
 import {featureList} from './objects/featureList'
@@ -43,6 +45,7 @@ import {galleryShowcase} from './objects/galleryShowcase'
 import {galleryPage} from './objects/galleryPage'
 import {valuePillars} from './objects/valuePillars'
 import {pricingPageTabs} from './objects/pricingPageTabs'
+import {spacer} from './objects/spacer'
 import {seo} from './objects/seo'
 import {settings} from './singletons/settings'
 import {link} from './objects/link'
@@ -71,6 +74,7 @@ export const schemaTypes = [
   imageRow,
   featureCards,
   serviceTabs,
+  serviceTabsSidebar,
   statsBar,
   webcamPreview,
   testimonials,
@@ -83,6 +87,7 @@ export const schemaTypes = [
   contactForm,
   heroSplit,
   heroBanner,
+  heroMarquee,
   heroMinimal,
   serviceCards,
   featureList,
@@ -106,4 +111,5 @@ export const schemaTypes = [
   galleryPage,
   valuePillars,
   pricingPageTabs,
+  spacer,
 ]

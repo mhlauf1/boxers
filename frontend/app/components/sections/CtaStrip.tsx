@@ -1,9 +1,11 @@
 import Button from '@/app/components/ui/Button'
+import Image from '@/app/components/SanityImage'
 import {FadeIn} from '@/app/components/ui/FadeIn'
 import {stegaClean} from '@sanity/client/stega'
 
 type CtaStripProps = {
   block: {
+    icon?: {asset?: {_ref: string}; alt?: string}
     heading?: string
     subtext?: string
     cta?: {buttonText?: string; link?: any}
@@ -22,7 +24,7 @@ const bgColors: Record<string, string> = {
 }
 
 export default function CtaStrip({block}: CtaStripProps) {
-  const {heading, subtext, cta, backgroundColor} = block
+  const {icon, heading, subtext, cta, backgroundColor} = block
   const bg = bgColors[stegaClean(backgroundColor) || 'forest'] || bgColors.forest
   const cleanBg = stegaClean(backgroundColor) || 'forest'
   const isDark = cleanBg === 'forest' || cleanBg === 'terracotta'
@@ -32,19 +34,31 @@ export default function CtaStrip({block}: CtaStripProps) {
       <div className="px-6 md:px-24 py-16 lg:py-24">
         <FadeIn>
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-            <div>
-              {heading && (
-                <h2 className="text-[24px] md:text-[28px] lg:text-[36px] font-semibold tracking-tight leading-[110%]">
-                  {heading}
-                </h2>
+            <div className="flex items-center gap-4 md:gap-6">
+              {icon?.asset?._ref && (
+                <div className="shrink-0">
+                  <Image
+                    id={icon.asset._ref}
+                    alt={icon.alt || ''}
+                    width={100}
+                    className="w-[48px] lg:w-[56px] aspect-square object-contain"
+                  />
+                </div>
               )}
-              {subtext && (
-                <p
-                  className={`font-sans text-[14px] md:max-w-[84ch] leading-[160%] lg:text-[16px]  mt-2 ${isDark ? 'opacity-80' : 'text-text-muted'}`}
-                >
-                  {subtext}
-                </p>
-              )}
+              <div>
+                {heading && (
+                  <h2 className="text-[24px] md:text-[28px] lg:text-[36px] font-semibold tracking-tight leading-[110%]">
+                    {heading}
+                  </h2>
+                )}
+                {subtext && (
+                  <p
+                    className={`font-sans text-[14px] md:max-w-[84ch] leading-[160%] lg:text-[16px] mt-2 ${isDark ? 'opacity-80' : 'text-text-muted'}`}
+                  >
+                    {subtext}
+                  </p>
+                )}
+              </div>
             </div>
             {cta?.buttonText && (
               <Button

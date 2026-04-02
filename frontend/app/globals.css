@@ -27,8 +27,8 @@
   --color-text-muted-dark: rgba(250, 246, 239, 0.7);
 
   /* Font families */
-  --font-heading: 'Bricolage Grotesque', system-ui, sans-serif;
-  --font-sans: 'Outfit', system-ui, sans-serif;
+  --font-heading: var(--font-bricolage), system-ui, sans-serif;
+  --font-sans: var(--font-geist), system-ui, sans-serif;
 
   /* Font sizes — hero/heading scale */
   --font-size-hero: 84px;
@@ -100,6 +100,19 @@
   }
   to {
     width: 100%;
+  }
+}
+
+@utility animate-progress-vertical {
+  animation: progress-vertical 7s linear forwards;
+}
+
+@keyframes progress-vertical {
+  from {
+    height: 0%;
+  }
+  to {
+    height: 100%;
   }
 }
 

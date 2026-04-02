@@ -67,31 +67,45 @@ export default function FeatureCards({block}: FeatureCardsProps) {
           </FadeIn>
         )}
 
-        {features && features.length > 0 && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-12 lg:mb-16">
-            {features.map((feature, i) => (
-              <FadeIn key={feature._key} delay={0.1 * i}>
-                <div className="bg-forest-card border border-border-dark rounded-md px-6 py-12 h-full">
-                  {feature.icon && (
-                    <div className="mb-6 text-sand/80">
-                      <Icon icon={feature.icon} width={42} height={42} />
-                    </div>
-                  )}
-                  {feature.title && (
-                    <h3 className="text-[24px] md:text-3xl font-semibold leading-[120%] text-sand mb-3">
-                      {feature.title}
-                    </h3>
-                  )}
-                  {feature.description && (
-                    <p className="font-sans text-[16px] md:text-lg mb-2 md:mb-6  text-sand leading-[150%]">
-                      {feature.description}
-                    </p>
-                  )}
+        {features && features.length > 0 && (() => {
+          const topRow = features.length === 5 ? features.slice(0, 3) : features
+          const bottomRow = features.length === 5 ? features.slice(3) : []
+
+          const renderCard = (feature: typeof features[number], i: number) => (
+            <FadeIn key={feature._key} delay={0.1 * i}>
+              <div className="bg-forest-card border border-border-dark rounded-md px-6 py-12 h-full w-full">
+                {feature.icon && (
+                  <div className="mb-6 text-sand/80">
+                    <Icon icon={feature.icon} width={42} height={42} />
+                  </div>
+                )}
+                {feature.title && (
+                  <h3 className="text-[24px] md:text-3xl font-semibold leading-[120%] text-sand mb-3">
+                    {feature.title}
+                  </h3>
+                )}
+                {feature.description && (
+                  <p className="font-sans text-[16px] md:text-lg mb-2 md:mb-6  text-sand leading-[150%]">
+                    {feature.description}
+                  </p>
+                )}
+              </div>
+            </FadeIn>
+          )
+
+          return (
+            <div className="mb-12 lg:mb-16 space-y-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                {topRow.map((feature, i) => renderCard(feature, i))}
+              </div>
+              {bottomRow.length > 0 && (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {bottomRow.map((feature, i) => renderCard(feature, i + 3))}
                 </div>
-              </FadeIn>
-            ))}
-          </div>
-        )}
+              )}
+            </div>
+          )
+        })()}
 
         <FadeIn>
           <div>

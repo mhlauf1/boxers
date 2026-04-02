@@ -8,6 +8,12 @@ export const splitContent = defineType({
   icon: SplitHorizontalIcon,
   fields: [
     defineField({
+      name: 'eyebrow',
+      title: 'Eyebrow Text',
+      type: 'string',
+      description: 'Optional badge text above the heading (e.g. "Enrichment Center")',
+    }),
+    defineField({
       name: 'heading',
       title: 'Heading',
       type: 'string',

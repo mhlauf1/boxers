@@ -62,8 +62,8 @@ export default function HeroSplit({block, index}: HeroSplitProps) {
     : FadeIn
 
   return (
-    <section className={` pt-18 ${bg}`}>
-      <div className="px-6  md:px-24 py-16 lg:py-36">
+    <section className={`pt-18 ${bg}`}>
+      <div className={`px-6 md:px-24 ${isFirst ? 'py-8 lg:py-20' : 'py-16 lg:py-42'}`}>
         <div className="flex flex-col md:flex-row justify-between gap-8 lg:gap-16 items-center">
           {/* Text side */}
           <div className={`${isImageLeft ? 'lg:order-2' : 'lg:order-1'} flex-1`}>
@@ -149,7 +149,7 @@ export default function HeroSplit({block, index}: HeroSplitProps) {
                   width={600}
                   crop={image.crop}
                   hotspot={image.hotspot}
-                  className="rounded-lg md:w-[680px] aspect-[3/2] w-full object-cover"
+                  className={`rounded-lg w-full object-cover ${isFirst ? 'md:w-[560px] aspect-[3/4] max-h-[70vh]' : 'md:w-[680px] aspect-[2/3]'}`}
                   sizes="(max-width: 768px) 100vw, 600px"
                   {...(isFirst && {loading: 'eager' as const, fetchPriority: 'high' as const})}
                 />

@@ -3,10 +3,12 @@ import type {PortableTextBlock} from 'next-sanity'
 import Image from '@/app/components/SanityImage'
 import Button from '@/app/components/ui/Button'
 import {stegaClean} from '@sanity/client/stega'
+import Badge from '@/app/components/ui/Badge'
 import {FadeIn} from '@/app/components/ui/FadeIn'
 
 type SplitContentProps = {
   block: {
+    eyebrow?: string
     heading?: string
     body?: PortableTextBlock[]
     link?: {label?: string; link?: any}
@@ -32,7 +34,7 @@ const bgColors: Record<string, {classes: string; isDark: boolean}> = {
 }
 
 export default function SplitContent({block}: SplitContentProps) {
-  const {heading, body, link, badge, image, stickerImage, imagePosition, backgroundColor} = block
+  const {eyebrow, heading, body, link, badge, image, stickerImage, imagePosition, backgroundColor} = block
   const isImageLeft = stegaClean(imagePosition) === 'left'
   const {classes: bg, isDark} = bgColors[stegaClean(backgroundColor) || 'sand'] || bgColors.sand
 
@@ -42,8 +44,14 @@ export default function SplitContent({block}: SplitContentProps) {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
           {/* Text side */}
           <div className={isImageLeft ? 'lg:order-2' : 'lg:order-1'}>
-            {heading && (
+            {eyebrow && (
               <FadeIn>
+                <Badge className="mb-4">{eyebrow}</Badge>
+              </FadeIn>
+            )}
+
+            {heading && (
+              <FadeIn delay={eyebrow ? 0.1 : 0}>
                 <h2 className="text-4xl font-semibold md:text-text-5xl lg:text-6xl leading-[105%] tracking-tight max-w-[15ch] mb-6">
                   {heading}
                 </h2>

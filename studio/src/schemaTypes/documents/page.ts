@@ -39,6 +39,7 @@ export const page = defineType({
         {type: 'imageRow'},
         {type: 'featureCards'},
         {type: 'serviceTabs'},
+        {type: 'serviceTabsSidebar'},
         {type: 'statsBar'},
         {type: 'webcamPreview'},
         {type: 'testimonials'},
@@ -51,6 +52,7 @@ export const page = defineType({
         {type: 'contactForm'},
         {type: 'heroSplit'},
         {type: 'heroBanner'},
+        {type: 'heroMarquee'},
         {type: 'heroMinimal'},
         {type: 'serviceCards'},
         {type: 'featureList'},
@@ -74,6 +76,7 @@ export const page = defineType({
         {type: 'galleryPage'},
         {type: 'valuePillars'},
         {type: 'pricingPageTabs'},
+        {type: 'spacer'},
       ],
       options: {
         insertMenu: {
