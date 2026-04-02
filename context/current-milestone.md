@@ -1,79 +1,90 @@
 # Current Milestone
 
-## Milestone 6: Content Finalization (Phase 1)
+## Milestone 7: Polish & Launch Prep (Phase 1)
 
 ### Status
-Complete — ready for review
+Phase 1 complete — ready for review
 
-### Goals
-- ~~**Training page:** Replace placeholder content with real trainer info (Amanda Ingraham / Band of Canines) and add featureCards block~~
-- ~~**Employment page:** Replace placeholder with real benefits (medical/dental/vision, discounted pet services, positions)~~
-- ~~**Staff page:** Update placeholder names with Lori Shultz (GM), Haley Gates (Reception Manager), add bios~~
-- ~~**Homepage stats bar:** Add "Since 2011" stat~~
-- ~~**Homepage history section:** New "Our Story" splitContent block with founding story~~
+### Goals (Phase 1 — Pre-Alexis)
+- ~~**Accessibility:** Global focus-visible styles, skip-to-content link~~
+- ~~**Nav & mobile menu:** aria-expanded, focus trap, keyboard navigation, active page highlighting~~
+- ~~**SEO:** Multi-location structured data (3 LocalBusiness JSON-LD), BreadcrumbList on all pages~~
+- ~~**Hero cleanup:** Dynamic alt text from Sanity, fix double space~~
+- ~~**404 & error pages:** Visual redesign with mascot illustrations, matching design system~~
 
 ### What's Done
 
-**Training Page (`service-training`) — 3 sections:**
-1. HeroSplit — real body text about Amanda Ingraham, Band of Canines, retired U.S. Army master trainer, classes for puppies to seniors
-2. FeatureCards (NEW) — 6 cards: Puppy Classes, Basic Obedience, Advanced Training, Senior Dog Programs, Military-Grade Expertise, Confidence Building
-3. CtaBanner — "Interested in Training?" + Contact Us CTA
+**Accessibility (globals.css, layout.tsx):**
+- Universal `*:focus-visible` rule — terracotta outline, 2px offset (replaces forest-only focus styles)
+- Skip-to-content link as first child of `<body>` (sr-only, visible on keyboard focus)
+- `id="main-content"` added to `<main>` element
 
-**Employment Page (`page-employment`) — updated:**
-- SplitContent placeholder replaced with real benefits: competitive pay, medical/dental/vision after 90-day probation, discounted pet services, open positions (receptionists, groomers, bathers, caregivers)
+**Nav & Mobile Menu (Header.tsx):**
+- `aria-expanded` + `aria-controls` on hamburger button
+- `aria-expanded` + `aria-haspopup` on desktop Services dropdown button
+- `role="dialog"` + `aria-modal` + `aria-label` on mobile panel
+- Focus trap in mobile menu (Tab wrapping at boundaries, Escape to close)
+- Keyboard navigation for desktop dropdown (Enter/Space toggle, Escape close, ArrowDown/ArrowUp between items)
+- `role="menu"` on dropdown panel, `role="menuitem"` on dropdown links
+- Active page highlighting — terracotta text on desktop, terracotta left border accent on mobile
+- Dynamic aria-label on hamburger ("Open menu" / "Close menu")
 
-**Staff Page (`page-our-staff`) — updated:**
-- Lori Shultz — General Manager (with bio)
-- Alexis Foster — Marketing Director (with bio)
-- Haley Gates — Reception Manager (with bio, role updated from Lead Groomer)
-- 3 remaining placeholders: Daycare Supervisor, Enrichment Specialist, Veterinary Staff (names pending Alexis)
+**SEO — Multi-Location Structured Data (layout.tsx):**
+- `buildLocationJsonLd()` generates JSON-LD for all 3 locations
+- PAW-PLEX: uses existing `localBusiness` structured data (full address fields)
+- BEC: gets own LocalBusiness entry from `settings.locations[]`
+- Meds & Fixits: gets `@type: "VeterinaryClinic"` (based on slug)
+- Each rendered as separate `<script type="application/ld+json">`
 
-**Homepage (`page-homepage`) — updated:**
-- StatsBar: Added "Serving Pets Since: 2011" as first stat, removed "Full-Service" stat to keep 4 items
-- New "Our Story" splitContent block inserted between "Why Boxers" featureCards and "Meds & Fixits" vet spotlight
-  - Founded 2011 in converted home (20 suites)
-  - Moved to converted church (2014)
-  - Expanded to 48,000+ sq ft facility (2018, former Lee Middleton Doll factory)
-  - 2 locations, 175 suites, 160+ dog capacity
-  - SBA Spark Award recipient
+**SEO — BreadcrumbList (services/[slug]/page.tsx, [slug]/page.tsx):**
+- Service pages: Home > Services > {title}
+- Generic pages: Home > {title}
+- Base URL: `https://boxersbedandbiscuits.com`
 
-**All content published to Sanity production dataset.**
+**Hero Cleanup (Hero.tsx):**
+- Hero image alt text now uses `heroImage.alt || heading || 'Hero image'` instead of hardcoded "Hero image"
+- Fixed double space in className (`text-center  mx-auto` → `text-center mx-auto`)
+- Added `alt` to HeroProps type for heroImage
+
+**404 & Error Pages (not-found.tsx, error.tsx):**
+- Large faded "404" text as visual anchor
+- Decorative dog illustrations (hero-left-dog.png, hero-right-image.png) at low opacity
+- `bg-cream` background matching site identity
+- Button styles matching Button.tsx variants (rounded-lg, proper padding/tracking)
+- error.tsx: same visual treatment with Try Again (primary) + Back to Home (outline) buttons
+
 **`npm run build` passes.**
-**No frontend code changes — all content delivered via Sanity page builder blocks.**
 
-### What's Remaining (Still Waiting on Alexis Foster / Facility Team)
-- 3 staff member names + bios (Daycare Supervisor, Enrichment Specialist, Veterinary Staff)
-- Staff photos for all team members
-- Vet clinic service details (what procedures/services are offered)
-- Service-specific FAQs for each service page
-- Daily schedule timelines for daycare and boarding
-- Vaccination/health requirements
-- Training pricing (if any)
-- Webcam camera IDs (4 placeholder docs exist, all disabled)
-- Additional facility photos
-
-### Notes
-- Training content sourced from current Boxers website and public sources (Amanda Ingraham / Band of Canines)
-- Employment benefits sourced from Indeed.com listings and current website
-- Year founded (2011) confirmed via PetVet Sales profile and news articles
-- Facility history (home → church → 48k sqft) sourced from News and Sentinel article (May 2018)
-- Haley Gates found via LinkedIn — confirmed Reception Manager
-- No new Sanity schema types needed
-- History section tone is professional/community-rooted — does not reference original founder by name (business acquired by Embark/Cadence)
+### What's Remaining (Phase 2 — Post-Alexis + Final Polish)
+- Lighthouse performance audit (target 90+ all categories)
+- Cross-browser testing
+- Mascot illustrations placed throughout remaining site sections
+- Final content review with stakeholders
+- Domain migration plan (Cloudflare DNS, Vercel deployment, SSL)
+- Final review with Brian / Lori / Alexis before go-live
+- M6 Phase 2 content (staff photos, vet details, FAQs, webcam IDs — waiting on Alexis 4/2)
 
 ### Files Modified
-- `context/current-milestone.md` — updated to M6
-- `context/milestones.md` — M6 status updated
-- `context/sanity-schema.md` — M6 notes added
+- `frontend/app/globals.css` — Universal focus-visible styles
+- `frontend/app/layout.tsx` — Skip-to-content, multi-location JSON-LD
+- `frontend/app/components/Header.tsx` — Accessibility, keyboard nav, active page, focus trap
+- `frontend/app/components/sections/Hero.tsx` — Dynamic alt text, double space fix
+- `frontend/app/not-found.tsx` — Visual redesign
+- `frontend/app/error.tsx` — Visual redesign
+- `frontend/app/services/[slug]/page.tsx` — BreadcrumbList JSON-LD
+- `frontend/app/[slug]/page.tsx` — BreadcrumbList JSON-LD
 
-### Definition of Done
-- ~~Training page has real content (no PLACEHOLDER)~~
-- ~~Employment page has real benefits/positions (no PLACEHOLDER)~~
-- ~~Staff page has 3 real names with bios~~
-- ~~Homepage has "Since 2011" stat~~
-- ~~Homepage has founding story section~~
-- ~~All content published~~
+### Definition of Done (Phase 1)
+- ~~Skip-to-content link works via keyboard~~
+- ~~Focus rings visible on all interactive elements~~
+- ~~Mobile menu traps focus and responds to Escape~~
+- ~~Desktop dropdown navigable via keyboard~~
+- ~~Active page highlighted in nav~~
+- ~~3 LocalBusiness JSON-LD blocks in page source~~
+- ~~BreadcrumbList on service and generic pages~~
+- ~~Hero alt text dynamic~~
+- ~~404 page matches site design~~
 - ~~`npm run build` passes~~
 
 ### History
-- 2026-03-26: Training page updated (hero body + shortDescription + heading filled, featureCards added with 6 training program cards). Employment page placeholder replaced with real benefits/positions. Staff page updated with Lori Shultz, Alexis Foster (bio added), Haley Gates (new, Reception Manager). Homepage statsBar updated with "Since 2011", new "Our Story" splitContent section added. All published. Build passes.
+- 2026-03-29: M7 Phase 1 complete. Accessibility (focus styles, skip-to-content), nav polish (aria attrs, focus trap, keyboard nav, active page), SEO (multi-location JSON-LD with VeterinaryClinic type, BreadcrumbList), Hero cleanup (dynamic alt), 404/error page redesign. Build passes.

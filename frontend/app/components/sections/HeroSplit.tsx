@@ -11,6 +11,9 @@ type HeroSplitProps = {
     body?: string
     primaryCta?: {buttonText?: string; link?: any}
     secondaryCta?: {buttonText?: string; link?: any}
+    reviewRating?: number
+    reviewText?: string
+    trustLine?: string
     image?: {asset?: {_ref: string}; crop?: any; hotspot?: any; alt?: string}
     stickerImage?: {asset?: {_ref: string}; alt?: string}
     imagePosition?: 'left' | 'right'
@@ -34,6 +37,9 @@ export default function HeroSplit({block, index}: HeroSplitProps) {
     body,
     primaryCta,
     secondaryCta,
+    reviewRating,
+    reviewText,
+    trustLine,
     image,
     stickerImage,
     imagePosition,
@@ -44,13 +50,20 @@ export default function HeroSplit({block, index}: HeroSplitProps) {
   const isDark = stegaClean(backgroundColor) === 'forest'
   const isFirst = index === 0
   const Wrap = isFirst
-    ? ({children, className}: {children: React.ReactNode; className?: string; delay?: number; direction?: string}) => <div className={className}>{children}</div>
+    ? ({
+        children,
+        className,
+      }: {
+        children: React.ReactNode
+        className?: string
+        delay?: number
+        direction?: string
+      }) => <div className={className}>{children}</div>
     : FadeIn
-
 
   return (
     <section className={` pt-18 ${bg}`}>
-      <div className="px-6  md:px-24 py-16 lg:py-24">
+      <div className="px-6  md:px-24 py-16 lg:py-36">
         <div className="flex flex-col md:flex-row justify-between gap-8 lg:gap-16 items-center">
           {/* Text side */}
           <div className={`${isImageLeft ? 'lg:order-2' : 'lg:order-1'} flex-1`}>
@@ -61,7 +74,7 @@ export default function HeroSplit({block, index}: HeroSplitProps) {
             )}
             {heading && (
               <Wrap delay={0.05}>
-                <h1 className="text-[48px] tracking-tight md:text-[56px] md:max-w-[15ch] font-semibold lg:text-[84px] leading-[104%] mb-6">
+                <h1 className="text-[48px] tracking-tight md:text-[56px] md:max-w-[12ch] font-semibold lg:text-[84px] leading-[104%] mb-6">
                   {heading}
                 </h1>
               </Wrap>
@@ -89,10 +102,45 @@ export default function HeroSplit({block, index}: HeroSplitProps) {
                 )}
               </div>
             </Wrap>
+
+            {reviewRating && (
+              <Wrap delay={0.2}>
+                <div className="flex flex-col mt-4 items-start gap-1">
+                  <div className="flex items-center gap-2">
+                    <div className="flex gap-0.5">
+                      {Array.from({length: 5}).map((_, i) => (
+                        <svg
+                          key={i}
+                          className={`w-4 h-4 ${i < reviewRating ? 'text-terracotta' : 'text-terracotta/25'}`}
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                      ))}
+                    </div>
+                    {reviewText && (
+                      <p
+                        className={`font-sans text-sm ${isDark ? 'text-text-muted-dark' : 'text-text-muted'}`}
+                      >
+                        {reviewText}
+                      </p>
+                    )}
+                  </div>
+                  {trustLine && (
+                    <p
+                      className={`font-sans text-xs ${isDark ? 'text-text-muted-dark' : 'text-text-muted'}`}
+                    >
+                      {trustLine}
+                    </p>
+                  )}
+                </div>
+              </Wrap>
+            )}
           </div>
 
           {/* Image side */}
-          <div className={`${isImageLeft ? 'lg:order-1' : 'lg:order-2'} flex justify-end flex-1`}>
+          <div className={`${isImageLeft ? 'lg:order-1' : 'lg:order-2'} flex justify-end `}>
             {image?.asset?._ref && (
               <Wrap delay={0.1} className="relative">
                 <Image
@@ -101,7 +149,7 @@ export default function HeroSplit({block, index}: HeroSplitProps) {
                   width={600}
                   crop={image.crop}
                   hotspot={image.hotspot}
-                  className="rounded-lg md:w-[600px] aspect-square w-full object-cover"
+                  className="rounded-lg md:w-[680px] aspect-[3/2] w-full object-cover"
                   sizes="(max-width: 768px) 100vw, 600px"
                   {...(isFirst && {loading: 'eager' as const, fetchPriority: 'high' as const})}
                 />

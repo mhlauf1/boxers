@@ -3762,6 +3762,27 @@
           },
           "optional": true
         },
+        "reviewRating": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "number"
+          },
+          "optional": true
+        },
+        "reviewText": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "trustLine": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
         "image": {
           "type": "objectAttribute",
           "value": {

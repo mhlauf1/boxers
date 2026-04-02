@@ -521,6 +521,9 @@ export type HeroSplit = {
   body?: string
   primaryCta?: Button
   secondaryCta?: Button
+  reviewRating?: number
+  reviewText?: string
+  trustLine?: string
   image: {
     asset?: SanityImageAssetReference
     media?: unknown
@@ -2629,6 +2632,9 @@ export type GetPageQueryResult = {
             pageType: 'page' | 'service' | null
           } | null
         } | null
+        reviewRating?: number
+        reviewText?: string
+        trustLine?: string
         image: {
           asset?: SanityImageAssetReference
           media?: unknown
@@ -3817,6 +3823,9 @@ export type HomepageQueryResult = {
             pageType: 'page' | 'service' | null
           } | null
         } | null
+        reviewRating?: number
+        reviewText?: string
+        trustLine?: string
         image: {
           asset?: SanityImageAssetReference
           media?: unknown
@@ -5014,6 +5023,9 @@ export type GetServiceQueryResult = {
             pageType: 'page' | 'service' | null
           } | null
         } | null
+        reviewRating?: number
+        reviewText?: string
+        trustLine?: string
         image: {
           asset?: SanityImageAssetReference
           media?: unknown
