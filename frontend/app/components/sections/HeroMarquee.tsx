@@ -88,7 +88,7 @@ export default function HeroMarquee({block, index}: HeroMarqueeProps) {
 
           {heading && (
             <Wrap delay={0.1}>
-              <h1 className="text-[48px] md:text-[56px] lg:text-[84px] leading-[104%] md:max-w-[18ch] tracking-tight font-medium mb-5">
+              <h1 className="text-[42px] md:text-[56px] lg:text-[84px] leading-[104%] md:max-w-[18ch] tracking-tight font-medium mb-5">
                 {heading}
               </h1>
             </Wrap>
@@ -96,7 +96,7 @@ export default function HeroMarquee({block, index}: HeroMarqueeProps) {
 
           {subtext && (
             <Wrap delay={0.2}>
-              <p className="font-sans md:text-base lg:text-lg text-text-muted leading-[150%] max-w-4xl mb-6">
+              <p className="font-sans md:text-base lg:text-lg text-text-muted leading-[150%] max-w-3xl mb-6">
                 {subtext}
               </p>
             </Wrap>

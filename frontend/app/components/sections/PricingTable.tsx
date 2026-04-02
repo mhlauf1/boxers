@@ -31,7 +31,7 @@ export default function PricingTable({block}: PricingTableProps) {
 
   return (
     <section className="bg-cream">
-      <div className="px-6 md:px-24 py-16 lg:py-24">
+      <div className="px-4 md:px-24 py-16 lg:py-24">
         <FadeIn>
           <div className="text-center max-w-2xl mx-auto mb-12 lg:mb-16">
             {eyebrow && <Badge className="mb-3">{eyebrow}</Badge>}

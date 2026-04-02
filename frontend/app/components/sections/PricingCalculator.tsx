@@ -9,7 +9,7 @@ import GroomingCalculator from '@/app/components/pricing/GroomingCalculator'
 import ServiceToggle from '@/app/components/pricing/ServiceToggle'
 import type {DereferencedLink} from '@/sanity/lib/types'
 
-type ServiceType = 'daycare' | 'boarding' | 'grooming'
+type ServiceType = 'daycare' | 'boarding' | 'grooming' | 'enrichment'
 
 type PricingCalculatorProps = {
   block: {
@@ -37,6 +37,7 @@ const serviceQueryStrings: Record<ServiceType, string> = {
   daycare: '?service=Daycare',
   boarding: '?service=Boarding',
   grooming: '?service=Grooming',
+  enrichment: '?service=Enrichment',
 }
 
 export default function PricingCalculator({block}: PricingCalculatorProps) {
@@ -47,7 +48,9 @@ export default function PricingCalculator({block}: PricingCalculatorProps) {
 
   // In single mode, use calculatorType; in tabbed mode, use activeTab
   const activeService = isTabbed ? activeTab : calculatorType
-  const Calculator = activeService ? calculators[activeService] : null
+  const Calculator = activeService && activeService in calculators
+    ? calculators[activeService as keyof typeof calculators]
+    : null
 
   // In tabbed mode, override the ctaLink queryString per tab
   const resolvedCtaLink = isTabbed && ctaLink

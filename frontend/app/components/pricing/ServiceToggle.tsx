@@ -1,11 +1,12 @@
 'use client'
 
-type ServiceType = 'daycare' | 'boarding' | 'grooming'
+type ServiceType = 'daycare' | 'boarding' | 'grooming' | 'enrichment'
 
 const services: {value: ServiceType; label: string}[] = [
   {value: 'daycare', label: 'Daycare'},
   {value: 'boarding', label: 'Boarding'},
   {value: 'grooming', label: 'Grooming'},
+  {value: 'enrichment', label: 'Enrichment'},
 ]
 
 type ServiceToggleProps = {
@@ -15,7 +16,7 @@ type ServiceToggleProps = {
 
 export default function ServiceToggle({activeService, onChange}: ServiceToggleProps) {
   return (
-    <div className="bg-forest-card rounded-full p-1 flex max-w-md">
+    <div className="bg-forest-card rounded-full p-1 flex max-w-lg">
       {services.map((service) => (
         <button
           key={service.value}

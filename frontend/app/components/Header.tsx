@@ -113,29 +113,26 @@ export default function Header({navItems, ctaButton, logo}: HeaderProps) {
     [dropdownOpen],
   )
 
-  const handleDropdownItemKeyDown = useCallback(
-    (e: React.KeyboardEvent, item: NavItem) => {
-      if (e.key === 'Escape') {
-        setDropdownOpen(null)
-        return
-      }
-      if (e.key !== 'ArrowDown' && e.key !== 'ArrowUp') return
+  const handleDropdownItemKeyDown = useCallback((e: React.KeyboardEvent, item: NavItem) => {
+    if (e.key === 'Escape') {
+      setDropdownOpen(null)
+      return
+    }
+    if (e.key !== 'ArrowDown' && e.key !== 'ArrowUp') return
 
-      e.preventDefault()
-      const container = dropdownRef.current
-      if (!container) return
+    e.preventDefault()
+    const container = dropdownRef.current
+    if (!container) return
 
-      const links = container.querySelectorAll<HTMLElement>('a')
-      const currentIndex = Array.from(links).indexOf(e.currentTarget as HTMLElement)
+    const links = container.querySelectorAll<HTMLElement>('a')
+    const currentIndex = Array.from(links).indexOf(e.currentTarget as HTMLElement)
 
-      if (e.key === 'ArrowDown' && currentIndex < links.length - 1) {
-        links[currentIndex + 1].focus()
-      } else if (e.key === 'ArrowUp' && currentIndex > 0) {
-        links[currentIndex - 1].focus()
-      }
-    },
-    [],
-  )
+    if (e.key === 'ArrowDown' && currentIndex < links.length - 1) {
+      links[currentIndex + 1].focus()
+    } else if (e.key === 'ArrowUp' && currentIndex > 0) {
+      links[currentIndex - 1].focus()
+    }
+  }, [])
 
   const isLinkActive = (link: any, children?: NavChild[]) => {
     const href = resolveNavLink(link)
@@ -177,9 +174,7 @@ export default function Header({navItems, ctaButton, logo}: HeaderProps) {
                       : undefined
                   }
                   onMouseLeave={() =>
-                    item.children && item.children.length > 0
-                      ? setDropdownOpen(null)
-                      : undefined
+                    item.children && item.children.length > 0 ? setDropdownOpen(null) : undefined
                   }
                 >
                   {item.children && item.children.length > 0 ? (
@@ -189,9 +184,7 @@ export default function Header({navItems, ctaButton, logo}: HeaderProps) {
                       aria-haspopup="true"
                       onKeyDown={(e) => handleDropdownKeyDown(e, item)}
                       className={`flex items-center gap-1 font-sans text-[14px] transition-colors cursor-default whitespace-nowrap ${
-                        active
-                          ? 'text-terracotta font-medium'
-                          : 'text-forest hover:text-forest/70'
+                        active ? 'text-terracotta font-medium' : 'text-forest hover:text-forest/70'
                       }`}
                     >
                       {item.label}
@@ -213,10 +206,8 @@ export default function Header({navItems, ctaButton, logo}: HeaderProps) {
                   ) : (
                     <Link
                       href={resolveNavLink(item.link) || '#'}
-                      className={`font-sans text-[14px] transition-colors whitespace-nowrap ${
-                        active
-                          ? 'text-terracotta font-medium'
-                          : 'text-forest hover:text-forest/70'
+                      className={`font-sans cursor-pointer text-[14px] transition-colors whitespace-nowrap ${
+                        active ? 'text-terracotta font-medium' : 'text-forest hover:text-forest/70'
                       }`}
                     >
                       {item.label}
@@ -238,7 +229,7 @@ export default function Header({navItems, ctaButton, logo}: HeaderProps) {
                               href={resolveNavLink(child.link) || '#'}
                               role="menuitem"
                               onKeyDown={(e) => handleDropdownItemKeyDown(e, item)}
-                              className={`block px-4 py-2 text-[14px] font-sans transition-colors ${
+                              className={`block px-4 py-2 cursor-pointer text-[14px] font-sans transition-colors ${
                                 childActive
                                   ? 'text-terracotta font-medium bg-sand/20'
                                   : 'text-forest hover:bg-sand/30'

@@ -1,5 +1,5 @@
 const heights: Record<string, string> = {
-  sm: 'h-8',
+  sm: 'h-16',
   md: 'h-16',
   lg: 'h-24',
   xl: 'h-32',

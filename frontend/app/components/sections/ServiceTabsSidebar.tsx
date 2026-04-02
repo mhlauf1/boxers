@@ -45,8 +45,8 @@ export default function ServiceTabsSidebar({block}: ServiceTabsSidebarProps) {
   const activeService = tabs[activeTab]
 
   return (
-    <section className="bg-cream p-4">
-      <div className="px-6 md:px-24 rounded-lg  bg-forest py-[80px] lg:py-[120px]">
+    <section className="bg-cream p-2 md:p-4">
+      <div className="px-4 md:px-24 rounded-lg  bg-forest py-[48px] lg:py-[120px]">
         <FadeIn delay={0.15}>
           <div className="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-8 lg:gap-16">
             {/* Sidebar tabs */}
@@ -118,7 +118,10 @@ export default function ServiceTabsSidebar({block}: ServiceTabsSidebarProps) {
 
             {/* Tab content */}
             {activeService && (
-              <div key={activeTab} className="bg-sand rounded-lg p-6 md:p-8 animate-fade-in">
+              <div
+                key={activeTab}
+                className="bg-sand rounded-md md:rounded-lg p-4 md:p-8 animate-fade-in"
+              >
                 {activeService.tabImage?.asset?._ref && (
                   <div className="mb-6">
                     <Image
@@ -126,7 +129,7 @@ export default function ServiceTabsSidebar({block}: ServiceTabsSidebarProps) {
                       alt={activeService.tabImage?.alt || activeService.title || 'Service image'}
                       width={700}
                       crop={activeService.tabImage.crop}
-                      className="rounded-lg w-full object-cover aspect-[2/1]"
+                      className="rounded-md md:rounded-lg w-full object-cover aspect-[2/1]"
                     />
                   </div>
                 )}

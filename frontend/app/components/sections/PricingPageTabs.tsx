@@ -11,7 +11,7 @@ import BoardingCalculator from '@/app/components/pricing/BoardingCalculator'
 import GroomingCalculator from '@/app/components/pricing/GroomingCalculator'
 import type {DereferencedLink} from '@/sanity/lib/types'
 
-type ServiceType = 'daycare' | 'boarding' | 'grooming'
+type ServiceType = 'daycare' | 'boarding' | 'grooming' | 'enrichment'
 
 type ServiceTab = {
   _key: string
@@ -80,6 +80,7 @@ const serviceQueryStrings: Record<ServiceType, string> = {
   daycare: '?service=Daycare',
   boarding: '?service=Boarding',
   grooming: '?service=Grooming',
+  enrichment: '?service=Enrichment',
 }
 
 export default function PricingPageTabs({block}: PricingPageTabsProps) {
@@ -90,7 +91,7 @@ export default function PricingPageTabs({block}: PricingPageTabsProps) {
   // Support URL hash deep linking
   useEffect(() => {
     const hash = window.location.hash.replace('#', '') as ServiceType
-    if (hash && ['daycare', 'boarding', 'grooming'].includes(hash)) {
+    if (hash && ['daycare', 'boarding', 'grooming', 'enrichment'].includes(hash)) {
       setActiveTab(hash)
     }
   }, [])
@@ -102,7 +103,9 @@ export default function PricingPageTabs({block}: PricingPageTabsProps) {
   }
 
   const activeService = services?.find((s) => s.serviceKey === activeTab)
-  const Calculator = activeTab ? calculators[activeTab] : null
+  const Calculator = activeTab && activeTab in calculators
+    ? calculators[activeTab as keyof typeof calculators]
+    : null
 
   const resolvedCtaLink = ctaLink
     ? {...ctaLink, queryString: serviceQueryStrings[activeTab]}

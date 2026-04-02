@@ -41,17 +41,19 @@ export default function TeamGrid({block}: TeamGridProps) {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {members.map((member, i) => (
               <FadeIn key={member._key} delay={0.1 * i}>
-                <div className="text-center">
+                <div className="text-center bg-sand py-8 rounded-lg">
                   {member.image?.asset?._ref && (
-                    <div className="mb-4">
-                      <Image
-                        id={member.image.asset._ref}
-                        alt={member.name || 'Team member'}
-                        width={400}
-                        crop={member.image.crop}
-                        hotspot={member.image.hotspot}
-                        className="rounded-lg aspect-square w-full object-cover"
-                      />
+                    <div className="mb-4 flex justify-center">
+                      <div className="size-36 md:size-60 rounded-full overflow-hidden">
+                        <Image
+                          id={member.image.asset._ref}
+                          alt={member.name || 'Team member'}
+                          width={200}
+                          crop={member.image.crop}
+                          hotspot={member.image.hotspot}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
                     </div>
                   )}
                   {member.name && (
