@@ -203,18 +203,22 @@ The Boxers website is built in milestones, not features. Each milestone represen
 
 ## Milestone 7: Polish & Launch Prep
 
-**Status:** Not Started
+**Status:** Phase 1 Complete — Phase 2 pending (Lighthouse, cross-browser, final content, domain migration)
 **Branch:** `feature/polish`
 
-### Goals
-- SEO optimization (meta tags, structured data, sitemap.xml, robots.txt, LocalBusiness schema for all three locations)
+### Phase 1 Goals (Done)
+- ~~SEO: Multi-location LocalBusiness JSON-LD (PAW-PLEX, BEC, Meds & Fixits with VeterinaryClinic type)~~
+- ~~SEO: BreadcrumbList JSON-LD on service and generic pages~~
+- ~~Accessibility: Global focus-visible styles, skip-to-content link~~
+- ~~Nav: aria-expanded, focus trap, keyboard navigation, active page highlighting~~
+- ~~Custom 404 & error pages redesigned with mascot illustrations~~
+- ~~Hero: Dynamic alt text, code cleanup~~
+
+### Phase 2 Goals (Remaining)
 - Performance audit (Lighthouse 90+ all categories)
-- Accessibility audit (WCAG AA compliance)
 - Cross-browser testing
-- Custom 404 page
 - Mascot illustrations and decorative elements placed throughout site
 - Final content review with stakeholder approval
-- Nav finalization (services dropdown, top-level links, Gingr CTA, mobile menu)
 - Domain migration plan (Cloudflare DNS, Vercel deployment, SSL)
 - Final review with Brian / Lori / Alexis before go-live
 
@@ -235,3 +239,4 @@ The Boxers website is built in milestones, not features. Each milestone represen
 - **Milestone 4: New Service Pages** — 2026-03-26. BEC enrichment page (5 sections with pricing table + packages), vet clinic page (4 sections with contact info + pharmacy link), training page scaffolded with placeholders. All via Sanity page builder — no code changes needed.
 - **Milestone 5: Supporting Pages** — 2026-03-26. Pricing page (6 sections: tabbed PAW-PLEX with calculators, BEC rates/packages, Membership comparison, CTA). Employment, Our Staff, Petcams pages seeded. 4 webcam placeholder docs created. All via Sanity page builder — no code changes needed.
 - **Milestone 6 Phase 1: Content Finalization** — 2026-03-26. Training page filled with Amanda Ingraham/Band of Canines content + 6 featureCards. Employment page placeholder replaced with real benefits/positions. Staff page: 3 real names + bios (Lori Shultz GM, Alexis Foster Marketing, Haley Gates Reception). Homepage: "Since 2011" stat added, "Our Story" founding narrative section inserted. Phase 2 blocked on Alexis Foster (4/2).
+- **Milestone 7 Phase 1: Polish & Launch Prep** — 2026-03-29. Accessibility (global focus-visible, skip-to-content link). Nav polish (aria attrs, focus trap, keyboard nav for dropdown, active page highlighting). SEO (multi-location JSON-LD with VeterinaryClinic type for vet clinic, BreadcrumbList on all pages). Hero cleanup (dynamic alt text). 404 & error pages redesigned with mascot illustrations and design system buttons.

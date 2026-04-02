@@ -13,7 +13,7 @@ type HeroProps = {
     reviewRating?: number
     reviewText?: string
     trustLine?: string
-    heroImage?: {asset?: {_ref: string}; crop?: any; hotspot?: any}
+    heroImage?: {asset?: {_ref: string}; crop?: any; hotspot?: any; alt?: string}
   }
   index: number
   pageId: string
@@ -67,7 +67,7 @@ export default function Hero({block, index}: HeroProps) {
       />
 
       <div className="container relative z-10 pt-20 pb-4 lg:pt-[12vh] lg:pb-12">
-        <div className="flex flex-col items-center text-center  mx-auto">
+        <div className="flex flex-col items-center text-center mx-auto">
           {eyebrow && (
             <Wrap>
               <Badge className="mb-5 md:mb-6">{eyebrow}</Badge>
@@ -153,7 +153,7 @@ export default function Hero({block, index}: HeroProps) {
           <div className="max-w-[1600px] mx-auto px-4 md:px-8 mt-10 lg:mt-16 pb-4 lg:pb-12">
             <Image
               id={heroImage.asset._ref}
-              alt="Hero image"
+              alt={heroImage.alt || heading || 'Hero image'}
               width={1600}
               crop={heroImage.crop}
               className="rounded-xl w-full object-cover"
@@ -167,7 +167,7 @@ export default function Hero({block, index}: HeroProps) {
             <div className="max-w-[1600px] mx-auto px-4 md:px-8 mt-10 lg:mt-16 pb-4 lg:pb-12">
               <Image
                 id={heroImage.asset._ref}
-                alt="Hero image"
+                alt={heroImage.alt || heading || 'Hero image'}
                 width={1600}
                 crop={heroImage.crop}
                 className="rounded-xl w-full object-cover"

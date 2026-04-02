@@ -521,6 +521,9 @@ export type HeroSplit = {
   body?: string
   primaryCta?: Button
   secondaryCta?: Button
+  reviewRating?: number
+  reviewText?: string
+  trustLine?: string
   image: {
     asset?: SanityImageAssetReference
     media?: unknown

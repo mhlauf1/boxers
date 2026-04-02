@@ -5,14 +5,14 @@ import type {Metadata} from 'next'
 import {Outfit, Bricolage_Grotesque} from 'next/font/google'
 
 const bricolage = Bricolage_Grotesque({
-  variable: '--font-bricolage',
+  variable: '--font-heading',
   subsets: ['latin'],
   display: 'swap',
   weight: ['400', '500', '600', '700'],
 })
 
 const outfit = Outfit({
-  variable: '--font-heading',
+  variable: '--font-body',
   subsets: ['latin'],
   display: 'swap',
   weight: ['400', '500', '600', '700'],
@@ -90,6 +90,55 @@ function buildLocalBusinessJsonLd(settings: any) {
   return jsonLd
 }
 
+function buildLocationJsonLd(settings: any): Record<string, unknown>[] {
+  const results: Record<string, unknown>[] = []
+
+  // Primary location from localBusiness (has structured address data)
+  const primary = buildLocalBusinessJsonLd(settings)
+  if (primary) results.push(primary)
+
+  // Additional locations from settings.locations[]
+  const locations = settings?.locations || []
+  for (const loc of locations) {
+    // Skip PAW-PLEX — already covered by primary localBusiness entry
+    if (loc.slug === 'paw-plex') continue
+
+    const entry: Record<string, unknown> = {
+      '@context': 'https://schema.org',
+      '@type': loc.slug === 'meds-and-fixits' ? 'VeterinaryClinic' : 'LocalBusiness',
+      name: `Boxers - ${loc.name}`,
+      ...(loc.phone && {telephone: loc.phone}),
+      ...(loc.email && {email: loc.email}),
+    }
+
+    if (loc.address) {
+      entry.address = {
+        '@type': 'PostalAddress',
+        streetAddress: loc.address,
+        addressLocality: 'Belpre',
+        addressRegion: 'OH',
+        postalCode: '45714',
+        addressCountry: 'US',
+      }
+    }
+
+    if (loc.hours?.length) {
+      entry.openingHoursSpecification = loc.hours.map(
+        (h: {days?: string; open?: string; close?: string}) => ({
+          '@type': 'OpeningHoursSpecification',
+          dayOfWeek: h.days,
+          opens: h.open,
+          closes: h.close,
+        }),
+      )
+    }
+
+    results.push(entry)
+  }
+
+  return results
+}
+
 export async function generateMetadata(): Promise<Metadata> {
   const {data: settings} = await sanityFetch({
     query: settingsQuery,
@@ -138,7 +187,7 @@ export default async function RootLayout({children}: {children: React.ReactNode}
     sanityFetch({query: servicesNavQuery}),
   ])
 
-  const localBusinessJsonLd = buildLocalBusinessJsonLd(settings)
+  const locationJsonLd = buildLocationJsonLd(settings)
   const ga4Id = settings?.ga4MeasurementId
   const gtmId = settings?.gtmContainerId
 
@@ -164,12 +213,13 @@ export default async function RootLayout({children}: {children: React.ReactNode}
         <link rel="dns-prefetch" href="https://cdn.sanity.io" />
         <link rel="preconnect" href="https://api.iconify.design" />
         <link rel="dns-prefetch" href="https://api.iconify.design" />
-        {localBusinessJsonLd && (
+        {locationJsonLd.map((jsonLd, i) => (
           <script
+            key={`local-business-${i}`}
             type="application/ld+json"
-            dangerouslySetInnerHTML={{__html: JSON.stringify(localBusinessJsonLd)}}
+            dangerouslySetInnerHTML={{__html: JSON.stringify(jsonLd)}}
           />
-        )}
+        ))}
         {settings?.title && (
           <script
             type="application/ld+json"
@@ -219,6 +269,12 @@ export default async function RootLayout({children}: {children: React.ReactNode}
         )}
       </head>
       <body>
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-terracotta focus:text-white focus:px-6 focus:py-3 focus:rounded-lg focus:text-button focus:font-medium"
+        >
+          Skip to content
+        </a>
         {gtmId && (
           <noscript>
             <iframe
@@ -238,7 +294,7 @@ export default async function RootLayout({children}: {children: React.ReactNode}
         )}
         <SanityLive onError={handleError} />
         <Header navItems={navItems as any} ctaButton={settings?.ctaButton as any} logo={settings?.logo as any} />
-        <main>{children}</main>
+        <main id="main-content">{children}</main>
         <Footer
           tagline={settings?.footerTagline ?? undefined}
           columns={settings?.footerColumns as any}

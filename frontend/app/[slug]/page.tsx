@@ -51,5 +51,22 @@ export default async function Page(props: Props) {
     )
   }
 
-  return <PageBuilderPage page={page} />
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {'@type': 'ListItem', position: 1, name: 'Home', item: 'https://boxersbedandbiscuits.com'},
+      {'@type': 'ListItem', position: 2, name: page.name},
+    ],
+  }
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{__html: JSON.stringify(breadcrumbJsonLd)}}
+      />
+      <PageBuilderPage page={page} />
+    </>
+  )
 }

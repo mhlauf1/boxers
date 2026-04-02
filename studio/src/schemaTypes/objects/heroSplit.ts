@@ -35,6 +35,24 @@ export const heroSplit = defineType({
       type: 'button',
     }),
     defineField({
+      name: 'reviewRating',
+      title: 'Review Star Rating',
+      type: 'number',
+      description: 'Number of filled stars (1–5)',
+      validation: (Rule) => Rule.min(1).max(5),
+    }),
+    defineField({
+      name: 'reviewText',
+      title: 'Review Text',
+      type: 'string',
+      description: 'e.g. "200+ 5 Star Reviews"',
+    }),
+    defineField({
+      name: 'trustLine',
+      title: 'Trust Line',
+      type: 'string',
+    }),
+    defineField({
       name: 'image',
       title: 'Image',
       type: 'image',

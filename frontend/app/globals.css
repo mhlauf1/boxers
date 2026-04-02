@@ -27,8 +27,8 @@
   --color-text-muted-dark: rgba(250, 246, 239, 0.7);
 
   /* Font families */
-  --font-heading: 'Outfit', system-ui, sans-serif;
-  --font-sans: var(--font-bricolage, 'Bricolage Grotesque', system-ui, sans-serif);
+  --font-heading: 'Bricolage Grotesque', system-ui, sans-serif;
+  --font-sans: 'Outfit', system-ui, sans-serif;
 
   /* Font sizes — hero/heading scale */
   --font-size-hero: 84px;
@@ -135,11 +135,9 @@
   }
 }
 
-/* Pricing calculator focus styles on dark backgrounds */
+/* Global focus-visible styles */
 @layer base {
-  .bg-forest button:focus-visible,
-  .bg-forest label:focus-visible,
-  .bg-forest [role="radio"]:focus-visible {
+  *:focus-visible {
     outline: 2px solid var(--color-terracotta);
     outline-offset: 2px;
     border-radius: 4px;
