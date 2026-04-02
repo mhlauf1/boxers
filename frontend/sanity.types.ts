@@ -129,9 +129,9 @@ export type PricingPageTabs = {
   eyebrow?: string
   heading: string
   description?: string
-  defaultTab?: 'daycare' | 'boarding' | 'grooming'
+  defaultTab?: 'daycare' | 'boarding' | 'grooming' | 'enrichment'
   services?: Array<{
-    serviceKey: 'daycare' | 'boarding' | 'grooming'
+    serviceKey: 'daycare' | 'boarding' | 'grooming' | 'enrichment'
     pricingDisplay?: 'table' | 'matrix'
     tableData?: TableData
     matrixData?: MatrixData
@@ -2922,9 +2922,9 @@ export type GetPageQueryResult = {
         eyebrow?: string
         heading: string
         description?: string
-        defaultTab?: 'boarding' | 'daycare' | 'grooming'
+        defaultTab?: 'boarding' | 'daycare' | 'enrichment' | 'grooming'
         services?: Array<{
-          serviceKey: 'boarding' | 'daycare' | 'grooming'
+          serviceKey: 'boarding' | 'daycare' | 'enrichment' | 'grooming'
           pricingDisplay?: 'matrix' | 'table'
           tableData?: TableData
           matrixData?: MatrixData
@@ -4184,9 +4184,9 @@ export type HomepageQueryResult = {
         eyebrow?: string
         heading: string
         description?: string
-        defaultTab?: 'boarding' | 'daycare' | 'grooming'
+        defaultTab?: 'boarding' | 'daycare' | 'enrichment' | 'grooming'
         services?: Array<{
-          serviceKey: 'boarding' | 'daycare' | 'grooming'
+          serviceKey: 'boarding' | 'daycare' | 'enrichment' | 'grooming'
           pricingDisplay?: 'matrix' | 'table'
           tableData?: TableData
           matrixData?: MatrixData

@@ -129,9 +129,9 @@ export type PricingPageTabs = {
   eyebrow?: string
   heading: string
   description?: string
-  defaultTab?: 'daycare' | 'boarding' | 'grooming'
+  defaultTab?: 'daycare' | 'boarding' | 'grooming' | 'enrichment'
   services?: Array<{
-    serviceKey: 'daycare' | 'boarding' | 'grooming'
+    serviceKey: 'daycare' | 'boarding' | 'grooming' | 'enrichment'
     pricingDisplay?: 'table' | 'matrix'
     tableData?: TableData
     matrixData?: MatrixData
