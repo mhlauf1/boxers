@@ -152,7 +152,7 @@ export default function Header({navItems, ctaButton, logo}: HeaderProps) {
                 id={logo.asset._ref}
                 alt="Boxers Bed & Biscuits"
                 width={220}
-                className="w-[160px] lg:w-[220px] h-auto"
+                className="w-40 lg:w-55 h-auto"
               />
             ) : (
               <TextLogo />
