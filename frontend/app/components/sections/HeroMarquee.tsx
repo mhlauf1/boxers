@@ -82,7 +82,7 @@ export default function HeroMarquee({block, index}: HeroMarqueeProps) {
         className="absolute right-[6%] xl:right-[8%] top-[22%] w-[70px] lg:w-[90px] pointer-events-none hidden lg:block"
       />
 
-      <div className="container relative z-10 pt-20 pb-4 lg:pt-[12vh] lg:pb-12">
+      <div className="container relative z-10 pt-16 md:pt-20 pb-4 lg:pt-[12vh] lg:pb-12">
         <div className="flex flex-col items-center text-center mx-auto">
           {heroLogo?.asset?._ref && (
             <Wrap>
@@ -106,7 +106,7 @@ export default function HeroMarquee({block, index}: HeroMarqueeProps) {
 
           {heading && (
             <Wrap delay={0.1}>
-              <h1 className="text-[38px] md:text-[56px] lg:text-[84px] leading-[104%] md:max-w-[20ch] tracking-tight font-medium mb-5">
+              <h1 className="text-[34px] md:text-[56px] lg:text-[84px] leading-[104%] md:max-w-[20ch] tracking-tight font-medium mb-5">
                 {heading}
                 {headingAccent && (
                   <>

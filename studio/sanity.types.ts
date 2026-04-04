@@ -119,6 +119,39 @@ export type MatrixData = {
   footnotes?: Array<string>
 }
 
+export type CardsObjectImage = {
+  asset?: SanityImageAssetReference
+  media?: unknown // Unable to locate the referenced type "cards.object.image.media" in schema
+  hotspot?: SanityImageHotspot
+  crop?: SanityImageCrop
+  alt?: string
+  _type: 'image'
+}
+
+export type Icon = {
+  asset?: SanityImageAssetReference
+  media?: unknown // Unable to locate the referenced type "object.icon.media" in schema
+  hotspot?: SanityImageHotspot
+  crop?: SanityImageCrop
+  alt?: string
+  _type: 'image'
+}
+
+export type CampusOverview = {
+  _type: 'campusOverview'
+  eyebrow?: string
+  heading?: string
+  cards?: Array<{
+    heading: string
+    description?: string
+    features?: Array<string>
+    image?: CardsObjectImage
+    cta?: Button
+    icon?: Icon
+    _key: string
+  }>
+}
+
 export type Spacer = {
   _type: 'spacer'
   size?: 'sm' | 'md' | 'lg' | 'xl'
@@ -511,8 +544,17 @@ export type HeroMinimal = {
 
 export type HeroMarquee = {
   _type: 'heroMarquee'
+  heroLogo?: {
+    asset?: SanityImageAssetReference
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    _type: 'image'
+  }
   eyebrow?: string
   heading: string
+  headingAccent?: string
   subtext?: string
   primaryCta?: Button
   secondaryCta?: Button
@@ -1526,6 +1568,9 @@ export type Page = {
     | ({
         _key: string
       } & Spacer)
+    | ({
+        _key: string
+      } & CampusOverview)
   >
 }
 
@@ -1775,6 +1820,9 @@ export type AllSanitySchemaTypes =
   | ItemsObjectImage
   | TableData
   | MatrixData
+  | CardsObjectImage
+  | Icon
+  | CampusOverview
   | Spacer
   | PricingPageTabs
   | ValuePillars
