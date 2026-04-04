@@ -106,7 +106,7 @@ export default function HeroMarquee({block, index}: HeroMarqueeProps) {
 
           {heading && (
             <Wrap delay={0.1}>
-              <h1 className="text-[42px] md:text-[56px] lg:text-[84px] leading-[104%] md:max-w-[20ch] tracking-tight font-medium mb-5">
+              <h1 className="text-[38px] md:text-[56px] lg:text-[84px] leading-[104%] md:max-w-[20ch] tracking-tight font-medium mb-5">
                 {heading}
                 {headingAccent && (
                   <>
