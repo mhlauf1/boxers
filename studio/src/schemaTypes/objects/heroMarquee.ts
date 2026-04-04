@@ -8,6 +8,19 @@ export const heroMarquee = defineType({
   icon: ImagesIcon,
   fields: [
     defineField({
+      name: 'heroLogo',
+      title: 'Hero Logo',
+      type: 'image',
+      description: 'Optional large logo displayed prominently above the heading',
+      fields: [
+        defineField({
+          name: 'alt',
+          title: 'Alt Text',
+          type: 'string',
+        }),
+      ],
+    }),
+    defineField({
       name: 'eyebrow',
       title: 'Eyebrow Text',
       type: 'string',
@@ -17,6 +30,12 @@ export const heroMarquee = defineType({
       title: 'Heading',
       type: 'string',
       validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'headingAccent',
+      title: 'Heading Accent',
+      type: 'string',
+      description: 'Second line of the heading displayed in a lighter color',
     }),
     defineField({
       name: 'subtext',

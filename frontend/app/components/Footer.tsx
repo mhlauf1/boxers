@@ -206,7 +206,7 @@ export default function Footer({
                         {loc.hours.map((h) => (
                           <p key={h._key}>
                             <span className="text-forest/70">{h.days}:</span>{' '}
-                            {h.open} &ndash; {h.close}
+                            {formatTime(h.open ?? '')} &ndash; {formatTime(h.close ?? '')}
                           </p>
                         ))}
                       </div>
@@ -266,6 +266,16 @@ function resolveFooterLink(link: any): string | null {
   }
   if (link.href) return link.href
   return null
+}
+
+function formatTime(time: string): string {
+  if (!time) return ''
+  const [hourStr, minuteStr] = time.split(':')
+  const hour = parseInt(hourStr, 10)
+  const ampm = hour >= 12 ? 'PM' : 'AM'
+  const displayHour = hour % 12 || 12
+  const minutes = minuteStr === '00' ? '' : `:${minuteStr}`
+  return `${displayHour}${minutes} ${ampm}`
 }
 
 function renderFooterTextWithLink(text: string, linkLabel: string, href: string) {

@@ -19,6 +19,7 @@ type NavItem = {
   label?: string
   link?: any
   children?: NavChild[]
+  isVetClinic?: boolean
 }
 
 type HeaderProps = {
@@ -152,7 +153,7 @@ export default function Header({navItems, ctaButton, logo}: HeaderProps) {
                 id={logo.asset._ref}
                 alt="Boxers Bed & Biscuits"
                 width={220}
-                className="w-40 lg:w-55 h-auto"
+                className="w-44 lg:w-60 h-auto"
               />
             ) : (
               <TextLogo />
@@ -184,7 +185,9 @@ export default function Header({navItems, ctaButton, logo}: HeaderProps) {
                       aria-haspopup="true"
                       onKeyDown={(e) => handleDropdownKeyDown(e, item)}
                       className={`flex items-center gap-1 font-sans text-[14px] transition-colors cursor-default whitespace-nowrap ${
-                        active ? 'text-terracotta font-medium' : 'text-forest hover:text-forest/70'
+                        item.isVetClinic
+                          ? 'bg-white text-forest font-semibold px-3 py-1 rounded-md'
+                          : active ? 'text-terracotta font-medium' : 'text-forest hover:text-forest/70'
                       }`}
                     >
                       {item.label}
@@ -338,7 +341,9 @@ export default function Header({navItems, ctaButton, logo}: HeaderProps) {
                       transition={{delay: 0.1 + i * 0.05, duration: 0.3}}
                     >
                       {item.children && item.children.length > 0 ? (
-                        <span className="block font-heading text-[28px] tracking-tight text-forest py-3 border-b border-border-light">
+                        <span className={`block font-heading text-[28px] tracking-tight py-3 border-b border-border-light ${
+                          item.isVetClinic ? 'text-forest font-semibold' : 'text-forest'
+                        }`}>
                           {item.label}
                         </span>
                       ) : (

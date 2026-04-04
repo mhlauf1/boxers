@@ -192,16 +192,29 @@ export default async function RootLayout({children}: {children: React.ReactNode}
   const ga4Id = settings?.ga4MeasurementId
   const gtmId = settings?.gtmContainerId
 
-  // Inject services as dropdown children into the "Services" nav item
+  // Inject dropdown children into nav items
   const navItems = settings?.navItems?.map((item: any) => {
+    if (item.label === 'Vet Clinic') {
+      return {
+        ...item,
+        isVetClinic: true,
+        children: [
+          {_key: 'vet-services', label: 'Vet Services', link: {linkType: 'href', href: '/services/vet-clinic'}},
+          {_key: 'vet-staff', label: 'Vet Staff', link: {linkType: 'href', href: '/vet-staff'}},
+          {_key: 'vet-contact', label: 'Vet Contact', link: {linkType: 'href', href: '/vet-contact'}},
+        ],
+      }
+    }
     if (item.label === 'Services' && services && services.length > 0) {
       return {
         ...item,
-        children: services.map((service: any) => ({
-          _key: service._id,
-          label: service.title,
-          link: {linkType: 'href', href: `/services/${service.slug}`},
-        })),
+        children: services
+          .filter((service: any) => service.slug !== 'vet-clinic')
+          .map((service: any) => ({
+            _key: service._id,
+            label: service.title,
+            link: {linkType: 'href', href: `/services/${service.slug}`},
+          })),
       }
     }
     return item

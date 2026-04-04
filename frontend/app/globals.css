@@ -5,25 +5,25 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  /* Colors — derived from Boxers Bed & Biscuits brand logos */
+  /* Colors — Boxers Bed & Biscuits brand: cobalt blue tonal system */
   --color-cream: #faf6ef;
-  --color-sand: #f0ebe3;
-  --color-forest: #1b5e20;
-  --color-forest-card: #24692a;
-  --color-terracotta: #e8872d;
-  --color-terracotta-dark: #d07520;
-  --color-terracotta-light: #f5c89a;
-  --color-sage: #a8b5a0;
+  --color-sand: #eae5dd;
+  --color-forest: #1b4f8a;
+  --color-forest-card: #1f5592;
+  --color-terracotta: #2b6cb0;
+  --color-terracotta-dark: #1e5a96;
+  --color-terracotta-light: #a3c9f0;
+  --color-sage: #94aabd;
   --color-charcoal: #2a2520;
   --color-gold: #d4a24e;
   --color-rose: #d4a5a5;
   --color-white: #ffffff;
-  --color-border-light: rgba(27, 94, 32, 0.15);
+  --color-border-light: rgba(27, 79, 138, 0.15);
   --color-border-dark: rgba(250, 246, 239, 0.2);
   --color-black: #111111;
   --color-black-card: #1a1a1a;
   --color-border-black: rgba(250, 246, 239, 0.12);
-  --color-text-muted: rgba(27, 94, 32, 0.78);
+  --color-text-muted: rgba(27, 79, 138, 0.78);
   --color-text-muted-dark: rgba(250, 246, 239, 0.7);
 
   /* Font families */
@@ -58,8 +58,8 @@
   --radius-section: 48px;
 
   /* Shadows */
-  --shadow-card: 0 2px 8px rgba(27, 94, 32, 0.06);
-  --shadow-card-hover: 0 8px 24px rgba(27, 94, 32, 0.10);
+  --shadow-card: 0 2px 8px rgba(27, 79, 138, 0.06);
+  --shadow-card-hover: 0 8px 24px rgba(27, 79, 138, 0.10);
 
   --default-transition-duration: 250ms;
 }
@@ -151,7 +151,7 @@
 /* Global focus-visible styles */
 @layer base {
   *:focus-visible {
-    outline: 2px solid var(--color-terracotta);
+    outline: 2px solid var(--color-forest);
     outline-offset: 2px;
     border-radius: 4px;
   }

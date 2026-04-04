@@ -77,6 +77,7 @@ export const page = defineType({
         {type: 'valuePillars'},
         {type: 'pricingPageTabs'},
         {type: 'spacer'},
+        {type: 'campusOverview'},
       ],
       options: {
         insertMenu: {

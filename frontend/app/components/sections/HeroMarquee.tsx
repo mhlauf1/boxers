@@ -23,6 +23,8 @@ type HeroMarqueeProps = {
     trustLine?: string
     bubbleText?: string
     marqueeImages?: MarqueeImage[]
+    heroLogo?: {asset?: {_ref: string}; alt?: string}
+    headingAccent?: string
   }
   index: number
   pageId: string
@@ -41,6 +43,8 @@ export default function HeroMarquee({block, index}: HeroMarqueeProps) {
     trustLine,
     bubbleText,
     marqueeImages,
+    heroLogo,
+    headingAccent,
   } = block
 
   const isFirst = index === 0
@@ -80,6 +84,20 @@ export default function HeroMarquee({block, index}: HeroMarqueeProps) {
 
       <div className="container relative z-10 pt-20 pb-4 lg:pt-[12vh] lg:pb-12">
         <div className="flex flex-col items-center text-center mx-auto">
+          {heroLogo?.asset?._ref && (
+            <Wrap>
+              <div className="mb-5 md:mb-6">
+                <Image
+                  id={heroLogo.asset._ref}
+                  alt={heroLogo.alt || 'Boxers Bed & Biscuits'}
+                  width={400}
+                  className="w-[200px] md:w-[260px] lg:w-[320px] h-auto mx-auto"
+                  loading={isFirst ? 'eager' : 'lazy'}
+                />
+              </div>
+            </Wrap>
+          )}
+
           {eyebrow && (
             <Wrap>
               <Badge className="mb-5 md:mb-6">{eyebrow}</Badge>
@@ -88,39 +106,27 @@ export default function HeroMarquee({block, index}: HeroMarqueeProps) {
 
           {heading && (
             <Wrap delay={0.1}>
-              <h1 className="text-[42px] md:text-[56px] lg:text-[84px] leading-[104%] md:max-w-[18ch] tracking-tight font-medium mb-5">
+              <h1 className="text-[42px] md:text-[56px] lg:text-[84px] leading-[104%] md:max-w-[20ch] tracking-tight font-medium mb-5">
                 {heading}
+                {headingAccent && (
+                  <>
+                    <br />
+                    <span className="text-terracotta">{headingAccent}</span>
+                  </>
+                )}
               </h1>
             </Wrap>
           )}
 
           {subtext && (
             <Wrap delay={0.2}>
-              <p className="font-sans md:text-base lg:text-lg text-text-muted leading-[150%] max-w-3xl mb-6">
+              <p className="font-sans md:text-[18px] lg:text-[22px] text-text-muted leading-[150%] max-w-2xl mb-6">
                 {subtext}
               </p>
             </Wrap>
           )}
 
-          <Wrap delay={0.25}>
-            <div className="flex items-center justify-center gap-2 md:gap-3 mb-6">
-              {[
-                {label: 'Boarding', href: '/services/boarding'},
-                {label: 'Daycare', href: '/services/daycare'},
-                {label: 'Grooming', href: '/services/grooming'},
-              ].map((service) => (
-                <a
-                  key={service.label}
-                  href={service.href}
-                  className="bg-forest text-white font-sans text-[13px] md:text-[14px] font-medium tracking-wide px-5 py-2.5 rounded-lg hover:bg-forest/90 transition-colors"
-                >
-                  {service.label}
-                </a>
-              ))}
-            </div>
-          </Wrap>
-
-          <Wrap className="w-full md:w-auto" delay={0.35}>
+          <Wrap className="w-full md:w-auto" delay={0.25}>
             <div className="flex flex-col w-full md:flex-row items-center gap-2 md:gap-3 mb-3 md:mb-4">
               {primaryCta?.buttonText && (
                 <Button variant="primary" link={primaryCta.link}>
@@ -151,9 +157,13 @@ export default function HeroMarquee({block, index}: HeroMarqueeProps) {
                       </svg>
                     ))}
                   </div>
-                  {reviewText && <p className="font-sans text-sm text-text-muted">{reviewText}</p>}
+                  {reviewText && (
+                    <p className="font-sans text-sm md:text-base text-text-muted">{reviewText}</p>
+                  )}
                 </div>
-                {trustLine && <p className="font-sans text-xs text-text-muted">{trustLine}</p>}
+                {trustLine && (
+                  <p className="font-sans text-xs md:text-sm text-text-muted">{trustLine}</p>
+                )}
               </div>
             </Wrap>
           )}
@@ -177,7 +187,7 @@ export default function HeroMarquee({block, index}: HeroMarqueeProps) {
               cy="100"
               r="96"
               fill="none"
-              stroke="var(--color-forest, #1B5E20)"
+              stroke="var(--color-forest, #1B4F8A)"
               strokeWidth="1.5"
             />
             {/* Arched text — top and bottom */}
@@ -186,25 +196,35 @@ export default function HeroMarquee({block, index}: HeroMarqueeProps) {
               <path id="bottomArc" d="M 25,108 a 75,75 0 0,0 150,0" fill="none" />
             </defs>
             <text
-              fill="var(--color-forest, #1B5E20)"
+              fill="var(--color-forest, #1B4F8A)"
               fontSize="17"
               fontWeight="600"
               fontFamily="var(--font-heading)"
               letterSpacing="1"
             >
               <textPath href="#topArc" startOffset="50%" textAnchor="middle">
-                All-inclusive care
+                {bubbleText
+                  ? bubbleText
+                      .split(' ')
+                      .slice(0, Math.ceil(bubbleText.split(' ').length / 2))
+                      .join(' ')
+                  : 'All-inclusive care'}
               </textPath>
             </text>
             <text
-              fill="var(--color-forest, #1B5E20)"
+              fill="var(--color-forest, #1B4F8A)"
               fontSize="17"
               fontWeight="600"
               fontFamily="var(--font-heading)"
               letterSpacing="2"
             >
               <textPath href="#bottomArc" startOffset="50%" textAnchor="middle">
-                under one roof
+                {bubbleText
+                  ? bubbleText
+                      .split(' ')
+                      .slice(Math.ceil(bubbleText.split(' ').length / 2))
+                      .join(' ')
+                  : 'under one roof'}
               </textPath>
             </text>
             {/* Paw icon centered */}

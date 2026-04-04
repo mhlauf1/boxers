@@ -1,0 +1,132 @@
+import Badge from '@/app/components/ui/Badge'
+import Button from '@/app/components/ui/Button'
+import Image from '@/app/components/SanityImage'
+import {FadeIn} from '@/app/components/ui/FadeIn'
+
+type CampusCard = {
+  _key: string
+  heading?: string
+  description?: string
+  features?: string[]
+  image?: {asset?: {_ref: string}; crop?: any; hotspot?: any; alt?: string}
+  cta?: {buttonText?: string; link?: any}
+  icon?: {asset?: {_ref: string}; alt?: string}
+}
+
+type CampusOverviewProps = {
+  block: {
+    eyebrow?: string
+    heading?: string
+    cards?: CampusCard[]
+  }
+  index: number
+  pageId: string
+  pageType: string
+}
+
+export default function CampusOverview({block}: CampusOverviewProps) {
+  const {eyebrow, heading, cards} = block
+
+  if (!cards || cards.length === 0) return null
+
+  return (
+    <section className="bg-cream">
+      <div className="px-6 md:px-24 py-16 lg:py-24">
+        {(eyebrow || heading) && (
+          <FadeIn>
+            <div className="text-center mb-10 lg:mb-14">
+              {eyebrow && <Badge className="mb-4">{eyebrow}</Badge>}
+              {heading && (
+                <h2 className="text-[32px] md:text-[40px] lg:text-[48px] font-semibold tracking-tight leading-[105%]">
+                  {heading}
+                </h2>
+              )}
+            </div>
+          </FadeIn>
+        )}
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6">
+          {cards.map((card, i) => {
+            const cardBg = i === 0 ? 'bg-sand' : 'bg-[#e4eaf2]'
+            return (
+            <FadeIn key={card._key} delay={i * 0.1}>
+              <div className={`${cardBg} rounded-xl p-6 md:p-8 lg:p-10 h-full flex flex-col`}>
+                {/* Card header with optional icon */}
+                <div className="flex items-center gap-3 mb-4">
+                  {card.icon?.asset?._ref && (
+                    <Image
+                      id={card.icon.asset._ref}
+                      alt={card.icon.alt || ''}
+                      width={48}
+                      className="w-10 h-10 object-contain"
+                    />
+                  )}
+                  {card.heading && (
+                    <h3 className="text-[24px] md:text-[28px] lg:text-4xl font-semibold tracking-tight leading-[110%]">
+                      {card.heading}
+                    </h3>
+                  )}
+                </div>
+
+                {card.description && (
+                  <p className="font-sans text-lg lg:text-[22px] text-text-muted leading-[150%] w-[95%] mb-5">
+                    {card.description}
+                  </p>
+                )}
+
+                {/* Feature bullets */}
+                {card.features && card.features.length > 0 && (
+                  <ul className="space-y-2.5 mb-6">
+                    {card.features.map((feature, fi) => (
+                      <li key={fi} className="flex items-start gap-2.5">
+                        <svg
+                          className="w-5 h-5 text-terracotta shrink-0 mt-0.5"
+                          fill="none"
+                          viewBox="0 0 20 20"
+                        >
+                          <path
+                            d="M16.667 5L7.5 14.167 3.333 10"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                        <span className="font-sans text-md lg:text-lg text-forest leading-[150%]">
+                          {feature}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+
+                {/* Card image */}
+                {card.image?.asset?._ref && (
+                  <div className="mb-6 rounded-lg overflow-hidden">
+                    <Image
+                      id={card.image.asset._ref}
+                      alt={card.image.alt || card.heading || 'Campus image'}
+                      width={600}
+                      crop={card.image.crop}
+                      hotspot={card.image.hotspot}
+                      className="w-full aspect-[16/9] object-cover"
+                    />
+                  </div>
+                )}
+
+                {/* CTA */}
+                {card.cta?.buttonText && (
+                  <div className="mt-auto pt-2">
+                    <Button variant="primary" link={card.cta.link}>
+                      {card.cta.buttonText}
+                    </Button>
+                  </div>
+                )}
+              </div>
+            </FadeIn>
+          )})}
+        </div>
+      </div>
+    </section>
+  )
+}

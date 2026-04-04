@@ -46,6 +46,7 @@ import {galleryPage} from './objects/galleryPage'
 import {valuePillars} from './objects/valuePillars'
 import {pricingPageTabs} from './objects/pricingPageTabs'
 import {spacer} from './objects/spacer'
+import {campusOverview} from './objects/campusOverview'
 import {seo} from './objects/seo'
 import {settings} from './singletons/settings'
 import {link} from './objects/link'
@@ -112,4 +113,5 @@ export const schemaTypes = [
   valuePillars,
   pricingPageTabs,
   spacer,
+  campusOverview,
 ]
