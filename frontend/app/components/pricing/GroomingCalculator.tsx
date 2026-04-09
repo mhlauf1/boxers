@@ -1,10 +1,10 @@
 'use client'
 
 import {useState, useMemo, useCallback} from 'react'
-import {DogCard, AddDogButton, CheckboxGroup} from './CalculatorInputs'
+import {DogCard, AddDogButton, CheckboxGroup, RadioGroup} from './CalculatorInputs'
 import PriceOutputCard from './PriceOutputCard'
 import {calculateGrooming, groomingAddOnOptions} from '@/app/data/pricingData'
-import type {DogSize, GroomingAddOn, DogConfig} from '@/app/data/pricingData'
+import type {DogSize, GroomingAddOn, GroomingServiceType, DogConfig} from '@/app/data/pricingData'
 import type {DereferencedLink} from '@/sanity/lib/types'
 
 type GroomingCalculatorProps = {
@@ -21,6 +21,7 @@ function createDog(size: DogSize = 'm'): DogConfig {
 
 export default function GroomingCalculator({ctaText, ctaLink, taxNote}: GroomingCalculatorProps) {
   const [dogs, setDogs] = useState<DogConfig[]>(() => [createDog()])
+  const [serviceType, setServiceType] = useState<GroomingServiceType>('exitBath')
   const [selectedAddOns, setSelectedAddOns] = useState<GroomingAddOn[]>([])
 
   const handleUpdateDog = useCallback((index: number, updated: DogConfig) => {
@@ -39,14 +40,24 @@ export default function GroomingCalculator({ctaText, ctaLink, taxNote}: Grooming
   }, [])
 
   const result = useMemo(
-    () => calculateGrooming({dogs, selectedAddOns}),
-    [dogs, selectedAddOns],
+    () => calculateGrooming({dogs, selectedAddOns, serviceType}),
+    [dogs, selectedAddOns, serviceType],
   )
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-start">
       {/* Inputs */}
       <div className="space-y-6">
+        <RadioGroup
+          label="Service Type"
+          options={[
+            {label: 'Full Grooming', value: 'fullGrooming', description: 'Starting at $70'},
+            {label: 'Exit Bath', value: 'exitBath', description: 'Starting at $29'},
+          ]}
+          value={serviceType}
+          onChange={(v) => setServiceType(v as GroomingServiceType)}
+        />
+
         {/* Dog Cards */}
         <div className="space-y-3">
           <span className="block text-cream/70 font-sans text-[13px] font-medium uppercase tracking-wider">

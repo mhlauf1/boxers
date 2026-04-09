@@ -1,12 +1,11 @@
 'use client'
 
-type ServiceType = 'daycare' | 'boarding' | 'grooming' | 'enrichment'
+type ServiceType = 'daycare' | 'boarding' | 'grooming'
 
 const services: {value: ServiceType; label: string}[] = [
   {value: 'daycare', label: 'Daycare'},
   {value: 'boarding', label: 'Boarding'},
   {value: 'grooming', label: 'Grooming'},
-  {value: 'enrichment', label: 'Enrichment'},
 ]
 
 type ServiceToggleProps = {

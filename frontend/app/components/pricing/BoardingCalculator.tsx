@@ -131,11 +131,6 @@ function BoardingDogCard({dog, index, total, onUpdate, onRemove}: BoardingDogCar
         onChange={(v) => onUpdate({nights: v})}
       />
 
-      {index === 0 && total > 1 && (
-        <p className="font-sans text-[12px] text-cream/50">
-          Additional dogs receive 50% off
-        </p>
-      )}
     </div>
   )
 }

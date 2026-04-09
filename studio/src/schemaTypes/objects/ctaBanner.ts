@@ -42,6 +42,13 @@ export const ctaBanner = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'description',
+      title: 'Description',
+      type: 'text',
+      rows: 3,
+      description: 'Optional text displayed below the heading',
+    }),
+    defineField({
       name: 'backgroundImage',
       title: 'Background Image',
       type: 'image',
@@ -70,6 +77,20 @@ export const ctaBanner = defineType({
           description: 'Describe this image for accessibility',
         }),
       ],
+    }),
+    defineField({
+      name: 'textAlign',
+      title: 'Text Alignment',
+      type: 'string',
+      description: 'Alignment of the content (only applies when no side image is set)',
+      options: {
+        list: [
+          {title: 'Left', value: 'left'},
+          {title: 'Center', value: 'center'},
+        ],
+        layout: 'radio',
+      },
+      initialValue: 'left',
     }),
     defineField({
       name: 'cta',

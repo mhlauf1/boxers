@@ -38,17 +38,17 @@ export default function TeamGrid({block}: TeamGridProps) {
         </FadeIn>
 
         {members && members.length > 0 && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-x-4 gap-y-8 lg:gap-x-6 lg:gap-y-10">
             {members.map((member, i) => (
               <FadeIn key={member._key} delay={0.1 * i}>
-                <div className="text-center bg-sand py-8 rounded-lg">
+                <div className="text-center">
                   {member.image?.asset?._ref && (
-                    <div className="mb-4 flex justify-center">
-                      <div className="size-36 md:size-60 rounded-full overflow-hidden">
+                    <div className="mb-3 flex justify-center">
+                      <div className="size-32 md:size-60 rounded-full overflow-hidden">
                         <Image
                           id={member.image.asset._ref}
                           alt={member.name || 'Team member'}
-                          width={200}
+                          width={250}
                           crop={member.image.crop}
                           hotspot={member.image.hotspot}
                           className="w-full h-full object-cover"
@@ -57,23 +57,13 @@ export default function TeamGrid({block}: TeamGridProps) {
                     </div>
                   )}
                   {member.name && (
-                    <h3 className="font-sans text-[20px] md:text-[24px] font-semibold text-forest mb-1">
+                    <h3 className="font-sans text-[16px] md:text-[20px] font-semibold text-forest mb-1">
                       {member.name}
                     </h3>
                   )}
                   {member.role && (
-                    <p className="font-sans text-[14px] font-medium uppercase tracking-[0.08em] text-terracotta mb-1">
+                    <p className="font-sans text-[12px] md:text-[14px] font-medium uppercase tracking-[0.08em] text-terracotta">
                       {member.role}
-                    </p>
-                  )}
-                  {member.certifications && (
-                    <p className="font-sans text-[13px] text-sage italic mb-3">
-                      {member.certifications}
-                    </p>
-                  )}
-                  {member.bio && (
-                    <p className="font-sans text-[14px] md:text-[16px] leading-[150%] text-charcoal/70">
-                      {member.bio}
                     </p>
                   )}
                 </div>

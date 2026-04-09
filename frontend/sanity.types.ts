@@ -78,6 +78,24 @@ export type ItemsObjectImage = {
   _type: 'image'
 }
 
+export type CardsObjectImage = {
+  asset?: SanityImageAssetReference
+  media?: unknown // Unable to locate the referenced type "cards.object.image.media" in schema
+  hotspot?: SanityImageHotspot
+  crop?: SanityImageCrop
+  alt?: string
+  _type: 'image'
+}
+
+export type Icon = {
+  asset?: SanityImageAssetReference
+  media?: unknown // Unable to locate the referenced type "object.icon.media" in schema
+  hotspot?: SanityImageHotspot
+  crop?: SanityImageCrop
+  alt?: string
+  _type: 'image'
+}
+
 export type TableData = {
   categories?: Array<{
     categoryName?: string
@@ -119,24 +137,6 @@ export type MatrixData = {
   footnotes?: Array<string>
 }
 
-export type CardsObjectImage = {
-  asset?: SanityImageAssetReference
-  media?: unknown // Unable to locate the referenced type "cards.object.image.media" in schema
-  hotspot?: SanityImageHotspot
-  crop?: SanityImageCrop
-  alt?: string
-  _type: 'image'
-}
-
-export type Icon = {
-  asset?: SanityImageAssetReference
-  media?: unknown // Unable to locate the referenced type "object.icon.media" in schema
-  hotspot?: SanityImageHotspot
-  crop?: SanityImageCrop
-  alt?: string
-  _type: 'image'
-}
-
 export type CampusOverview = {
   _type: 'campusOverview'
   eyebrow?: string
@@ -162,9 +162,9 @@ export type PricingPageTabs = {
   eyebrow?: string
   heading: string
   description?: string
-  defaultTab?: 'daycare' | 'boarding' | 'grooming' | 'enrichment'
+  defaultTab?: 'daycare' | 'boarding' | 'grooming'
   services?: Array<{
-    serviceKey: 'daycare' | 'boarding' | 'grooming' | 'enrichment'
+    serviceKey: 'daycare' | 'boarding' | 'grooming'
     pricingDisplay?: 'table' | 'matrix'
     tableData?: TableData
     matrixData?: MatrixData
@@ -1244,6 +1244,9 @@ export type Service = {
       } & ValuePillars)
     | ({
         _key: string
+      } & CampusOverview)
+    | ({
+        _key: string
       } & Spacer)
   >
 }
@@ -1818,10 +1821,10 @@ export type AllSanitySchemaTypes =
   | ColumnsObjectImage
   | LogosObjectImage
   | ItemsObjectImage
-  | TableData
-  | MatrixData
   | CardsObjectImage
   | Icon
+  | TableData
+  | MatrixData
   | CampusOverview
   | Spacer
   | PricingPageTabs
@@ -2994,9 +2997,9 @@ export type GetPageQueryResult = {
         eyebrow?: string
         heading: string
         description?: string
-        defaultTab?: 'boarding' | 'daycare' | 'enrichment' | 'grooming'
+        defaultTab?: 'boarding' | 'daycare' | 'grooming'
         services?: Array<{
-          serviceKey: 'boarding' | 'daycare' | 'enrichment' | 'grooming'
+          serviceKey: 'boarding' | 'daycare' | 'grooming'
           pricingDisplay?: 'matrix' | 'table'
           tableData?: TableData
           matrixData?: MatrixData
@@ -4280,9 +4283,9 @@ export type HomepageQueryResult = {
         eyebrow?: string
         heading: string
         description?: string
-        defaultTab?: 'boarding' | 'daycare' | 'enrichment' | 'grooming'
+        defaultTab?: 'boarding' | 'daycare' | 'grooming'
         services?: Array<{
-          serviceKey: 'boarding' | 'daycare' | 'enrichment' | 'grooming'
+          serviceKey: 'boarding' | 'daycare' | 'grooming'
           pricingDisplay?: 'matrix' | 'table'
           tableData?: TableData
           matrixData?: MatrixData
@@ -4748,6 +4751,21 @@ export type GetServiceQueryResult = {
         }
         theme?: 'dark' | 'light'
         contentAlignment?: 'imageFirst' | 'textFirst'
+      }
+    | {
+        _key: string
+        _type: 'campusOverview'
+        eyebrow?: string
+        heading?: string
+        cards?: Array<{
+          heading: string
+          description?: string
+          features?: Array<string>
+          image?: CardsObjectImage
+          cta?: Button
+          icon?: Icon
+          _key: string
+        }>
       }
     | {
         _key: string

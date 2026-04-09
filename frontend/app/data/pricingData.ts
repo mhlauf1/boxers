@@ -5,7 +5,6 @@ export type LineItem = {label: string; amount: number}
 export type DaycarePackage = 'single' | '10-visit' | '25-visit' | '40-visit'
 
 const DAYCARE_RATE = 39
-const DAYCARE_ADDITIONAL_RATE = 19.5 // 50% off
 
 const daycarePackages: Record<DaycarePackage, {visits: number | null; price: number | null; expiration: string | null}> = {
   single: {visits: null, price: null, expiration: null},
@@ -43,32 +42,27 @@ export function calculateDaycarePerDog(input: {dogs: DaycareDogConfig[]}): Dayca
 
   for (let i = 0; i < dogs.length; i++) {
     const dog = dogs[i]
-    const isAdditional = i > 0
     const pkg = daycarePackages[dog.pkg]
 
     if (pkg.price !== null && pkg.visits !== null) {
-      // Package pricing — flat price, additional dogs get 50% off the per-visit rate
-      const perVisit = pkg.price / pkg.visits
-      const cost = isAdditional ? Math.round(pkg.price * 0.5 * 100) / 100 : pkg.price
+      const cost = pkg.price
       const dogLabel = dogs.length > 1 ? `Dog ${i + 1}` : 'Your dog'
       lineItems.push({
-        label: `${dogLabel} — ${pkg.visits}-Visit Pkg${isAdditional ? ' (50% off)' : ''}`,
+        label: `${dogLabel} — ${pkg.visits}-Visit Pkg`,
         amount: cost,
       })
       total += cost
 
       // Savings vs. single-day rate
-      const singleCost = (isAdditional ? DAYCARE_ADDITIONAL_RATE : DAYCARE_RATE) * pkg.visits
+      const singleCost = DAYCARE_RATE * pkg.visits
       totalSavings += singleCost - cost
       hasSavings = true
     } else {
-      // Single-day pricing
-      const rate = isAdditional ? DAYCARE_ADDITIONAL_RATE : DAYCARE_RATE
       const numDays = dog.days
-      const cost = rate * numDays
+      const cost = DAYCARE_RATE * numDays
       const dogLabel = dogs.length > 1 ? `Dog ${i + 1}` : 'Your dog'
       lineItems.push({
-        label: `${dogLabel} — ${numDays} day${numDays > 1 ? 's' : ''} @ $${rate}/day${isAdditional ? ' (50% off)' : ''}`,
+        label: `${dogLabel} — ${numDays} day${numDays > 1 ? 's' : ''} @ $${DAYCARE_RATE}/day`,
         amount: cost,
       })
       total += cost
@@ -80,7 +74,6 @@ export function calculateDaycarePerDog(input: {dogs: DaycareDogConfig[]}): Dayca
 
 // ─── Boarding ───────────────────────────────────────────────
 const BOARDING_RATE = 59
-const BOARDING_ADDITIONAL_RATE = 29.5 // 50% off
 
 export type BoardingDogConfig = {
   id: string
@@ -101,13 +94,11 @@ export function calculateBoardingPerDog(input: {dogs: BoardingDogConfig[]}): Boa
 
   for (let i = 0; i < dogs.length; i++) {
     const dog = dogs[i]
-    const isAdditional = i > 0
-    const rate = isAdditional ? BOARDING_ADDITIONAL_RATE : BOARDING_RATE
-    const cost = rate * dog.nights
+    const cost = BOARDING_RATE * dog.nights
 
     const dogLabel = dogs.length > 1 ? `Dog ${i + 1}` : 'Your dog'
     lineItems.push({
-      label: `${dogLabel} — ${dog.nights} night${dog.nights > 1 ? 's' : ''} @ $${rate}/night${isAdditional ? ' (50% off)' : ''}`,
+      label: `${dogLabel} — ${dog.nights} night${dog.nights > 1 ? 's' : ''} @ $${BOARDING_RATE}/night`,
       amount: cost,
     })
     total += cost
@@ -124,7 +115,16 @@ export function calculateBoardingPerDog(input: {dogs: BoardingDogConfig[]}): Boa
 // ─── Grooming ───────────────────────────────────────────────
 export type DogSize = 's' | 'm' | 'l' | 'xl'
 
-export type GroomingAddOn = 'nailTrim' | 'brushOut' | 'earCleaning' | 'analGlands'
+export type GroomingServiceType = 'fullGrooming' | 'exitBath'
+
+export type GroomingAddOn = 'nailTrim' | 'brushOut' | 'earCleaning' | 'analGlands' | 'deshedding'
+
+const fullGroomingRates: Record<DogSize, number> = {
+  s: 70,
+  m: 85,
+  l: 95,
+  xl: 120,
+}
 
 const exitBathRates: Record<DogSize, number> = {
   s: 29,
@@ -138,6 +138,7 @@ const groomingAddOns: Record<GroomingAddOn, {label: string; price: number}> = {
   brushOut: {label: 'Brush Out', price: 25},
   earCleaning: {label: 'Ear Cleaning', price: 15},
   analGlands: {label: 'Anal Glands', price: 25},
+  deshedding: {label: 'Deshedding', price: 20},
 }
 
 export const groomingAddOnOptions = Object.entries(groomingAddOns).map(([key, val]) => ({
@@ -163,17 +164,20 @@ export type GroomingResult = {
 export function calculateGrooming(input: {
   dogs: DogConfig[]
   selectedAddOns: GroomingAddOn[]
+  serviceType: GroomingServiceType
 }): GroomingResult {
-  const {dogs, selectedAddOns} = input
+  const {dogs, selectedAddOns, serviceType} = input
   const lineItems: LineItem[] = []
   let total = 0
 
-  // Exit bath pricing by size
+  const rates = serviceType === 'fullGrooming' ? fullGroomingRates : exitBathRates
+  const serviceLabel = serviceType === 'fullGrooming' ? 'Full Grooming' : 'Exit Bath'
+
   for (let i = 0; i < dogs.length; i++) {
     const dog = dogs[i]
-    const price = exitBathRates[dog.size]
+    const price = rates[dog.size]
     total += price
-    const dogLabel = dogs.length > 1 ? `Dog ${i + 1} (${sizeLabels[dog.size]})` : `Exit Bath (${sizeLabels[dog.size]})`
+    const dogLabel = dogs.length > 1 ? `Dog ${i + 1} (${sizeLabels[dog.size]})` : `${serviceLabel} (${sizeLabels[dog.size]})`
     lineItems.push({label: dogLabel, amount: price})
   }
 

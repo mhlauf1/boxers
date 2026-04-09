@@ -116,6 +116,7 @@ export const service = defineType({
         {type: 'galleryCarousel'},
         {type: 'galleryShowcase'},
         {type: 'valuePillars'},
+        {type: 'campusOverview'},
         {type: 'spacer'},
       ],
       options: {

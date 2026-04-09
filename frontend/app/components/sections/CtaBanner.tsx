@@ -6,10 +6,12 @@ import {FadeIn} from '@/app/components/ui/FadeIn'
 type CtaBannerProps = {
   block: {
     heading?: string
+    description?: string
     icon?: {asset?: {_ref: string}; alt?: string}
     stickerImage?: {asset?: {_ref: string}; alt?: string}
     backgroundImage?: {asset?: {_ref: string}; crop?: any; alt?: string}
     sideImage?: {asset?: {_ref: string}; crop?: any; alt?: string}
+    textAlign?: 'left' | 'center'
     cta?: {buttonText?: string; link?: any}
     showRating?: boolean
     ratingText?: string
@@ -36,8 +38,18 @@ function RatingBar({ratingText}: {ratingText: string}) {
 
 export default function CtaBanner({block, index}: CtaBannerProps) {
   const isEarly = index <= 1
-  const {heading, icon, stickerImage, backgroundImage, sideImage, cta, showRating, ratingText} =
-    block
+  const {
+    heading,
+    description,
+    icon,
+    stickerImage,
+    backgroundImage,
+    sideImage,
+    textAlign,
+    cta,
+    showRating,
+    ratingText,
+  } = block
   const hasSideImage = !!sideImage?.asset?._ref
 
   if (hasSideImage) {
@@ -93,11 +105,21 @@ export default function CtaBanner({block, index}: CtaBannerProps) {
 
               {heading && (
                 <FadeIn delay={0.1}>
-                  <h2 className="text-[32px] md:text-[44px] lg:text-[56px] font-semibold tracking-tight leading-[95%] text-white mb-10 max-w-xl">
+                  <h2 className="text-[32px] md:text-[44px] lg:text-[56px] font-semibold tracking-tight leading-[95%] text-white mb-4 max-w-xl">
                     {heading}
                   </h2>
                 </FadeIn>
               )}
+
+              {description && (
+                <FadeIn delay={0.15}>
+                  <p className="font-sans text-[16px] md:text-[18px] leading-[160%] text-white/80 max-w-lg mb-10">
+                    {description}
+                  </p>
+                </FadeIn>
+              )}
+
+              {!description && heading && <div className="mb-6" />}
 
               <FadeIn className="w-full md:w-auto" delay={0.2}>
                 {cta?.buttonText && (
@@ -134,7 +156,9 @@ export default function CtaBanner({block, index}: CtaBannerProps) {
 
   return (
     <section className="bg-cream px-4 lg:px-8">
-      <div className="relative rounded-lg min-h-[60vh] md:min-h-[80vh] flex px-[6%] md:px-[10%] items-center overflow-hidden">
+      <div
+        className={`relative rounded-lg min-h-[60vh] md:min-h-[80vh] flex px-[6%] md:px-[10%] items-center overflow-hidden${textAlign === 'center' ? ' justify-center' : ''}`}
+      >
         {/* Background image */}
         {backgroundImage?.asset?._ref && (
           <div className="absolute inset-0">
@@ -153,7 +177,9 @@ export default function CtaBanner({block, index}: CtaBannerProps) {
 
         {/* Fallback dark bg if no image */}
         {!backgroundImage?.asset?._ref && <div className="absolute inset-0 bg-forest" />}
-        <div className="relative flex flex-col tems-center z-10 py-16 lg:py-24 text-start md:text-center">
+        <div
+          className={`relative flex flex-col z-10 py-16 lg:py-24${textAlign === 'center' ? ' items-center text-center' : ' text-start md:text-center'}`}
+        >
           {stickerImage?.asset?._ref && (
             <FadeIn>
               <div className="bg-white rounded-full p-3 w-fit mb-6">
@@ -182,11 +208,22 @@ export default function CtaBanner({block, index}: CtaBannerProps) {
 
           {heading && (
             <FadeIn delay={0.1}>
-              <h2 className="text-[32px] tracking-tight font-semibold text-center  md:text-[44px] lg:text-[56px] leading-[105%] text-white mb-10 max-w-lg mx-auto">
+              <h2 className="text-[44px] tracking-tight font-semibold text-center md:text-[64px] lg:text-[72px] leading-[105%] text-white mb-4 max-w-3xl mx-auto">
                 {heading}
               </h2>
             </FadeIn>
           )}
+
+          {description && (
+            <FadeIn delay={0.15}>
+              <p className="font-sans text-[16px] md:text-[18px] leading-[160%] text-white/80 max-w-xl mx-auto mb-10">
+                {description}
+              </p>
+            </FadeIn>
+          )}
+
+          {!description && heading && <div className="mb-6" />}
+
           <FadeIn className="w-full md:w-auto" delay={0.2}>
             {cta?.buttonText && (
               <Button variant="primary" link={cta.link} className="mb-4">
