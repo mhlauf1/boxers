@@ -669,6 +669,7 @@ export type GalleryGrid = {
     crop?: SanityImageCrop
     alt?: string
     caption?: string
+    wide?: boolean
     _type: 'image'
     _key: string
   }>
@@ -836,6 +837,7 @@ export type Testimonials = {
   >
   googleRating?: string
   googleReviewCount?: number
+  googleReviewsUrl?: string
 }
 
 export type WebcamPreview = {
@@ -2611,6 +2613,7 @@ export type GetPageQueryResult = {
           crop?: SanityImageCrop
           alt?: string
           caption?: string
+          wide?: boolean
           _type: 'image'
           _key: string
         }>
@@ -3313,6 +3316,7 @@ export type GetPageQueryResult = {
         }> | null
         googleRating?: string
         googleReviewCount?: number
+        googleReviewsUrl?: string
       }
     | {
         _key: string
@@ -3899,6 +3903,7 @@ export type HomepageQueryResult = {
           crop?: SanityImageCrop
           alt?: string
           caption?: string
+          wide?: boolean
           _type: 'image'
           _key: string
         }>
@@ -4601,6 +4606,7 @@ export type HomepageQueryResult = {
         }> | null
         googleRating?: string
         googleReviewCount?: number
+        googleReviewsUrl?: string
       }
     | {
         _key: string
@@ -5214,6 +5220,7 @@ export type GetServiceQueryResult = {
           crop?: SanityImageCrop
           alt?: string
           caption?: string
+          wide?: boolean
           _type: 'image'
           _key: string
         }>
@@ -5871,6 +5878,7 @@ export type GetServiceQueryResult = {
         }> | null
         googleRating?: string
         googleReviewCount?: number
+        googleReviewsUrl?: string
       }
     | {
         _key: string

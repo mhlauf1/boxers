@@ -4802,6 +4802,13 @@
                   },
                   "optional": true
                 },
+                "wide": {
+                  "type": "objectAttribute",
+                  "value": {
+                    "type": "boolean"
+                  },
+                  "optional": true
+                },
                 "_type": {
                   "type": "objectAttribute",
                   "value": {
@@ -5937,6 +5944,13 @@
           "type": "objectAttribute",
           "value": {
             "type": "number"
+          },
+          "optional": true
+        },
+        "googleReviewsUrl": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
           },
           "optional": true
         }
