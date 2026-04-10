@@ -5643,6 +5643,13 @@
           },
           "optional": false
         },
+        "description": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
         "backgroundImage": {
           "type": "objectAttribute",
           "value": {
@@ -5748,6 +5755,23 @@
                 }
               }
             }
+          },
+          "optional": true
+        },
+        "textAlign": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "left"
+              },
+              {
+                "type": "string",
+                "value": "center"
+              }
+            ]
           },
           "optional": true
         },

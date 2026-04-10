@@ -788,6 +788,7 @@ export type CtaBanner = {
     _type: 'image'
   }
   heading: string
+  description?: string
   backgroundImage?: {
     asset?: SanityImageAssetReference
     media?: unknown
@@ -804,6 +805,7 @@ export type CtaBanner = {
     alt?: string
     _type: 'image'
   }
+  textAlign?: 'left' | 'center'
   cta?: Button
   showRating?: boolean
   ratingText?: string

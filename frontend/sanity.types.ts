@@ -788,6 +788,7 @@ export type CtaBanner = {
     _type: 'image'
   }
   heading: string
+  description?: string
   backgroundImage?: {
     asset?: SanityImageAssetReference
     media?: unknown
@@ -804,6 +805,7 @@ export type CtaBanner = {
     alt?: string
     _type: 'image'
   }
+  textAlign?: 'left' | 'center'
   cta?: Button
   showRating?: boolean
   ratingText?: string
@@ -2316,6 +2318,7 @@ export type GetPageQueryResult = {
           _type: 'image'
         }
         heading: string
+        description?: string
         backgroundImage?: {
           asset?: SanityImageAssetReference
           media?: unknown
@@ -2332,6 +2335,7 @@ export type GetPageQueryResult = {
           alt?: string
           _type: 'image'
         }
+        textAlign?: 'center' | 'left'
         cta: {
           _type: 'button'
           buttonText?: string
@@ -3602,6 +3606,7 @@ export type HomepageQueryResult = {
           _type: 'image'
         }
         heading: string
+        description?: string
         backgroundImage?: {
           asset?: SanityImageAssetReference
           media?: unknown
@@ -3618,6 +3623,7 @@ export type HomepageQueryResult = {
           alt?: string
           _type: 'image'
         }
+        textAlign?: 'center' | 'left'
         cta: {
           _type: 'button'
           buttonText?: string
@@ -4915,6 +4921,7 @@ export type GetServiceQueryResult = {
           _type: 'image'
         }
         heading: string
+        description?: string
         backgroundImage?: {
           asset?: SanityImageAssetReference
           media?: unknown
@@ -4931,6 +4938,7 @@ export type GetServiceQueryResult = {
           alt?: string
           _type: 'image'
         }
+        textAlign?: 'center' | 'left'
         cta: {
           _type: 'button'
           buttonText?: string
