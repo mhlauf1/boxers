@@ -48,6 +48,12 @@ export default function CampusOverview({block}: CampusOverviewProps) {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6">
           {cards.map((card, i) => {
             const cardBg = i === 0 ? 'bg-sand' : 'bg-[#e4eaf2]'
+            // If the first feature looks like a price ("$39/day", "$65/night"), lift it
+            // out of the bullet list and render it prominently above the features.
+            const firstFeature = card.features?.[0]
+            const priceMatch = firstFeature?.match(/^\$[\d,]+(?:\.\d+)?\/\w+/)
+            const price = priceMatch ? firstFeature : null
+            const remainingFeatures = price ? card.features?.slice(1) : card.features
             return (
             <FadeIn key={card._key} delay={i * 0.1}>
               <div className={`${cardBg} rounded-xl p-6 md:p-8 lg:p-10 h-full flex flex-col`}>
@@ -68,6 +74,12 @@ export default function CampusOverview({block}: CampusOverviewProps) {
                   )}
                 </div>
 
+                {price && (
+                  <div className="mb-4 font-sans text-[40px] md:text-[48px] lg:text-[56px] font-semibold tracking-tight leading-[100%] text-terracotta">
+                    {price}
+                  </div>
+                )}
+
                 {card.description && (
                   <p className="font-sans text-lg lg:text-[22px] text-text-muted leading-[150%] w-[95%] mb-5">
                     {card.description}
@@ -75,9 +87,9 @@ export default function CampusOverview({block}: CampusOverviewProps) {
                 )}
 
                 {/* Feature bullets */}
-                {card.features && card.features.length > 0 && (
+                {remainingFeatures && remainingFeatures.length > 0 && (
                   <ul className="space-y-2.5 mb-6">
-                    {card.features.map((feature, fi) => (
+                    {remainingFeatures.map((feature, fi) => (
                       <li key={fi} className="flex items-start gap-2.5">
                         <svg
                           className="w-5 h-5 text-terracotta shrink-0 mt-0.5"
