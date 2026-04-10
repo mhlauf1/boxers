@@ -2,7 +2,6 @@
 
 import {useState, useEffect, useRef} from 'react'
 import Badge from '@/app/components/ui/Badge'
-import Button from '@/app/components/ui/Button'
 import Image from '@/app/components/SanityImage'
 import {FadeIn} from '@/app/components/ui/FadeIn'
 
@@ -13,7 +12,6 @@ type ServiceTab = {
   sticker?: {asset?: {_ref: string}; alt?: string}
   shortDescription?: string
   tabImage?: {asset?: {_ref: string}; crop?: any; alt?: string}
-  tabCta?: {buttonText?: string; link?: any}
 }
 
 type ServiceTabsSidebarProps = {
@@ -118,7 +116,7 @@ export default function ServiceTabsSidebar({block}: ServiceTabsSidebarProps) {
                     onClick={() => setActiveTab(i)}
                     onMouseEnter={i === activeTab ? () => setIsPaused(true) : undefined}
                     onMouseLeave={i === activeTab ? () => setIsPaused(false) : undefined}
-                    className={`relative block w-full cursor-pointer text-left font-heading tracking-tight transition-colors py-6  text-[32px] ${
+                    className={`relative block w-full cursor-pointer text-left font-heading tracking-tight transition-colors py-5  text-[32px] ${
                       i === activeTab
                         ? 'text-white font-semibold'
                         : 'text-white/35 hover:text-white/50'
@@ -162,8 +160,8 @@ export default function ServiceTabsSidebar({block}: ServiceTabsSidebarProps) {
                     />
                     <div className="absolute top-2 md:top-4 left-2 md:left-4">
                       {activeService.title && (
-                        <div className="bg-white py-3 px-5 rounded-full">
-                          <h3 className="text-[14px] md:text-[24px]  font-semibold leading-[105%] tracking-tight ">
+                        <div className="bg-white py-2 px-4 rounded-full">
+                          <h3 className="text-[14px] md:text-[16px]  font-semibold leading-[105%] tracking-tight ">
                             {activeService.title}
                           </h3>
                         </div>
@@ -173,14 +171,9 @@ export default function ServiceTabsSidebar({block}: ServiceTabsSidebarProps) {
                 )}
 
                 {activeService.shortDescription && (
-                  <p className="font-sans text-[16px] lg:text-xl font-medium text-text-muted leading-[160%] mb-6">
+                  <p className="font-sans text-[16px] lg:text-xl font-medium text-text-muted leading-[160%]">
                     {activeService.shortDescription}
                   </p>
-                )}
-                {activeService.tabCta?.buttonText && (
-                  <Button variant="primary" link={activeService.tabCta.link}>
-                    {activeService.tabCta.buttonText}
-                  </Button>
                 )}
               </div>
             )}

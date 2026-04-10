@@ -837,6 +837,7 @@ export type Testimonials = {
   >
   googleRating?: string
   googleReviewCount?: number
+  googleReviewsUrl?: string
 }
 
 export type WebcamPreview = {

@@ -82,8 +82,8 @@ export default function ContactForm({block}: ContactFormProps) {
     image?.asset?._ref || address || phone || email || (stegaClean(showMap) && mapEmbedUrl)
 
   return (
-    <section className="bg-cream pt-8">
-      <div className="px-6 md:px-24 py-16 lg:py-24">
+    <section className="bg-cream pt-20">
+      <div className="px-6 md:px-20 py-16 lg:py-24">
         <FadeIn immediate>
           <div className="mb-10 lg:mb-14">
             {eyebrow && (

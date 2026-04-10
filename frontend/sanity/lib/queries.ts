@@ -85,6 +85,11 @@ const pageBuilderExpansion = /* groq */ `
       primaryCta ${buttonFields},
       secondaryCta ${buttonFields}
     },
+    _type == "heroMarquee" => {
+      ...,
+      primaryCta ${buttonFields},
+      secondaryCta ${buttonFields}
+    },
     _type == "featureCards" => {
       ...,
       cta ${buttonFields}

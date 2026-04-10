@@ -1,5 +1,4 @@
 import Badge from '@/app/components/ui/Badge'
-import Button from '@/app/components/ui/Button'
 import Image from '@/app/components/SanityImage'
 import {FadeIn} from '@/app/components/ui/FadeIn'
 
@@ -9,7 +8,6 @@ type CampusCard = {
   description?: string
   features?: string[]
   image?: {asset?: {_ref: string}; crop?: any; hotspot?: any; alt?: string}
-  cta?: {buttonText?: string; link?: any}
   icon?: {asset?: {_ref: string}; alt?: string}
 }
 
@@ -126,14 +124,6 @@ export default function CampusOverview({block}: CampusOverviewProps) {
                   </div>
                 )}
 
-                {/* CTA */}
-                {card.cta?.buttonText && (
-                  <div className="mt-auto pt-2">
-                    <Button variant="primary" link={card.cta.link}>
-                      {card.cta.buttonText}
-                    </Button>
-                  </div>
-                )}
               </div>
             </FadeIn>
           )})}
