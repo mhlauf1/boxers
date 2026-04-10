@@ -34,7 +34,8 @@ const bgColors: Record<string, {classes: string; isDark: boolean}> = {
 }
 
 export default function SplitContent({block}: SplitContentProps) {
-  const {eyebrow, heading, body, link, badge, image, stickerImage, imagePosition, backgroundColor} = block
+  const {eyebrow, heading, body, link, badge, image, stickerImage, imagePosition, backgroundColor} =
+    block
   const isImageLeft = stegaClean(imagePosition) === 'left'
   const {classes: bg, isDark} = bgColors[stegaClean(backgroundColor) || 'sand'] || bgColors.sand
 
@@ -52,7 +53,7 @@ export default function SplitContent({block}: SplitContentProps) {
 
             {heading && (
               <FadeIn delay={eyebrow ? 0.1 : 0}>
-                <h2 className="text-4xl font-semibold md:text-text-5xl lg:text-6xl leading-[105%] tracking-tight max-w-[15ch] mb-6">
+                <h2 className="text-4xl font-semibold md:text-text-5xl lg:text-6xl leading-[105%] tracking-tight md:max-w-[18ch] mb-6">
                   {heading}
                 </h2>
               </FadeIn>
@@ -78,7 +79,12 @@ export default function SplitContent({block}: SplitContentProps) {
 
             {badge?.asset?._ref && (
               <FadeIn delay={0.2}>
-                <Image id={badge.asset._ref} alt={badge.alt || 'Badge'} width={80} className="h-36 w-auto" />
+                <Image
+                  id={badge.asset._ref}
+                  alt={badge.alt || 'Badge'}
+                  width={80}
+                  className="h-36 w-auto"
+                />
               </FadeIn>
             )}
           </div>

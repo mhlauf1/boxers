@@ -23,85 +23,81 @@ export default function PricingTierCards({categories}: PricingTierCardsProps) {
     <>
       {categories.map((category) => (
         <div key={category._key} className="mb-12 last:mb-0">
-          {category.tiers && category.tiers.length > 0 && (() => {
-            const tierCount = category.tiers.length;
-            const gridClass = tierCount === 1
-              ? 'max-w-lg mx-auto'
-              : tierCount === 2
-              ? 'grid grid-cols-1 md:grid-cols-2 gap-4 max-w-5xl mx-auto'
-              : tierCount === 3
-              ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'
-              : 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4';
-            return (
-            <>
-            {category.categoryName && (
-              <FadeIn>
-                <h3 className={`text-[24px] md:text-[32px] leading-[120%] text-forest mb-6 lg:mb-8 ${tierCount <= 2 ? 'text-center' : ''}`}>
-                  {category.categoryName}
-                </h3>
-              </FadeIn>
-            )}
-            <div className={gridClass}>
-              {category.tiers.map((tier, i) => (
-                <FadeIn key={tier._key} delay={0.1 * i}>
-                  <div
-                    className={`rounded-lg p-6 md:p-8 h-full flex flex-col ${
-                      tier.highlighted
-                        ? 'bg-forest text-cream ring-2 ring-terracotta'
-                        : 'bg-sand/50 text-forest'
-                    }`}
-                  >
-                    {tier.name && (
-                      <h4 className="font-sans text-[20px] md:text-[24px] font-medium mb-2">
-                        {tier.name}
-                      </h4>
-                    )}
-                    {tier.price && (
-                      <p
-                        className={`text-[28px] md:text-[36px] font-medium mb-3 ${tier.highlighted ? 'text-terracotta-light' : 'text-terracotta'}`}
-                      >
-                        {tier.price}
-                      </p>
-                    )}
-                    {tier.description && (
-                      <p
-                        className={`font-sans text-[16px] md:text-[18px] leading-[150%] mb-4 ${tier.highlighted ? 'text-cream/80' : 'text-charcoal/70'}`}
-                      >
-                        {tier.description}
-                      </p>
-                    )}
-                    {tier.features && tier.features.length > 0 && (
-                      <ul className="mb-6 flex-1 space-y-2">
-                        {tier.features.map((feature, fi) => (
-                          <li
-                            key={fi}
-                            className={`font-sans text-[16px] md:text-[18px] flex items-start gap-2 ${tier.highlighted ? 'text-cream/90' : 'text-charcoal/80'}`}
-                          >
-                            <svg
-                              className={`h-5 w-5 shrink-0 mt-0.5 ${tier.highlighted ? 'text-terracotta-light' : 'text-terracotta'}`}
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              strokeWidth={2}
-                              stroke="currentColor"
+          {category.tiers &&
+            category.tiers.length > 0 &&
+            (() => {
+              const tierCount = category.tiers.length
+              const gridClass =
+                tierCount === 1
+                  ? 'max-w-lg mx-auto'
+                  : tierCount === 2
+                    ? 'grid grid-cols-1 md:grid-cols-2 gap-4 max-w-5xl mx-auto'
+                    : tierCount === 3
+                      ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'
+                      : 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4'
+              return (
+                <>
+                  <div className={gridClass}>
+                    {category.tiers.map((tier, i) => (
+                      <FadeIn key={tier._key} delay={0.1 * i}>
+                        <div
+                          className={`rounded-lg p-6 md:p-8 h-full flex flex-col ${
+                            tier.highlighted
+                              ? 'bg-forest text-cream ring-2 ring-terracotta'
+                              : 'bg-sand/50 text-forest'
+                          }`}
+                        >
+                          {tier.name && (
+                            <h4 className="font-sans text-[20px] md:text-[24px] font-medium mb-2">
+                              {tier.name}
+                            </h4>
+                          )}
+                          {tier.price && (
+                            <p
+                              className={`text-[28px] md:text-[36px] font-medium mb-3 ${tier.highlighted ? 'text-terracotta-light' : 'text-terracotta'}`}
                             >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="M4.5 12.75l6 6 9-13.5"
-                              />
-                            </svg>
-                            {feature}
-                          </li>
-                        ))}
-                      </ul>
-                    )}
+                              {tier.price}
+                            </p>
+                          )}
+                          {tier.description && (
+                            <p
+                              className={`font-sans text-[16px] md:text-[18px] leading-[150%] mb-4 ${tier.highlighted ? 'text-cream/80' : 'text-charcoal/70'}`}
+                            >
+                              {tier.description}
+                            </p>
+                          )}
+                          {tier.features && tier.features.length > 0 && (
+                            <ul className="mb-6 flex-1 space-y-2">
+                              {tier.features.map((feature, fi) => (
+                                <li
+                                  key={fi}
+                                  className={`font-sans text-[16px] md:text-[18px] flex items-start gap-2 ${tier.highlighted ? 'text-cream/90' : 'text-charcoal/80'}`}
+                                >
+                                  <svg
+                                    className={`h-5 w-5 shrink-0 mt-0.5 ${tier.highlighted ? 'text-terracotta-light' : 'text-terracotta'}`}
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    strokeWidth={2}
+                                    stroke="currentColor"
+                                  >
+                                    <path
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      d="M4.5 12.75l6 6 9-13.5"
+                                    />
+                                  </svg>
+                                  {feature}
+                                </li>
+                              ))}
+                            </ul>
+                          )}
+                        </div>
+                      </FadeIn>
+                    ))}
                   </div>
-                </FadeIn>
-              ))}
-            </div>
-            </>
-            );
-          })()}
+                </>
+              )
+            })()}
         </div>
       ))}
 

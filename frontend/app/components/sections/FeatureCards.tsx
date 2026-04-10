@@ -29,7 +29,7 @@ export default function FeatureCards({block}: FeatureCardsProps) {
 
   return (
     <section className="relative bg-forest text-cream rounded-[48px] -mt-12 z-10 overflow-hidden">
-      <div className="px-4 md:px-28 relative z-10 py-[80px] lg:py-[148px]">
+      <div className="px-6 md:px-28 relative z-10 py-[80px] lg:py-[148px]">
         <FadeIn>
           <div className="flex flex-row justify-between items-center mb-8">
             <div>
@@ -39,7 +39,7 @@ export default function FeatureCards({block}: FeatureCardsProps) {
                 </h2>
               )}
               {subheading && (
-                <p className="font-sans mt-6 text-[16px] md:text-lg text-sand/70 max-w-2xl leading-relaxed  mb-6 lg:mb-8">
+                <p className="font-sans mt-4 md:mt-6 text-[16px] md:text-lg text-sand/70 max-w-2xl leading-relaxed  mb-0 lg:mb-8">
                   {subheading}
                 </p>
               )}
@@ -74,7 +74,7 @@ export default function FeatureCards({block}: FeatureCardsProps) {
 
             const renderCard = (feature: (typeof features)[number], i: number) => (
               <FadeIn key={feature._key} delay={0.1 * i}>
-                <div className="bg-forest-card border border-border-dark rounded-md px-6 py-12 h-full w-full">
+                <div className="bg-forest-card border border-border-dark rounded-md px-6 py-8 md:py-12 h-full w-full">
                   {feature.icon && (
                     <div className="mb-6 text-sand/80">
                       <Icon icon={feature.icon} width={42} height={42} />

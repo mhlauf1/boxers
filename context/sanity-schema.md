@@ -115,7 +115,7 @@ The pricing calculator (`pricingCalculator` block type) has a `calculatorType` f
 ### What's seeded
 - **Settings:** title, tagline, contactInfo, 3 locations with hours, socialLinks (incl YouTube), ctaButton, footerTagline/Text/TextLink, footerColumns (Services + Quick Links), navItems (4 items), localBusiness structured data
 - **Testimonials:** 4 quotes from intake form (author: "Boxers Customer" — real names TBD)
-- **Homepage (M3, updated M6):** 11 pageBuilder blocks — Hero, ServiceTabs, StatsBar (with "Since 2011"), ImageRow, BEC Spotlight (splitContent), Why Boxers (featureCards), **Our Story** (splitContent, founding narrative — NEW M6), Vet Spotlight (splitContent), WebcamPreview, Testimonials, CtaBanner
+- **Homepage (M3, updated M6, M7.2):** 13 pageBuilder blocks — heroMarquee, campusOverview, serviceTabsSidebar, Vet Spotlight (splitContent, sand, image right), **BEC Spotlight** (splitContent, sand, image left — NEW M7.2), **Enrichment Programs** (splitContent, cream, image right — NEW M7.2), Why Boxers (featureCards), statsBar ("Since 2011"), galleryCarousel, testimonials, spacer, ctaBanner, spacer
 - **Daycare (M3):** HeroSplit, FeatureCards (6), PricingCalculator (daycare, single mode), CtaBanner
 - **Boarding (M3):** HeroSplit, FeatureCards (6), PricingCalculator (boarding, single mode), CtaBanner
 - **Grooming (M3):** HeroSplit, FeatureCards (6), PricingCalculator (grooming, single mode), CtaBanner

@@ -87,4 +87,5 @@ Phase 1 complete — ready for review
 - ~~`npm run build` passes~~
 
 ### History
+- 2026-04-10: Homepage enrichment spotlights added. Two new `splitContent` blocks inserted after Vet Spotlight: (1) **BEC Spotlight** — sand bg, image left, links to `/services/enrichment`, positions the Boxers Enrichment Center as a sub-brand alongside the Vet Clinic. (2) **Enrichment Programs** — cream bg, image right, links to `/services/daycare`, highlights the structured play and guided enrichment woven into regular daycare/boarding. Also published the previously draft-only `service-enrichment` doc (M4 drift — it had been seeded but never published, was blocking reference validation). Content-only change via Sanity MCP, no code touched. Homepage now has 13 pageBuilder blocks. Branch: `feature/homepage-enrichment-spotlights`. Build passes.
 - 2026-03-29: M7 Phase 1 complete. Accessibility (focus styles, skip-to-content), nav polish (aria attrs, focus trap, keyboard nav, active page), SEO (multi-location JSON-LD with VeterinaryClinic type, BreadcrumbList), Hero cleanup (dynamic alt), 404/error page redesign. Build passes.

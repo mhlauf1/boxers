@@ -111,7 +111,7 @@ export default function Testimonials({block}: TestimonialsProps) {
 
         {heading && (
           <FadeIn delay={0.1}>
-            <h2 className="text-[36px] md:text-[48px] lg:text-[56px] leading-[105%] tracking-tight font-semibold text-cream text-center mb-12 lg:mb-16">
+            <h2 className="text-[36px] px-4 md:text-[48px] lg:text-[56px] leading-[105%] tracking-tight font-semibold text-cream text-center mb-12 lg:mb-16">
               {heading}
             </h2>
           </FadeIn>
@@ -120,7 +120,7 @@ export default function Testimonials({block}: TestimonialsProps) {
         {/* Carousel */}
         {reviews && reviews.length > 0 && (
           <FadeIn delay={0.2}>
-            <div className=" px-6 sm:px-10 lg:px-16">
+            <div className="px-0 sm:px-10 lg:px-16">
               {/* Cards row with navigation */}
               <div className="relative">
                 {/* Prev button */}
@@ -149,7 +149,7 @@ export default function Testimonials({block}: TestimonialsProps) {
                 {/* Scrollable cards */}
                 <div
                   ref={scrollRef}
-                  className="flex gap-5 lg:gap-6 overflow-x-auto snap-x snap-mandatory pb-2 scrollbar-hide scroll-smooth px-1"
+                  className="flex gap-5 lg:gap-6 overflow-x-auto snap-x snap-mandatory pb-2 scrollbar-hide scroll-smooth px-6 sm:px-1 scroll-pl-6 sm:scroll-pl-0"
                 >
                   {reviews.map((review) => (
                     <div

@@ -33,6 +33,16 @@ export default function Header({navItems, ctaButton, logo}: HeaderProps) {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState<string | null>(null)
+  const [mobileExpanded, setMobileExpanded] = useState<Set<string>>(new Set())
+
+  const toggleMobileSection = (key: string) => {
+    setMobileExpanded((prev) => {
+      const next = new Set(prev)
+      if (next.has(key)) next.delete(key)
+      else next.add(key)
+      return next
+    })
+  }
   const mobilePanelRef = useRef<HTMLDivElement>(null)
   const dropdownRef = useRef<HTMLDivElement>(null)
 
@@ -48,6 +58,7 @@ export default function Header({navItems, ctaButton, logo}: HeaderProps) {
       document.body.style.overflow = 'hidden'
     } else {
       document.body.style.overflow = ''
+      setMobileExpanded(new Set())
     }
     return () => {
       document.body.style.overflow = ''
@@ -343,15 +354,73 @@ export default function Header({navItems, ctaButton, logo}: HeaderProps) {
                       transition={{delay: 0.1 + i * 0.05, duration: 0.3}}
                     >
                       {item.children && item.children.length > 0 ? (
-                        <span
-                          className="block font-heading text-[28px] tracking-tight py-3 border-b border-border-light text-forest"
-                        >
-                          {item.label}
-                        </span>
+                        <>
+                          <button
+                            type="button"
+                            onClick={() => toggleMobileSection(item._key)}
+                            aria-expanded={mobileExpanded.has(item._key)}
+                            aria-controls={`mobile-section-${item._key}`}
+                            className={`w-full flex items-center justify-between font-heading text-[22px] tracking-tight py-3 border-b border-border-light ${
+                              active ? 'text-terracotta' : 'text-forest'
+                            }`}
+                          >
+                            <span>{item.label}</span>
+                            <svg
+                              width="18"
+                              height="18"
+                              viewBox="0 0 12 12"
+                              fill="none"
+                              className={`transition-transform duration-200 ${
+                                mobileExpanded.has(item._key) ? 'rotate-180' : ''
+                              }`}
+                              aria-hidden="true"
+                            >
+                              <path
+                                d="M3 5L6 8L9 5"
+                                stroke="currentColor"
+                                strokeWidth="1.5"
+                                strokeLinecap="round"
+                              />
+                            </svg>
+                          </button>
+                          <AnimatePresence initial={false}>
+                            {mobileExpanded.has(item._key) && (
+                              <motion.div
+                                id={`mobile-section-${item._key}`}
+                                initial={{height: 0, opacity: 0}}
+                                animate={{height: 'auto', opacity: 1}}
+                                exit={{height: 0, opacity: 0}}
+                                transition={{duration: 0.2, ease: 'easeOut'}}
+                                className="overflow-hidden"
+                              >
+                                <div className="py-2">
+                                  {item.children?.map((child) => {
+                                    const childActive =
+                                      resolveNavLink(child.link) === pathname
+                                    return (
+                                      <Link
+                                        key={child._key}
+                                        href={resolveNavLink(child.link) || '#'}
+                                        className={`block font-sans text-[16px] pl-4 py-2 ${
+                                          childActive
+                                            ? 'text-terracotta border-l-2 border-l-terracotta pl-3'
+                                            : 'text-text-muted'
+                                        }`}
+                                        onClick={() => setMobileOpen(false)}
+                                      >
+                                        {child.label}
+                                      </Link>
+                                    )
+                                  })}
+                                </div>
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
+                        </>
                       ) : (
                         <Link
                           href={resolveNavLink(item.link) || '#'}
-                          className={`block font-heading text-[28px] tracking-tight py-3 border-b border-border-light ${
+                          className={`block font-heading text-[22px] tracking-tight py-3 border-b border-border-light ${
                             active
                               ? 'text-terracotta border-l-2 border-l-terracotta pl-3'
                               : 'text-forest'
@@ -361,23 +430,6 @@ export default function Header({navItems, ctaButton, logo}: HeaderProps) {
                           {item.label}
                         </Link>
                       )}
-                      {item.children?.map((child) => {
-                        const childActive = resolveNavLink(child.link) === pathname
-                        return (
-                          <Link
-                            key={child._key}
-                            href={resolveNavLink(child.link) || '#'}
-                            className={`block font-sans text-[16px] pl-4 py-2 ${
-                              childActive
-                                ? 'text-terracotta border-l-2 border-l-terracotta pl-3'
-                                : 'text-text-muted'
-                            }`}
-                            onClick={() => setMobileOpen(false)}
-                          >
-                            {child.label}
-                          </Link>
-                        )
-                      })}
                     </motion.div>
                   )
                 })}
