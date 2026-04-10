@@ -160,10 +160,10 @@ export default function ServiceTabsSidebar({block}: ServiceTabsSidebarProps) {
                       crop={activeService.tabImage.crop}
                       className="rounded-md md:rounded-lg w-full object-cover aspect-[6/4]"
                     />
-                    <div className="absolute top-4 left-4">
+                    <div className="absolute top-2 md:top-4 left-2 md:left-4">
                       {activeService.title && (
                         <div className="bg-white py-3 px-5 rounded-full">
-                          <h3 className="text-[16px] md:text-[24px]  font-semibold leading-[105%] tracking-tight ">
+                          <h3 className="text-[14px] md:text-[24px]  font-semibold leading-[105%] tracking-tight ">
                             {activeService.title}
                           </h3>
                         </div>

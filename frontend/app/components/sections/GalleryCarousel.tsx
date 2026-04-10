@@ -162,10 +162,8 @@ export default function GalleryCarousel({block}: GalleryCarouselProps) {
                 {/* Scrollable cards */}
                 <div
                   ref={scrollRef}
-                  className="flex gap-5 lg:gap-6 overflow-x-auto snap-x snap-mandatory pb-2 scrollbar-hide scroll-smooth"
+                  className="flex gap-5 lg:gap-6 overflow-x-auto snap-x snap-mandatory pb-2 scrollbar-hide scroll-smooth px-6 sm:px-0 scroll-pl-6 sm:scroll-pl-0"
                 >
-                  {/* Spacer for initial left inset on mobile — images scroll past it for full bleed */}
-                  <div className="flex-shrink-0 w-4 sm:hidden" aria-hidden="true" />
                   {validImages.map((image, i) => (
                     <div
                       key={image._key}
@@ -208,7 +206,6 @@ export default function GalleryCarousel({block}: GalleryCarouselProps) {
                       )}
                     </div>
                   ))}
-                  <div className="flex-shrink-0 w-4 sm:hidden" aria-hidden="true" />
                 </div>
 
                 {/* Next button */}

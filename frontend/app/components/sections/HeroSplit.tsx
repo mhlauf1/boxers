@@ -62,7 +62,7 @@ export default function HeroSplit({block, index}: HeroSplitProps) {
     : FadeIn
 
   return (
-    <section className={`pt-18 ${bg}`}>
+    <section className={`pt-20 md:pt-18 ${bg}`}>
       <div className={`px-6 md:px-24 ${isFirst ? 'py-8 lg:py-20' : 'py-16 lg:py-42'}`}>
         <div className="flex flex-col md:flex-row justify-between gap-8 lg:gap-16 items-center">
           {/* Text side */}
@@ -74,7 +74,7 @@ export default function HeroSplit({block, index}: HeroSplitProps) {
             )}
             {heading && (
               <Wrap delay={0.05}>
-                <h1 className="text-[48px] tracking-tight md:text-[56px] md:max-w-[16ch] font-semibold lg:text-[80px] leading-[104%] mb-6">
+                <h1 className="text-[36px] tracking-tight md:text-[48px] md:max-w-[16ch] font-semibold lg:text-[74px] leading-[104%] mb-6">
                   {heading}
                 </h1>
               </Wrap>
