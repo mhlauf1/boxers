@@ -209,7 +209,7 @@ export default async function RootLayout({children}: {children: React.ReactNode}
       return {
         ...item,
         children: services
-          .filter((service: any) => service.slug !== 'vet-clinic')
+          .filter((service: any) => service.slug !== 'vet-clinic' && service.slug !== 'enrichment')
           .map((service: any) => ({
             _key: service._id,
             label: service.title,

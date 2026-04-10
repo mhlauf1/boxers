@@ -94,11 +94,15 @@ export function calculateBoardingPerDog(input: {dogs: BoardingDogConfig[]}): Boa
 
   for (let i = 0; i < dogs.length; i++) {
     const dog = dogs[i]
-    const cost = BOARDING_RATE * dog.nights
+    // First dog pays full rate. Additional dogs get 50% off per Brian's 2026-04-10 pricing rules.
+    const isAdditional = i > 0
+    const nightlyRate = isAdditional ? BOARDING_RATE / 2 : BOARDING_RATE
+    const cost = nightlyRate * dog.nights
 
     const dogLabel = dogs.length > 1 ? `Dog ${i + 1}` : 'Your dog'
+    const rateNote = isAdditional ? ` @ $${nightlyRate}/night (50% off)` : ` @ $${BOARDING_RATE}/night`
     lineItems.push({
-      label: `${dogLabel} — ${dog.nights} night${dog.nights > 1 ? 's' : ''} @ $${BOARDING_RATE}/night`,
+      label: `${dogLabel} — ${dog.nights} night${dog.nights > 1 ? 's' : ''}${rateNote}`,
       amount: cost,
     })
     total += cost
@@ -108,7 +112,13 @@ export function calculateBoardingPerDog(input: {dogs: BoardingDogConfig[]}): Boa
     total,
     lineItems,
     nightlyRate: BOARDING_RATE,
-    includes: ['Structured play & enrichment', 'Supervised group activities', 'Feeding (your food)', 'Clean, secure accommodations'],
+    includes: [
+      'Structured play & enrichment',
+      'Supervised group activities',
+      'Feeding (your food)',
+      'Clean, secure accommodations',
+      '50% off for additional dogs',
+    ],
   }
 }
 
