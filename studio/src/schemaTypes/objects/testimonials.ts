@@ -44,6 +44,12 @@ export const testimonials = defineType({
       title: 'Google Review Count',
       type: 'number',
     }),
+    defineField({
+      name: 'googleReviewsUrl',
+      title: 'Google Reviews URL',
+      type: 'url',
+      description: 'Link to the full Google Business Profile reviews page. When set, the aggregate rating badge becomes a clickable link that opens in a new tab.',
+    }),
   ],
   preview: {
     select: {title: 'heading'},

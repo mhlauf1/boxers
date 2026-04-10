@@ -669,6 +669,7 @@ export type GalleryGrid = {
     crop?: SanityImageCrop
     alt?: string
     caption?: string
+    wide?: boolean
     _type: 'image'
     _key: string
   }>

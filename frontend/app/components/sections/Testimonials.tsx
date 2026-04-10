@@ -19,6 +19,7 @@ type TestimonialsProps = {
     reviews?: Review[]
     googleRating?: string
     googleReviewCount?: number
+    googleReviewsUrl?: string
   }
   index: number
   pageId: string
@@ -26,7 +27,7 @@ type TestimonialsProps = {
 }
 
 export default function Testimonials({block}: TestimonialsProps) {
-  const {icon, heading, reviews, googleRating} = block
+  const {icon, heading, reviews, googleRating, googleReviewCount, googleReviewsUrl} = block
   const scrollRef = useRef<HTMLDivElement>(null)
   const [activePage, setActivePage] = useState(0)
   const [totalPages, setTotalPages] = useState(1)
@@ -241,54 +242,83 @@ export default function Testimonials({block}: TestimonialsProps) {
         {googleRating && (
           <FadeIn delay={0.3}>
             <div className="flex justify-center mt-10">
-              <div className="inline-flex items-center gap-2 bg-forest-card border border-border-dark rounded-full px-5 py-2.5">
-                <div className="flex gap-0.5">
-                  {[1, 2, 3, 4, 5].map((star) => {
-                    const rating = Number(googleRating)
-                    const isFull = star <= Math.floor(rating)
-                    const isPartial = !isFull && star === Math.ceil(rating) && rating % 1 !== 0
-                    const fraction = rating % 1
-                    const clipWidth = fraction * 16
-                    return (
-                      <svg
-                        key={star}
-                        width="16"
-                        height="16"
-                        viewBox="0 0 16 16"
-                        stroke="#FAF7F2"
-                        strokeWidth="1"
-                      >
-                        {isPartial ? (
-                          <>
-                            <defs>
-                              <clipPath id={`partial-star-${star}`}>
-                                <rect x="0" y="0" width={clipWidth} height="16" />
-                              </clipPath>
-                            </defs>
+              {(() => {
+                const badgeClasses =
+                  'inline-flex items-center gap-2 bg-forest-card border border-border-dark rounded-full px-5 py-2.5'
+                const stars = (
+                  <div className="flex gap-0.5">
+                    {[1, 2, 3, 4, 5].map((star) => {
+                      const rating = Number(googleRating)
+                      const isFull = star <= Math.floor(rating)
+                      const isPartial = !isFull && star === Math.ceil(rating) && rating % 1 !== 0
+                      const fraction = rating % 1
+                      const clipWidth = fraction * 16
+                      return (
+                        <svg
+                          key={star}
+                          width="16"
+                          height="16"
+                          viewBox="0 0 16 16"
+                          stroke="#FAF7F2"
+                          strokeWidth="1"
+                        >
+                          {isPartial ? (
+                            <>
+                              <defs>
+                                <clipPath id={`partial-star-${star}`}>
+                                  <rect x="0" y="0" width={clipWidth} height="16" />
+                                </clipPath>
+                              </defs>
+                              <path
+                                d="M8 1l2.2 4.4L15 6.2l-3.5 3.4.8 4.8L8 12.1 3.7 14.4l.8-4.8L1 6.2l4.8-.8L8 1z"
+                                fill="none"
+                              />
+                              <path
+                                d="M8 1l2.2 4.4L15 6.2l-3.5 3.4.8 4.8L8 12.1 3.7 14.4l.8-4.8L1 6.2l4.8-.8L8 1z"
+                                fill="#FAF7F2"
+                                clipPath={`url(#partial-star-${star})`}
+                              />
+                            </>
+                          ) : (
                             <path
                               d="M8 1l2.2 4.4L15 6.2l-3.5 3.4.8 4.8L8 12.1 3.7 14.4l.8-4.8L1 6.2l4.8-.8L8 1z"
-                              fill="none"
+                              fill={isFull ? '#FAF7F2' : 'none'}
                             />
-                            <path
-                              d="M8 1l2.2 4.4L15 6.2l-3.5 3.4.8 4.8L8 12.1 3.7 14.4l.8-4.8L1 6.2l4.8-.8L8 1z"
-                              fill="#FAF7F2"
-                              clipPath={`url(#partial-star-${star})`}
-                            />
-                          </>
-                        ) : (
-                          <path
-                            d="M8 1l2.2 4.4L15 6.2l-3.5 3.4.8 4.8L8 12.1 3.7 14.4l.8-4.8L1 6.2l4.8-.8L8 1z"
-                            fill={isFull ? '#FAF7F2' : 'none'}
-                          />
-                        )}
-                      </svg>
-                    )
-                  })}
-                </div>
-                <span className="font-sans text-[14px] text-cream">
-                  {googleRating} On Facebook Reviews
-                </span>
-              </div>
+                          )}
+                        </svg>
+                      )
+                    })}
+                  </div>
+                )
+                const label = (
+                  <span className="font-sans text-[14px] text-cream">
+                    {googleRating}
+                    {googleReviewCount ? ` · ${googleReviewCount}+ Google reviews` : ' on Google Reviews'}
+                  </span>
+                )
+
+                if (googleReviewsUrl) {
+                  return (
+                    <a
+                      href={googleReviewsUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`${badgeClasses} hover:bg-forest-card/70 transition-colors`}
+                      aria-label={`Read all ${googleReviewCount ? `${googleReviewCount}+ ` : ''}reviews on Google (opens in new tab)`}
+                    >
+                      {stars}
+                      {label}
+                    </a>
+                  )
+                }
+
+                return (
+                  <div className={badgeClasses}>
+                    {stars}
+                    {label}
+                  </div>
+                )
+              })()}
             </div>
           </FadeIn>
         )}
