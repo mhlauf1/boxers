@@ -74,7 +74,7 @@ export default function HeroSplit({block, index}: HeroSplitProps) {
             )}
             {heading && (
               <Wrap delay={0.05}>
-                <h1 className="text-[48px] tracking-tight md:text-[56px] md:max-w-[12ch] font-semibold lg:text-[84px] leading-[104%] mb-6">
+                <h1 className="text-[48px] tracking-tight md:text-[56px] md:max-w-[16ch] font-semibold lg:text-[80px] leading-[104%] mb-6">
                   {heading}
                 </h1>
               </Wrap>

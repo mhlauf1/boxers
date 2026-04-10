@@ -145,7 +145,7 @@ export default function Header({navItems, ctaButton, logo}: HeaderProps) {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 transition-colors duration-300">
       <div className="px-2 lg:px-12">
-        <div className="flex lg:grid lg:grid-cols-3 border bg-cream/95 backdrop-blur-sm border-forest/20 rounded-md mt-4 pl-4 md:pl-12 pr-2 md:pr-6 items-center justify-between py-3">
+        <div className="flex lg:grid lg:grid-cols-3 border bg-cream/95 backdrop-blur-sm border-forest/20 rounded-md mt-2 md:mt-4 pl-4 md:pl-12 pr-2 md:pr-6 items-center justify-between py-3">
           {/* Logo */}
           <Link href="/" className="flex items-start">
             {logo?.asset?._ref ? (
@@ -153,7 +153,7 @@ export default function Header({navItems, ctaButton, logo}: HeaderProps) {
                 id={logo.asset._ref}
                 alt="Boxers Bed & Biscuits"
                 width={220}
-                className="w-auto lg:w-auto h-25"
+                className="w-auto lg:w-auto h-14 md:h-25"
               />
             ) : (
               <TextLogo />

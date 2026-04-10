@@ -37,6 +37,13 @@ export const galleryGrid = defineType({
               type: 'string',
               description: 'Optional caption displayed below the image',
             }),
+            defineField({
+              name: 'wide',
+              title: 'Wide (span 2 columns)',
+              type: 'boolean',
+              initialValue: false,
+              description: 'Makes this image span 2 columns — best for landscape/horizontal photos',
+            }),
           ],
         }),
       ],

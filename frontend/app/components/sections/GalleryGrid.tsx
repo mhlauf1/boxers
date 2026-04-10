@@ -12,6 +12,7 @@ type GalleryImage = {
   _key: string
   alt?: string
   caption?: string
+  wide?: boolean
   asset?: {_ref: string}
   crop?: any
   hotspot?: any
@@ -91,53 +92,62 @@ export default function GalleryGrid({block}: GalleryGridProps) {
           <div
             className={`grid ${gridClass} mb-8 md:mb-12 gap-4 ${isCircles ? 'justify-items-center gap-8 md:gap-12' : ''}`}
           >
-            {validImages.map((image, i) => (
-              <FadeIn key={image._key} delay={0.05 * i}>
-                <div className={isCircles ? 'flex flex-col items-center' : ''}>
-                  {isCircles ? (
-                    <Image
-                      id={image.asset!._ref}
-                      alt={image.alt || 'Gallery image'}
-                      crop={image.crop}
-                      hotspot={image.hotspot}
-                      className="rounded-full aspect-square w-full object-cover"
-                    />
-                  ) : lightboxEnabled ? (
-                    <button
-                      type="button"
-                      onClick={() => openLightbox(i)}
-                      className="w-full cursor-zoom-in group"
-                      aria-label={image.alt || 'View image in lightbox'}
-                    >
+            {validImages.map((image, i) => {
+              const isWide = image.wide === true
+              const aspect = isCircles ? 'aspect-square' : isWide ? 'aspect-[3/2]' : 'aspect-[3/4]'
+              return (
+                <FadeIn
+                  key={image._key}
+                  delay={0.05 * i}
+                  rootMargin="100px"
+                  className={isWide && !isCircles ? 'sm:col-span-2' : ''}
+                >
+                  <div className={isCircles ? 'flex flex-col items-center' : ''}>
+                    {isCircles ? (
                       <Image
                         id={image.asset!._ref}
                         alt={image.alt || 'Gallery image'}
-                        width={600}
                         crop={image.crop}
                         hotspot={image.hotspot}
-                        className="rounded-lg aspect-[3/4] w-full object-cover transition-opacity group-hover:opacity-90"
+                        className="rounded-full aspect-square w-full object-cover"
                       />
-                    </button>
-                  ) : (
-                    <Image
-                      id={image.asset!._ref}
-                      alt={image.alt || 'Gallery image'}
-                      width={600}
-                      crop={image.crop}
-                      hotspot={image.hotspot}
-                      className="rounded-lg aspect-[4/3] w-full object-cover"
-                    />
-                  )}
-                  {image.caption && (
-                    <p
-                      className={`mt-2 text-[14px] text-center ${isDark ? 'text-cream/60' : 'text-forest/60'}`}
-                    >
-                      {image.caption}
-                    </p>
-                  )}
-                </div>
-              </FadeIn>
-            ))}
+                    ) : lightboxEnabled ? (
+                      <button
+                        type="button"
+                        onClick={() => openLightbox(i)}
+                        className="w-full cursor-zoom-in group"
+                        aria-label={image.alt || 'View image in lightbox'}
+                      >
+                        <Image
+                          id={image.asset!._ref}
+                          alt={image.alt || 'Gallery image'}
+                          width={isWide ? 900 : 600}
+                          crop={image.crop}
+                          hotspot={image.hotspot}
+                          className={`rounded-lg ${aspect} w-full object-cover transition-opacity group-hover:opacity-90`}
+                        />
+                      </button>
+                    ) : (
+                      <Image
+                        id={image.asset!._ref}
+                        alt={image.alt || 'Gallery image'}
+                        width={isWide ? 900 : 600}
+                        crop={image.crop}
+                        hotspot={image.hotspot}
+                        className={`rounded-lg ${aspect} w-full object-cover`}
+                      />
+                    )}
+                    {image.caption && (
+                      <p
+                        className={`mt-2 text-[14px] text-center ${isDark ? 'text-cream/60' : 'text-forest/60'}`}
+                      >
+                        {image.caption}
+                      </p>
+                    )}
+                  </div>
+                </FadeIn>
+              )
+            })}
           </div>
         )}
 

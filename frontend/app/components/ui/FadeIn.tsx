@@ -8,6 +8,7 @@ interface FadeInProps {
   duration?: number
   className?: string
   immediate?: boolean
+  rootMargin?: string
 }
 
 const directionTransform = {
@@ -25,6 +26,7 @@ export function FadeIn({
   duration = 0.5,
   className,
   immediate = false,
+  rootMargin = '-50px',
 }: FadeInProps) {
   const ref = useRef<HTMLDivElement>(null)
 
@@ -50,7 +52,7 @@ export function FadeIn({
           observer.unobserve(el)
         }
       },
-      {rootMargin: '-50px'},
+      {rootMargin},
     )
 
     observer.observe(el)
