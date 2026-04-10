@@ -184,12 +184,10 @@ export default function Header({navItems, ctaButton, logo}: HeaderProps) {
                       aria-expanded={dropdownOpen === item._key}
                       aria-haspopup="true"
                       onKeyDown={(e) => handleDropdownKeyDown(e, item)}
-                      className={`flex items-center gap-1 font-sans text-[14px] transition-colors cursor-default whitespace-nowrap ${
-                        item.isVetClinic
-                          ? 'bg-white text-forest font-semibold px-3 py-1 rounded-md'
-                          : active
-                            ? 'text-terracotta font-medium'
-                            : 'text-forest hover:text-forest/70'
+                      className={`relative flex items-center gap-1 font-sans text-[14px] transition-colors cursor-default whitespace-nowrap pb-1 ${
+                        active
+                          ? 'text-terracotta font-medium after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-terracotta after:rounded-full'
+                          : 'text-forest hover:text-forest/70'
                       }`}
                     >
                       {item.label}
@@ -211,8 +209,10 @@ export default function Header({navItems, ctaButton, logo}: HeaderProps) {
                   ) : (
                     <Link
                       href={resolveNavLink(item.link) || '#'}
-                      className={`font-sans cursor-pointer text-[14px] transition-colors whitespace-nowrap ${
-                        active ? 'text-terracotta font-medium' : 'text-forest hover:text-forest/70'
+                      className={`relative font-sans cursor-pointer text-[14px] transition-colors whitespace-nowrap pb-1 ${
+                        active
+                          ? 'text-terracotta font-medium after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-terracotta after:rounded-full'
+                          : 'text-forest hover:text-forest/70'
                       }`}
                     >
                       {item.label}
@@ -344,9 +344,7 @@ export default function Header({navItems, ctaButton, logo}: HeaderProps) {
                     >
                       {item.children && item.children.length > 0 ? (
                         <span
-                          className={`block font-heading text-[28px] tracking-tight py-3 border-b border-border-light ${
-                            item.isVetClinic ? 'text-forest font-semibold' : 'text-forest'
-                          }`}
+                          className="block font-heading text-[28px] tracking-tight py-3 border-b border-border-light text-forest"
                         >
                           {item.label}
                         </span>
