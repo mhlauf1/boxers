@@ -102,9 +102,10 @@ export default function PricingPageTabs({block}: PricingPageTabsProps) {
   }
 
   const activeService = services?.find((s) => s.serviceKey === activeTab)
-  const Calculator = activeTab && activeTab in calculators
-    ? calculators[activeTab as keyof typeof calculators]
-    : null
+  const Calculator =
+    activeTab && activeTab in calculators
+      ? calculators[activeTab as keyof typeof calculators]
+      : null
 
   const resolvedCtaLink = ctaLink
     ? {...ctaLink, queryString: serviceQueryStrings[activeTab]}
@@ -112,7 +113,7 @@ export default function PricingPageTabs({block}: PricingPageTabsProps) {
 
   return (
     <section className="bg-cream">
-      <div className="px-6 md:px-24 py-16 pt-8 lg:py-24">
+      <div className="px-6 md:px-24 py-16 pt-16 lg:py-24">
         {/* Header */}
         <FadeIn immediate>
           <div className="text-center  pt-20 max-w-4xl mx-auto mb-8 lg:mb-10">

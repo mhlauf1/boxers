@@ -152,7 +152,7 @@ export function RadioGroup({label, options, value, onChange}: RadioGroupProps) {
       <legend className="block text-cream/70 font-sans text-[13px] font-medium uppercase tracking-wider mb-2">
         {label}
       </legend>
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-col sm:flex-row sm:flex-wrap gap-2">
         {options.map((option) => (
           <button
             key={option.value}

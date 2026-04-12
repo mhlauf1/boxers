@@ -75,7 +75,7 @@ export default function HeroMinimal({block}: HeroMinimalProps) {
           {headingAccent && (
             <FadeIn delay={0.1}>
               <span
-                className={`text-[38px] max-w-[3ch] md:max-w-none font-medium md:text-[56px] lg:text-[72px] xl:text-[84px] tracking-tighter  leading-[110%]  ${isDark ? 'text-terracotta-light' : 'text-terracotta'}`}
+                className={`text-[38px] font-medium md:text-[56px] lg:text-[72px] xl:text-[84px] tracking-tighter  leading-[110%]  ${isDark ? 'text-terracotta-light' : 'text-terracotta'}`}
               >
                 {headingAccent}
               </span>

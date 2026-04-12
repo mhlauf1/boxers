@@ -63,7 +63,7 @@ export default function HeroSplit({block, index}: HeroSplitProps) {
 
   return (
     <section className={`pt-20 md:pt-18 ${bg}`}>
-      <div className={`px-6 md:px-24 ${isFirst ? 'py-8 lg:py-20' : 'py-16 lg:py-42'}`}>
+      <div className={`px-6 md:px-24 ${isFirst ? 'py-12 lg:py-20' : 'py-16 lg:py-42'}`}>
         <div className="flex flex-col md:flex-row justify-between gap-8 lg:gap-16 items-center">
           {/* Text side */}
           <div className={`${isImageLeft ? 'lg:order-2' : 'lg:order-1'} flex-1`}>
