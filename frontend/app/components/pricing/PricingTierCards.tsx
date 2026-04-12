@@ -34,12 +34,19 @@ export default function PricingTierCards({categories}: PricingTierCardsProps) {
                     ? 'grid grid-cols-1 md:grid-cols-2 gap-4 max-w-5xl mx-auto'
                     : tierCount === 3
                       ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'
-                      : 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4'
+                      : tierCount === 5
+                        ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4'
+                        : tierCount === 6
+                          ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'
+                          : 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4'
               return (
                 <>
                   <div className={gridClass}>
-                    {category.tiers.map((tier, i) => (
-                      <FadeIn key={tier._key} delay={0.1 * i}>
+                    {category.tiers.map((tier, i) => {
+                      const spanClass =
+                        tierCount === 5 ? (i < 3 ? 'lg:col-span-2' : 'lg:col-span-3') : ''
+                      return (
+                      <FadeIn key={tier._key} delay={0.1 * i} className={spanClass}>
                         <div
                           className={`rounded-lg p-6 md:p-8 h-full flex flex-col ${
                             tier.highlighted
@@ -93,7 +100,8 @@ export default function PricingTierCards({categories}: PricingTierCardsProps) {
                           )}
                         </div>
                       </FadeIn>
-                    ))}
+                      )
+                    })}
                   </div>
                 </>
               )

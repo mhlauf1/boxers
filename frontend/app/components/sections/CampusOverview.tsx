@@ -53,80 +53,80 @@ export default function CampusOverview({block}: CampusOverviewProps) {
             const price = priceMatch ? firstFeature : null
             const remainingFeatures = price ? card.features?.slice(1) : card.features
             return (
-            <FadeIn key={card._key} delay={i * 0.1}>
-              <div className={`${cardBg} rounded-xl p-6 md:p-8 lg:p-10 h-full flex flex-col`}>
-                {/* Card header with optional icon */}
-                <div className="flex items-center gap-3 mb-4">
-                  {card.icon?.asset?._ref && (
-                    <Image
-                      id={card.icon.asset._ref}
-                      alt={card.icon.alt || ''}
-                      width={48}
-                      className="w-10 h-10 object-contain"
-                    />
+              <FadeIn key={card._key} delay={i * 0.1}>
+                <div className={`${cardBg} rounded-xl p-6 md:p-8 lg:p-10 h-full flex flex-col`}>
+                  {/* Card header with optional icon */}
+                  <div className="flex items-center gap-3 mb-3">
+                    {card.icon?.asset?._ref && (
+                      <Image
+                        id={card.icon.asset._ref}
+                        alt={card.icon.alt || ''}
+                        width={48}
+                        className="w-10 h-10 object-contain"
+                      />
+                    )}
+                    {card.heading && (
+                      <h3 className="text-[24px] md:text-[28px] lg:text-4xl font-semibold tracking-tight leading-[110%]">
+                        {card.heading}
+                      </h3>
+                    )}
+                  </div>
+
+                  {price && (
+                    <div className="mb-4 font-sans text-[40px] md:text-[48px] lg:text-[56px] font-semibold tracking-tight leading-[100%] text-terracotta">
+                      {price}
+                    </div>
                   )}
-                  {card.heading && (
-                    <h3 className="text-[24px] md:text-[28px] lg:text-4xl font-semibold tracking-tight leading-[110%]">
-                      {card.heading}
-                    </h3>
+
+                  {card.description && (
+                    <p className="font-sans text-lg lg:text-[22px] text-text-muted leading-[150%] w-[95%] mb-5">
+                      {card.description}
+                    </p>
+                  )}
+
+                  {/* Feature bullets */}
+                  {remainingFeatures && remainingFeatures.length > 0 && (
+                    <ul className="space-y-2.5 mb-6">
+                      {remainingFeatures.map((feature, fi) => (
+                        <li key={fi} className="flex items-start gap-2.5">
+                          <svg
+                            className="w-5 h-5 text-terracotta shrink-0 mt-0.5"
+                            fill="none"
+                            viewBox="0 0 20 20"
+                          >
+                            <path
+                              d="M16.667 5L7.5 14.167 3.333 10"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                          </svg>
+                          <span className="font-sans text-lg lg:text-xl text-forest leading-[150%]">
+                            {feature}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+
+                  {/* Card image */}
+                  {card.image?.asset?._ref && (
+                    <div className="mb-6 rounded-lg overflow-hidden">
+                      <Image
+                        id={card.image.asset._ref}
+                        alt={card.image.alt || card.heading || 'Campus image'}
+                        width={600}
+                        crop={card.image.crop}
+                        hotspot={card.image.hotspot}
+                        className="w-full aspect-[16/9] object-cover"
+                      />
+                    </div>
                   )}
                 </div>
-
-                {price && (
-                  <div className="mb-4 font-sans text-[40px] md:text-[48px] lg:text-[56px] font-semibold tracking-tight leading-[100%] text-terracotta">
-                    {price}
-                  </div>
-                )}
-
-                {card.description && (
-                  <p className="font-sans text-lg lg:text-[22px] text-text-muted leading-[150%] w-[95%] mb-5">
-                    {card.description}
-                  </p>
-                )}
-
-                {/* Feature bullets */}
-                {remainingFeatures && remainingFeatures.length > 0 && (
-                  <ul className="space-y-2.5 mb-6">
-                    {remainingFeatures.map((feature, fi) => (
-                      <li key={fi} className="flex items-start gap-2.5">
-                        <svg
-                          className="w-5 h-5 text-terracotta shrink-0 mt-0.5"
-                          fill="none"
-                          viewBox="0 0 20 20"
-                        >
-                          <path
-                            d="M16.667 5L7.5 14.167 3.333 10"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
-                        <span className="font-sans text-md lg:text-lg text-forest leading-[150%]">
-                          {feature}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-
-                {/* Card image */}
-                {card.image?.asset?._ref && (
-                  <div className="mb-6 rounded-lg overflow-hidden">
-                    <Image
-                      id={card.image.asset._ref}
-                      alt={card.image.alt || card.heading || 'Campus image'}
-                      width={600}
-                      crop={card.image.crop}
-                      hotspot={card.image.hotspot}
-                      className="w-full aspect-[16/9] object-cover"
-                    />
-                  </div>
-                )}
-
-              </div>
-            </FadeIn>
-          )})}
+              </FadeIn>
+            )
+          })}
         </div>
       </div>
     </section>
