@@ -26,10 +26,10 @@ const overlayClasses: Record<string, string> = {
   heavy: 'from-black/70 to-black/40',
 }
 
-const bgColors: Record<string, { bg: string; text: string; subtext: string }> = {
-  cream: { bg: 'bg-cream', text: 'text-forest', subtext: 'text-text-muted' },
-  sand: { bg: 'bg-sand', text: 'text-forest', subtext: 'text-text-muted' },
-  forest: { bg: 'bg-forest', text: 'text-cream', subtext: 'text-cream/80' },
+const bgColors: Record<string, {bg: string; text: string; subtext: string}> = {
+  cream: {bg: 'bg-cream', text: 'text-forest', subtext: 'text-text-muted'},
+  sand: {bg: 'bg-sand', text: 'text-forest', subtext: 'text-text-muted'},
+  forest: {bg: 'bg-forest', text: 'text-cream', subtext: 'text-cream/80'},
 }
 
 const heightClasses: Record<string, string> = {
@@ -39,7 +39,16 @@ const heightClasses: Record<string, string> = {
 }
 
 export default function HeroBanner({block, index}: HeroBannerProps) {
-  const {eyebrow, heading, subtext, primaryCta, backgroundImage, overlayOpacity, minHeight, backgroundColor} = block
+  const {
+    eyebrow,
+    heading,
+    subtext,
+    primaryCta,
+    backgroundImage,
+    overlayOpacity,
+    minHeight,
+    backgroundColor,
+  } = block
   const overlay = overlayClasses[stegaClean(overlayOpacity) || 'medium'] || overlayClasses.medium
   const height = heightClasses[stegaClean(minHeight) || 'standard'] || heightClasses.standard
   const hasImage = !!backgroundImage?.asset?._ref
@@ -47,9 +56,10 @@ export default function HeroBanner({block, index}: HeroBannerProps) {
   const colors = bgColors[colorKey] || bgColors.cream
   const isFirst = index === 0
   const Wrap = isFirst
-    ? ({children, className}: {children: React.ReactNode; className?: string; delay?: number}) => <div className={className}>{children}</div>
+    ? ({children, className}: {children: React.ReactNode; className?: string; delay?: number}) => (
+        <div className={className}>{children}</div>
+      )
     : FadeIn
-
 
   return (
     <section
@@ -82,14 +92,18 @@ export default function HeroBanner({block, index}: HeroBannerProps) {
         )}
         {heading && (
           <Wrap delay={0.1}>
-            <h1 className={`text-[48px] tracking-tight font-semibold md:text-[56px] lg:text-[80px] leading-[104%] mb-6 ${hasImage ? 'text-white' : colors.text}`}>
+            <h1
+              className={`text-[38px] tracking-tight font-semibold md:text-[56px] lg:text-[80px] leading-[104%] mb-6 ${hasImage ? 'text-white' : colors.text}`}
+            >
               {heading}
             </h1>
           </Wrap>
         )}
         {subtext && (
           <Wrap delay={0.2}>
-            <p className={`font-sans text-[16px] lg:text-[18px]  leading-[150%] mb-8 max-w-2xl mx-auto ${hasImage ? 'text-white/80' : colors.subtext}`}>
+            <p
+              className={`font-sans text-[16px] lg:text-[18px]  leading-[150%] mb-8 max-w-2xl mx-auto ${hasImage ? 'text-white/80' : colors.subtext}`}
+            >
               {subtext}
             </p>
           </Wrap>

@@ -31,7 +31,7 @@ export default function HeroMinimal({block}: HeroMinimalProps) {
   return (
     <section className={`${bg}  pt-18 min-h-[65vh] md:min-h-[60vh] flex items-end justify-center`}>
       <div className="px-6 md:px-24 pb-32 lg:pb-24 pt-20 md:pt-24 text-center w-full">
-        <div className="max-w-7xl mx-auto">
+        <div className="md:max-w-7xl mx-auto">
           {eyebrow && (
             <FadeIn>
               {rating ? (
@@ -67,7 +67,7 @@ export default function HeroMinimal({block}: HeroMinimalProps) {
           )}
           {heading && (
             <FadeIn delay={0.05}>
-              <h1 className="text-[48px] tracking-tight font-semibold md:text-[56px] lg:text-[72px] xl:text-[84px]  leading-[104%]">
+              <h1 className="text-[38px] tracking-tight font-semibold md:text-[56px] lg:text-[72px] xl:text-[84px]  leading-[104%]">
                 {heading}
               </h1>
             </FadeIn>
@@ -75,7 +75,7 @@ export default function HeroMinimal({block}: HeroMinimalProps) {
           {headingAccent && (
             <FadeIn delay={0.1}>
               <span
-                className={`text-[48px] font-medium md:text-[56px] lg:text-[72px] xl:text-[84px] tracking-tighter  leading-[110%]  ${isDark ? 'text-terracotta-light' : 'text-terracotta'}`}
+                className={`text-[38px] max-w-[3ch] md:max-w-none font-medium md:text-[56px] lg:text-[72px] xl:text-[84px] tracking-tighter  leading-[110%]  ${isDark ? 'text-terracotta-light' : 'text-terracotta'}`}
               >
                 {headingAccent}
               </span>
