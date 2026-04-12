@@ -79,7 +79,7 @@ export default function Footer({
                     id={logo.asset._ref}
                     alt={logo.alt || 'Boxers Bed & Biscuits'}
                     width={160}
-                    className="w-[140px] h-auto"
+                    className="w-[150px] md:w-[250px] h-auto"
                   />
                 ) : (
                   <TextLogo align="left" />
@@ -90,7 +90,10 @@ export default function Footer({
                   {tagline}
                 </p>
               )}
-              {(socialLinks?.facebook || socialLinks?.instagram || socialLinks?.youtube || socialLinks?.google) && (
+              {(socialLinks?.facebook ||
+                socialLinks?.instagram ||
+                socialLinks?.youtube ||
+                socialLinks?.google) && (
                 <div className="flex gap-4 mt-4">
                   {socialLinks.facebook && (
                     <a
@@ -190,14 +193,20 @@ export default function Footer({
                     )}
                     {loc.phone && (
                       <p>
-                        <a href={`tel:${loc.phone.replace(/\D/g, '')}`} className="hover:text-forest transition-colors">
+                        <a
+                          href={`tel:${loc.phone.replace(/\D/g, '')}`}
+                          className="hover:text-forest transition-colors"
+                        >
                           {loc.phone}
                         </a>
                       </p>
                     )}
                     {loc.email && (
                       <p>
-                        <a href={`mailto:${loc.email}`} className="hover:text-forest transition-colors break-all">
+                        <a
+                          href={`mailto:${loc.email}`}
+                          className="hover:text-forest transition-colors break-all"
+                        >
                           {loc.email}
                         </a>
                       </p>
