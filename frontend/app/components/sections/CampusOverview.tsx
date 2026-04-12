@@ -16,6 +16,7 @@ type CampusOverviewProps = {
     eyebrow?: string
     heading?: string
     cards?: CampusCard[]
+    bottomImage?: {asset?: {_ref: string}; alt?: string}
   }
   index: number
   pageId: string
@@ -23,7 +24,7 @@ type CampusOverviewProps = {
 }
 
 export default function CampusOverview({block}: CampusOverviewProps) {
-  const {eyebrow, heading, cards} = block
+  const {eyebrow, heading, cards, bottomImage} = block
 
   if (!cards || cards.length === 0) return null
 
@@ -54,9 +55,11 @@ export default function CampusOverview({block}: CampusOverviewProps) {
             const remainingFeatures = price ? card.features?.slice(1) : card.features
             return (
               <FadeIn key={card._key} delay={i * 0.1}>
-                <div className={`${cardBg} rounded-xl p-6 md:p-8 lg:p-10 h-full flex flex-col`}>
+                <div
+                  className={`${cardBg} rounded-xl  px-6 py-10 md:p-8 lg:p-10 h-full flex flex-col`}
+                >
                   {/* Card header with optional icon */}
-                  <div className="flex items-center gap-3 mb-3">
+                  <div className="flex items-center gap-3 pt-4 md:pt-0 mb-3">
                     {card.icon?.asset?._ref && (
                       <Image
                         id={card.icon.asset._ref}
@@ -112,7 +115,7 @@ export default function CampusOverview({block}: CampusOverviewProps) {
 
                   {/* Card image */}
                   {card.image?.asset?._ref && (
-                    <div className="mb-6 rounded-lg overflow-hidden">
+                    <div className="rounded-lg overflow-hidden">
                       <Image
                         id={card.image.asset._ref}
                         alt={card.image.alt || card.heading || 'Campus image'}
@@ -128,6 +131,19 @@ export default function CampusOverview({block}: CampusOverviewProps) {
             )
           })}
         </div>
+
+        {bottomImage?.asset?._ref && (
+          <FadeIn>
+            <div className="mt-12 lg:mt-16 flex justify-center">
+              <Image
+                id={bottomImage.asset._ref}
+                alt={bottomImage.alt || ''}
+                width={600}
+                className="w-full max-w-80 h-auto object-contain"
+              />
+            </div>
+          </FadeIn>
+        )}
       </div>
     </section>
   )

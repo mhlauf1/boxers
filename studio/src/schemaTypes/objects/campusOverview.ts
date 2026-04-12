@@ -18,6 +18,20 @@ export const campusOverview = defineType({
       type: 'string',
     }),
     defineField({
+      name: 'bottomImage',
+      title: 'Bottom Image (Logo)',
+      type: 'image',
+      description:
+        'Optional logo or brand mark centered below both cards. Use for sub-brand logos.',
+      fields: [
+        defineField({
+          name: 'alt',
+          title: 'Alt Text',
+          type: 'string',
+        }),
+      ],
+    }),
+    defineField({
       name: 'cards',
       title: 'Campus Cards',
       type: 'array',

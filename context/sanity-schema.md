@@ -59,10 +59,10 @@ Live webcam config. Fields: name, cameraId, group (indoor/outdoor), sortOrder, e
 - `statsBar` — Stats counter
 - `webcamPreview` / `webcamGrid` — Webcam displays
 - `iconGrid` / `valuePillars` / `logoBar` — Misc
+- `locationDetails` — Visit/contact card for one facility location. Takes a `locationSlug` and pulls address, phone, fax, email, and hours directly from `settings.locations[]` via a GROQ join (`"location": *[_type == "settings"][0].locations[slug == ^.locationSlug][0]`). Renders a structured info-card grid (address, hours, phone, email) plus auto-generated Call / Get Directions CTAs, an optional third external CTA, and a mascot panel beside it. Used on the Vet Clinic page; reusable for BEC or any future single-location spotlight. Fields: `eyebrow`, `heading`, `intro` (blockContentTextOnly), `locationSlug`, `mascotImage`, `mascotCaption`, `externalCtaLabel`, `externalCtaLink`, `backgroundColor`.
 
 ### Potential new block types for Boxers
 - **`membershipComparison`** — Side-by-side comparison of Boxers Play vs. Boxers Premier membership tiers with feature lists and pricing. The current `pricingTable` or `pricingMatrix` may handle this, but evaluate whether a dedicated block type is cleaner
-- **`locationSpotlight`** — A section block for the BEC and Vet Clinic homepage spotlights: mascot logo, description, location-specific contact info, CTA. Could be built with existing `splitContent` or may warrant its own type
 - **`employmentCta`** — Simple job listing / employment callout. Could also be handled with existing `ctaBanner` + `splitContent`
 
 ## Reusable Object Types
