@@ -164,7 +164,7 @@ export default function Header({navItems, ctaButton, logo}: HeaderProps) {
                 id={logo.asset._ref}
                 alt="Boxers Bed & Biscuits"
                 width={220}
-                className="w-auto lg:w-auto h-14 md:h-25"
+                className="w-auto lg:w-auto h-16 md:h-25"
               />
             ) : (
               <TextLogo />
@@ -395,8 +395,7 @@ export default function Header({navItems, ctaButton, logo}: HeaderProps) {
                               >
                                 <div className="py-2">
                                   {item.children?.map((child) => {
-                                    const childActive =
-                                      resolveNavLink(child.link) === pathname
+                                    const childActive = resolveNavLink(child.link) === pathname
                                     return (
                                       <Link
                                         key={child._key}
