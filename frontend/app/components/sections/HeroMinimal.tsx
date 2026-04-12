@@ -30,7 +30,7 @@ export default function HeroMinimal({block}: HeroMinimalProps) {
 
   return (
     <section className={`${bg}  pt-18 min-h-[65vh] md:min-h-[60vh] flex items-end justify-center`}>
-      <div className="px-6 md:px-24 pb-32 lg:pb-24 pt-24 text-center w-full">
+      <div className="px-6 md:px-24 pb-32 lg:pb-24 pt-20 md:pt-24 text-center w-full">
         <div className="max-w-7xl mx-auto">
           {eyebrow && (
             <FadeIn>
