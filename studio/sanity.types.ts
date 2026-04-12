@@ -137,10 +137,38 @@ export type MatrixData = {
   footnotes?: Array<string>
 }
 
+export type LocationDetails = {
+  _type: 'locationDetails'
+  eyebrow?: string
+  heading: string
+  intro?: BlockContentTextOnly
+  locationSlug: 'paw-plex' | 'bec' | 'meds-and-fixits'
+  mascotImage?: {
+    asset?: SanityImageAssetReference
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    _type: 'image'
+  }
+  mascotCaption?: string
+  externalCtaLabel?: string
+  externalCtaLink?: string
+  backgroundColor?: 'cream' | 'sand' | 'forest'
+}
+
 export type CampusOverview = {
   _type: 'campusOverview'
   eyebrow?: string
   heading?: string
+  bottomImage?: {
+    asset?: SanityImageAssetReference
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    _type: 'image'
+  }
   cards?: Array<{
     heading: string
     description?: string
@@ -1251,6 +1279,9 @@ export type Service = {
       } & CampusOverview)
     | ({
         _key: string
+      } & LocationDetails)
+    | ({
+        _key: string
       } & Spacer)
   >
 }
@@ -1578,6 +1609,9 @@ export type Page = {
     | ({
         _key: string
       } & CampusOverview)
+    | ({
+        _key: string
+      } & LocationDetails)
   >
 }
 
@@ -1829,6 +1863,7 @@ export type AllSanitySchemaTypes =
   | Icon
   | TableData
   | MatrixData
+  | LocationDetails
   | CampusOverview
   | Spacer
   | PricingPageTabs

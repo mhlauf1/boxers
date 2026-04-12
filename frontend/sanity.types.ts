@@ -137,10 +137,38 @@ export type MatrixData = {
   footnotes?: Array<string>
 }
 
+export type LocationDetails = {
+  _type: 'locationDetails'
+  eyebrow?: string
+  heading: string
+  intro?: BlockContentTextOnly
+  locationSlug: 'paw-plex' | 'bec' | 'meds-and-fixits'
+  mascotImage?: {
+    asset?: SanityImageAssetReference
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    _type: 'image'
+  }
+  mascotCaption?: string
+  externalCtaLabel?: string
+  externalCtaLink?: string
+  backgroundColor?: 'cream' | 'sand' | 'forest'
+}
+
 export type CampusOverview = {
   _type: 'campusOverview'
   eyebrow?: string
   heading?: string
+  bottomImage?: {
+    asset?: SanityImageAssetReference
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    alt?: string
+    _type: 'image'
+  }
   cards?: Array<{
     heading: string
     description?: string
@@ -1251,6 +1279,9 @@ export type Service = {
       } & CampusOverview)
     | ({
         _key: string
+      } & LocationDetails)
+    | ({
+        _key: string
       } & Spacer)
   >
 }
@@ -1578,6 +1609,9 @@ export type Page = {
     | ({
         _key: string
       } & CampusOverview)
+    | ({
+        _key: string
+      } & LocationDetails)
   >
 }
 
@@ -1829,6 +1863,7 @@ export type AllSanitySchemaTypes =
   | Icon
   | TableData
   | MatrixData
+  | LocationDetails
   | CampusOverview
   | Spacer
   | PricingPageTabs
@@ -2162,6 +2197,14 @@ export type GetPageQueryResult = {
         _type: 'campusOverview'
         eyebrow?: string
         heading?: string
+        bottomImage?: {
+          asset?: SanityImageAssetReference
+          media?: unknown
+          hotspot?: SanityImageHotspot
+          crop?: SanityImageCrop
+          alt?: string
+          _type: 'image'
+        }
         cards?: Array<{
           heading: string
           description?: string
@@ -2932,6 +2975,49 @@ export type GetPageQueryResult = {
               markDefs: null
             }
         > | null
+      }
+    | {
+        _key: string
+        _type: 'locationDetails'
+        eyebrow?: string
+        heading: string
+        intro?: BlockContentTextOnly
+        locationSlug: 'bec' | 'meds-and-fixits' | 'paw-plex'
+        mascotImage?: {
+          asset?: SanityImageAssetReference
+          media?: unknown
+          hotspot?: SanityImageHotspot
+          crop?: SanityImageCrop
+          alt?: string
+          _type: 'image'
+        }
+        mascotCaption?: string
+        externalCtaLabel?: string
+        externalCtaLink?: string
+        backgroundColor?: 'cream' | 'forest' | 'sand'
+        location: {
+          name: string
+          slug?: string
+          address?: string
+          phone?: string
+          fax?: string
+          email?: string
+          hours?: Array<{
+            days?: string
+            open?: string
+            close?: string
+            _key: string
+          }>
+          logo?: {
+            asset?: SanityImageAssetReference
+            media?: unknown
+            hotspot?: SanityImageHotspot
+            crop?: SanityImageCrop
+            alt?: string
+            _type: 'image'
+          }
+          _key: string
+        } | null
       }
     | {
         _key: string
@@ -3476,6 +3562,14 @@ export type HomepageQueryResult = {
         _type: 'campusOverview'
         eyebrow?: string
         heading?: string
+        bottomImage?: {
+          asset?: SanityImageAssetReference
+          media?: unknown
+          hotspot?: SanityImageHotspot
+          crop?: SanityImageCrop
+          alt?: string
+          _type: 'image'
+        }
         cards?: Array<{
           heading: string
           description?: string
@@ -4246,6 +4340,49 @@ export type HomepageQueryResult = {
               markDefs: null
             }
         > | null
+      }
+    | {
+        _key: string
+        _type: 'locationDetails'
+        eyebrow?: string
+        heading: string
+        intro?: BlockContentTextOnly
+        locationSlug: 'bec' | 'meds-and-fixits' | 'paw-plex'
+        mascotImage?: {
+          asset?: SanityImageAssetReference
+          media?: unknown
+          hotspot?: SanityImageHotspot
+          crop?: SanityImageCrop
+          alt?: string
+          _type: 'image'
+        }
+        mascotCaption?: string
+        externalCtaLabel?: string
+        externalCtaLink?: string
+        backgroundColor?: 'cream' | 'forest' | 'sand'
+        location: {
+          name: string
+          slug?: string
+          address?: string
+          phone?: string
+          fax?: string
+          email?: string
+          hours?: Array<{
+            days?: string
+            open?: string
+            close?: string
+            _key: string
+          }>
+          logo?: {
+            asset?: SanityImageAssetReference
+            media?: unknown
+            hotspot?: SanityImageHotspot
+            crop?: SanityImageCrop
+            alt?: string
+            _type: 'image'
+          }
+          _key: string
+        } | null
       }
     | {
         _key: string
@@ -4817,6 +4954,14 @@ export type GetServiceQueryResult = {
         _type: 'campusOverview'
         eyebrow?: string
         heading?: string
+        bottomImage?: {
+          asset?: SanityImageAssetReference
+          media?: unknown
+          hotspot?: SanityImageHotspot
+          crop?: SanityImageCrop
+          alt?: string
+          _type: 'image'
+        }
         cards?: Array<{
           heading: string
           description?: string
@@ -5569,6 +5714,49 @@ export type GetServiceQueryResult = {
               markDefs: null
             }
         > | null
+      }
+    | {
+        _key: string
+        _type: 'locationDetails'
+        eyebrow?: string
+        heading: string
+        intro?: BlockContentTextOnly
+        locationSlug: 'bec' | 'meds-and-fixits' | 'paw-plex'
+        mascotImage?: {
+          asset?: SanityImageAssetReference
+          media?: unknown
+          hotspot?: SanityImageHotspot
+          crop?: SanityImageCrop
+          alt?: string
+          _type: 'image'
+        }
+        mascotCaption?: string
+        externalCtaLabel?: string
+        externalCtaLink?: string
+        backgroundColor?: 'cream' | 'forest' | 'sand'
+        location: {
+          name: string
+          slug?: string
+          address?: string
+          phone?: string
+          fax?: string
+          email?: string
+          hours?: Array<{
+            days?: string
+            open?: string
+            close?: string
+            _key: string
+          }>
+          logo?: {
+            asset?: SanityImageAssetReference
+            media?: unknown
+            hotspot?: SanityImageHotspot
+            crop?: SanityImageCrop
+            alt?: string
+            _type: 'image'
+          }
+          _key: string
+        } | null
       }
     | {
         _key: string

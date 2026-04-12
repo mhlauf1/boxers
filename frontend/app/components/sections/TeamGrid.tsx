@@ -38,13 +38,19 @@ export default function TeamGrid({block}: TeamGridProps) {
         </FadeIn>
 
         {members && members.length > 0 && (
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-x-4 gap-y-8 lg:gap-x-6 lg:gap-y-10">
+          <div
+            className={
+              members.length <= 4
+                ? 'flex flex-wrap justify-center gap-x-8 gap-y-8 lg:gap-x-12 lg:gap-y-10'
+                : 'grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-x-4 gap-y-8 lg:gap-x-6 lg:gap-y-10'
+            }
+          >
             {members.map((member, i) => (
               <FadeIn key={member._key} delay={0.1 * i}>
                 <div className="text-center">
                   {member.image?.asset?._ref && (
                     <div className="mb-3 flex justify-center">
-                      <div className="size-32 md:size-60 rounded-full overflow-hidden">
+                      <div className={`rounded-full overflow-hidden ${members.length <= 4 ? 'size-44 md:size-72' : 'size-32 md:size-60'}`}>
                         <Image
                           id={member.image.asset._ref}
                           alt={member.name || 'Team member'}
