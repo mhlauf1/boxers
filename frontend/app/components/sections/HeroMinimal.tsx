@@ -35,7 +35,7 @@ export default function HeroMinimal({block}: HeroMinimalProps) {
           {eyebrow && (
             <FadeIn>
               {rating ? (
-                <div className="relative overflow-hidden max-w-[281px] border border-terracotta/20 bg-white rounded-full py-1.5 px-3 mb-3 mx-auto">
+                <div className="relative overflow-hidden max-w-[280px] border border-terracotta/20 bg-white rounded-full py-1.5 px-3 mb-3 mx-auto">
                   <div className="absolute inset-y-0 left-0 w-6 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
                   <div className="absolute inset-y-0 right-0 w-6 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
                   <div className="flex animate-ticker whitespace-nowrap w-max">
