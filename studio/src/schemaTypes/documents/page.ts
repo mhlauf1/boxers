@@ -78,6 +78,7 @@ export const page = defineType({
         {type: 'pricingPageTabs'},
         {type: 'spacer'},
         {type: 'campusOverview'},
+        {type: 'locationDetails'},
       ],
       options: {
         insertMenu: {

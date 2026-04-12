@@ -42,6 +42,7 @@ const WhatsIncluded = lazy(() => import('@/app/components/sections/WhatsIncluded
 const RequirementsList = lazy(() => import('@/app/components/sections/RequirementsList'))
 const WebcamGrid = lazy(() => import('@/app/components/sections/WebcamGrid'))
 const CampusOverview = lazy(() => import('@/app/components/sections/CampusOverview'))
+const LocationDetails = lazy(() => import('@/app/components/sections/LocationDetails'))
 const GalleryCarousel = lazy(() => import('@/app/components/sections/GalleryCarousel'))
 const GalleryShowcase = lazy(() => import('@/app/components/sections/GalleryShowcase'))
 const GalleryPage = lazy(() => import('@/app/components/sections/GalleryPage'))
@@ -75,6 +76,7 @@ type BlocksType = {
 
 const Blocks = {
   campusOverview: CampusOverview,
+  locationDetails: LocationDetails,
   callToAction: Cta,
   infoSection: Info,
   hero: Hero,

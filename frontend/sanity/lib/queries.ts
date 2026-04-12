@@ -142,6 +142,10 @@ const pageBuilderExpansion = /* groq */ `
         }
       }
     },
+    _type == "locationDetails" => {
+      ...,
+      "location": *[_type == "settings"][0].locations[slug == ^.locationSlug][0]
+    },
     _type == "faqAccordion" => {
       ...,
       faqs[]{

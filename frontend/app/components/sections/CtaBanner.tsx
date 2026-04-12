@@ -157,7 +157,7 @@ export default function CtaBanner({block, index}: CtaBannerProps) {
   return (
     <section className="bg-cream px-4 lg:px-8">
       <div
-        className={`relative rounded-lg min-h-[60vh] md:min-h-[80vh] flex px-[6%] md:px-[10%] items-center overflow-hidden${textAlign === 'center' ? ' justify-center' : ''}`}
+        className={`relative rounded-xl min-h-[60vh] md:min-h-[80vh] flex px-[6%] md:px-[10%] items-center overflow-hidden${textAlign === 'center' ? ' justify-center' : ''}`}
       >
         {/* Background image */}
         {backgroundImage?.asset?._ref && (
