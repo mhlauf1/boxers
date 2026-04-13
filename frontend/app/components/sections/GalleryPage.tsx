@@ -111,7 +111,7 @@ export default function GalleryPage({block}: GalleryPageProps) {
                   <Image
                     id={image.asset!._ref}
                     alt={image.alt || 'Gallery image'}
-                    width={1000}
+                    width={1001}
                     crop={image.crop}
                     hotspot={image.hotspot}
                     className="rounded-lg aspect-[3/4] w-full object-cover transition-opacity group-hover:opacity-90"
