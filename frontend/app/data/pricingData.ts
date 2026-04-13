@@ -74,6 +74,9 @@ export function calculateDaycarePerDog(input: {dogs: DaycareDogConfig[]}): Dayca
 
 // ─── Boarding ───────────────────────────────────────────────
 const BOARDING_RATE = 59
+const ENRICHMENT_BOARDING_RATE = 65
+
+export type BoardingType = 'pawplex' | 'enrichment'
 
 export type BoardingDogConfig = {
   id: string
@@ -87,20 +90,20 @@ export type BoardingResult = {
   includes: string[]
 }
 
-export function calculateBoardingPerDog(input: {dogs: BoardingDogConfig[]}): BoardingResult {
-  const {dogs} = input
+export function calculateBoardingPerDog(input: {dogs: BoardingDogConfig[]; boardingType: BoardingType}): BoardingResult {
+  const {dogs, boardingType} = input
+  const baseRate = boardingType === 'enrichment' ? ENRICHMENT_BOARDING_RATE : BOARDING_RATE
   const lineItems: LineItem[] = []
   let total = 0
 
   for (let i = 0; i < dogs.length; i++) {
     const dog = dogs[i]
-    // First dog pays full rate. Additional dogs get 50% off per Brian's 2026-04-10 pricing rules.
     const isAdditional = i > 0
-    const nightlyRate = isAdditional ? BOARDING_RATE / 2 : BOARDING_RATE
+    const nightlyRate = isAdditional ? baseRate / 2 : baseRate
     const cost = nightlyRate * dog.nights
 
     const dogLabel = dogs.length > 1 ? `Dog ${i + 1}` : 'Your dog'
-    const rateNote = isAdditional ? ` @ $${nightlyRate}/night (50% off)` : ` @ $${BOARDING_RATE}/night`
+    const rateNote = isAdditional ? ` @ $${nightlyRate}/night (50% off)` : ` @ $${baseRate}/night`
     lineItems.push({
       label: `${dogLabel} — ${dog.nights} night${dog.nights > 1 ? 's' : ''}${rateNote}`,
       amount: cost,
@@ -108,17 +111,27 @@ export function calculateBoardingPerDog(input: {dogs: BoardingDogConfig[]}): Boa
     total += cost
   }
 
+  const includes = boardingType === 'enrichment'
+    ? [
+        'Private play sessions',
+        'Guided enrichment activities',
+        'Individualized daily programming',
+        'Clean, secure accommodations',
+        '50% off for additional dogs',
+      ]
+    : [
+        'Structured play & enrichment',
+        'Supervised group activities',
+        'Feeding (your food)',
+        'Clean, secure accommodations',
+        '50% off for additional dogs',
+      ]
+
   return {
     total,
     lineItems,
-    nightlyRate: BOARDING_RATE,
-    includes: [
-      'Structured play & enrichment',
-      'Supervised group activities',
-      'Feeding (your food)',
-      'Clean, secure accommodations',
-      '50% off for additional dogs',
-    ],
+    nightlyRate: baseRate,
+    includes,
   }
 }
 

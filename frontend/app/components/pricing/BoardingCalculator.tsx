@@ -4,7 +4,7 @@ import {useState, useMemo, useCallback} from 'react'
 import {NumberStepper, AddDogButton, ContactNotice} from './CalculatorInputs'
 import PriceOutputCard from './PriceOutputCard'
 import {calculateBoardingPerDog} from '@/app/data/pricingData'
-import type {BoardingDogConfig} from '@/app/data/pricingData'
+import type {BoardingDogConfig, BoardingType} from '@/app/data/pricingData'
 import type {DereferencedLink} from '@/sanity/lib/types'
 
 type BoardingCalculatorProps = {
@@ -21,6 +21,7 @@ function createDog(): BoardingDogConfig {
 
 export default function BoardingCalculator({ctaText, ctaLink, taxNote}: BoardingCalculatorProps) {
   const [dogs, setDogs] = useState<BoardingDogConfig[]>(() => [createDog()])
+  const [boardingType, setBoardingType] = useState<BoardingType>('pawplex')
 
   const handleUpdateDog = useCallback((index: number, updates: Partial<BoardingDogConfig>) => {
     setDogs((prev) => prev.map((d, i) => (i === index ? {...d, ...updates} : d)))
@@ -38,8 +39,8 @@ export default function BoardingCalculator({ctaText, ctaLink, taxNote}: Boarding
   }, [])
 
   const result = useMemo(
-    () => calculateBoardingPerDog({dogs}),
-    [dogs],
+    () => calculateBoardingPerDog({dogs, boardingType}),
+    [dogs, boardingType],
   )
 
   if (dogs.length > 3) {
@@ -65,6 +66,37 @@ export default function BoardingCalculator({ctaText, ctaLink, taxNote}: Boarding
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-start">
       {/* Inputs */}
       <div className="space-y-6">
+        {/* Boarding type toggle */}
+        <div className="space-y-2">
+          <span className="block text-cream/70 font-sans text-[13px] font-medium uppercase tracking-wider">
+            Boarding Type
+          </span>
+          <div className="flex rounded-lg overflow-hidden border border-border-dark">
+            <button
+              type="button"
+              onClick={() => setBoardingType('pawplex')}
+              className={`flex-1 py-2.5 px-3 font-sans text-[13px] font-medium transition-colors ${
+                boardingType === 'pawplex'
+                  ? 'bg-terracotta text-cream'
+                  : 'bg-forest-card text-cream/60 hover:text-cream/80'
+              }`}
+            >
+              PAW-PLEX — $59/night
+            </button>
+            <button
+              type="button"
+              onClick={() => setBoardingType('enrichment')}
+              className={`flex-1 py-2.5 px-3 font-sans text-[13px] font-medium transition-colors ${
+                boardingType === 'enrichment'
+                  ? 'bg-terracotta text-cream'
+                  : 'bg-forest-card text-cream/60 hover:text-cream/80'
+              }`}
+            >
+              Enrichment — $65/night
+            </button>
+          </div>
+        </div>
+
         <div className="space-y-3">
           <span className="block text-cream/70 font-sans text-[13px] font-medium uppercase tracking-wider">
             {dogs.length > 1 ? 'Your Dogs' : 'Your Dog'}
