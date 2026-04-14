@@ -39,6 +39,12 @@ const nextConfig: NextConfig = {
         destination: '/services/daycare',
         permanent: true,
       },
+      // Wix-generated slug from page duplication — indexed as vet clinic page
+      {
+        source: '/copy-of-home',
+        destination: '/services/vet-clinic',
+        permanent: true,
+      },
     ]
   },
   env: {
