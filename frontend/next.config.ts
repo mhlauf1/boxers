@@ -8,6 +8,37 @@ const nextConfig: NextConfig = {
         destination: '/services/daycare',
         permanent: true,
       },
+      // Old Wix site had service pages at root level — Google still has these indexed
+      {
+        source: '/boarding',
+        destination: '/services/boarding',
+        permanent: true,
+      },
+      {
+        source: '/daycare',
+        destination: '/services/daycare',
+        permanent: true,
+      },
+      {
+        source: '/grooming',
+        destination: '/services/grooming',
+        permanent: true,
+      },
+      {
+        source: '/training',
+        destination: '/services/training',
+        permanent: true,
+      },
+      {
+        source: '/vet-clinic',
+        destination: '/services/vet-clinic',
+        permanent: true,
+      },
+      {
+        source: '/enrichment',
+        destination: '/services/daycare',
+        permanent: true,
+      },
     ]
   },
   env: {
