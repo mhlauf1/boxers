@@ -29,6 +29,9 @@ export async function POST(request: Request) {
       service: 'Service',
       petName: 'Pet Name',
       message: 'Message',
+      areasOfInterest: 'Areas of Interest',
+      availability: 'Availability',
+      pastEmployment: 'Past Employment & Experience',
     }
 
     const lines = Object.entries(body)
