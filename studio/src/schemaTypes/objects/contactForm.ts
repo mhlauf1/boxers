@@ -83,6 +83,16 @@ export const contactForm = defineType({
       ],
     }),
     defineField({
+      name: 'recipientEmail',
+      title: 'Recipient Email',
+      type: 'string',
+      description: 'Where submissions are sent. Defaults to the site-wide contact email if left blank.',
+      validation: (Rule) =>
+        Rule.regex(/^[^\s@]+@[^\s@]+\.[^\s@]+$/, {name: 'email'}).warning(
+          'Please enter a valid email address',
+        ),
+    }),
+    defineField({
       name: 'submitButtonText',
       title: 'Submit Button Text',
       type: 'string',

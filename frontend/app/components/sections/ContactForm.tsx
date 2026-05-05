@@ -24,6 +24,7 @@ export default function ContactForm({block}: ContactFormProps) {
     heading,
     description,
     formFields,
+    recipientEmail,
     submitButtonText,
     successMessage,
     showMap,
@@ -34,6 +35,7 @@ export default function ContactForm({block}: ContactFormProps) {
     email,
     nextSteps,
   } = block as typeof block & {
+    recipientEmail?: string
     nextSteps?: Array<{_key?: string; title?: string; description?: string}>
   }
 
@@ -62,7 +64,10 @@ export default function ContactForm({block}: ContactFormProps) {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          ...(recipientEmail ? {_recipientEmail: stegaClean(recipientEmail)} : {}),
+        }),
       })
 
       if (!res.ok) {

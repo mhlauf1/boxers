@@ -1,5 +1,4 @@
 import {FadeIn} from '@/app/components/ui/FadeIn'
-import Button from '@/app/components/ui/Button'
 
 type PricingTierCardsProps = {
   categories?: Array<{
@@ -109,11 +108,6 @@ export default function PricingTierCards({categories}: PricingTierCardsProps) {
         </div>
       ))}
 
-      <FadeIn delay={0.3}>
-        <div className="flex justify-center mt-10">
-          <Button href="/pricing">View More Details</Button>
-        </div>
-      </FadeIn>
     </>
   )
 }

@@ -11,8 +11,13 @@ const transporter = nodemailer.createTransport({
   },
 })
 
-const toEmail = process.env.CONTACT_FORM_TO_EMAIL || ''
+const defaultToEmail = process.env.CONTACT_FORM_TO_EMAIL || ''
 const fromEmail = process.env.SMTP_FROM || process.env.SMTP_USER || ''
+const ALLOWED_RECIPIENTS = [
+  'boxersgm1@outlook.com',
+  'angela@boxersbedandbiscuits.com',
+  'boxermarketing@outlook.com',
+]
 
 export async function POST(request: Request) {
   try {
@@ -21,6 +26,13 @@ export async function POST(request: Request) {
     if (!body || typeof body !== 'object') {
       return NextResponse.json({error: 'Invalid request body'}, {status: 400})
     }
+
+    const requestedRecipient = (body._recipientEmail as string)?.toLowerCase().trim()
+    delete body._recipientEmail
+    const toEmail =
+      requestedRecipient && ALLOWED_RECIPIENTS.includes(requestedRecipient)
+        ? requestedRecipient
+        : defaultToEmail
 
     const fieldLabels: Record<string, string> = {
       name: 'Name',
