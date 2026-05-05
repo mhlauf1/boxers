@@ -206,7 +206,7 @@ export default function ContactForm({block}: ContactFormProps) {
                 </h3>
                 {nextSteps.map((step, i) => (
                   <div key={step._key || i} className="flex gap-4">
-                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-terracotta/10 text-terracotta font-semibold text-[14px] flex items-center justify-center">
+                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-terracotta/10 text-terracotta font-semibold text-[15px] flex items-center justify-center">
                       {i + 1}
                     </div>
                     <div>
