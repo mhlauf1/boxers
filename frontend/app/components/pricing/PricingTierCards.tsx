@@ -13,9 +13,10 @@ type PricingTierCardsProps = {
       highlighted?: boolean
     }>
   }>
+  isDark?: boolean
 }
 
-export default function PricingTierCards({categories}: PricingTierCardsProps) {
+export default function PricingTierCards({categories, isDark}: PricingTierCardsProps) {
   if (!categories) return null
 
   return (
@@ -50,7 +51,9 @@ export default function PricingTierCards({categories}: PricingTierCardsProps) {
                           className={`rounded-lg p-6 md:p-8 h-full flex flex-col ${
                             tier.highlighted
                               ? 'bg-forest text-cream ring-2 ring-terracotta'
-                              : 'bg-sand/50 text-forest'
+                              : isDark
+                                ? 'bg-white text-forest'
+                                : 'bg-sand/50 text-forest'
                           }`}
                         >
                           {tier.name && (

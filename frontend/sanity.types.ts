@@ -663,6 +663,7 @@ export type ContactForm = {
     _type: 'formField'
     _key: string
   }>
+  recipientEmail?: string
   submitButtonText?: string
   successMessage?: string
   showMap?: boolean
@@ -2262,6 +2263,7 @@ export type GetPageQueryResult = {
           _type: 'formField'
           _key: string
         }>
+        recipientEmail?: string
         submitButtonText?: string
         successMessage?: string
         showMap?: boolean
@@ -3627,6 +3629,7 @@ export type HomepageQueryResult = {
           _type: 'formField'
           _key: string
         }>
+        recipientEmail?: string
         submitButtonText?: string
         successMessage?: string
         showMap?: boolean
@@ -5019,6 +5022,7 @@ export type GetServiceQueryResult = {
           _type: 'formField'
           _key: string
         }>
+        recipientEmail?: string
         submitButtonText?: string
         successMessage?: string
         showMap?: boolean

@@ -78,6 +78,8 @@ export const pricingList = defineType({
         list: [
           {title: 'Cream', value: 'cream'},
           {title: 'Sand', value: 'sand'},
+          {title: 'Forest (Dark)', value: 'forest'},
+          {title: 'Blue (Light)', value: 'blue'},
         ],
         layout: 'radio',
       },

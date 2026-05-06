@@ -24,6 +24,20 @@ export const pricingTable = defineType({
       rows: 3,
     }),
     defineField({
+      name: 'backgroundColor',
+      title: 'Background Color',
+      type: 'string',
+      options: {
+        list: [
+          {title: 'Cream', value: 'cream'},
+          {title: 'Sand', value: 'sand'},
+          {title: 'Forest (Dark)', value: 'forest'},
+        ],
+        layout: 'radio',
+      },
+      initialValue: 'cream',
+    }),
+    defineField({
       name: 'categories',
       title: 'Categories',
       type: 'array',

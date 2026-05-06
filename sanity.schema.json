@@ -4782,6 +4782,13 @@
           },
           "optional": true
         },
+        "recipientEmail": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
         "submitButtonText": {
           "type": "objectAttribute",
           "value": {

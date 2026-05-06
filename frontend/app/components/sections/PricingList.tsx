@@ -16,7 +16,7 @@ type PricingListProps = {
       note?: string
     }>
     columns?: number
-    backgroundColor?: 'cream' | 'sand'
+    backgroundColor?: 'cream' | 'sand' | 'forest' | 'blue'
   }
   index: number
   pageId: string
@@ -26,11 +26,15 @@ type PricingListProps = {
 const bgColors: Record<string, string> = {
   cream: 'bg-cream text-forest',
   sand: 'bg-sand text-forest',
+  forest: 'bg-forest text-cream',
+  blue: 'bg-terracotta text-white',
 }
 
 export default function PricingList({block}: PricingListProps) {
   const {eyebrow, heading, description, items, columns, backgroundColor} = block
   const bg = bgColors[stegaClean(backgroundColor) || 'cream'] || bgColors.cream
+  const cleanBg = stegaClean(backgroundColor)
+  const isDark = cleanBg === 'forest' || cleanBg === 'blue'
   const isTwoCol = stegaClean(columns) === 2
 
   return (
@@ -40,12 +44,16 @@ export default function PricingList({block}: PricingListProps) {
           <div className="text-center max-w-2xl mx-auto mb-12 lg:mb-16">
             {eyebrow && <Badge className="mb-3">{eyebrow}</Badge>}
             {heading && (
-              <h2 className="text-[36px] md:text-[48px] lg:text-[56px] font-semibold tracking-tight leading-[105%] text-forest mb-4">
+              <h2
+                className={`text-[36px] md:text-[48px] lg:text-[56px] font-semibold tracking-tight leading-[105%] mb-4 ${isDark ? 'text-cream' : 'text-forest'}`}
+              >
                 {heading}
               </h2>
             )}
             {description && (
-              <p className="font-sans text-[16px] md:text-[18px] leading-[150%] text-charcoal/80">
+              <p
+                className={`font-sans text-[16px] md:text-[18px] leading-[150%] ${isDark ? 'text-cream/80' : 'text-charcoal/80'}`}
+              >
                 {description}
               </p>
             )}
@@ -58,20 +66,32 @@ export default function PricingList({block}: PricingListProps) {
           >
             {items.map((item, i) => (
               <FadeIn key={item._key} delay={0.03 * i}>
-                <div className="flex flex-col border-b border-charcoal/10 py-3">
+                <div
+                  className={`flex flex-col border-b py-3 ${isDark ? 'border-cream/20' : 'border-charcoal/10'}`}
+                >
                   <div className="flex justify-between items-baseline gap-4">
-                    <span className="font-sans text-[15px] md:text-[17px] font-medium text-forest">
+                    <span
+                      className={`font-sans text-[15px] md:text-[17px] font-medium ${isDark ? 'text-cream' : 'text-forest'}`}
+                    >
                       {item.service}
                     </span>
-                    <span className="shrink-0 border-b border-dotted border-charcoal/20 flex-1 mx-2 mb-1" />
+                    <span
+                      className={`shrink-0 border-b border-dotted flex-1 mx-2 mb-1 ${isDark ? 'border-cream/30' : 'border-charcoal/20'}`}
+                    />
                     {item.price && (
-                      <span className="font-sans text-[16px] md:text-[18px] font-medium text-terracotta shrink-0">
+                      <span
+                        className={`font-sans text-[16px] md:text-[18px] font-medium shrink-0 ${isDark ? 'text-white' : 'text-terracotta'}`}
+                      >
                         {item.price}
                       </span>
                     )}
                   </div>
                   {item.note && (
-                    <p className="font-sans text-[13px] text-charcoal/50 mt-0.5">{item.note}</p>
+                    <p
+                      className={`font-sans text-[13px] mt-0.5 ${isDark ? 'text-cream/50' : 'text-charcoal/50'}`}
+                    >
+                      {item.note}
+                    </p>
                   )}
                 </div>
               </FadeIn>

@@ -116,7 +116,7 @@ export default function PricingPageTabs({block}: PricingPageTabsProps) {
       <div className="px-6 md:px-24 py-16 pt-16 lg:py-24">
         {/* Header */}
         <FadeIn immediate>
-          <div className="text-center  pt-20 max-w-4xl mx-auto mb-8 lg:mb-10">
+          <div className="text-center  pt-10 max-w-4xl mx-auto mb-8 lg:mb-10">
             {eyebrow && <Badge className="mb-3">{eyebrow}</Badge>}
             {heading && (
               <h2 className="text-[36px] md:text-[58px] lg:text-[70px] font-semibold tracking-tight leading-[105%] text-forest mb-4">
@@ -140,7 +140,7 @@ export default function PricingPageTabs({block}: PricingPageTabsProps) {
 
         {/* Pricing Display */}
         <FadeIn delay={0.15} key={activeTab} immediate>
-          <div className="mb-12">
+          <div className="mb-16">
             {activeService?.pricingDisplay === 'matrix' && activeService.matrixData ? (
               <>
                 {activeService.matrixData.description && (

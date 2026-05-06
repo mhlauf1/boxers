@@ -663,6 +663,7 @@ export type ContactForm = {
     _type: 'formField'
     _key: string
   }>
+  recipientEmail?: string
   submitButtonText?: string
   successMessage?: string
   showMap?: boolean
