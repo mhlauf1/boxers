@@ -124,7 +124,7 @@ export default function PricingPageTabs({block}: PricingPageTabsProps) {
               </h2>
             )}
             {description && (
-              <p className="font-sans text-[16px] md:text-[18px] leading-[150%] text-charcoal/80">
+              <p className="font-sans text-[16px] md:text-[18px] leading-[151%] text-charcoal/80">
                 {description}
               </p>
             )}
