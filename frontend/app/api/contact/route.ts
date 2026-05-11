@@ -82,7 +82,8 @@ export async function POST(request: Request) {
     return NextResponse.json({success: true})
   } catch (error) {
     console.error('Contact form error:', error)
-    return NextResponse.json({error: 'Failed to send message'}, {status: 500})
+    const message = error instanceof Error ? error.message : 'Failed to send message'
+    return NextResponse.json({error: message}, {status: 500})
   }
 }
 
