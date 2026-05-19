@@ -31,6 +31,7 @@ type HeaderProps = {
 export default function Header({navItems, ctaButton, logo}: HeaderProps) {
   const pathname = usePathname()
   const [scrolled, setScrolled] = useState(false)
+  const [hidden, setHidden] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState<string | null>(null)
   const [mobileExpanded, setMobileExpanded] = useState<Set<string>>(new Set())
@@ -43,19 +44,44 @@ export default function Header({navItems, ctaButton, logo}: HeaderProps) {
       return next
     })
   }
+  const lastScrollY = useRef(0)
   const mobilePanelRef = useRef<HTMLDivElement>(null)
   const dropdownRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20)
+    const handleScroll = () => {
+      const currentY = window.scrollY
+      setScrolled(currentY > 20)
+
+      if (currentY < 20) {
+        setHidden(false)
+        lastScrollY.current = currentY
+        return
+      }
+
+      if (mobileOpen) {
+        lastScrollY.current = currentY
+        return
+      }
+
+      const delta = currentY - lastScrollY.current
+      if (delta > 5) {
+        setHidden(true)
+      } else if (delta < -5) {
+        setHidden(false)
+      }
+
+      lastScrollY.current = currentY
+    }
     window.addEventListener('scroll', handleScroll, {passive: true})
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  }, [mobileOpen])
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
     if (mobileOpen) {
       document.body.style.overflow = 'hidden'
+      setHidden(false)
     } else {
       document.body.style.overflow = ''
       setMobileExpanded(new Set())
@@ -154,9 +180,10 @@ export default function Header({navItems, ctaButton, logo}: HeaderProps) {
   }
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 transition-colors duration-300">
-      <div className="px-2 lg:px-12">
-        <div className="flex lg:grid lg:grid-cols-3 border bg-cream/95 backdrop-blur-sm border-forest/20 rounded-md mt-2 md:mt-4 pl-4 md:pl-12 pr-2 md:pr-6 items-center justify-between py-3">
+    <>
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out bg-cream ${hidden ? '-translate-y-full' : 'translate-y-0'}`}>
+      <div className="px-4 md:px-12 border-b border-black/20">
+        <div className="flex lg:grid lg:grid-cols-3 bg-cream/95 backdrop-blur-sm items-center justify-between py-3 gap-4">
           {/* Logo */}
           <Link href="/" className="flex items-start">
             {logo?.asset?._ref ? (
@@ -292,6 +319,8 @@ export default function Header({navItems, ctaButton, logo}: HeaderProps) {
           </button>
         </div>
       </div>
+
+    </header>
 
       {/* Mobile menu slide-in */}
       <AnimatePresence>
@@ -452,7 +481,7 @@ export default function Header({navItems, ctaButton, logo}: HeaderProps) {
           </>
         )}
       </AnimatePresence>
-    </header>
+    </>
   )
 }
 

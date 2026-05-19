@@ -382,7 +382,7 @@ export type PricingList = {
     _key: string
   }>
   columns?: 1 | 2
-  backgroundColor?: 'cream' | 'sand'
+  backgroundColor?: 'cream' | 'sand' | 'forest' | 'blue'
 }
 
 export type PricingMatrix = {
@@ -736,6 +736,7 @@ export type PricingTable = {
   eyebrow?: string
   heading?: string
   description?: string
+  backgroundColor?: 'cream' | 'sand' | 'forest'
   categories?: Array<{
     categoryName: string
     tiers?: Array<{
@@ -3081,7 +3082,7 @@ export type GetPageQueryResult = {
           _key: string
         }>
         columns?: 1 | 2
-        backgroundColor?: 'cream' | 'sand'
+        backgroundColor?: 'blue' | 'cream' | 'forest' | 'sand'
       }
     | {
         _key: string
@@ -3143,6 +3144,7 @@ export type GetPageQueryResult = {
         eyebrow?: string
         heading?: string
         description?: string
+        backgroundColor?: 'cream' | 'forest' | 'sand'
         categories: Array<{
           categoryName: string
           tiers: Array<{
@@ -4447,7 +4449,7 @@ export type HomepageQueryResult = {
           _key: string
         }>
         columns?: 1 | 2
-        backgroundColor?: 'cream' | 'sand'
+        backgroundColor?: 'blue' | 'cream' | 'forest' | 'sand'
       }
     | {
         _key: string
@@ -4509,6 +4511,7 @@ export type HomepageQueryResult = {
         eyebrow?: string
         heading?: string
         description?: string
+        backgroundColor?: 'cream' | 'forest' | 'sand'
         categories: Array<{
           categoryName: string
           tiers: Array<{
@@ -5822,7 +5825,7 @@ export type GetServiceQueryResult = {
           _key: string
         }>
         columns?: 1 | 2
-        backgroundColor?: 'cream' | 'sand'
+        backgroundColor?: 'blue' | 'cream' | 'forest' | 'sand'
       }
     | {
         _key: string
@@ -5857,6 +5860,7 @@ export type GetServiceQueryResult = {
         eyebrow?: string
         heading?: string
         description?: string
+        backgroundColor?: 'cream' | 'forest' | 'sand'
         categories: Array<{
           categoryName: string
           tiers: Array<{

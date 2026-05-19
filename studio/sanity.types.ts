@@ -382,7 +382,7 @@ export type PricingList = {
     _key: string
   }>
   columns?: 1 | 2
-  backgroundColor?: 'cream' | 'sand'
+  backgroundColor?: 'cream' | 'sand' | 'forest' | 'blue'
 }
 
 export type PricingMatrix = {
@@ -736,6 +736,7 @@ export type PricingTable = {
   eyebrow?: string
   heading?: string
   description?: string
+  backgroundColor?: 'cream' | 'sand' | 'forest'
   categories?: Array<{
     categoryName: string
     tiers?: Array<{

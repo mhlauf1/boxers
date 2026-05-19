@@ -2659,6 +2659,14 @@
               {
                 "type": "string",
                 "value": "sand"
+              },
+              {
+                "type": "string",
+                "value": "forest"
+              },
+              {
+                "type": "string",
+                "value": "blue"
               }
             ]
           },
@@ -5298,6 +5306,27 @@
           "type": "objectAttribute",
           "value": {
             "type": "string"
+          },
+          "optional": true
+        },
+        "backgroundColor": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "cream"
+              },
+              {
+                "type": "string",
+                "value": "sand"
+              },
+              {
+                "type": "string",
+                "value": "forest"
+              }
+            ]
           },
           "optional": true
         },
