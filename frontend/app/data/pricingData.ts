@@ -4,21 +4,41 @@ export type LineItem = {label: string; amount: number}
 // ─── Daycare ────────────────────────────────────────────────
 export type DaycarePackage = 'single' | '10-visit' | '25-visit' | '40-visit'
 
-const DAYCARE_RATE = 39
+// Daycare pricing differs by facility: PAW-PLEX ($39/day) vs. the
+// Boxers Enrichment Center / BEC ($45/day). Same package structure, different rates.
+export type DaycareFacility = 'pawplex' | 'bec'
 
-const daycarePackages: Record<DaycarePackage, {visits: number | null; price: number | null; expiration: string | null}> = {
-  single: {visits: null, price: null, expiration: null},
-  '10-visit': {visits: 10, price: 350, expiration: '2 months'},
-  '25-visit': {visits: 25, price: 800, expiration: '4 months'},
-  '40-visit': {visits: 40, price: 1200, expiration: '6 months'},
+type DaycarePackageInfo = {visits: number | null; price: number | null; expiration: string | null}
+
+const DAYCARE_RATES: Record<DaycareFacility, number> = {
+  pawplex: 39,
+  bec: 45,
 }
 
-export const daycarePackageOptions = Object.entries(daycarePackages).map(([key, val]) => ({
-  id: key as DaycarePackage,
-  label: val.visits ? `${val.visits}-Visit Package` : 'Single Days',
-  detail: val.price ? `$${val.price}` : `$${DAYCARE_RATE}/day`,
-  expiration: val.expiration,
-}))
+const daycarePackagesByFacility: Record<DaycareFacility, Record<DaycarePackage, DaycarePackageInfo>> = {
+  pawplex: {
+    single: {visits: null, price: null, expiration: null},
+    '10-visit': {visits: 10, price: 350, expiration: '2 months'},
+    '25-visit': {visits: 25, price: 800, expiration: '4 months'},
+    '40-visit': {visits: 40, price: 1200, expiration: '6 months'},
+  },
+  bec: {
+    single: {visits: null, price: null, expiration: null},
+    '10-visit': {visits: 10, price: 390, expiration: '2 months'},
+    '25-visit': {visits: 25, price: 900, expiration: '4 months'},
+    '40-visit': {visits: 40, price: 1325, expiration: '6 months'},
+  },
+}
+
+export function getDaycarePackageOptions(facility: DaycareFacility = 'pawplex') {
+  const rate = DAYCARE_RATES[facility]
+  return Object.entries(daycarePackagesByFacility[facility]).map(([key, val]) => ({
+    id: key as DaycarePackage,
+    label: val.visits ? `${val.visits}-Visit Package` : 'Single Days',
+    detail: val.price ? `$${val.price}` : `$${rate}/day`,
+    expiration: val.expiration,
+  }))
+}
 
 export type DaycareDogConfig = {
   id: string
@@ -33,8 +53,10 @@ export type DaycareResult = {
   perDayRate: number
 }
 
-export function calculateDaycarePerDog(input: {dogs: DaycareDogConfig[]}): DaycareResult {
-  const {dogs} = input
+export function calculateDaycarePerDog(input: {dogs: DaycareDogConfig[]; facility?: DaycareFacility}): DaycareResult {
+  const {dogs, facility = 'pawplex'} = input
+  const rate = DAYCARE_RATES[facility]
+  const daycarePackages = daycarePackagesByFacility[facility]
   const lineItems: LineItem[] = []
   let total = 0
   let totalSavings = 0
@@ -54,22 +76,22 @@ export function calculateDaycarePerDog(input: {dogs: DaycareDogConfig[]}): Dayca
       total += cost
 
       // Savings vs. single-day rate
-      const singleCost = DAYCARE_RATE * pkg.visits
+      const singleCost = rate * pkg.visits
       totalSavings += singleCost - cost
       hasSavings = true
     } else {
       const numDays = dog.days
-      const cost = DAYCARE_RATE * numDays
+      const cost = rate * numDays
       const dogLabel = dogs.length > 1 ? `Dog ${i + 1}` : 'Your dog'
       lineItems.push({
-        label: `${dogLabel} — ${numDays} day${numDays > 1 ? 's' : ''} @ $${DAYCARE_RATE}/day`,
+        label: `${dogLabel} — ${numDays} day${numDays > 1 ? 's' : ''} @ $${rate}/day`,
         amount: cost,
       })
       total += cost
     }
   }
 
-  return {total, lineItems, savings: hasSavings ? totalSavings : null, perDayRate: DAYCARE_RATE}
+  return {total, lineItems, savings: hasSavings ? totalSavings : null, perDayRate: rate}
 }
 
 // ─── Boarding ───────────────────────────────────────────────

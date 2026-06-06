@@ -11,6 +11,9 @@ type BoardingCalculatorProps = {
   ctaText?: string
   ctaLink?: DereferencedLink
   taxNote?: string
+  // When set, locks the calculator to one facility and hides the PAW-PLEX/Enrichment
+  // toggle (used on the pricing page where each facility has its own section).
+  lockedType?: BoardingType
 }
 
 let dogIdCounter = 1
@@ -19,9 +22,9 @@ function createDog(): BoardingDogConfig {
   return {id: String(dogIdCounter++), nights: 1}
 }
 
-export default function BoardingCalculator({ctaText, ctaLink, taxNote}: BoardingCalculatorProps) {
+export default function BoardingCalculator({ctaText, ctaLink, taxNote, lockedType}: BoardingCalculatorProps) {
   const [dogs, setDogs] = useState<BoardingDogConfig[]>(() => [createDog()])
-  const [boardingType, setBoardingType] = useState<BoardingType>('pawplex')
+  const [boardingType, setBoardingType] = useState<BoardingType>(lockedType ?? 'pawplex')
 
   const handleUpdateDog = useCallback((index: number, updates: Partial<BoardingDogConfig>) => {
     setDogs((prev) => prev.map((d, i) => (i === index ? {...d, ...updates} : d)))
@@ -66,36 +69,38 @@ export default function BoardingCalculator({ctaText, ctaLink, taxNote}: Boarding
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-start">
       {/* Inputs */}
       <div className="space-y-6">
-        {/* Boarding type toggle */}
-        <div className="space-y-2">
-          <span className="block text-cream/70 font-sans text-[13px] font-medium uppercase tracking-wider">
-            Boarding Type
-          </span>
-          <div className="flex rounded-lg overflow-hidden border border-border-dark">
-            <button
-              type="button"
-              onClick={() => setBoardingType('pawplex')}
-              className={`flex-1 py-2.5 px-3 font-sans text-[13px] font-medium transition-colors ${
-                boardingType === 'pawplex'
-                  ? 'bg-terracotta text-cream'
-                  : 'bg-forest-card text-cream/60 hover:text-cream/80'
-              }`}
-            >
-              PAW-PLEX — $59/night
-            </button>
-            <button
-              type="button"
-              onClick={() => setBoardingType('enrichment')}
-              className={`flex-1 py-2.5 px-3 font-sans text-[13px] font-medium transition-colors ${
-                boardingType === 'enrichment'
-                  ? 'bg-terracotta text-cream'
-                  : 'bg-forest-card text-cream/60 hover:text-cream/80'
-              }`}
-            >
-              Enrichment — $65/night
-            </button>
+        {/* Boarding type toggle — hidden when the facility is locked by the parent */}
+        {!lockedType && (
+          <div className="space-y-2">
+            <span className="block text-cream/70 font-sans text-[13px] font-medium uppercase tracking-wider">
+              Boarding Type
+            </span>
+            <div className="flex rounded-lg overflow-hidden border border-border-dark">
+              <button
+                type="button"
+                onClick={() => setBoardingType('pawplex')}
+                className={`flex-1 py-2.5 px-3 font-sans text-[13px] font-medium transition-colors ${
+                  boardingType === 'pawplex'
+                    ? 'bg-terracotta text-cream'
+                    : 'bg-forest-card text-cream/60 hover:text-cream/80'
+                }`}
+              >
+                PAW-PLEX — $59/night
+              </button>
+              <button
+                type="button"
+                onClick={() => setBoardingType('enrichment')}
+                className={`flex-1 py-2.5 px-3 font-sans text-[13px] font-medium transition-colors ${
+                  boardingType === 'enrichment'
+                    ? 'bg-terracotta text-cream'
+                    : 'bg-forest-card text-cream/60 hover:text-cream/80'
+                }`}
+              >
+                Enrichment — $65/night
+              </button>
+            </div>
           </div>
-        </div>
+        )}
 
         <div className="space-y-3">
           <span className="block text-cream/70 font-sans text-[13px] font-medium uppercase tracking-wider">

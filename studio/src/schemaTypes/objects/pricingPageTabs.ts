@@ -55,172 +55,207 @@ export const pricingPageTabs = defineType({
                   {title: 'Daycare', value: 'daycare'},
                   {title: 'Boarding', value: 'boarding'},
                   {title: 'Grooming', value: 'grooming'},
-                        ],
+                ],
               },
               validation: (Rule) => Rule.required(),
             }),
             defineField({
-              name: 'pricingDisplay',
-              title: 'Pricing Display Type',
-              type: 'string',
-              options: {
-                list: [
-                  {title: 'Tier Cards (Daycare/Boarding)', value: 'table'},
-                  {title: 'Matrix Grid (Grooming)', value: 'matrix'},
-                ],
-                layout: 'radio',
-              },
-              initialValue: 'table',
-            }),
-            defineField({
-              name: 'tableData',
-              title: 'Tier Card Data',
-              type: 'object',
-              hidden: ({parent}) => parent?.pricingDisplay !== 'table',
-              fields: [
-                defineField({
-                  name: 'categories',
-                  title: 'Categories',
-                  type: 'array',
-                  of: [
-                    defineArrayMember({
-                      type: 'object',
-                      name: 'pricingCategory',
-                      fields: [
-                        defineField({name: 'categoryName', title: 'Category Name', type: 'string'}),
-                        defineField({
-                          name: 'tiers',
-                          title: 'Tiers',
-                          type: 'array',
-                          of: [
-                            defineArrayMember({
-                              type: 'object',
-                              name: 'pricingTier',
-                              fields: [
-                                defineField({name: 'name', title: 'Name', type: 'string'}),
-                                defineField({name: 'price', title: 'Price', type: 'string'}),
-                                defineField({name: 'description', title: 'Description', type: 'string'}),
-                                defineField({
-                                  name: 'features',
-                                  title: 'Features',
-                                  type: 'array',
-                                  of: [{type: 'string'}],
-                                }),
-                                defineField({name: 'highlighted', title: 'Highlighted', type: 'boolean'}),
-                              ],
-                              preview: {
-                                select: {title: 'name', subtitle: 'price'},
-                              },
-                            }),
-                          ],
-                        }),
-                      ],
-                      preview: {
-                        select: {title: 'categoryName'},
+              name: 'sections',
+              title: 'Sections',
+              description:
+                'Stacked pricing sections shown within this tab — e.g. a PAW-PLEX section, a Boxers Enrichment Center section, and a Memberships section. Each renders its own price boxes and (optionally) an estimator.',
+              type: 'array',
+              of: [
+                defineArrayMember({
+                  type: 'object',
+                  name: 'pricingSection',
+                  fields: [
+                    defineField({name: 'eyebrow', title: 'Eyebrow', type: 'string'}),
+                    defineField({name: 'heading', title: 'Heading', type: 'string'}),
+                    defineField({
+                      name: 'pricingDisplay',
+                      title: 'Pricing Display Type',
+                      type: 'string',
+                      options: {
+                        list: [
+                          {title: 'Tier Cards (Daycare/Boarding)', value: 'table'},
+                          {title: 'Matrix Grid (Grooming)', value: 'matrix'},
+                        ],
+                        layout: 'radio',
                       },
+                      initialValue: 'table',
                     }),
-                  ],
-                }),
-                defineField({
-                  name: 'description',
-                  title: 'Section Description',
-                  type: 'text',
-                  rows: 2,
-                }),
-              ],
-            }),
-            defineField({
-              name: 'matrixData',
-              title: 'Matrix Grid Data',
-              type: 'object',
-              hidden: ({parent}) => parent?.pricingDisplay !== 'matrix',
-              fields: [
-                defineField({
-                  name: 'description',
-                  title: 'Section Description',
-                  type: 'text',
-                  rows: 2,
-                }),
-                defineField({
-                  name: 'tables',
-                  title: 'Tables',
-                  type: 'array',
-                  of: [
-                    defineArrayMember({
+                    defineField({
+                      name: 'tableData',
+                      title: 'Tier Card Data',
                       type: 'object',
-                      name: 'matrixTable',
+                      hidden: ({parent}) => parent?.pricingDisplay !== 'table',
                       fields: [
-                        defineField({name: 'tableName', title: 'Table Name', type: 'string'}),
-                        defineField({name: 'tableDescription', title: 'Description', type: 'string'}),
                         defineField({
-                          name: 'columnHeaders',
-                          title: 'Column Headers',
-                          type: 'array',
-                          of: [{type: 'string'}],
-                        }),
-                        defineField({
-                          name: 'rows',
-                          title: 'Rows',
+                          name: 'categories',
+                          title: 'Categories',
                           type: 'array',
                           of: [
                             defineArrayMember({
                               type: 'object',
-                              name: 'matrixRow',
+                              name: 'pricingCategory',
                               fields: [
-                                defineField({name: 'rowLabel', title: 'Row Label', type: 'string'}),
+                                defineField({name: 'categoryName', title: 'Category Name', type: 'string'}),
                                 defineField({
-                                  name: 'cells',
-                                  title: 'Cells',
+                                  name: 'tiers',
+                                  title: 'Tiers',
                                   type: 'array',
                                   of: [
                                     defineArrayMember({
                                       type: 'object',
-                                      name: 'matrixCell',
+                                      name: 'pricingTier',
                                       fields: [
-                                        defineField({name: 'value', title: 'Value', type: 'string'}),
-                                        defineField({name: 'note', title: 'Note', type: 'string'}),
+                                        defineField({name: 'name', title: 'Name', type: 'string'}),
+                                        defineField({name: 'price', title: 'Price', type: 'string'}),
+                                        defineField({name: 'description', title: 'Description', type: 'string'}),
+                                        defineField({
+                                          name: 'features',
+                                          title: 'Features',
+                                          type: 'array',
+                                          of: [{type: 'string'}],
+                                        }),
+                                        defineField({name: 'highlighted', title: 'Highlighted', type: 'boolean'}),
                                       ],
-                                      preview: {select: {title: 'value'}},
+                                      preview: {
+                                        select: {title: 'name', subtitle: 'price'},
+                                      },
                                     }),
                                   ],
                                 }),
                               ],
-                              preview: {select: {title: 'rowLabel'}},
+                              preview: {
+                                select: {title: 'categoryName'},
+                              },
                             }),
                           ],
                         }),
+                        defineField({
+                          name: 'description',
+                          title: 'Section Description',
+                          type: 'text',
+                          rows: 2,
+                        }),
                       ],
-                      preview: {select: {title: 'tableName'}},
+                    }),
+                    defineField({
+                      name: 'matrixData',
+                      title: 'Matrix Grid Data',
+                      type: 'object',
+                      hidden: ({parent}) => parent?.pricingDisplay !== 'matrix',
+                      fields: [
+                        defineField({
+                          name: 'description',
+                          title: 'Section Description',
+                          type: 'text',
+                          rows: 2,
+                        }),
+                        defineField({
+                          name: 'tables',
+                          title: 'Tables',
+                          type: 'array',
+                          of: [
+                            defineArrayMember({
+                              type: 'object',
+                              name: 'matrixTable',
+                              fields: [
+                                defineField({name: 'tableName', title: 'Table Name', type: 'string'}),
+                                defineField({name: 'tableDescription', title: 'Description', type: 'string'}),
+                                defineField({
+                                  name: 'columnHeaders',
+                                  title: 'Column Headers',
+                                  type: 'array',
+                                  of: [{type: 'string'}],
+                                }),
+                                defineField({
+                                  name: 'rows',
+                                  title: 'Rows',
+                                  type: 'array',
+                                  of: [
+                                    defineArrayMember({
+                                      type: 'object',
+                                      name: 'matrixRow',
+                                      fields: [
+                                        defineField({name: 'rowLabel', title: 'Row Label', type: 'string'}),
+                                        defineField({
+                                          name: 'cells',
+                                          title: 'Cells',
+                                          type: 'array',
+                                          of: [
+                                            defineArrayMember({
+                                              type: 'object',
+                                              name: 'matrixCell',
+                                              fields: [
+                                                defineField({name: 'value', title: 'Value', type: 'string'}),
+                                                defineField({name: 'note', title: 'Note', type: 'string'}),
+                                              ],
+                                              preview: {select: {title: 'value'}},
+                                            }),
+                                          ],
+                                        }),
+                                      ],
+                                      preview: {select: {title: 'rowLabel'}},
+                                    }),
+                                  ],
+                                }),
+                              ],
+                              preview: {select: {title: 'tableName'}},
+                            }),
+                          ],
+                        }),
+                        defineField({
+                          name: 'footnotes',
+                          title: 'Footnotes',
+                          type: 'array',
+                          of: [{type: 'string'}],
+                        }),
+                      ],
+                    }),
+                    defineField({
+                      name: 'calculator',
+                      title: 'Estimator',
+                      description: 'Which cost estimator to show under this section, if any.',
+                      type: 'string',
+                      options: {
+                        list: [
+                          {title: 'None', value: 'none'},
+                          {title: 'Daycare — PAW-PLEX', value: 'daycare'},
+                          {title: 'Daycare — Enrichment Center', value: 'daycare-bec'},
+                          {title: 'Boarding — PAW-PLEX', value: 'boarding'},
+                          {title: 'Boarding — Enrichment Center', value: 'boarding-bec'},
+                          {title: 'Grooming', value: 'grooming'},
+                        ],
+                      },
+                      initialValue: 'none',
                     }),
                   ],
-                }),
-                defineField({
-                  name: 'footnotes',
-                  title: 'Footnotes',
-                  type: 'array',
-                  of: [{type: 'string'}],
+                  preview: {
+                    select: {title: 'heading', subtitle: 'eyebrow'},
+                    prepare({title, subtitle}) {
+                      return {title: title || 'Section', subtitle}
+                    },
+                  },
                 }),
               ],
-            }),
-            defineField({
-              name: 'showCalculator',
-              title: 'Show Calculator',
-              type: 'boolean',
-              initialValue: true,
             }),
           ],
           preview: {
             select: {
               serviceKey: 'serviceKey',
-              pricingDisplay: 'pricingDisplay',
+              sections: 'sections',
             },
-            prepare({serviceKey, pricingDisplay}) {
+            prepare({serviceKey, sections}) {
               const label = serviceKey
                 ? serviceKey.charAt(0).toUpperCase() + serviceKey.slice(1)
                 : 'Unknown'
+              const count = Array.isArray(sections) ? sections.length : 0
               return {
                 title: `${label} Tab`,
-                subtitle: pricingDisplay === 'matrix' ? 'Matrix Grid' : 'Tier Cards',
+                subtitle: `${count} section${count === 1 ? '' : 's'}`,
               }
             },
           },

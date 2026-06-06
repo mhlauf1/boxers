@@ -1191,43 +1191,113 @@
                   },
                   "optional": false
                 },
-                "pricingDisplay": {
+                "sections": {
                   "type": "objectAttribute",
                   "value": {
-                    "type": "union",
-                    "of": [
-                      {
-                        "type": "string",
-                        "value": "table"
+                    "type": "array",
+                    "of": {
+                      "type": "object",
+                      "attributes": {
+                        "eyebrow": {
+                          "type": "objectAttribute",
+                          "value": {
+                            "type": "string"
+                          },
+                          "optional": true
+                        },
+                        "heading": {
+                          "type": "objectAttribute",
+                          "value": {
+                            "type": "string"
+                          },
+                          "optional": true
+                        },
+                        "pricingDisplay": {
+                          "type": "objectAttribute",
+                          "value": {
+                            "type": "union",
+                            "of": [
+                              {
+                                "type": "string",
+                                "value": "table"
+                              },
+                              {
+                                "type": "string",
+                                "value": "matrix"
+                              }
+                            ]
+                          },
+                          "optional": true
+                        },
+                        "tableData": {
+                          "type": "objectAttribute",
+                          "value": {
+                            "type": "inline",
+                            "name": "tableData"
+                          },
+                          "optional": true
+                        },
+                        "matrixData": {
+                          "type": "objectAttribute",
+                          "value": {
+                            "type": "inline",
+                            "name": "matrixData"
+                          },
+                          "optional": true
+                        },
+                        "calculator": {
+                          "type": "objectAttribute",
+                          "value": {
+                            "type": "union",
+                            "of": [
+                              {
+                                "type": "string",
+                                "value": "none"
+                              },
+                              {
+                                "type": "string",
+                                "value": "daycare"
+                              },
+                              {
+                                "type": "string",
+                                "value": "daycare-bec"
+                              },
+                              {
+                                "type": "string",
+                                "value": "boarding"
+                              },
+                              {
+                                "type": "string",
+                                "value": "boarding-bec"
+                              },
+                              {
+                                "type": "string",
+                                "value": "grooming"
+                              }
+                            ]
+                          },
+                          "optional": true
+                        },
+                        "_type": {
+                          "type": "objectAttribute",
+                          "value": {
+                            "type": "string",
+                            "value": "pricingSection"
+                          }
+                        }
                       },
-                      {
-                        "type": "string",
-                        "value": "matrix"
+                      "rest": {
+                        "type": "object",
+                        "attributes": {
+                          "_key": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "string"
+                            }
+                          }
+                        }
                       }
-                    ]
-                  },
-                  "optional": true
-                },
-                "tableData": {
-                  "type": "objectAttribute",
-                  "value": {
-                    "type": "inline",
-                    "name": "tableData"
-                  },
-                  "optional": true
-                },
-                "matrixData": {
-                  "type": "objectAttribute",
-                  "value": {
-                    "type": "inline",
-                    "name": "matrixData"
-                  },
-                  "optional": true
-                },
-                "showCalculator": {
-                  "type": "objectAttribute",
-                  "value": {
-                    "type": "boolean"
+                    }
                   },
                   "optional": true
                 }
