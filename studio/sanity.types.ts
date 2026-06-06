@@ -193,10 +193,16 @@ export type PricingPageTabs = {
   defaultTab?: 'daycare' | 'boarding' | 'grooming'
   services?: Array<{
     serviceKey: 'daycare' | 'boarding' | 'grooming'
-    pricingDisplay?: 'table' | 'matrix'
-    tableData?: TableData
-    matrixData?: MatrixData
-    showCalculator?: boolean
+    sections?: Array<{
+      eyebrow?: string
+      heading?: string
+      pricingDisplay?: 'table' | 'matrix'
+      tableData?: TableData
+      matrixData?: MatrixData
+      calculator?: 'none' | 'daycare' | 'daycare-bec' | 'boarding' | 'boarding-bec' | 'grooming'
+      _type: 'pricingSection'
+      _key: string
+    }>
     _key: string
   }>
   ctaText?: string

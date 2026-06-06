@@ -3,14 +3,15 @@
 import {useState, useMemo, useCallback} from 'react'
 import {NumberStepper, RadioGroup, AddDogButton, ContactNotice} from './CalculatorInputs'
 import PriceOutputCard from './PriceOutputCard'
-import {calculateDaycarePerDog, daycarePackageOptions} from '@/app/data/pricingData'
-import type {DaycarePackage, DaycareDogConfig} from '@/app/data/pricingData'
+import {calculateDaycarePerDog, getDaycarePackageOptions} from '@/app/data/pricingData'
+import type {DaycarePackage, DaycareDogConfig, DaycareFacility} from '@/app/data/pricingData'
 import type {DereferencedLink} from '@/sanity/lib/types'
 
 type DaycareCalculatorProps = {
   ctaText?: string
   ctaLink?: DereferencedLink
   taxNote?: string
+  facility?: DaycareFacility
 }
 
 let dogIdCounter = 1
@@ -19,8 +20,9 @@ function createDog(): DaycareDogConfig {
   return {id: String(dogIdCounter++), pkg: 'single', days: 1}
 }
 
-export default function DaycareCalculator({ctaText, ctaLink, taxNote}: DaycareCalculatorProps) {
+export default function DaycareCalculator({ctaText, ctaLink, taxNote, facility = 'pawplex'}: DaycareCalculatorProps) {
   const [dogs, setDogs] = useState<DaycareDogConfig[]>(() => [createDog()])
+  const packageOptions = getDaycarePackageOptions(facility)
 
   const handleUpdateDog = useCallback((index: number, updates: Partial<DaycareDogConfig>) => {
     setDogs((prev) => prev.map((d, i) => (i === index ? {...d, ...updates} : d)))
@@ -38,8 +40,8 @@ export default function DaycareCalculator({ctaText, ctaLink, taxNote}: DaycareCa
   }, [])
 
   const result = useMemo(
-    () => calculateDaycarePerDog({dogs}),
-    [dogs],
+    () => calculateDaycarePerDog({dogs, facility}),
+    [dogs, facility],
   )
 
   if (dogs.length > 3) {
@@ -75,6 +77,7 @@ export default function DaycareCalculator({ctaText, ctaLink, taxNote}: DaycareCa
               dog={dog}
               index={i}
               total={dogs.length}
+              packageOptions={packageOptions}
               onUpdate={(updates) => handleUpdateDog(i, updates)}
               onRemove={() => handleRemoveDog(i)}
             />
@@ -102,11 +105,12 @@ type DaycareDogCardProps = {
   dog: DaycareDogConfig
   index: number
   total: number
+  packageOptions: ReturnType<typeof getDaycarePackageOptions>
   onUpdate: (updates: Partial<DaycareDogConfig>) => void
   onRemove: () => void
 }
 
-function DaycareDogCard({dog, index, total, onUpdate, onRemove}: DaycareDogCardProps) {
+function DaycareDogCard({dog, index, total, packageOptions, onUpdate, onRemove}: DaycareDogCardProps) {
   return (
     <div className="bg-forest-card border border-border-dark rounded-lg p-4 space-y-4">
       <div className="flex items-center justify-between">
@@ -126,7 +130,7 @@ function DaycareDogCard({dog, index, total, onUpdate, onRemove}: DaycareDogCardP
 
       <RadioGroup
         label="Package"
-        options={daycarePackageOptions.map((opt) => ({
+        options={packageOptions.map((opt) => ({
           label: opt.label,
           value: opt.id,
           description: opt.expiration ? `${opt.detail} \u00B7 ${opt.expiration} exp.` : opt.detail,
