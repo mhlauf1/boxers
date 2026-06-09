@@ -110,6 +110,7 @@ export type BoardingResult = {
   lineItems: LineItem[]
   nightlyRate: number
   includes: string[]
+  savings: number | null
 }
 
 export function calculateBoardingPerDog(input: {dogs: BoardingDogConfig[]; boardingType: BoardingType}): BoardingResult {
@@ -117,6 +118,7 @@ export function calculateBoardingPerDog(input: {dogs: BoardingDogConfig[]; board
   const baseRate = boardingType === 'enrichment' ? ENRICHMENT_BOARDING_RATE : BOARDING_RATE
   const lineItems: LineItem[] = []
   let total = 0
+  let savings = 0
 
   for (let i = 0; i < dogs.length; i++) {
     const dog = dogs[i]
@@ -125,12 +127,18 @@ export function calculateBoardingPerDog(input: {dogs: BoardingDogConfig[]; board
     const cost = nightlyRate * dog.nights
 
     const dogLabel = dogs.length > 1 ? `Dog ${i + 1}` : 'Your dog'
-    const rateNote = isAdditional ? ` @ $${nightlyRate}/night (50% off)` : ` @ $${baseRate}/night`
+    const nightsLabel = `${dog.nights} night${dog.nights > 1 ? 's' : ''}`
+    // Additional dogs are half price. Show "50% off" rather than the raw
+    // half-rate (e.g. $29.5) so the discount reads cleanly.
+    const rateNote = isAdditional ? ` · 50% off` : ` @ $${baseRate}/night`
     lineItems.push({
-      label: `${dogLabel} — ${dog.nights} night${dog.nights > 1 ? 's' : ''}${rateNote}`,
+      label: `${dogLabel} — ${nightsLabel}${rateNote}`,
       amount: cost,
     })
     total += cost
+    if (isAdditional) {
+      savings += (baseRate - nightlyRate) * dog.nights
+    }
   }
 
   const includes = boardingType === 'enrichment'
@@ -154,6 +162,7 @@ export function calculateBoardingPerDog(input: {dogs: BoardingDogConfig[]; board
     lineItems,
     nightlyRate: baseRate,
     includes,
+    savings: savings > 0 ? savings : null,
   }
 }
 

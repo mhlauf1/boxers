@@ -128,6 +128,8 @@ export default function BoardingCalculator({ctaText, ctaLink, taxNote, lockedTyp
         ctaLink={ctaLink}
         taxNote={taxNote}
         includes={result.includes}
+        savings={result.savings}
+        savingsLabel="Multi-dog discount"
       />
     </div>
   )
