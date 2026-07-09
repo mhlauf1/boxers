@@ -394,7 +394,7 @@ export const settings = defineType({
         }),
     }),
     defineField({
-      name: 'gtmContainerId',
+      name: 'gtmId',
       title: 'GTM Container ID',
       type: 'string',
       description: 'Google Tag Manager Container ID (e.g. GTM-XXXXXXX)',
@@ -405,6 +405,13 @@ export const settings = defineType({
           }
           return true
         }),
+    }),
+    defineField({
+      name: 'ctmScriptUrl',
+      title: 'CallTrackingMetrics Script URL',
+      type: 'string',
+      description:
+        'CallTrackingMetrics tracking script URL (e.g. //598478.tctm.co/t.js). Loads on every page.',
     }),
     defineField({
       name: 'googleSiteVerification',
