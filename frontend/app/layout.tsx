@@ -30,6 +30,7 @@ import {sanityFetch, SanityLive} from '@/sanity/lib/live'
 import {settingsQuery, servicesNavQuery} from '@/sanity/lib/queries'
 import {resolveOpenGraphImage} from '@/sanity/lib/utils'
 import Script from 'next/script'
+import {GoogleTagManager} from '@next/third-parties/google'
 import {handleError} from '@/app/client-utils'
 
 function buildLocalBusinessJsonLd(settings: any) {
@@ -190,7 +191,8 @@ export default async function RootLayout({children}: {children: React.ReactNode}
 
   const locationJsonLd = buildLocationJsonLd(settings)
   const ga4Id = settings?.ga4MeasurementId
-  const gtmId = settings?.gtmContainerId
+  const gtmId = settings?.gtmId
+  const ctmScriptUrl = settings?.ctmScriptUrl
 
   // Inject dropdown children into nav items
   const navItems = settings?.navItems?.map((item: any) => {
@@ -268,11 +270,8 @@ export default async function RootLayout({children}: {children: React.ReactNode}
             }}
           />
         )}
-        {gtmId && (
-          <Script id="gtm" strategy="afterInteractive">
-            {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${gtmId}');`}
-          </Script>
-        )}
+        {ctmScriptUrl && <Script async src={ctmScriptUrl} strategy="afterInteractive" />}
+        {gtmId && <GoogleTagManager gtmId={gtmId} />}
         {ga4Id && !gtmId && (
           <>
             <Script src={`https://www.googletagmanager.com/gtag/js?id=${ga4Id}`} strategy="afterInteractive" />

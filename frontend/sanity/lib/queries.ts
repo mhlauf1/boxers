@@ -52,7 +52,8 @@ export const settingsQuery = defineQuery(`*[_type == "settings"][0]{
   socialLinks,
   "faviconUrl": favicon.asset->url,
   ga4MeasurementId,
-  gtmContainerId,
+  gtmId,
+  ctmScriptUrl,
   googleSiteVerification,
   localBusiness
 }`)
