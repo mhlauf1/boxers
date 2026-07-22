@@ -21,11 +21,13 @@ const bricolage = Bricolage_Grotesque({
 import {draftMode} from 'next/headers'
 import {toPlainText} from 'next-sanity'
 import {VisualEditing} from 'next-sanity/visual-editing'
+import {Suspense} from 'react'
 import {Toaster} from 'sonner'
 
 import DraftModeToast from '@/app/components/DraftModeToast'
 import Footer from '@/app/components/Footer'
 import Header from '@/app/components/Header'
+import TrackingRouteEvents from '@/app/components/TrackingRouteEvents'
 import {sanityFetch, SanityLive} from '@/sanity/lib/live'
 import {settingsQuery, servicesNavQuery} from '@/sanity/lib/queries'
 import {resolveOpenGraphImage} from '@/sanity/lib/utils'
@@ -282,6 +284,9 @@ export default async function RootLayout({children}: {children: React.ReactNode}
         )}
       </head>
       <body>
+        <Suspense fallback={null}>
+          <TrackingRouteEvents />
+        </Suspense>
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-terracotta focus:text-white focus:px-6 focus:py-3 focus:rounded-lg focus:text-button focus:font-medium"

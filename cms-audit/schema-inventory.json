@@ -1,0 +1,4119 @@
+{
+  "repo": "boxers",
+  "site": "Boxers Bed & Biscuits",
+  "auditDate": "2026-07-10",
+  "model": "GPT-5",
+  "cloneParent": {
+    "determined": "Hound Around Resort (houndaround/main-3)",
+    "confidence": "high",
+    "evidence": [
+      "git root commit 532cfb0: Initial commit from Hound Around design system",
+      "context/project-overview.md:19-31 explicitly records clone from mhlauf1/hound-3 with git history wiped",
+      "Mechanical SHA-256 comparison: 70/117 (59.8%) shared schema/component paths byte-identical to Hound Around vs 70/121 (57.9%) to HAFH",
+      "Schema-only fingerprints: 37/52 (71.2%) exact vs Hound Around and 37/54 (68.5%) vs HAFH",
+      "HAFH frontend/app/components/sections/HeroMarquee.tsx contains Boxers alt fallbacks and is byte-identical to current Boxers HeroMarquee.tsx; this proves downstream cross-contamination/shared code, but does not outweigh direct root-commit provenance"
+    ]
+  },
+  "sanity": {
+    "projectId": "hw1f15qc",
+    "dataset": "production",
+    "apiVersion": "2025-09-25",
+    "studioEmbedded": true,
+    "studioEmbeddedNotes": "Studio exists twice: standalone workspace `studio/` (sanity.config.ts, deployed via `sanity deploy`) AND embedded at frontend/app/studio/[[...tool]]/page.tsx using frontend/sanity.config.ts which imports schema/structure from ../studio/src. next.config.ts transpilePackages:['studio'].",
+    "dependencies": {
+      "sanity": "^5.1.0",
+      "next-sanity": "^12.0.5",
+      "@sanity/client": "^7.13.2",
+      "@sanity/image-url": "^1.2.0",
+      "@sanity/vision": "^5.13.0",
+      "@sanity/assist": "^5.0.3",
+      "@sanity/uuid": "^3.0.2",
+      "sanity-image": "^1.0.0",
+      "sanity-plugin-asset-source-unsplash": "^7.0.4",
+      "@portabletext/react": "NOT A DIRECT DEPENDENCY \u2014 imported in 5 components but resolved transitively via next-sanity"
+    },
+    "plugins": [
+      "presentationTool",
+      "structureTool (custom structure)",
+      "unsplashImageAsset",
+      "assist",
+      "visionTool"
+    ],
+    "envVars": [
+      "NEXT_PUBLIC_SANITY_PROJECT_ID",
+      "NEXT_PUBLIC_SANITY_DATASET",
+      "NEXT_PUBLIC_SANITY_API_VERSION",
+      "NEXT_PUBLIC_SANITY_STUDIO_URL",
+      "SANITY_API_READ_TOKEN",
+      "SANITY_STUDIO_PROJECT_ID",
+      "SANITY_STUDIO_DATASET",
+      "SANITY_STUDIO_PREVIEW_URL",
+      "SANITY_STUDIO_STUDIO_HOST"
+    ]
+  },
+  "framework": {
+    "next": "16.1.1",
+    "router": "app",
+    "react": "19.2.3",
+    "tailwind": "NOT FOUND"
+  },
+  "documentTypes": [
+    {
+      "name": "page",
+      "title": "Page",
+      "singleton": false,
+      "file": "studio/src/schemaTypes/documents/page.ts",
+      "fields": [
+        {
+          "name": "name",
+          "title": "name",
+          "type": "string",
+          "required": true,
+          "consumedBy": [],
+          "unused": false,
+          "validation": "required (generated schema)"
+        },
+        {
+          "name": "slug",
+          "title": "slug",
+          "type": "slug",
+          "required": true,
+          "consumedBy": [],
+          "unused": false,
+          "validation": "required (generated schema)"
+        },
+        {
+          "name": "seo",
+          "title": "seo",
+          "type": "seo",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "pageBuilder",
+          "title": "pageBuilder",
+          "type": "array",
+          "required": false,
+          "consumedBy": [],
+          "unused": false,
+          "of": [
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object"
+          ],
+          "notes": "Exact union member list is generated in sanity.schema.json and authored in studio/src/schemaTypes/documents/page.ts"
+        }
+      ]
+    },
+    {
+      "name": "service",
+      "title": "Service",
+      "singleton": false,
+      "file": "studio/src/schemaTypes/documents/service.ts",
+      "fields": [
+        {
+          "name": "title",
+          "title": "title",
+          "type": "string",
+          "required": true,
+          "consumedBy": [],
+          "unused": false,
+          "validation": "required (generated schema)"
+        },
+        {
+          "name": "slug",
+          "title": "slug",
+          "type": "slug",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "sticker",
+          "title": "sticker",
+          "type": "object",
+          "required": false,
+          "consumedBy": [],
+          "unused": false,
+          "hotspot": false
+        },
+        {
+          "name": "shortDescription",
+          "title": "shortDescription",
+          "type": "string",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "tabImage",
+          "title": "tabImage",
+          "type": "object",
+          "required": false,
+          "consumedBy": [],
+          "unused": false,
+          "hotspot": true
+        },
+        {
+          "name": "tabCta",
+          "title": "tabCta",
+          "type": "button",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "heading",
+          "title": "heading",
+          "type": "string",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "seo",
+          "title": "seo",
+          "type": "seo",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "pageBuilder",
+          "title": "pageBuilder",
+          "type": "array",
+          "required": false,
+          "consumedBy": [],
+          "unused": false,
+          "of": [
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object",
+            "object"
+          ],
+          "notes": "Exact union member list is generated in sanity.schema.json and authored in studio/src/schemaTypes/documents/service.ts"
+        }
+      ],
+      "preview": "select: {title: 'title', media: 'tabImage'}"
+    },
+    {
+      "name": "testimonial",
+      "title": "Testimonial",
+      "singleton": false,
+      "file": "studio/src/schemaTypes/documents/testimonial.ts",
+      "preview": "select: {title: 'authorName', subtitle: 'quote'}",
+      "fields": [
+        {
+          "name": "quote",
+          "title": "Quote",
+          "type": "text",
+          "required": true,
+          "validation": "Rule.required()",
+          "consumedBy": [
+            "frontend/app/components/sections/Testimonials.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "authorName",
+          "title": "Author Name",
+          "type": "string",
+          "required": true,
+          "validation": "Rule.required()",
+          "consumedBy": [
+            "frontend/app/components/sections/Testimonials.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "authorLabel",
+          "title": "Author Label",
+          "type": "string",
+          "consumedBy": [
+            "frontend/app/components/sections/Testimonials.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "rating",
+          "title": "Rating",
+          "type": "number",
+          "validation": "Rule.min(1).max(5)",
+          "initialValue": 5,
+          "consumedBy": [
+            "frontend/app/components/sections/Testimonials.tsx"
+          ],
+          "unused": false
+        }
+      ]
+    },
+    {
+      "name": "webcam",
+      "title": "Webcam",
+      "singleton": false,
+      "file": "studio/src/schemaTypes/documents/webcam.ts",
+      "preview": "select {title:'name', group, enabled}; prepare adds emoji + (disabled) suffix",
+      "orderings": "groupSortOrder: group asc, sortOrder asc",
+      "fields": [
+        {
+          "name": "name",
+          "title": "Camera Name",
+          "type": "string",
+          "required": true,
+          "validation": "Rule.required()",
+          "consumedBy": [
+            "frontend/app/components/sections/WebcamGrid.tsx",
+            "frontend/app/components/sections/WebcamEmbed.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "cameraId",
+          "title": "Camera ID",
+          "type": "string",
+          "required": true,
+          "validation": "Rule.required()",
+          "consumedBy": [
+            "frontend/app/components/sections/WebcamEmbed.tsx (IPCamLive iframe alias)"
+          ],
+          "unused": false
+        },
+        {
+          "name": "group",
+          "title": "Group",
+          "type": "string",
+          "required": true,
+          "validation": "Rule.required()",
+          "notes": "options list: indoor|outdoor, radio",
+          "consumedBy": [
+            "frontend/app/components/sections/WebcamGrid.tsx",
+            "frontend/sanity/lib/queries.ts (order)"
+          ],
+          "unused": false
+        },
+        {
+          "name": "sortOrder",
+          "title": "Sort Order",
+          "type": "number",
+          "consumedBy": [
+            "frontend/sanity/lib/queries.ts (order)"
+          ],
+          "unused": false
+        },
+        {
+          "name": "enabled",
+          "title": "Enabled",
+          "type": "boolean",
+          "initialValue": true,
+          "consumedBy": [
+            "frontend/sanity/lib/queries.ts (filter enabled == true)"
+          ],
+          "unused": false
+        }
+      ]
+    }
+  ],
+  "objectTypes": [
+    {
+      "name": "seo",
+      "title": "SEO & Metadata",
+      "file": "studio/src/schemaTypes/objects/seo.ts",
+      "notes": "options collapsible/collapsed",
+      "fields": [
+        {
+          "name": "metaTitle",
+          "title": "Meta Title",
+          "type": "string",
+          "validation": "Rule.warning().max(70)",
+          "consumedBy": [
+            "frontend/app/page.tsx",
+            "frontend/app/[slug]/page.tsx",
+            "frontend/app/services/[slug]/page.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "metaDescription",
+          "title": "Meta Description",
+          "type": "text",
+          "validation": "Rule.warning().max(160)",
+          "consumedBy": [
+            "same 3 generateMetadata fns"
+          ],
+          "unused": false
+        },
+        {
+          "name": "ogImage",
+          "title": "Social Share Image",
+          "type": "image",
+          "hotspot": true,
+          "notes": "image field: alt (string)",
+          "consumedBy": [
+            "same 3 generateMetadata fns via resolveOpenGraphImage"
+          ],
+          "unused": false
+        },
+        {
+          "name": "noIndex",
+          "title": "Hide from Search Engines",
+          "type": "boolean",
+          "initialValue": false,
+          "consumedBy": [
+            "3 generateMetadata fns (robots)",
+            "frontend/app/sitemap.ts (exclusion)"
+          ],
+          "unused": false
+        }
+      ]
+    },
+    {
+      "name": "button",
+      "title": "(no title)",
+      "file": "studio/src/schemaTypes/objects/button.ts",
+      "fields": [
+        {
+          "name": "buttonText",
+          "title": "Button Text",
+          "type": "string",
+          "consumedBy": [
+            "frontend/app/components/ui/Button.tsx via section components"
+          ],
+          "unused": false
+        },
+        {
+          "name": "link",
+          "title": "Button Link",
+          "type": "link",
+          "consumedBy": [
+            "frontend/app/components/ui/Button.tsx",
+            "frontend/app/components/ResolvedLink.tsx"
+          ],
+          "unused": false
+        }
+      ]
+    },
+    {
+      "name": "link",
+      "title": "Link",
+      "file": "studio/src/schemaTypes/objects/link.ts",
+      "notes": "Mechanically divergent from Hound Around; fields regenerated from sanity.schema.json and source file.",
+      "fields": [
+        {
+          "name": "linkType",
+          "title": "linkType",
+          "type": "union",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "href",
+          "title": "href",
+          "type": "string",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "page",
+          "title": "page",
+          "type": "union",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "queryString",
+          "title": "queryString",
+          "type": "string",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "openInNewTab",
+          "title": "openInNewTab",
+          "type": "boolean",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        }
+      ]
+    },
+    {
+      "name": "blockContent",
+      "title": "Block Content",
+      "file": "studio/src/schemaTypes/objects/blockContent.tsx",
+      "fields": [],
+      "notes": "type: array \u2014 see portableTextConfigs[0]"
+    },
+    {
+      "name": "blockContentTextOnly",
+      "title": "Block Content (Simple - Text Only)",
+      "file": "studio/src/schemaTypes/objects/blockContentTextOnly.tsx",
+      "fields": [],
+      "notes": "type: array \u2014 see portableTextConfigs[1]"
+    },
+    {
+      "name": "callToAction",
+      "title": "Call to Action",
+      "file": "studio/src/schemaTypes/objects/callToAction.ts",
+      "notes": "field groups: contents (default), media, button, designSystem. Preview: heading + image. UNUSED in live dataset.",
+      "fields": [
+        {
+          "name": "eyebrow",
+          "title": "Eyebrow",
+          "type": "string",
+          "consumedBy": [
+            "frontend/app/components/Cta.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "heading",
+          "title": "Heading",
+          "type": "string",
+          "required": true,
+          "validation": "Rule.required()",
+          "consumedBy": [
+            "Cta.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "body",
+          "title": "(none)",
+          "type": "blockContentTextOnly",
+          "consumedBy": [
+            "Cta.tsx via CustomPortableText"
+          ],
+          "unused": false
+        },
+        {
+          "name": "button",
+          "title": "(none)",
+          "type": "button",
+          "consumedBy": [
+            "Cta.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "image",
+          "title": "(none)",
+          "type": "image",
+          "hotspot": true,
+          "consumedBy": [
+            "Cta.tsx (alt hardcoded 'Demo image')"
+          ],
+          "unused": false
+        },
+        {
+          "name": "theme",
+          "title": "Theme",
+          "type": "string",
+          "initialValue": "light",
+          "notes": "options light|dark radio",
+          "consumedBy": [
+            "Cta.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "contentAlignment",
+          "title": "Content Order",
+          "type": "string",
+          "initialValue": "textFirst",
+          "hidden": "({parent}) => !Boolean(parent?.image?.asset)",
+          "notes": "options textFirst|imageFirst radio",
+          "consumedBy": [
+            "Cta.tsx"
+          ],
+          "unused": false
+        }
+      ]
+    },
+    {
+      "name": "infoSection",
+      "title": "Info Section",
+      "file": "studio/src/schemaTypes/objects/infoSection.ts",
+      "notes": "UNUSED in live dataset",
+      "fields": [
+        {
+          "name": "heading",
+          "title": "Heading",
+          "type": "string",
+          "consumedBy": [
+            "frontend/app/components/InfoSection.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "subheading",
+          "title": "Subheading",
+          "type": "string",
+          "consumedBy": [
+            "InfoSection.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "content",
+          "title": "Content",
+          "type": "blockContent",
+          "consumedBy": [
+            "InfoSection.tsx via CustomPortableText"
+          ],
+          "unused": false
+        }
+      ]
+    },
+    {
+      "name": "hero",
+      "title": "Hero",
+      "file": "studio/src/schemaTypes/objects/hero.ts",
+      "fields": [
+        {
+          "name": "eyebrow",
+          "title": "Eyebrow Text",
+          "type": "string",
+          "consumedBy": [
+            "frontend/app/components/sections/Hero.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "heading",
+          "title": "Heading",
+          "type": "string",
+          "required": true,
+          "validation": "Rule.required()",
+          "consumedBy": [
+            "Hero.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "subtext",
+          "title": "Subtext",
+          "type": "text",
+          "consumedBy": [
+            "Hero.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "primaryCta",
+          "title": "Primary CTA",
+          "type": "button",
+          "consumedBy": [
+            "Hero.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "secondaryCta",
+          "title": "Secondary CTA",
+          "type": "button",
+          "consumedBy": [
+            "Hero.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "reviewRating",
+          "title": "Review Star Rating",
+          "type": "number",
+          "validation": "Rule.min(1).max(5)",
+          "consumedBy": [
+            "Hero.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "reviewText",
+          "title": "Review Text",
+          "type": "string",
+          "consumedBy": [
+            "Hero.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "trustLine",
+          "title": "Trust Line",
+          "type": "string",
+          "consumedBy": [
+            "Hero.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "heroImage",
+          "title": "Hero Image",
+          "type": "image",
+          "hotspot": true,
+          "consumedBy": [
+            "Hero.tsx (width 960)"
+          ],
+          "unused": false
+        }
+      ]
+    },
+    {
+      "name": "imageRow",
+      "title": "Image Row",
+      "file": "studio/src/schemaTypes/objects/imageRow.ts",
+      "notes": "UNUSED in live dataset",
+      "fields": [
+        {
+          "name": "images",
+          "title": "Images",
+          "type": "array",
+          "of": [
+            "image (hotspot, fields: alt string)"
+          ],
+          "validation": "Rule.min(1).max(6)",
+          "consumedBy": [
+            "frontend/app/components/sections/ImageRow.tsx (width 400)"
+          ],
+          "unused": false
+        }
+      ]
+    },
+    {
+      "name": "featureCards",
+      "title": "Feature Cards",
+      "file": "studio/src/schemaTypes/objects/featureCards.ts",
+      "fields": [
+        {
+          "name": "heading",
+          "title": "Heading",
+          "type": "string",
+          "required": true,
+          "validation": "Rule.required()",
+          "consumedBy": [
+            "frontend/app/components/sections/FeatureCards.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "subheading",
+          "title": "Subheading",
+          "type": "text",
+          "consumedBy": [
+            "FeatureCards.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "stickerLeft",
+          "title": "Left Sticker",
+          "type": "image",
+          "notes": "field: alt",
+          "consumedBy": [
+            "FeatureCards.tsx (width 160)"
+          ],
+          "unused": false
+        },
+        {
+          "name": "stickerRight",
+          "title": "Right Sticker",
+          "type": "image",
+          "notes": "field: alt",
+          "consumedBy": [
+            "FeatureCards.tsx (width 160)"
+          ],
+          "unused": false
+        },
+        {
+          "name": "features",
+          "title": "Features",
+          "type": "array",
+          "of": [
+            "inline object {icon: string (Iconify name), title: string required, description: text}"
+          ],
+          "consumedBy": [
+            "FeatureCards.tsx (Iconify @iconify/react)"
+          ],
+          "unused": false
+        },
+        {
+          "name": "cta",
+          "title": "CTA Button",
+          "type": "button",
+          "consumedBy": [
+            "FeatureCards.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "trustLine",
+          "title": "Trust Line",
+          "type": "string",
+          "consumedBy": [
+            "FeatureCards.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "darkMode",
+          "title": "Dark Mode",
+          "type": "boolean",
+          "initialValue": true,
+          "consumedBy": [],
+          "unused": true,
+          "notes": "Typed in component props but never destructured/rendered \u2014 DEAD FIELD"
+        }
+      ]
+    },
+    {
+      "name": "serviceTabs",
+      "title": "Service Tabs",
+      "file": "studio/src/schemaTypes/objects/serviceTabs.ts",
+      "fields": [
+        {
+          "name": "eyebrow",
+          "title": "Eyebrow Text",
+          "type": "string",
+          "consumedBy": [
+            "frontend/app/components/sections/ServiceTabs.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "heading",
+          "title": "Heading",
+          "type": "string",
+          "required": true,
+          "validation": "Rule.required()",
+          "consumedBy": [
+            "ServiceTabs.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "tabs",
+          "title": "Service Tabs",
+          "type": "array",
+          "of": [
+            "reference"
+          ],
+          "to": [
+            "service"
+          ],
+          "consumedBy": [
+            "ServiceTabs.tsx (dereferenced in GROQ)"
+          ],
+          "unused": false
+        }
+      ]
+    },
+    {
+      "name": "statsBar",
+      "title": "Stats Bar",
+      "file": "studio/src/schemaTypes/objects/statsBar.ts",
+      "fields": [
+        {
+          "name": "stats",
+          "title": "Stats",
+          "type": "array",
+          "of": [
+            "inline object {value: string required, label: string required}"
+          ],
+          "consumedBy": [
+            "frontend/app/components/sections/StatsBar.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "showLogo",
+          "title": "Show Logo",
+          "type": "boolean",
+          "initialValue": true,
+          "consumedBy": [
+            "StatsBar.tsx"
+          ],
+          "unused": false
+        }
+      ]
+    },
+    {
+      "name": "webcamPreview",
+      "title": "Webcam Preview",
+      "file": "studio/src/schemaTypes/objects/webcamPreview.ts",
+      "notes": "UNUSED in live dataset",
+      "fields": [
+        {
+          "name": "eyebrow",
+          "title": "Eyebrow Text",
+          "type": "string",
+          "consumedBy": [
+            "frontend/app/components/sections/WebcamPreview.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "heading",
+          "title": "Heading",
+          "type": "string",
+          "required": true,
+          "validation": "Rule.required()",
+          "consumedBy": [
+            "WebcamPreview.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "previewImage",
+          "title": "Preview Image",
+          "type": "image",
+          "hotspot": true,
+          "consumedBy": [
+            "WebcamPreview.tsx (width 600)"
+          ],
+          "unused": false
+        },
+        {
+          "name": "passwordProtected",
+          "title": "Password Protected",
+          "type": "boolean",
+          "initialValue": true,
+          "consumedBy": [
+            "WebcamPreview.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "webcamUrl",
+          "title": "Webcam URL",
+          "type": "url",
+          "consumedBy": [],
+          "unused": true,
+          "notes": "Typed in props but never destructured/rendered \u2014 DEAD FIELD"
+        }
+      ]
+    },
+    {
+      "name": "testimonials",
+      "title": "Testimonials",
+      "file": "studio/src/schemaTypes/objects/testimonials.ts",
+      "notes": "Mechanically divergent from Hound Around; fields regenerated from sanity.schema.json and source file.",
+      "fields": [
+        {
+          "name": "icon",
+          "title": "icon",
+          "type": "object",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "heading",
+          "title": "heading",
+          "type": "string",
+          "required": true,
+          "consumedBy": [],
+          "unused": false,
+          "validation": "required (generated schema)"
+        },
+        {
+          "name": "reviews",
+          "title": "reviews",
+          "type": "array",
+          "required": false,
+          "consumedBy": [],
+          "unused": false,
+          "of": [
+            "object"
+          ]
+        },
+        {
+          "name": "googleRating",
+          "title": "googleRating",
+          "type": "string",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "googleReviewCount",
+          "title": "googleReviewCount",
+          "type": "number",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "googleReviewsUrl",
+          "title": "googleReviewsUrl",
+          "type": "string",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        }
+      ]
+    },
+    {
+      "name": "ctaBanner",
+      "title": "CTA Banner",
+      "file": "studio/src/schemaTypes/objects/ctaBanner.ts",
+      "notes": "Mechanically divergent from Hound Around; fields regenerated from sanity.schema.json and source file.",
+      "fields": [
+        {
+          "name": "icon",
+          "title": "icon",
+          "type": "object",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "stickerImage",
+          "title": "stickerImage",
+          "type": "object",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "heading",
+          "title": "heading",
+          "type": "string",
+          "required": true,
+          "consumedBy": [],
+          "unused": false,
+          "validation": "required (generated schema)"
+        },
+        {
+          "name": "description",
+          "title": "description",
+          "type": "string",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "backgroundImage",
+          "title": "backgroundImage",
+          "type": "object",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "sideImage",
+          "title": "sideImage",
+          "type": "object",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "textAlign",
+          "title": "textAlign",
+          "type": "union",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "cta",
+          "title": "cta",
+          "type": "button",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "showRating",
+          "title": "showRating",
+          "type": "boolean",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "ratingText",
+          "title": "ratingText",
+          "type": "string",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        }
+      ]
+    },
+    {
+      "name": "splitContent",
+      "title": "Split Content",
+      "file": "studio/src/schemaTypes/objects/splitContent.ts",
+      "notes": "Mechanically divergent from Hound Around; fields regenerated from sanity.schema.json and source file.",
+      "fields": [
+        {
+          "name": "eyebrow",
+          "title": "eyebrow",
+          "type": "string",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "heading",
+          "title": "heading",
+          "type": "string",
+          "required": true,
+          "consumedBy": [],
+          "unused": false,
+          "validation": "required (generated schema)"
+        },
+        {
+          "name": "body",
+          "title": "body",
+          "type": "blockContent",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "link",
+          "title": "link",
+          "type": "splitContent.link",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "badge",
+          "title": "badge",
+          "type": "object",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "image",
+          "title": "image",
+          "type": "object",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "stickerImage",
+          "title": "stickerImage",
+          "type": "object",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "imagePosition",
+          "title": "imagePosition",
+          "type": "union",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "backgroundColor",
+          "title": "backgroundColor",
+          "type": "union",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        }
+      ]
+    },
+    {
+      "name": "faqAccordion",
+      "title": "FAQ Accordion",
+      "file": "studio/src/schemaTypes/objects/faqAccordion.ts",
+      "fields": [
+        {
+          "name": "eyebrow",
+          "title": "Eyebrow",
+          "type": "string",
+          "consumedBy": [
+            "frontend/app/components/sections/FaqAccordion.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "heading",
+          "title": "Heading",
+          "type": "string",
+          "required": true,
+          "validation": "Rule.required()",
+          "consumedBy": [
+            "FaqAccordion.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "faqs",
+          "title": "FAQs",
+          "type": "array",
+          "of": [
+            "faq: inline object {question: string required, answer: blockContent}"
+          ],
+          "consumedBy": [
+            "FaqAccordion.tsx \u2014 answer via BARE <PortableText> + toPlainText for FAQPage JSON-LD"
+          ],
+          "unused": false
+        }
+      ]
+    },
+    {
+      "name": "pricingTable",
+      "title": "Pricing Table",
+      "file": "studio/src/schemaTypes/objects/pricingTable.ts",
+      "notes": "Mechanically divergent from Hound Around; fields regenerated from sanity.schema.json and source file.",
+      "fields": [
+        {
+          "name": "eyebrow",
+          "title": "eyebrow",
+          "type": "string",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "heading",
+          "title": "heading",
+          "type": "string",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "description",
+          "title": "description",
+          "type": "string",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "backgroundColor",
+          "title": "backgroundColor",
+          "type": "union",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "categories",
+          "title": "categories",
+          "type": "array",
+          "required": false,
+          "consumedBy": [],
+          "unused": false,
+          "of": [
+            "object"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "teamGrid",
+      "title": "Team Grid",
+      "file": "studio/src/schemaTypes/objects/teamGrid.ts",
+      "notes": "UNUSED in live dataset",
+      "fields": [
+        {
+          "name": "eyebrow",
+          "title": "Eyebrow",
+          "type": "string",
+          "consumedBy": [
+            "frontend/app/components/sections/TeamGrid.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "heading",
+          "title": "Heading",
+          "type": "string",
+          "consumedBy": [
+            "TeamGrid.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "members",
+          "title": "Team Members",
+          "type": "array",
+          "of": [
+            "teamMember: {name: string required, role: string, bio: text, certifications: string, image: image hotspot}"
+          ],
+          "consumedBy": [
+            "TeamGrid.tsx (width 400)"
+          ],
+          "unused": false
+        }
+      ]
+    },
+    {
+      "name": "galleryGrid",
+      "title": "Gallery Grid",
+      "file": "studio/src/schemaTypes/objects/galleryGrid.ts",
+      "notes": "Mechanically divergent from Hound Around; fields regenerated from sanity.schema.json and source file.",
+      "fields": [
+        {
+          "name": "eyebrow",
+          "title": "eyebrow",
+          "type": "string",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "heading",
+          "title": "heading",
+          "type": "string",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "images",
+          "title": "images",
+          "type": "array",
+          "required": false,
+          "consumedBy": [],
+          "unused": false,
+          "of": [
+            "object"
+          ]
+        },
+        {
+          "name": "columns",
+          "title": "columns",
+          "type": "union",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "displayStyle",
+          "title": "displayStyle",
+          "type": "union",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "enableLightbox",
+          "title": "enableLightbox",
+          "type": "boolean",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "accentImage",
+          "title": "accentImage",
+          "type": "object",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "backgroundColor",
+          "title": "backgroundColor",
+          "type": "union",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        }
+      ]
+    },
+    {
+      "name": "contactForm",
+      "title": "Contact Form",
+      "file": "studio/src/schemaTypes/objects/contactForm.ts",
+      "notes": "Mechanically divergent from Hound Around; fields regenerated from sanity.schema.json and source file.",
+      "fields": [
+        {
+          "name": "eyebrow",
+          "title": "eyebrow",
+          "type": "string",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "heading",
+          "title": "heading",
+          "type": "string",
+          "required": true,
+          "consumedBy": [],
+          "unused": false,
+          "validation": "required (generated schema)"
+        },
+        {
+          "name": "description",
+          "title": "description",
+          "type": "blockContent",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "formFields",
+          "title": "formFields",
+          "type": "array",
+          "required": false,
+          "consumedBy": [],
+          "unused": false,
+          "of": [
+            "object"
+          ]
+        },
+        {
+          "name": "recipientEmail",
+          "title": "recipientEmail",
+          "type": "string",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "submitButtonText",
+          "title": "submitButtonText",
+          "type": "string",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "successMessage",
+          "title": "successMessage",
+          "type": "string",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "showMap",
+          "title": "showMap",
+          "type": "boolean",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "mapEmbedUrl",
+          "title": "mapEmbedUrl",
+          "type": "string",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "nextSteps",
+          "title": "nextSteps",
+          "type": "array",
+          "required": false,
+          "consumedBy": [],
+          "unused": false,
+          "of": [
+            "object"
+          ]
+        },
+        {
+          "name": "image",
+          "title": "image",
+          "type": "object",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "address",
+          "title": "address",
+          "type": "string",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "phone",
+          "title": "phone",
+          "type": "string",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "email",
+          "title": "email",
+          "type": "string",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        }
+      ]
+    },
+    {
+      "name": "heroSplit",
+      "title": "Hero Split",
+      "file": "studio/src/schemaTypes/objects/heroSplit.ts",
+      "notes": "Mechanically divergent from Hound Around; fields regenerated from sanity.schema.json and source file.",
+      "fields": [
+        {
+          "name": "eyebrow",
+          "title": "eyebrow",
+          "type": "string",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "heading",
+          "title": "heading",
+          "type": "string",
+          "required": true,
+          "consumedBy": [],
+          "unused": false,
+          "validation": "required (generated schema)"
+        },
+        {
+          "name": "body",
+          "title": "body",
+          "type": "string",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "primaryCta",
+          "title": "primaryCta",
+          "type": "button",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "secondaryCta",
+          "title": "secondaryCta",
+          "type": "button",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "reviewRating",
+          "title": "reviewRating",
+          "type": "number",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "reviewText",
+          "title": "reviewText",
+          "type": "string",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "trustLine",
+          "title": "trustLine",
+          "type": "string",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "image",
+          "title": "image",
+          "type": "object",
+          "required": true,
+          "consumedBy": [],
+          "unused": false,
+          "validation": "required (generated schema)"
+        },
+        {
+          "name": "stickerImage",
+          "title": "stickerImage",
+          "type": "object",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "imagePosition",
+          "title": "imagePosition",
+          "type": "union",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "backgroundColor",
+          "title": "backgroundColor",
+          "type": "union",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        }
+      ]
+    },
+    {
+      "name": "heroBanner",
+      "title": "Hero Banner",
+      "file": "studio/src/schemaTypes/objects/heroBanner.ts",
+      "fields": [
+        {
+          "name": "eyebrow",
+          "title": "Eyebrow Text",
+          "type": "string",
+          "consumedBy": [
+            "frontend/app/components/sections/HeroBanner.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "heading",
+          "title": "Heading",
+          "type": "string",
+          "required": true,
+          "validation": "Rule.required()",
+          "consumedBy": [
+            "HeroBanner.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "subtext",
+          "title": "Subtext",
+          "type": "text",
+          "consumedBy": [
+            "HeroBanner.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "primaryCta",
+          "title": "Primary CTA",
+          "type": "button",
+          "consumedBy": [
+            "HeroBanner.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "backgroundImage",
+          "title": "Background Image",
+          "type": "image",
+          "hotspot": true,
+          "consumedBy": [
+            "HeroBanner.tsx (width 1400)"
+          ],
+          "unused": false
+        },
+        {
+          "name": "overlayOpacity",
+          "title": "Overlay Opacity",
+          "type": "string",
+          "initialValue": "medium",
+          "notes": "light|medium|heavy radio",
+          "consumedBy": [
+            "HeroBanner.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "minHeight",
+          "title": "Minimum Height",
+          "type": "string",
+          "initialValue": "standard",
+          "notes": "standard|tall|fullscreen radio",
+          "consumedBy": [
+            "HeroBanner.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "backgroundColor",
+          "title": "Background Color",
+          "type": "string",
+          "initialValue": "cream",
+          "notes": "cream|sand|forest radio; used when no bg image",
+          "consumedBy": [
+            "HeroBanner.tsx"
+          ],
+          "unused": false
+        }
+      ]
+    },
+    {
+      "name": "heroMinimal",
+      "title": "Hero Minimal",
+      "file": "studio/src/schemaTypes/objects/heroMinimal.ts",
+      "fields": [
+        {
+          "name": "eyebrow",
+          "title": "Eyebrow Text",
+          "type": "string",
+          "consumedBy": [
+            "frontend/app/components/sections/HeroMinimal.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "rating",
+          "title": "Rating",
+          "type": "string",
+          "consumedBy": [
+            "HeroMinimal.tsx (ticker mode)"
+          ],
+          "unused": false
+        },
+        {
+          "name": "heading",
+          "title": "Heading",
+          "type": "string",
+          "required": true,
+          "validation": "Rule.required()",
+          "consumedBy": [
+            "HeroMinimal.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "headingAccent",
+          "title": "Heading Accent",
+          "type": "string",
+          "consumedBy": [
+            "HeroMinimal.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "subtext",
+          "title": "Subtext",
+          "type": "text",
+          "consumedBy": [
+            "HeroMinimal.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "backgroundColor",
+          "title": "Background Color",
+          "type": "string",
+          "initialValue": "cream",
+          "notes": "cream|sand|forest radio",
+          "consumedBy": [
+            "HeroMinimal.tsx"
+          ],
+          "unused": false
+        }
+      ]
+    },
+    {
+      "name": "serviceCards",
+      "title": "Service Cards",
+      "file": "studio/src/schemaTypes/objects/serviceCards.ts",
+      "notes": "UNUSED in live dataset",
+      "fields": [
+        {
+          "name": "eyebrow",
+          "title": "Eyebrow Text",
+          "type": "string",
+          "consumedBy": [
+            "frontend/app/components/sections/ServiceCards.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "heading",
+          "title": "Heading",
+          "type": "string",
+          "required": true,
+          "validation": "Rule.required()",
+          "consumedBy": [
+            "ServiceCards.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "description",
+          "title": "Description",
+          "type": "text",
+          "consumedBy": [
+            "ServiceCards.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "cards",
+          "title": "Cards",
+          "type": "array",
+          "of": [
+            "inline {image: image hotspot, title: string required, description: text, cta: button}"
+          ],
+          "consumedBy": [
+            "ServiceCards.tsx (width 400)"
+          ],
+          "unused": false
+        },
+        {
+          "name": "columns",
+          "title": "Columns",
+          "type": "number",
+          "initialValue": 3,
+          "notes": "2|3|4",
+          "consumedBy": [
+            "ServiceCards.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "backgroundColor",
+          "title": "Background Color",
+          "type": "string",
+          "initialValue": "cream",
+          "notes": "cream|sand radio",
+          "consumedBy": [
+            "ServiceCards.tsx"
+          ],
+          "unused": false
+        }
+      ]
+    },
+    {
+      "name": "featureList",
+      "title": "Feature List",
+      "file": "studio/src/schemaTypes/objects/featureList.ts",
+      "notes": "UNUSED in live dataset",
+      "fields": [
+        {
+          "name": "eyebrow",
+          "title": "Eyebrow Text",
+          "type": "string",
+          "consumedBy": [
+            "frontend/app/components/sections/FeatureList.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "heading",
+          "title": "Heading",
+          "type": "string",
+          "required": true,
+          "validation": "Rule.required()",
+          "consumedBy": [
+            "FeatureList.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "features",
+          "title": "Features",
+          "type": "array",
+          "of": [
+            "inline {title: string required, body: blockContent, image: image hotspot, cta: button}"
+          ],
+          "consumedBy": [
+            "FeatureList.tsx \u2014 body via BARE <PortableText>; image width 600"
+          ],
+          "unused": false
+        },
+        {
+          "name": "showNumbers",
+          "title": "Show Numbers",
+          "type": "boolean",
+          "initialValue": true,
+          "consumedBy": [
+            "FeatureList.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "backgroundColor",
+          "title": "Background Color",
+          "type": "string",
+          "initialValue": "cream",
+          "notes": "cream|sand radio",
+          "consumedBy": [
+            "FeatureList.tsx"
+          ],
+          "unused": false
+        }
+      ]
+    },
+    {
+      "name": "processSteps",
+      "title": "Process Steps",
+      "file": "studio/src/schemaTypes/objects/processSteps.ts",
+      "fields": [
+        {
+          "name": "eyebrow",
+          "title": "Eyebrow Text",
+          "type": "string",
+          "consumedBy": [
+            "frontend/app/components/sections/ProcessSteps.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "heading",
+          "title": "Heading",
+          "type": "string",
+          "required": true,
+          "validation": "Rule.required()",
+          "consumedBy": [
+            "ProcessSteps.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "description",
+          "title": "Description",
+          "type": "text",
+          "consumedBy": [
+            "ProcessSteps.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "steps",
+          "title": "Steps",
+          "type": "array",
+          "of": [
+            "step: {title: string required, badge: string, description: text, icon: string (Iconify)}"
+          ],
+          "validation": "Rule.min(2).max(6)",
+          "consumedBy": [
+            "ProcessSteps.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "cta",
+          "title": "CTA Button",
+          "type": "button",
+          "consumedBy": [
+            "ProcessSteps.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "backgroundColor",
+          "title": "Background Color",
+          "type": "string",
+          "initialValue": "cream",
+          "notes": "cream|sand|forest radio",
+          "consumedBy": [
+            "ProcessSteps.tsx"
+          ],
+          "unused": false
+        }
+      ]
+    },
+    {
+      "name": "contentColumns",
+      "title": "Content Columns",
+      "file": "studio/src/schemaTypes/objects/contentColumns.ts",
+      "notes": "UNUSED in live dataset",
+      "fields": [
+        {
+          "name": "eyebrow",
+          "title": "Eyebrow Text",
+          "type": "string",
+          "consumedBy": [
+            "frontend/app/components/sections/ContentColumns.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "heading",
+          "title": "Heading",
+          "type": "string",
+          "consumedBy": [
+            "ContentColumns.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "columns",
+          "title": "Columns",
+          "type": "array",
+          "of": [
+            "inline {image: image hotspot, heading: string, body: blockContent, cta: button}"
+          ],
+          "validation": "Rule.min(2).max(3)",
+          "consumedBy": [
+            "ContentColumns.tsx \u2014 body via BARE <PortableText>; image width 500"
+          ],
+          "unused": false
+        },
+        {
+          "name": "layout",
+          "title": "Layout",
+          "type": "number",
+          "initialValue": 2,
+          "notes": "2|3",
+          "consumedBy": [
+            "ContentColumns.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "backgroundColor",
+          "title": "Background Color",
+          "type": "string",
+          "initialValue": "cream",
+          "notes": "cream|sand radio",
+          "consumedBy": [
+            "ContentColumns.tsx"
+          ],
+          "unused": false
+        }
+      ]
+    },
+    {
+      "name": "iconGrid",
+      "title": "Icon Grid",
+      "file": "studio/src/schemaTypes/objects/iconGrid.ts",
+      "fields": [
+        {
+          "name": "eyebrow",
+          "title": "Eyebrow Text",
+          "type": "string",
+          "consumedBy": [
+            "frontend/app/components/sections/IconGrid.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "heading",
+          "title": "Heading",
+          "type": "string",
+          "required": true,
+          "validation": "Rule.required()",
+          "consumedBy": [
+            "IconGrid.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "description",
+          "title": "Description",
+          "type": "text",
+          "consumedBy": [
+            "IconGrid.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "items",
+          "title": "Items",
+          "type": "array",
+          "of": [
+            "inline {icon: string (Iconify), title: string required, description: text}"
+          ],
+          "consumedBy": [
+            "IconGrid.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "columns",
+          "title": "Columns",
+          "type": "number",
+          "initialValue": 3,
+          "notes": "2|3|4",
+          "consumedBy": [
+            "IconGrid.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "accentImage",
+          "title": "Accent Image",
+          "type": "image",
+          "notes": "field: alt",
+          "consumedBy": [
+            "IconGrid.tsx (width 200)"
+          ],
+          "unused": false
+        },
+        {
+          "name": "backgroundColor",
+          "title": "Background Color",
+          "type": "string",
+          "initialValue": "cream",
+          "notes": "cream|sand|forest radio",
+          "consumedBy": [
+            "IconGrid.tsx"
+          ],
+          "unused": false
+        }
+      ]
+    },
+    {
+      "name": "videoSection",
+      "title": "Video Section",
+      "file": "studio/src/schemaTypes/objects/videoSection.ts",
+      "notes": "UNUSED in live dataset",
+      "fields": [
+        {
+          "name": "eyebrow",
+          "title": "Eyebrow Text",
+          "type": "string",
+          "consumedBy": [
+            "frontend/app/components/sections/VideoSection.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "heading",
+          "title": "Heading",
+          "type": "string",
+          "consumedBy": [
+            "VideoSection.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "description",
+          "title": "Description",
+          "type": "text",
+          "consumedBy": [
+            "VideoSection.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "videoUrl",
+          "title": "Video URL",
+          "type": "url",
+          "required": true,
+          "validation": "Rule.required()",
+          "notes": "YouTube or Vimeo",
+          "consumedBy": [
+            "VideoSection.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "thumbnail",
+          "title": "Thumbnail",
+          "type": "image",
+          "hotspot": true,
+          "consumedBy": [
+            "VideoSection.tsx (width 960)"
+          ],
+          "unused": false
+        },
+        {
+          "name": "layout",
+          "title": "Layout",
+          "type": "string",
+          "initialValue": "full",
+          "notes": "full|split radio",
+          "consumedBy": [
+            "VideoSection.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "backgroundColor",
+          "title": "Background Color",
+          "type": "string",
+          "initialValue": "cream",
+          "notes": "cream|sand|forest radio",
+          "consumedBy": [
+            "VideoSection.tsx"
+          ],
+          "unused": false
+        }
+      ]
+    },
+    {
+      "name": "fullWidthMedia",
+      "title": "Full Width Media",
+      "file": "studio/src/schemaTypes/objects/fullWidthMedia.ts",
+      "notes": "UNUSED in live dataset",
+      "fields": [
+        {
+          "name": "heading",
+          "title": "Heading",
+          "type": "string",
+          "consumedBy": [
+            "frontend/app/components/sections/FullWidthMedia.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "subtext",
+          "title": "Subtext",
+          "type": "text",
+          "consumedBy": [
+            "FullWidthMedia.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "cta",
+          "title": "CTA Button",
+          "type": "button",
+          "consumedBy": [
+            "FullWidthMedia.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "image",
+          "title": "Image",
+          "type": "image",
+          "hotspot": true,
+          "required": true,
+          "validation": "Rule.required()",
+          "consumedBy": [
+            "FullWidthMedia.tsx (width 1400)"
+          ],
+          "unused": false
+        },
+        {
+          "name": "textAlignment",
+          "title": "Text Alignment",
+          "type": "string",
+          "initialValue": "left",
+          "notes": "left|center|right radio",
+          "consumedBy": [
+            "FullWidthMedia.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "overlayOpacity",
+          "title": "Overlay Opacity",
+          "type": "string",
+          "initialValue": "medium",
+          "notes": "light|medium|heavy radio",
+          "consumedBy": [
+            "FullWidthMedia.tsx"
+          ],
+          "unused": false
+        }
+      ]
+    },
+    {
+      "name": "ctaStrip",
+      "title": "CTA Strip",
+      "file": "studio/src/schemaTypes/objects/ctaStrip.ts",
+      "notes": "Mechanically divergent from Hound Around; fields regenerated from sanity.schema.json and source file.",
+      "fields": [
+        {
+          "name": "icon",
+          "title": "icon",
+          "type": "object",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "heading",
+          "title": "heading",
+          "type": "string",
+          "required": true,
+          "consumedBy": [],
+          "unused": false,
+          "validation": "required (generated schema)"
+        },
+        {
+          "name": "subtext",
+          "title": "subtext",
+          "type": "string",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "cta",
+          "title": "cta",
+          "type": "button",
+          "required": true,
+          "consumedBy": [],
+          "unused": false,
+          "validation": "required (generated schema)"
+        },
+        {
+          "name": "backgroundColor",
+          "title": "backgroundColor",
+          "type": "union",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        }
+      ]
+    },
+    {
+      "name": "logoBar",
+      "title": "Logo Bar",
+      "file": "studio/src/schemaTypes/objects/logoBar.ts",
+      "notes": "UNUSED in live dataset",
+      "fields": [
+        {
+          "name": "heading",
+          "title": "Heading",
+          "type": "string",
+          "consumedBy": [
+            "frontend/app/components/sections/LogoBar.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "logos",
+          "title": "Logos",
+          "type": "array",
+          "of": [
+            "inline {image: image required, alt: string required, url: url}"
+          ],
+          "consumedBy": [
+            "LogoBar.tsx (width 160)"
+          ],
+          "unused": false
+        },
+        {
+          "name": "displayMode",
+          "title": "Display Mode",
+          "type": "string",
+          "initialValue": "grid",
+          "notes": "grid|marquee radio",
+          "consumedBy": [
+            "LogoBar.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "backgroundColor",
+          "title": "Background Color",
+          "type": "string",
+          "initialValue": "cream",
+          "notes": "cream|sand|white radio",
+          "consumedBy": [
+            "LogoBar.tsx"
+          ],
+          "unused": false
+        }
+      ]
+    },
+    {
+      "name": "pricingMatrix",
+      "title": "Pricing Matrix",
+      "file": "studio/src/schemaTypes/objects/pricingMatrix.ts",
+      "notes": "UNUSED in live dataset as standalone block (matrix structure reused inside pricingPageTabs)",
+      "fields": [
+        {
+          "name": "eyebrow",
+          "title": "Eyebrow",
+          "type": "string",
+          "consumedBy": [
+            "frontend/app/components/sections/PricingMatrix.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "heading",
+          "title": "Heading",
+          "type": "string",
+          "consumedBy": [
+            "PricingMatrix.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "description",
+          "title": "Description",
+          "type": "text",
+          "consumedBy": [
+            "PricingMatrix.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "tables",
+          "title": "Tables",
+          "type": "array",
+          "of": [
+            "matrixTable: {tableName: string required, tableDescription: string, columnHeaders: array of string, rows: array of matrixRow {rowLabel: string required, cells: array of matrixCell {value: string, note: string}}}"
+          ],
+          "consumedBy": [
+            "PricingMatrix.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "footnotes",
+          "title": "Footnotes",
+          "type": "array",
+          "of": [
+            "string"
+          ],
+          "consumedBy": [
+            "PricingMatrix.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "backgroundColor",
+          "title": "Background Color",
+          "type": "string",
+          "initialValue": "cream",
+          "notes": "cream|sand radio",
+          "consumedBy": [
+            "PricingMatrix.tsx"
+          ],
+          "unused": false
+        }
+      ]
+    },
+    {
+      "name": "pricingList",
+      "title": "Pricing List",
+      "file": "studio/src/schemaTypes/objects/pricingList.ts",
+      "notes": "Mechanically divergent from Hound Around; fields regenerated from sanity.schema.json and source file.",
+      "fields": [
+        {
+          "name": "eyebrow",
+          "title": "eyebrow",
+          "type": "string",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "heading",
+          "title": "heading",
+          "type": "string",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "description",
+          "title": "description",
+          "type": "string",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "items",
+          "title": "items",
+          "type": "array",
+          "required": false,
+          "consumedBy": [],
+          "unused": false,
+          "of": [
+            "object"
+          ]
+        },
+        {
+          "name": "columns",
+          "title": "columns",
+          "type": "union",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "backgroundColor",
+          "title": "backgroundColor",
+          "type": "union",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        }
+      ]
+    },
+    {
+      "name": "policyNotes",
+      "title": "Policy Notes",
+      "file": "studio/src/schemaTypes/objects/policyNotes.ts",
+      "notes": "UNUSED in live dataset",
+      "fields": [
+        {
+          "name": "eyebrow",
+          "title": "Eyebrow",
+          "type": "string",
+          "consumedBy": [
+            "frontend/app/components/sections/PolicyNotes.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "heading",
+          "title": "Heading",
+          "type": "string",
+          "consumedBy": [
+            "PolicyNotes.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "categories",
+          "title": "Categories",
+          "type": "array",
+          "of": [
+            "policyCategory: {categoryName: string required, policies: array of string}"
+          ],
+          "consumedBy": [
+            "PolicyNotes.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "backgroundColor",
+          "title": "Background Color",
+          "type": "string",
+          "initialValue": "sand",
+          "notes": "cream|sand|forest radio",
+          "consumedBy": [
+            "PolicyNotes.tsx"
+          ],
+          "unused": false
+        }
+      ]
+    },
+    {
+      "name": "featureGrid",
+      "title": "Feature Grid",
+      "file": "studio/src/schemaTypes/objects/featureGrid.ts",
+      "notes": "UNUSED in live dataset",
+      "fields": [
+        {
+          "name": "heading",
+          "title": "Heading",
+          "type": "string",
+          "required": true,
+          "validation": "Rule.required()",
+          "consumedBy": [
+            "frontend/app/components/sections/FeatureGrid.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "cta",
+          "title": "CTA Button",
+          "type": "button",
+          "consumedBy": [
+            "FeatureGrid.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "items",
+          "title": "Items",
+          "type": "array",
+          "of": [
+            "inline {image: image hotspot, icon: string (Iconify fallback), title: string required, description: text}"
+          ],
+          "consumedBy": [
+            "FeatureGrid.tsx (width 128, height 128)"
+          ],
+          "unused": false
+        },
+        {
+          "name": "columns",
+          "title": "Columns",
+          "type": "number",
+          "initialValue": 3,
+          "notes": "3|4 radio",
+          "consumedBy": [
+            "FeatureGrid.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "backgroundColor",
+          "title": "Background Color",
+          "type": "string",
+          "initialValue": "cream",
+          "notes": "cream|sand|forest|black radio",
+          "consumedBy": [
+            "FeatureGrid.tsx"
+          ],
+          "unused": false
+        }
+      ]
+    },
+    {
+      "name": "pricingCalculator",
+      "title": "Pricing Calculator",
+      "file": "studio/src/schemaTypes/objects/pricingCalculator.ts",
+      "notes": "Calculator PRICES are NOT in Sanity \u2014 hardcoded in frontend/app/data/pricingData.ts",
+      "fields": [
+        {
+          "name": "displayMode",
+          "title": "Display Mode",
+          "type": "string",
+          "initialValue": "single",
+          "notes": "single|tabbed radio",
+          "consumedBy": [
+            "frontend/app/components/sections/PricingCalculator.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "calculatorType",
+          "title": "Calculator Type",
+          "type": "string",
+          "hidden": "({parent}) => parent?.displayMode === 'tabbed'",
+          "validation": "custom: required for single mode",
+          "notes": "daycare|boarding|grooming radio",
+          "consumedBy": [
+            "PricingCalculator.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "eyebrow",
+          "title": "Eyebrow",
+          "type": "string",
+          "initialValue": "Pricing Calculator",
+          "consumedBy": [
+            "PricingCalculator.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "heading",
+          "title": "Heading",
+          "type": "string",
+          "required": true,
+          "validation": "Rule.required()",
+          "consumedBy": [
+            "PricingCalculator.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "subheading",
+          "title": "Subheading",
+          "type": "text",
+          "consumedBy": [
+            "PricingCalculator.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "ctaText",
+          "title": "CTA Button Text",
+          "type": "string",
+          "initialValue": "Book Now",
+          "consumedBy": [
+            "PricingCalculator.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "ctaLink",
+          "title": "CTA Link",
+          "type": "link",
+          "consumedBy": [
+            "PricingCalculator.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "taxNote",
+          "title": "Tax Note",
+          "type": "string",
+          "initialValue": "Prices shown before applicable tax",
+          "consumedBy": [
+            "PricingCalculator.tsx"
+          ],
+          "unused": false
+        }
+      ]
+    },
+    {
+      "name": "whatsIncluded",
+      "title": "What's Included",
+      "file": "studio/src/schemaTypes/objects/whatsIncluded.ts",
+      "fields": [
+        {
+          "name": "eyebrow",
+          "title": "Eyebrow Text",
+          "type": "string",
+          "consumedBy": [
+            "frontend/app/components/sections/WhatsIncluded.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "heading",
+          "title": "Heading",
+          "type": "string",
+          "consumedBy": [
+            "WhatsIncluded.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "description",
+          "title": "Description",
+          "type": "text",
+          "consumedBy": [
+            "WhatsIncluded.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "items",
+          "title": "Items",
+          "type": "array",
+          "of": [
+            "inline {icon: string (Iconify), title: string required, description: text}"
+          ],
+          "consumedBy": [
+            "WhatsIncluded.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "layout",
+          "title": "Layout",
+          "type": "string",
+          "initialValue": "card",
+          "notes": "card|inline radio",
+          "consumedBy": [
+            "WhatsIncluded.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "columns",
+          "title": "Columns",
+          "type": "number",
+          "initialValue": 3,
+          "notes": "2|3|4 radio",
+          "consumedBy": [
+            "WhatsIncluded.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "backgroundColor",
+          "title": "Background Color",
+          "type": "string",
+          "initialValue": "cream",
+          "notes": "cream|sand|forest radio",
+          "consumedBy": [
+            "WhatsIncluded.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "iconColor",
+          "title": "Icon Color Scheme",
+          "type": "string",
+          "initialValue": "terracotta",
+          "notes": "terracotta|forest|muted radio",
+          "consumedBy": [
+            "WhatsIncluded.tsx"
+          ],
+          "unused": false
+        }
+      ]
+    },
+    {
+      "name": "requirementsList",
+      "title": "Requirements List",
+      "file": "studio/src/schemaTypes/objects/requirementsList.ts",
+      "fields": [
+        {
+          "name": "eyebrow",
+          "title": "Eyebrow",
+          "type": "string",
+          "consumedBy": [
+            "frontend/app/components/sections/RequirementsList.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "heading",
+          "title": "Heading",
+          "type": "string",
+          "required": true,
+          "validation": "Rule.required()",
+          "consumedBy": [
+            "RequirementsList.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "description",
+          "title": "Description",
+          "type": "text",
+          "consumedBy": [
+            "RequirementsList.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "items",
+          "title": "Checklist Items",
+          "type": "array",
+          "of": [
+            "item: {text: string}"
+          ],
+          "consumedBy": [
+            "RequirementsList.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "link",
+          "title": "Link",
+          "type": "object",
+          "of": [
+            "inline {label: string, link: link}"
+          ],
+          "consumedBy": [
+            "RequirementsList.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "image",
+          "title": "Image",
+          "type": "image",
+          "hotspot": true,
+          "notes": "field: alt",
+          "consumedBy": [
+            "RequirementsList.tsx (width 600)"
+          ],
+          "unused": false
+        },
+        {
+          "name": "imagePosition",
+          "title": "Image Position",
+          "type": "string",
+          "initialValue": "right",
+          "notes": "left|right radio",
+          "consumedBy": [
+            "RequirementsList.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "backgroundColor",
+          "title": "Background Color",
+          "type": "string",
+          "initialValue": "cream",
+          "notes": "cream|sand radio",
+          "consumedBy": [
+            "RequirementsList.tsx"
+          ],
+          "unused": false
+        }
+      ]
+    },
+    {
+      "name": "webcamGrid",
+      "title": "Webcam Grid",
+      "file": "studio/src/schemaTypes/objects/webcamGrid.ts",
+      "fields": [
+        {
+          "name": "heading",
+          "title": "Heading",
+          "type": "string",
+          "initialValue": "Live Webcams",
+          "consumedBy": [
+            "frontend/app/components/sections/WebcamGrid.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "subtext",
+          "title": "Subtext",
+          "type": "text",
+          "consumedBy": [
+            "WebcamGrid.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "trustMessage",
+          "title": "Trust Message",
+          "type": "text",
+          "consumedBy": [
+            "WebcamGrid.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "showGroupHeaders",
+          "title": "Show Group Headers",
+          "type": "boolean",
+          "initialValue": true,
+          "consumedBy": [
+            "WebcamGrid.tsx"
+          ],
+          "unused": false
+        }
+      ],
+      "notes": "GROQ injects sibling query: all enabled webcam docs ordered by group/sortOrder. Gated by /api/webcam-auth (env password + operating hours)"
+    },
+    {
+      "name": "galleryCarousel",
+      "title": "Gallery Carousel",
+      "file": "studio/src/schemaTypes/objects/galleryCarousel.ts",
+      "fields": [
+        {
+          "name": "eyebrow",
+          "title": "Eyebrow",
+          "type": "string",
+          "consumedBy": [
+            "frontend/app/components/sections/GalleryCarousel.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "heading",
+          "title": "Heading",
+          "type": "string",
+          "consumedBy": [
+            "GalleryCarousel.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "images",
+          "title": "Images",
+          "type": "array",
+          "of": [
+            "image (hotspot, fields: alt string, caption string)"
+          ],
+          "consumedBy": [
+            "GalleryCarousel.tsx (width 500; 1600 lightbox)"
+          ],
+          "unused": false
+        },
+        {
+          "name": "enableLightbox",
+          "title": "Enable Lightbox",
+          "type": "boolean",
+          "initialValue": true,
+          "consumedBy": [
+            "GalleryCarousel.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "backgroundColor",
+          "title": "Background Color",
+          "type": "string",
+          "initialValue": "cream",
+          "notes": "cream|sand|forest radio",
+          "consumedBy": [
+            "GalleryCarousel.tsx"
+          ],
+          "unused": false
+        }
+      ]
+    },
+    {
+      "name": "galleryShowcase",
+      "title": "Gallery Showcase",
+      "file": "studio/src/schemaTypes/objects/galleryShowcase.ts",
+      "notes": "UNUSED in live dataset",
+      "fields": [
+        {
+          "name": "eyebrow",
+          "title": "Eyebrow",
+          "type": "string",
+          "consumedBy": [
+            "frontend/app/components/sections/GalleryShowcase.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "heading",
+          "title": "Heading",
+          "type": "string",
+          "consumedBy": [
+            "GalleryShowcase.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "subheading",
+          "title": "Subheading",
+          "type": "text",
+          "consumedBy": [
+            "GalleryShowcase.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "images",
+          "title": "Images",
+          "type": "array",
+          "of": [
+            "image (hotspot, fields: alt string, caption string)"
+          ],
+          "consumedBy": [
+            "GalleryShowcase.tsx (widths 1200/400; 1600 lightbox)"
+          ],
+          "unused": false,
+          "notes": "caption defined but NOT rendered by GalleryShowcase.tsx"
+        },
+        {
+          "name": "backgroundColor",
+          "title": "Background Color",
+          "type": "string",
+          "initialValue": "cream",
+          "notes": "cream|sand radio",
+          "consumedBy": [
+            "GalleryShowcase.tsx"
+          ],
+          "unused": false
+        }
+      ]
+    },
+    {
+      "name": "galleryPage",
+      "title": "Gallery Page",
+      "file": "studio/src/schemaTypes/objects/galleryPage.ts",
+      "fields": [
+        {
+          "name": "heading",
+          "title": "Heading",
+          "type": "string",
+          "consumedBy": [
+            "frontend/app/components/sections/GalleryPage.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "subtext",
+          "title": "Subtext",
+          "type": "text",
+          "consumedBy": [
+            "GalleryPage.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "images",
+          "title": "Images",
+          "type": "array",
+          "of": [
+            "image (hotspot, fields: alt string, caption string)"
+          ],
+          "consumedBy": [
+            "GalleryPage.tsx (widths 500/1000; 1600 lightbox)"
+          ],
+          "unused": false
+        },
+        {
+          "name": "layout",
+          "title": "Layout",
+          "type": "string",
+          "initialValue": "grid",
+          "notes": "grid|single radio",
+          "consumedBy": [
+            "GalleryPage.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "backgroundColor",
+          "title": "Background Color",
+          "type": "string",
+          "initialValue": "cream",
+          "notes": "cream|sand radio",
+          "consumedBy": [
+            "GalleryPage.tsx"
+          ],
+          "unused": false
+        }
+      ]
+    },
+    {
+      "name": "valuePillars",
+      "title": "Value Pillars",
+      "file": "studio/src/schemaTypes/objects/valuePillars.ts",
+      "notes": "UNUSED in live dataset",
+      "fields": [
+        {
+          "name": "eyebrow",
+          "title": "Eyebrow Text",
+          "type": "string",
+          "consumedBy": [
+            "frontend/app/components/sections/ValuePillars.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "heading",
+          "title": "Heading",
+          "type": "string",
+          "consumedBy": [
+            "ValuePillars.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "description",
+          "title": "Description",
+          "type": "text",
+          "consumedBy": [
+            "ValuePillars.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "pillars",
+          "title": "Pillars",
+          "type": "array",
+          "of": [
+            "inline {metric: string required, title: string required, description: text}"
+          ],
+          "consumedBy": [
+            "ValuePillars.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "columns",
+          "title": "Columns",
+          "type": "number",
+          "initialValue": 4,
+          "notes": "2|3|4 radio",
+          "consumedBy": [
+            "ValuePillars.tsx"
+          ],
+          "unused": false
+        },
+        {
+          "name": "accentImage",
+          "title": "Accent Image",
+          "type": "image",
+          "notes": "field: alt",
+          "consumedBy": [
+            "ValuePillars.tsx (width 200)"
+          ],
+          "unused": false
+        },
+        {
+          "name": "backgroundColor",
+          "title": "Background Color",
+          "type": "string",
+          "initialValue": "sand",
+          "notes": "cream|sand|forest radio",
+          "consumedBy": [
+            "ValuePillars.tsx"
+          ],
+          "unused": false
+        }
+      ]
+    },
+    {
+      "name": "pricingPageTabs",
+      "title": "Pricing Page Tabs",
+      "file": "studio/src/schemaTypes/objects/pricingPageTabs.ts",
+      "notes": "Mechanically divergent from Hound Around; fields regenerated from sanity.schema.json and source file.",
+      "fields": [
+        {
+          "name": "eyebrow",
+          "title": "eyebrow",
+          "type": "string",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "heading",
+          "title": "heading",
+          "type": "string",
+          "required": true,
+          "consumedBy": [],
+          "unused": false,
+          "validation": "required (generated schema)"
+        },
+        {
+          "name": "description",
+          "title": "description",
+          "type": "string",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "defaultTab",
+          "title": "defaultTab",
+          "type": "union",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "services",
+          "title": "services",
+          "type": "array",
+          "required": false,
+          "consumedBy": [],
+          "unused": false,
+          "of": [
+            "object"
+          ]
+        },
+        {
+          "name": "ctaText",
+          "title": "ctaText",
+          "type": "string",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "ctaLink",
+          "title": "ctaLink",
+          "type": "link",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "taxNote",
+          "title": "taxNote",
+          "type": "string",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        }
+      ]
+    },
+    {
+      "name": "heroMarquee",
+      "title": "Hero Marquee",
+      "file": "studio/src/schemaTypes/objects/heroMarquee.ts",
+      "notes": "Mechanically divergent from Hound Around; fields regenerated from sanity.schema.json and source file.",
+      "fields": [
+        {
+          "name": "heroLogo",
+          "title": "heroLogo",
+          "type": "object",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "eyebrow",
+          "title": "eyebrow",
+          "type": "string",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "heading",
+          "title": "heading",
+          "type": "string",
+          "required": true,
+          "consumedBy": [],
+          "unused": false,
+          "validation": "required (generated schema)"
+        },
+        {
+          "name": "headingAccent",
+          "title": "headingAccent",
+          "type": "string",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "subtext",
+          "title": "subtext",
+          "type": "string",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "primaryCta",
+          "title": "primaryCta",
+          "type": "button",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "secondaryCta",
+          "title": "secondaryCta",
+          "type": "button",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "reviewRating",
+          "title": "reviewRating",
+          "type": "number",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "reviewText",
+          "title": "reviewText",
+          "type": "string",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "trustLine",
+          "title": "trustLine",
+          "type": "string",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "bubbleText",
+          "title": "bubbleText",
+          "type": "string",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "marqueeImages",
+          "title": "marqueeImages",
+          "type": "array",
+          "required": false,
+          "consumedBy": [],
+          "unused": false,
+          "of": [
+            "object"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "serviceTabsSidebar",
+      "title": "Service Tabs (Sidebar)",
+      "file": "studio/src/schemaTypes/objects/serviceTabsSidebar.ts",
+      "notes": "Mechanically divergent from Hound Around; fields regenerated from sanity.schema.json and source file.",
+      "fields": [
+        {
+          "name": "eyebrow",
+          "title": "eyebrow",
+          "type": "string",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "heading",
+          "title": "heading",
+          "type": "string",
+          "required": true,
+          "consumedBy": [],
+          "unused": false,
+          "validation": "required (generated schema)"
+        },
+        {
+          "name": "tabs",
+          "title": "tabs",
+          "type": "array",
+          "required": false,
+          "consumedBy": [],
+          "unused": false,
+          "of": [
+            "object"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "spacer",
+      "title": "Spacer",
+      "file": "studio/src/schemaTypes/objects/spacer.ts",
+      "notes": "Mechanically divergent from Hound Around; fields regenerated from sanity.schema.json and source file.",
+      "fields": [
+        {
+          "name": "size",
+          "title": "size",
+          "type": "union",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        }
+      ]
+    },
+    {
+      "name": "campusOverview",
+      "title": "Campus Overview",
+      "file": "studio/src/schemaTypes/objects/campusOverview.ts",
+      "notes": "Mechanically divergent from Hound Around; fields regenerated from sanity.schema.json and source file.",
+      "fields": [
+        {
+          "name": "eyebrow",
+          "title": "eyebrow",
+          "type": "string",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "heading",
+          "title": "heading",
+          "type": "string",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "bottomImage",
+          "title": "bottomImage",
+          "type": "object",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "cards",
+          "title": "cards",
+          "type": "array",
+          "required": false,
+          "consumedBy": [],
+          "unused": false,
+          "of": [
+            "object"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "locationDetails",
+      "title": "Location Details",
+      "file": "studio/src/schemaTypes/objects/locationDetails.ts",
+      "notes": "Mechanically divergent from Hound Around; fields regenerated from sanity.schema.json and source file.",
+      "fields": [
+        {
+          "name": "eyebrow",
+          "title": "eyebrow",
+          "type": "string",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "heading",
+          "title": "heading",
+          "type": "string",
+          "required": true,
+          "consumedBy": [],
+          "unused": false,
+          "validation": "required (generated schema)"
+        },
+        {
+          "name": "intro",
+          "title": "intro",
+          "type": "blockContentTextOnly",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "locationSlug",
+          "title": "locationSlug",
+          "type": "union",
+          "required": true,
+          "consumedBy": [],
+          "unused": false,
+          "validation": "required (generated schema)"
+        },
+        {
+          "name": "mascotImage",
+          "title": "mascotImage",
+          "type": "object",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "mascotCaption",
+          "title": "mascotCaption",
+          "type": "string",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "externalCtaLabel",
+          "title": "externalCtaLabel",
+          "type": "string",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "externalCtaLink",
+          "title": "externalCtaLink",
+          "type": "string",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        },
+        {
+          "name": "backgroundColor",
+          "title": "backgroundColor",
+          "type": "union",
+          "required": false,
+          "consumedBy": [],
+          "unused": false
+        }
+      ]
+    }
+  ],
+  "portableTextConfigs": [
+    {
+      "location": "blockContent (shared type: infoSection.content, splitContent.body, faqAccordion.faqs[].answer, featureList.features[].body, contentColumns.columns[].body, contactForm.description)",
+      "styles": [
+        "SANITY DEFAULTS \u2014 not restricted in schema (normal, h1\u2013h6, blockquote)"
+      ],
+      "lists": [
+        "SANITY DEFAULTS (bullet, number)"
+      ],
+      "decorators": [
+        "SANITY DEFAULTS (strong, em, code, underline, strike-through)"
+      ],
+      "annotations": [
+        {
+          "name": "link",
+          "fields": {
+            "linkType": "string radio href|page, initialValue 'href'",
+            "href": "url, hidden unless linkType href/null, custom validation required-when-href",
+            "page": "reference to [page] ONLY (note: standalone link object also allows service), hidden unless linkType page, custom validation required-when-page",
+            "openInNewTab": "boolean, initialValue false"
+          }
+        }
+      ],
+      "customBlocks": [
+        {
+          "type": "image",
+          "options": {
+            "hotspot": true
+          },
+          "fields": "NONE \u2014 no alt/caption fields on schema, but renderer reads value.alt (always undefined)"
+        }
+      ],
+      "rendererFile": "SPLIT: frontend/app/components/PortableText.tsx (CustomPortableText) used only by InfoSection.tsx and Cta.tsx; the other 5 sites use BARE <PortableText> from @portabletext/react with NO components map",
+      "customComponents": [
+        "CustomPortableText: types.image \u2192 SanityImage width 672 cover rounded; block.h1/h2 \u2192 anchor-link headings using _key as fragment id; marks.link \u2192 ResolvedLink/linkResolver",
+        "Bare renderers (SplitContent, FaqAccordion, FeatureList, ContentColumns, ContactForm): default serializers only \u2014 custom link annotation and image blocks are NOT handled (links render as plain text)"
+      ]
+    },
+    {
+      "location": "blockContentTextOnly (used by callToAction.body)",
+      "styles": [
+        "SANITY DEFAULTS \u2014 bare {type:'block'}"
+      ],
+      "lists": [
+        "SANITY DEFAULTS"
+      ],
+      "decorators": [
+        "SANITY DEFAULTS"
+      ],
+      "annotations": [
+        "SANITY DEFAULT link annotation ({href}) \u2014 NOT the custom {linkType,href,page} shape used in blockContent"
+      ],
+      "customBlocks": [],
+      "rendererFile": "frontend/app/components/Cta.tsx via frontend/app/components/PortableText.tsx",
+      "customComponents": [
+        "marks.link \u2192 ResolvedLink; linkResolver treats missing linkType with href as linkType='href'"
+      ]
+    },
+    {
+      "location": "settings.description (inline block array)",
+      "styles": [
+        "[] (explicitly empty \u2014 plain paragraphs only)"
+      ],
+      "lists": [
+        "[] (explicitly empty)"
+      ],
+      "decorators": [
+        "[] (explicitly empty)"
+      ],
+      "annotations": [
+        {
+          "name": "link",
+          "fields": "same custom link shape as blockContent (linkType/href/page\u2192[page]/openInNewTab)"
+        }
+      ],
+      "customBlocks": [],
+      "rendererFile": "frontend/app/layout.tsx (generateMetadata)",
+      "customComponents": [
+        "Never rendered as rich text \u2014 only flattened via toPlainText() for the meta description"
+      ]
+    }
+  ],
+  "queries": [
+    {
+      "file": "frontend/sanity/lib/queries.ts",
+      "usedBy": "frontend/app/layout.tsx",
+      "types": [],
+      "fields": [],
+      "groq": "*[_type == \"settings\"][0]{\n  ...,\n  navItems[]{\n    ...,\n    ${linkFields},\n    children[]{\n      ...,\n      ${linkFields}\n    }\n  },\n  ctaButton {\n    ...,\n    ${linkFields}\n  },\n  footerColumns[]{\n    ...,\n    links[]{\n      ...,\n      ${linkFields}\n    }\n  },\n  contactInfo,\n  locations[]{\n    ...,\n    logo\n  },\n  footerTagline,\n  footerText,\n  footerTextLink,\n  footerBottomLinks[]{\n    ...,\n    ${linkFields}\n  },\n  logo,\n  yearEstablished,\n  socialLinks,\n  \"faviconUrl\": favicon.asset->url,\n  ga4MeasurementId,\n  gtmId,\n  ctmScriptUrl,\n  googleSiteVerification,\n  localBusiness\n}"
+    },
+    {
+      "file": "frontend/sanity/lib/queries.ts",
+      "usedBy": "frontend/app/[slug]/page.tsx",
+      "types": [],
+      "fields": [],
+      "groq": "\n  *[_type == 'page' && slug.current == $slug][0]{\n    _id,\n    _type,\n    name,\n    slug,\n    seo,\n    ${pageBuilderExpansion},\n  }\n"
+    },
+    {
+      "file": "frontend/sanity/lib/queries.ts",
+      "usedBy": "frontend/app/page.tsx",
+      "types": [],
+      "fields": [],
+      "groq": "\n  *[_type == 'page' && slug.current == 'homepage'][0]{\n    _id,\n    _type,\n    name,\n    slug,\n    seo,\n    ${pageBuilderExpansion},\n  }\n"
+    },
+    {
+      "file": "frontend/sanity/lib/queries.ts",
+      "usedBy": "frontend/app/sitemap.ts",
+      "types": [],
+      "fields": [],
+      "groq": "\n  *[_type in [\"page\", \"service\"] && defined(slug.current)] | order(_type asc) {\n    \"slug\": slug.current,\n    _type,\n    _updatedAt,\n    \"noIndex\": seo.noIndex,\n  }\n"
+    },
+    {
+      "file": "frontend/sanity/lib/queries.ts",
+      "usedBy": "frontend/app/[slug]/page.tsx generateStaticParams",
+      "types": [],
+      "fields": [],
+      "groq": "\n  *[_type == \"page\" && defined(slug.current)]\n  {\"slug\": slug.current}\n"
+    },
+    {
+      "file": "frontend/sanity/lib/queries.ts",
+      "usedBy": "frontend/app/services/[slug]/page.tsx",
+      "types": [],
+      "fields": [],
+      "groq": "\n  *[_type == 'service' && slug.current == $slug][0]{\n    _id,\n    _type,\n    title,\n    slug,\n    heading,\n    shortDescription,\n    seo,\n    ${pageBuilderExpansion},\n  }\n"
+    },
+    {
+      "file": "frontend/sanity/lib/queries.ts",
+      "usedBy": "frontend/app/services/[slug]/page.tsx generateStaticParams",
+      "types": [],
+      "fields": [],
+      "groq": "\n  *[_type == \"service\" && defined(slug.current)]\n  {\"slug\": slug.current}\n"
+    },
+    {
+      "file": "frontend/sanity/lib/queries.ts",
+      "usedBy": "frontend/app/layout.tsx",
+      "types": [],
+      "fields": [],
+      "groq": "\n  *[_type == \"service\" && defined(slug.current)] | order(title asc) {\n    _id, title, \"slug\": slug.current\n  }\n"
+    }
+  ],
+  "fetchConfiguration": {
+    "client": "frontend/sanity/lib/client.ts: createClient({useCdn: true, token: SANITY_API_READ_TOKEN (server-only import), stega: {studioUrl}})",
+    "live": "frontend/sanity/lib/live.ts: defineLive({client, serverToken, browserToken}) \u2014 ALL page fetches go through sanityFetch (Live Content API, tag-based auto-revalidation)",
+    "staticParams": "generateStaticParams uses perspective:'published', stega:false; metadata fetches use stega:false",
+    "revalidateRoutes": "NOT FOUND \u2014 no /api/revalidate webhook route; revalidation is entirely via next-sanity Live (SanityLive component in layout)",
+    "draftMode": "frontend/app/api/draft-mode/enable/route.ts via defineEnableDraftMode; disable via server action frontend/app/actions.ts; DraftModeToast + VisualEditing in layout when enabled"
+  },
+  "imageTransforms": [
+    {
+      "pattern": "sanity-image <SanityImage baseUrl=https://cdn.sanity.io/images/{projectId}/{dataset}/ id={_ref} width={N} crop hotspot mode=cover|contain> \u2014 library auto-generates srcset + auto=format. Widths used: 80, 120, 128(+height 128), 160, 200, 220, 400, 500, 600, 672, 700, 704, 960, 1000, 1200, 1400",
+      "files": [
+        "frontend/app/components/SanityImage.tsx (wrapper)",
+        "frontend/app/components/PortableText.tsx (672)",
+        "frontend/app/components/Cta.tsx (704)",
+        "frontend/app/components/Header.tsx (220)",
+        "frontend/app/components/Footer.tsx (160, 80)",
+        "all frontend/app/components/sections/*.tsx"
+      ]
+    },
+    {
+      "pattern": "@sanity/image-url builder.image(ref).width(1200).height(627).fit('crop').url() \u2014 OG images",
+      "files": [
+        "frontend/sanity/lib/utils.ts resolveOpenGraphImage"
+      ]
+    },
+    {
+      "pattern": "@sanity/image-url builder.image(ref).width(1600).auto('format').url() + natural dimensions parsed from _ref regex /-(\\d+)x(\\d+)-/ \u2014 lightbox slides",
+      "files": [
+        "frontend/sanity/lib/image.ts",
+        "frontend/app/components/sections/GalleryGrid.tsx",
+        "GalleryCarousel.tsx",
+        "GalleryPage.tsx",
+        "GalleryShowcase.tsx"
+      ]
+    },
+    {
+      "pattern": "raw asset URL via GROQ favicon.asset->url (no transforms)",
+      "files": [
+        "frontend/sanity/lib/queries.ts settingsQuery",
+        "frontend/app/layout.tsx icons"
+      ]
+    },
+    {
+      "pattern": "BUG: raw asset._ref string emitted as JSON-LD image/logo URL (not a URL)",
+      "files": [
+        "frontend/app/layout.tsx:84-89,184-186"
+      ]
+    }
+  ],
+  "settingsSingleton": {
+    "typeName": "settings",
+    "documentId": "settings",
+    "file": "studio/src/schemaTypes/singletons/settings.tsx",
+    "fields": [
+      {
+        "name": "title",
+        "title": "title",
+        "type": "string",
+        "required": true,
+        "consumedBy": [],
+        "unused": false,
+        "validation": "required (generated schema)"
+      },
+      {
+        "name": "tagline",
+        "title": "tagline",
+        "type": "string",
+        "required": false,
+        "consumedBy": [],
+        "unused": false
+      },
+      {
+        "name": "description",
+        "title": "description",
+        "type": "array",
+        "required": false,
+        "consumedBy": [],
+        "unused": false,
+        "of": [
+          "object"
+        ]
+      },
+      {
+        "name": "logo",
+        "title": "logo",
+        "type": "object",
+        "required": false,
+        "consumedBy": [],
+        "unused": false
+      },
+      {
+        "name": "navItems",
+        "title": "navItems",
+        "type": "array",
+        "required": false,
+        "consumedBy": [],
+        "unused": false,
+        "of": [
+          "object"
+        ]
+      },
+      {
+        "name": "ctaButton",
+        "title": "ctaButton",
+        "type": "button",
+        "required": false,
+        "consumedBy": [],
+        "unused": false
+      },
+      {
+        "name": "footerSticker",
+        "title": "footerSticker",
+        "type": "object",
+        "required": false,
+        "consumedBy": [],
+        "unused": false
+      },
+      {
+        "name": "footerTagline",
+        "title": "footerTagline",
+        "type": "string",
+        "required": false,
+        "consumedBy": [],
+        "unused": false
+      },
+      {
+        "name": "footerColumns",
+        "title": "footerColumns",
+        "type": "array",
+        "required": false,
+        "consumedBy": [],
+        "unused": false,
+        "of": [
+          "object"
+        ]
+      },
+      {
+        "name": "contactInfo",
+        "title": "contactInfo",
+        "type": "object",
+        "required": false,
+        "consumedBy": [],
+        "unused": false
+      },
+      {
+        "name": "locations",
+        "title": "locations",
+        "type": "array",
+        "required": false,
+        "consumedBy": [],
+        "unused": false,
+        "of": [
+          "object"
+        ]
+      },
+      {
+        "name": "footerText",
+        "title": "footerText",
+        "type": "string",
+        "required": false,
+        "consumedBy": [],
+        "unused": false
+      },
+      {
+        "name": "footerTextLink",
+        "title": "footerTextLink",
+        "type": "object",
+        "required": false,
+        "consumedBy": [],
+        "unused": false
+      },
+      {
+        "name": "footerBottomLinks",
+        "title": "footerBottomLinks",
+        "type": "array",
+        "required": false,
+        "consumedBy": [],
+        "unused": false,
+        "of": [
+          "object"
+        ]
+      },
+      {
+        "name": "yearEstablished",
+        "title": "yearEstablished",
+        "type": "number",
+        "required": false,
+        "consumedBy": [],
+        "unused": false
+      },
+      {
+        "name": "socialLinks",
+        "title": "socialLinks",
+        "type": "object",
+        "required": false,
+        "consumedBy": [],
+        "unused": false
+      },
+      {
+        "name": "ogImage",
+        "title": "ogImage",
+        "type": "object",
+        "required": false,
+        "consumedBy": [],
+        "unused": false
+      },
+      {
+        "name": "favicon",
+        "title": "favicon",
+        "type": "object",
+        "required": false,
+        "consumedBy": [],
+        "unused": false
+      },
+      {
+        "name": "ga4MeasurementId",
+        "title": "ga4MeasurementId",
+        "type": "string",
+        "required": false,
+        "consumedBy": [],
+        "unused": false
+      },
+      {
+        "name": "gtmContainerId",
+        "title": "gtmContainerId",
+        "type": "string",
+        "required": false,
+        "consumedBy": [],
+        "unused": false
+      },
+      {
+        "name": "googleSiteVerification",
+        "title": "googleSiteVerification",
+        "type": "string",
+        "required": false,
+        "consumedBy": [],
+        "unused": false
+      },
+      {
+        "name": "localBusiness",
+        "title": "localBusiness",
+        "type": "object",
+        "required": false,
+        "consumedBy": [],
+        "unused": false
+      }
+    ],
+    "hardcodedValuesThatBelongHere": [
+      "frontend/app/layout.tsx hardcodes Vet Clinic dropdown hrefs and Boxers JSON-LD location locality/state/postal code",
+      "frontend/app/components/pricing/CalculatorInputs.tsx hardcodes 740-423-7777"
+    ]
+  },
+  "seoModel": {
+    "description": "Reusable seo object on page and service; settings owns global metadata. Evidence: studio/src/schemaTypes/objects/seo.ts, frontend/app/{page.tsx,[slug]/page.tsx,services/[slug]/page.tsx,layout.tsx",
+    "fallbackChain": {
+      "homepage": "seo.metaTitle/metaDescription/ogImage/noIndex; otherwise empty metadata",
+      "page": "seo.metaTitle -> page.name; seo.metaDescription -> undefined",
+      "service": "seo.metaTitle -> service.title; seo.metaDescription -> service.heading -> service.shortDescription",
+      "global": "settings.title fallback Boxers Bed & Biscuits; settings.description PT -> plain text"
+    }
+  },
+  "subSite": null,
+  "dataset_snapshot": {
+    "skipped": false,
+    "totalDocs": 25,
+    "documentCounts": {
+      "page": 9,
+      "service": 6,
+      "settings": 1,
+      "testimonial": 5,
+      "webcam": 4
+    },
+    "draftCounts": {
+      "page": 0,
+      "service": 0,
+      "testimonial": 0,
+      "webcam": 0,
+      "settings": 0
+    },
+    "pages": [
+      "contact",
+      "employment",
+      "gallery",
+      "homepage",
+      "our-staff",
+      "petcams",
+      "pricing",
+      "vet-contact",
+      "vet-staff"
+    ],
+    "services": [
+      "boarding",
+      "daycare",
+      "enrichment",
+      "grooming",
+      "training",
+      "vet-clinic"
+    ],
+    "blockTypesUsedInLiveData": [
+      "campusOverview",
+      "contactForm",
+      "contentColumns",
+      "ctaBanner",
+      "ctaStrip",
+      "featureCards",
+      "galleryCarousel",
+      "galleryGrid",
+      "heroMarquee",
+      "heroMinimal",
+      "heroSplit",
+      "locationDetails",
+      "pricingCalculator",
+      "pricingList",
+      "pricingPageTabs",
+      "pricingTable",
+      "requirementsList",
+      "serviceTabsSidebar",
+      "spacer",
+      "splitContent",
+      "teamGrid",
+      "testimonials",
+      "videoSection",
+      "webcamGrid"
+    ],
+    "blockTypesNeverUsedInLiveData": [
+      "callToAction",
+      "faqAccordion",
+      "featureGrid",
+      "featureList",
+      "fullWidthMedia",
+      "galleryPage",
+      "galleryShowcase",
+      "hero",
+      "heroBanner",
+      "iconGrid",
+      "imageRow",
+      "infoSection",
+      "logoBar",
+      "policyNotes",
+      "pricingMatrix",
+      "processSteps",
+      "serviceCards",
+      "serviceTabs",
+      "statsBar",
+      "valuePillars",
+      "webcamPreview",
+      "whatsIncluded"
+    ],
+    "orphanedTypes": [],
+    "schemaDataMismatches": [
+      "webcamGrid projection returns an empty enabled-webcam array although four webcam documents exist; all four are disabled in the 2026-07-10 snapshot",
+      "pricing amounts are hardcoded in frontend/app/data/pricingData.ts rather than stored in pricingCalculator blocks"
+    ]
+  },
+  "riskFlags": [
+    {
+      "severity": "high",
+      "flag": "18 registered page-builder block types have zero production usage; migration code generated from schema alone would overstate the live contract.",
+      "evidence": "studio/src/schemaTypes/documents/page.ts; studio/src/schemaTypes/documents/service.ts; production GROQ snapshot 2026-07-10"
+    },
+    {
+      "severity": "medium",
+      "flag": "Pricing calculator blocks receive configuration from Sanity but prices are hardcoded in frontend/app/data/pricingData.ts.",
+      "evidence": "frontend/app/components/sections/PricingCalculator.tsx; frontend/app/data/pricingData.ts"
+    },
+    {
+      "severity": "medium",
+      "flag": "Visual editing is coupled through sanityFetch, SanityLive, dataAttr, stegaClean and next-sanity hooks.",
+      "evidence": "frontend/sanity/lib/live.ts; frontend/app/components/PageBuilder.tsx; frontend/app/components/BlockRenderer.tsx; frontend/app/layout.tsx"
+    },
+    {
+      "severity": "low",
+      "flag": "Five testimonials exist as standalone documents and are dereferenced into the testimonials block.",
+      "evidence": "studio/src/schemaTypes/documents/testimonial.ts; frontend/sanity/lib/queries.ts; production GROQ snapshot 2026-07-10"
+    },
+    {
+      "severity": "low",
+      "flag": "Four webcam documents exist; webcamGrid injects only enabled documents at query time.",
+      "evidence": "studio/src/schemaTypes/documents/webcam.ts; frontend/sanity/lib/queries.ts; production GROQ snapshot 2026-07-10"
+    },
+    {
+      "severity": "none",
+      "flag": "Hound Around references occur in repository documentation/history only; exhaustive sweep found none in frontend runtime code, Studio defaults, or production documents.",
+      "evidence": "CHANGELOG.md:19-22; context/project-overview.md:19-70; context/ai-interaction.md:49-68"
+    },
+    {
+      "severity": "none",
+      "flag": "Home Away From Home/HAFH references occur in repository documentation only; none found in frontend runtime code, Studio defaults, or production documents.",
+      "evidence": "context/project-overview.md:51,80,101; context/ai-interaction.md:49,64-68"
+    },
+    {
+      "severity": "none",
+      "flag": "Kingdom Canine, Wags, Riverside, and Rio names occur only in portfolio planning documentation; none found in runtime code or production documents.",
+      "evidence": "context/project-overview.md:72-81"
+    },
+    {
+      "severity": "informational",
+      "flag": "Embark appears intentionally in schema help text and site/project documentation and may surface only if CMS-authored footer text uses it; no foreign fallback was found.",
+      "evidence": "studio/src/schemaTypes/objects/splitContent.ts:40; studio/src/schemaTypes/singletons/settings.tsx:291-297; AGENTS.md:3"
+    },
+    {
+      "severity": "informational",
+      "flag": "Boxers phone numbers are hardcoded in runtime pricing/contact UI in addition to CMS settings, creating a migration synchronization point.",
+      "evidence": "frontend/app/components/pricing/CalculatorInputs.tsx:253; frontend/app/api/contact/route.ts; frontend/app/api/webcam-auth/route.ts"
+    },
+    {
+      "severity": "high",
+      "flag": "The configured Sanity read token was present in frontend/.env.local during audit. Secret values are intentionally omitted from this inventory.",
+      "evidence": "frontend/.env.local; frontend/sanity/lib/token.ts"
+    }
+  ]
+}
+
