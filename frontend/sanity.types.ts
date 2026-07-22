@@ -1445,7 +1445,8 @@ export type Settings = {
     _type: 'image'
   }
   ga4MeasurementId?: string
-  gtmContainerId?: string
+  gtmId?: string
+  ctmScriptUrl?: string
   googleSiteVerification?: string
   localBusiness?: {
     businessName?: string
@@ -2133,7 +2134,8 @@ export type SettingsQueryResult = {
     _type: 'image'
   }
   ga4MeasurementId: string | null
-  gtmContainerId?: string
+  gtmId: string | null
+  ctmScriptUrl: string | null
   googleSiteVerification: string | null
   localBusiness: {
     businessName?: string
@@ -2159,8 +2161,6 @@ export type SettingsQueryResult = {
     priceRange?: string
   } | null
   faviconUrl: string | null
-  gtmId: null
-  ctmScriptUrl: null
 } | null
 
 // Source: sanity/lib/queries.ts

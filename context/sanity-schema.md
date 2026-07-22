@@ -110,7 +110,7 @@ The pricing calculator (`pricingCalculator` block type) has a `calculatorType` f
 - **Settings:** `siteSettings` (singleton)
 - **Testimonials:** `testimonial-1` through `testimonial-4`
 - **Services:** `service-daycare`, `service-boarding`, `service-grooming`, `service-enrichment`, `service-vet-clinic`, `service-training`
-- **Pages:** `page-homepage`, `page-pricing`, `page-petcams`, `page-our-staff`, `page-employment`
+- **Pages:** `page-homepage`, `page-pricing`, `page-petcams`, `page-our-staff`, `page-employment`, `page-thank-you`, plus Contact page (`579e54c9-162b-46a5-8035-56e3e0f51f0e`, slug `contact`)
 
 ### What's seeded
 - **Settings:** title, tagline, contactInfo, 3 locations with hours, socialLinks (incl YouTube), ctaButton, footerTagline/Text/TextLink, footerColumns (Services + Quick Links), navItems (4 items), localBusiness structured data
