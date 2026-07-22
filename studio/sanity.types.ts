@@ -1445,7 +1445,8 @@ export type Settings = {
     _type: 'image'
   }
   ga4MeasurementId?: string
-  gtmContainerId?: string
+  gtmId?: string
+  ctmScriptUrl?: string
   googleSiteVerification?: string
   localBusiness?: {
     businessName?: string

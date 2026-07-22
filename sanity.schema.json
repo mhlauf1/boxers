@@ -9847,7 +9847,14 @@
         },
         "optional": true
       },
-      "gtmContainerId": {
+      "gtmId": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "ctmScriptUrl": {
         "type": "objectAttribute",
         "value": {
           "type": "string"
