@@ -1,7 +1,7 @@
 'use client'
 
 import {useState, useEffect} from 'react'
-import {useRouter, useSearchParams} from 'next/navigation'
+import {useRouter} from 'next/navigation'
 import {PortableText} from '@portabletext/react'
 
 import Image from '@/app/components/SanityImage'
@@ -14,6 +14,7 @@ import type {ExtractPageBuilderType} from '@/sanity/lib/types'
 type ContactFormProps = {
   block: ExtractPageBuilderType<'contactForm'>
   index: number
+  isFirstContent?: boolean
   pageId: string
   pageType: string
 }
@@ -40,7 +41,9 @@ async function getRecaptchaToken(): Promise<string | null> {
   }
 }
 
-export default function ContactForm({block}: ContactFormProps) {
+export default function ContactForm({block, isFirstContent}: ContactFormProps) {
+  // When this block leads the page (no hero above it), its heading is the page h1
+  const HeadingTag = isFirstContent ? 'h1' : 'h2'
   const {
     eyebrow,
     heading,
@@ -61,7 +64,6 @@ export default function ContactForm({block}: ContactFormProps) {
   }
 
   const router = useRouter()
-  const searchParams = useSearchParams()
   const [formData, setFormData] = useState<Record<string, string>>({})
   const [status, setStatus] = useState<'idle' | 'submitting' | 'error'>('idle')
   const [errorMessage, setErrorMessage] = useState('')
@@ -76,11 +78,13 @@ export default function ContactForm({block}: ContactFormProps) {
   }, [])
 
   useEffect(() => {
-    const serviceParam = searchParams.get('service')
+    // Read from window instead of useSearchParams — the hook forces the whole
+    // section out of the static prerender, hiding it from crawlers
+    const serviceParam = new URLSearchParams(window.location.search).get('service')
     if (serviceParam && formFields?.some((f) => stegaClean(f.fieldName) === 'service')) {
       setFormData((prev) => ({...prev, service: serviceParam}))
     }
-  }, [searchParams, formFields])
+  }, [formFields])
 
   const handleChange = (fieldName: string, value: string) => {
     setFormData((prev) => ({...prev, [fieldName]: value}))
@@ -129,9 +133,9 @@ export default function ContactForm({block}: ContactFormProps) {
               </FadeIn>
             )}
             {heading && (
-              <h2 className="text-[36px] md:text-[48px] lg:text-[56px] font-semibold tracking-tight leading-[105%] text-forest mb-4">
+              <HeadingTag className="text-[36px] md:text-[48px] lg:text-[56px] font-semibold tracking-tight leading-[105%] text-forest mb-4">
                 {heading}
-              </h2>
+              </HeadingTag>
             )}
             {description && (
               <div className="font-sans text-[16px] md:text-[18px] leading-[150%] text-charcoal/80 max-w-2xl prose prose-p:mb-3">

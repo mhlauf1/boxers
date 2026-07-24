@@ -152,11 +152,12 @@ export async function generateMetadata(): Promise<Metadata> {
   const description = settings?.description
 
   const ogImage = resolveOpenGraphImage(settings?.ogImage)
-  let metadataBase: URL | undefined = undefined
+  // metadataBase makes canonical URLs and og:url absolute
+  let metadataBase = new URL('https://www.boxersbedandbiscuits.com')
   try {
-    metadataBase = settings?.ogImage?.metadataBase
-      ? new URL(settings.ogImage.metadataBase)
-      : undefined
+    if (settings?.ogImage?.metadataBase) {
+      metadataBase = new URL(settings.ogImage.metadataBase)
+    }
   } catch {
     // ignore
   }

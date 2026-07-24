@@ -37,6 +37,8 @@ function RenderSections({
   if (!page) {
     return null
   }
+  // Pages without a hero block need their first content section to carry the h1
+  const firstContentIndex = pageBuilderSections.findIndex((block) => block._type !== 'spacer')
   return (
     <div
       data-sanity={dataAttr({
@@ -49,6 +51,7 @@ function RenderSections({
         <BlockRenderer
           key={block._key}
           index={index}
+          isFirstContent={index === firstContentIndex}
           block={block}
           pageId={page._id}
           pageType={page._type}

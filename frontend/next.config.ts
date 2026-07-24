@@ -3,6 +3,12 @@ import type {NextConfig} from 'next'
 const nextConfig: NextConfig = {
   async redirects() {
     return [
+      // Sanity homepage doc lives at slug "homepage" — only "/" should serve it
+      {
+        source: '/homepage',
+        destination: '/',
+        permanent: true,
+      },
       {
         source: '/services/enrichment',
         destination: '/services/daycare',

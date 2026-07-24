@@ -30,6 +30,7 @@ type GalleryGridProps = {
     backgroundColor?: string
   }
   index: number
+  isFirstContent?: boolean
   pageId: string
   pageType: string
 }
@@ -46,7 +47,9 @@ const bgClasses: Record<string, string> = {
   forest: 'bg-forest',
 }
 
-export default function GalleryGrid({block}: GalleryGridProps) {
+export default function GalleryGrid({block, isFirstContent}: GalleryGridProps) {
+  // When this block leads the page (no hero above it), its heading is the page h1
+  const HeadingTag = isFirstContent ? 'h1' : 'h2'
   const {
     eyebrow,
     heading,
@@ -79,11 +82,11 @@ export default function GalleryGrid({block}: GalleryGridProps) {
           <div className={`mb-8 lg:mb-10 ${isCircles ? 'text-center' : ''}`}>
             {eyebrow && <Badge className="mb-3">{eyebrow}</Badge>}
             {heading && (
-              <h2
+              <HeadingTag
                 className={`text-4xl md:text-5xl lg:text-6xl leading-[105%] tracking-tight font-semibold ${isDark ? 'text-cream' : 'text-forest'}`}
               >
                 {heading}
-              </h2>
+              </HeadingTag>
             )}
           </div>
         </FadeIn>

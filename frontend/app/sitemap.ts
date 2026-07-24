@@ -18,9 +18,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     changeFrequency: 'monthly',
   })
 
+  // Slugs that should never appear in the sitemap: "homepage" is served at "/"
+  // (the /homepage URL 301s there), and the enrichment service page redirects to daycare
+  const excludedSlugs = new Set(['homepage', 'enrichment'])
+
   if (allPages != null && allPages.data.length != 0) {
     for (const p of allPages.data) {
-      if (p.noIndex) continue
+      if (p.noIndex || !p.slug || excludedSlugs.has(p.slug)) continue
 
       const prefix = p._type === 'service' ? '/services' : ''
       sitemap.push({

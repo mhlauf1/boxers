@@ -2,7 +2,7 @@ import type {Metadata} from 'next'
 
 import PageBuilderPage from '@/app/components/PageBuilder'
 import {sanityFetch} from '@/sanity/lib/live'
-import {getPageQuery, pagesSlugs} from '@/sanity/lib/queries'
+import {getPageQuery, pagesSlugs, settingsQuery} from '@/sanity/lib/queries'
 import {resolveOpenGraphImage} from '@/sanity/lib/utils'
 
 type Props = {
@@ -20,19 +20,21 @@ export async function generateStaticParams() {
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
   const params = await props.params
-  const {data: page} = await sanityFetch({
-    query: getPageQuery,
-    params,
-    stega: false,
-  })
+  const [{data: page}, {data: settings}] = await Promise.all([
+    sanityFetch({query: getPageQuery, params, stega: false}),
+    sanityFetch({query: settingsQuery, stega: false}),
+  ])
 
   const seo = page?.seo
-  const ogImage = resolveOpenGraphImage(seo?.ogImage)
+  const ogImage = resolveOpenGraphImage(seo?.ogImage) || resolveOpenGraphImage(settings?.ogImage)
 
   return {
     title: seo?.metaTitle || page?.name,
     description: seo?.metaDescription || undefined,
-    ...(ogImage && {openGraph: {images: [ogImage]}}),
+    openGraph: {
+      url: `/${params.slug}`,
+      ...(ogImage && {images: [ogImage]}),
+    },
     ...(seo?.noIndex && {robots: {index: false, follow: true}}),
     alternates: {canonical: `/${params.slug}`},
   } satisfies Metadata
@@ -55,7 +57,7 @@ export default async function Page(props: Props) {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      {'@type': 'ListItem', position: 1, name: 'Home', item: 'https://boxersbedandbiscuits.com'},
+      {'@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.boxersbedandbiscuits.com'},
       {'@type': 'ListItem', position: 2, name: page.name},
     ],
   }
