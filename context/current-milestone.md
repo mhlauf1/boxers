@@ -1,5 +1,23 @@
 # Current Milestone
 
+## Fix: True 404 Responses for Dynamic Routes
+
+### Status
+Complete — ready for review
+
+### Goal
+- Return the shared Next.js not-found page with an HTTP 404 response when a Sanity page or service slug does not exist.
+
+### Files
+- `frontend/app/[slug]/page.tsx`
+- `frontend/app/services/[slug]/page.tsx`
+
+### Verification
+- `npm run type-check` passes.
+- Focused ESLint passes for both modified routes.
+- `npm run build` passes.
+- Local production responses verified: unknown page `404`, unknown service `404`, known page `200`, known service `200`.
+
 ## Milestone 7: Polish & Launch Prep (Phase 1)
 
 ### Status
@@ -87,6 +105,7 @@ Phase 1 complete — ready for review
 - ~~`npm run build` passes~~
 
 ### History
+- 2026-07-24: Fixed soft 404 responses on CMS-backed dynamic routes (branch `fix/true-404-responses`). Unknown generic-page and service slugs now call Next.js `notFound()` during metadata generation and rendering, so the shared branded not-found page returns HTTP 404 instead of HTTP 200. Type-check, focused lint, and production build pass; local production checks confirm unknown page/service routes return 404 while known routes remain 200.
 - 2026-07-24: SEO crawl-audit fixes (branch `fix/seo-crawl-fixes`). Simulated a Googlebot crawl of the live site; content is fully server-rendered and indexable, but the crawl surfaced 8 issues, all fixed. **Code:** (1) `/homepage` was a live duplicate of `/` with its own canonical and sitemap entry — added permanent redirect `/homepage` → `/` in `next.config.ts` and excluded the `homepage` slug from `sitemap.ts` (also excluded `enrichment`, which 308s to daycare but was still listed). (2) `robots.ts` sitemap URL now uses the canonical www host. (3) `layout.tsx` metadataBase now falls back to `https://www.boxersbedandbiscuits.com` (Sanity `ogImage.metadataBase` is unset), making canonicals and og URLs absolute. (4) Homepage `/` title was missing the brand suffix — Next.js `title.template` only applies to child segments, and `app/page.tsx` is the same segment as the root layout, so the suffix is now appended explicitly (settings title fetched alongside homepage). (5) All three page routes now emit `og:url` plus a settings-level og:image fallback (page `openGraph` replaces the layout's wholesale, so the fallback image must be included). (6) Breadcrumb JSON-LD base URLs switched to www. (7) `/contact` and `/gallery` had no `<h1>` — PageBuilder now flags the first non-spacer block via `isFirstContent`, and ContactForm/GalleryGrid promote their heading to `<h1>` when leading a page (h2 elsewhere, e.g. employment). (8) The entire contactForm section was invisible to crawlers: `useSearchParams()` bailed the whole Suspense boundary out of static prerender — replaced with `window.location.search` in the mount effect, so the contact and employment forms now appear in server HTML. **Sanity (published):** contact/gallery metaTitles had the brand name baked in, producing "… | Boxers Bed & Biscuits | Boxers Bed & Biscuits" — stripped to "Contact Us" / "Gallery"; vet-contact and vet-staff had no seo object — added metaTitle + metaDescription (factual, from known contact info); homepage BEC spotlight CTA pointed at the removed `service-enrichment` page reference (a redirect hop) — repointed to `/services/daycare` as an href. Build passes; all fixes verified against a local production server. Lint has 111 pre-existing errors, unchanged by this work.
 - 2026-07-22 (later): Contact form spam protection ported from wags-stay-n-play: Google reCAPTCHA v3 (invisible). `ContactForm.tsx` loads the script on mount and sends a `recaptchaToken` with submissions; `/api/contact` verifies it against Google siteverify (min score 0.5) before sending email. No new npm deps. Fails open if `RECAPTCHA_SECRET_KEY` is unset or Google is unreachable, so misconfiguration never drops real leads. Applies to both forms sharing the component (contact + employment application). Env vars: `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` + `RECAPTCHA_SECRET_KEY` (documented in `.env.example`; need to be created in the Google reCAPTCHA admin console for boxersbedandbiscuits.com and added in Vercel). Same branch: `feature/contact-thank-you-page`.
 - 2026-07-22: Contact form thank-you page (client request, rolled out across Embark sites; wags-stay-n-play was the pilot, this follows its flow). New Sanity page `page-thank-you` at `/thank-you` (heroMinimal + ctaBanner "Back to Home", noIndex so it's excluded from search + sitemap). `ContactForm.tsx` now redirects via `router.push('/thank-you')` on successful submit instead of rendering the inline success card; the client-side navigation fires the existing `virtual_page_view` GTM/CTM event, making submissions trackable as conversions. Both forms share the component, so the contact form AND the employment application land on the same generic "Thank You for Your Submission" page. **Template divergence note:** `successMessage` remains in the contactForm schema but is no longer rendered. reCAPTCHA v3 (bundled in the wags version of this change) intentionally NOT ported here yet. Branch: `feature/contact-thank-you-page`.
