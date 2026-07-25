@@ -151,64 +151,76 @@ export default function ContactForm({block, isFirstContent}: ContactFormProps) {
           {/* Form */}
           <FadeIn immediate>
             <form onSubmit={handleSubmit} className="space-y-5">
-                {formFields &&
-                  formFields.map((field) => {
-                    const fieldName = stegaClean(field.fieldName) || ''
-                    const fieldType = stegaClean(field.type) || 'text'
+              <div className="absolute left-[-9999px]" aria-hidden="true">
+                <label htmlFor="company-website">Company website</label>
+                <input
+                  id="company-website"
+                  name="companyWebsite"
+                  type="text"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={formData.companyWebsite || ''}
+                  onChange={(e) => handleChange('companyWebsite', e.target.value)}
+                />
+              </div>
+              {formFields &&
+                formFields.map((field) => {
+                  const fieldName = stegaClean(field.fieldName) || ''
+                  const fieldType = stegaClean(field.type) || 'text'
 
-                    return (
-                      <div key={field._key}>
-                        {field.label && (
-                          <label className="block font-sans text-[14px] font-medium text-forest mb-1.5">
-                            {field.label}
-                            {field.required && <span className="text-terracotta ml-1">*</span>}
-                          </label>
-                        )}
-                        {fieldType === 'textarea' ? (
-                          <textarea
-                            name={fieldName}
-                            required={field.required || false}
-                            rows={4}
-                            value={formData[fieldName] || ''}
-                            onChange={(e) => handleChange(fieldName, e.target.value)}
-                            className="w-full rounded-md border border-sand bg-white px-4 py-3 font-sans text-[16px] text-forest placeholder:text-charcoal/40 focus:outline-none focus:ring-2 focus:ring-terracotta/30 focus:border-terracotta transition-colors"
-                          />
-                        ) : fieldType === 'select' ? (
-                          <select
-                            name={fieldName}
-                            required={field.required || false}
-                            value={formData[fieldName] || ''}
-                            onChange={(e) => handleChange(fieldName, e.target.value)}
-                            className="w-full rounded-md border border-sand bg-white px-4 py-3 font-sans text-[16px] text-forest focus:outline-none focus:ring-2 focus:ring-terracotta/30 focus:border-terracotta transition-colors"
-                          >
-                            <option value="">Select an option...</option>
-                            {field.options?.map((opt, oi) => (
-                              <option key={oi} value={opt}>
-                                {opt}
-                              </option>
-                            ))}
-                          </select>
-                        ) : (
-                          <input
-                            type={fieldType}
-                            name={fieldName}
-                            required={field.required || false}
-                            value={formData[fieldName] || ''}
-                            onChange={(e) => handleChange(fieldName, e.target.value)}
-                            className="w-full rounded-md border border-sand bg-white px-4 py-3 font-sans text-[16px] text-forest placeholder:text-charcoal/40 focus:outline-none focus:ring-2 focus:ring-terracotta/30 focus:border-terracotta transition-colors"
-                          />
-                        )}
-                      </div>
-                    )
-                  })}
+                  return (
+                    <div key={field._key}>
+                      {field.label && (
+                        <label className="block font-sans text-[14px] font-medium text-forest mb-1.5">
+                          {field.label}
+                          {field.required && <span className="text-terracotta ml-1">*</span>}
+                        </label>
+                      )}
+                      {fieldType === 'textarea' ? (
+                        <textarea
+                          name={fieldName}
+                          required={field.required || false}
+                          rows={4}
+                          value={formData[fieldName] || ''}
+                          onChange={(e) => handleChange(fieldName, e.target.value)}
+                          className="w-full rounded-md border border-sand bg-white px-4 py-3 font-sans text-[16px] text-forest placeholder:text-charcoal/40 focus:outline-none focus:ring-2 focus:ring-terracotta/30 focus:border-terracotta transition-colors"
+                        />
+                      ) : fieldType === 'select' ? (
+                        <select
+                          name={fieldName}
+                          required={field.required || false}
+                          value={formData[fieldName] || ''}
+                          onChange={(e) => handleChange(fieldName, e.target.value)}
+                          className="w-full rounded-md border border-sand bg-white px-4 py-3 font-sans text-[16px] text-forest focus:outline-none focus:ring-2 focus:ring-terracotta/30 focus:border-terracotta transition-colors"
+                        >
+                          <option value="">Select an option...</option>
+                          {field.options?.map((opt, oi) => (
+                            <option key={oi} value={opt}>
+                              {opt}
+                            </option>
+                          ))}
+                        </select>
+                      ) : (
+                        <input
+                          type={fieldType}
+                          name={fieldName}
+                          required={field.required || false}
+                          value={formData[fieldName] || ''}
+                          onChange={(e) => handleChange(fieldName, e.target.value)}
+                          className="w-full rounded-md border border-sand bg-white px-4 py-3 font-sans text-[16px] text-forest placeholder:text-charcoal/40 focus:outline-none focus:ring-2 focus:ring-terracotta/30 focus:border-terracotta transition-colors"
+                        />
+                      )}
+                    </div>
+                  )
+                })}
 
-                {status === 'error' && (
-                  <p className="font-sans text-[14px] text-red-600">{errorMessage}</p>
-                )}
+              {status === 'error' && (
+                <p className="font-sans text-[14px] text-red-600">{errorMessage}</p>
+              )}
 
-                <Button type="submit" variant="primary">
-                  {status === 'submitting' ? 'Sending...' : submitButtonText || 'Send Message'}
-                </Button>
+              <Button type="submit" variant="primary">
+                {status === 'submitting' ? 'Sending...' : submitButtonText || 'Send Message'}
+              </Button>
             </form>
           </FadeIn>
 
@@ -246,7 +258,7 @@ export default function ContactForm({block, isFirstContent}: ContactFormProps) {
                   <div className="rounded-lg overflow-hidden">
                     <Image
                       id={image.asset._ref}
-                      alt={(image as any).alt || heading || 'Contact'}
+                      alt={(image as typeof image & {alt?: string}).alt || heading || 'Contact'}
                       width={700}
                       crop={image.crop}
                       hotspot={image.hotspot}

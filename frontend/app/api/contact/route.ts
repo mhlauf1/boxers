@@ -16,25 +16,75 @@ const bccEmail = process.env.CONTACT_FORM_BCC_EMAIL || 'acockerham@impactmarketi
 const fromEmail = process.env.SMTP_FROM || process.env.SMTP_USER || ''
 const recaptchaSecret = process.env.RECAPTCHA_SECRET_KEY || ''
 const RECAPTCHA_MIN_SCORE = 0.5
+const RECAPTCHA_ACTION = 'contact_form'
+const RECAPTCHA_TIMEOUT_MS = 3000
+const RECAPTCHA_MAX_ATTEMPTS = 2
 
-async function verifyRecaptcha(token: unknown): Promise<boolean> {
-  // Not configured — skip verification so a missing env var never blocks real leads
-  if (!recaptchaSecret) return true
-  if (typeof token !== 'string' || !token) return false
+type RecaptchaVerification =
+  | {status: 'verified'}
+  | {status: 'rejected'}
+  | {status: 'unavailable'}
+  | {status: 'misconfigured'}
+  | {status: 'skipped-development'}
 
-  try {
-    const res = await fetch('https://www.google.com/recaptcha/api/siteverify', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-      body: new URLSearchParams({secret: recaptchaSecret, response: token}),
-    })
-    const data = (await res.json()) as {success?: boolean; score?: number; action?: string}
-    return data.success === true && (data.score ?? 0) >= RECAPTCHA_MIN_SCORE
-  } catch (error) {
-    // Google unreachable — fail open rather than dropping legitimate submissions
-    console.error('reCAPTCHA verification request failed:', error)
+function isAllowedRecaptchaHostname(hostname: string | undefined): boolean {
+  if (!hostname) return false
+
+  const normalizedHostname = hostname.toLowerCase()
+  const canonicalHostnames = ['boxersbedandbiscuits.com', 'www.boxersbedandbiscuits.com']
+
+  if (canonicalHostnames.includes(normalizedHostname)) return true
+  if (process.env.VERCEL_ENV === 'preview' && normalizedHostname.endsWith('.vercel.app'))
     return true
+
+  return (
+    process.env.NODE_ENV !== 'production' && ['localhost', '127.0.0.1'].includes(normalizedHostname)
+  )
+}
+
+async function verifyRecaptcha(token: unknown): Promise<RecaptchaVerification> {
+  if (!recaptchaSecret) {
+    return process.env.NODE_ENV === 'production'
+      ? {status: 'misconfigured'}
+      : {status: 'skipped-development'}
   }
+  if (typeof token !== 'string' || !token) return {status: 'rejected'}
+
+  let lastError: unknown
+
+  for (let attempt = 1; attempt <= RECAPTCHA_MAX_ATTEMPTS; attempt += 1) {
+    try {
+      const res = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        body: new URLSearchParams({secret: recaptchaSecret, response: token}),
+        signal: AbortSignal.timeout(RECAPTCHA_TIMEOUT_MS),
+      })
+
+      if (!res.ok) throw new Error(`reCAPTCHA verification returned HTTP ${res.status}`)
+
+      const data = (await res.json()) as {
+        success?: boolean
+        score?: number
+        action?: string
+        hostname?: string
+      }
+      const verified =
+        data.success === true &&
+        (data.score ?? 0) >= RECAPTCHA_MIN_SCORE &&
+        data.action === RECAPTCHA_ACTION &&
+        isAllowedRecaptchaHostname(data.hostname)
+
+      return verified ? {status: 'verified'} : {status: 'rejected'}
+    } catch (error) {
+      lastError = error
+    }
+  }
+
+  // Keep legitimate leads moving during a genuine Google outage, but make the
+  // bypass visible in both server logs and the resulting notification email.
+  console.error('reCAPTCHA verification unavailable after retries:', lastError)
+  return {status: 'unavailable'}
 }
 const ALLOWED_RECIPIENTS = [
   'boxersgm1@outlook.com',
@@ -50,15 +100,34 @@ export async function POST(request: Request) {
       return NextResponse.json({error: 'Invalid request body'}, {status: 400})
     }
 
-    const {recaptchaToken} = body as Record<string, unknown>
+    const {recaptchaToken, companyWebsite} = body as Record<string, unknown>
     delete body.recaptchaToken
+    delete body.companyWebsite
 
-    if (!(await verifyRecaptcha(recaptchaToken))) {
+    // Honeypot fields are hidden from people but commonly filled by simple bots.
+    // Return the normal success response so the trap is not disclosed.
+    if (typeof companyWebsite === 'string' && companyWebsite.trim()) {
+      return NextResponse.json({success: true})
+    }
+
+    const recaptchaVerification = await verifyRecaptcha(recaptchaToken)
+
+    if (recaptchaVerification.status === 'misconfigured') {
+      console.error('RECAPTCHA_SECRET_KEY is missing in a production environment')
+      return NextResponse.json(
+        {error: 'The contact form is temporarily unavailable. Please call us at 740-423-7777.'},
+        {status: 503},
+      )
+    }
+
+    if (recaptchaVerification.status === 'rejected') {
       return NextResponse.json(
         {error: 'Verification failed. Please try again, or call us at 740-423-7777.'},
         {status: 400},
       )
     }
+
+    const recaptchaUnavailable = recaptchaVerification.status === 'unavailable'
 
     const requestedRecipient = (body._recipientEmail as string)?.toLowerCase().trim()
     delete body._recipientEmail
@@ -104,9 +173,14 @@ export async function POST(request: Request) {
       to: toEmail,
       bcc: bccEmail || undefined,
       replyTo: senderEmail,
-      subject: `New Contact Form Submission from ${senderName}`,
+      subject: `${recaptchaUnavailable ? '[reCAPTCHA unavailable] ' : ''}New Contact Form Submission from ${senderName}`,
       html: `
         <h2>New Contact Form Submission</h2>
+        ${
+          recaptchaUnavailable
+            ? '<p><strong>Security notice:</strong> Google reCAPTCHA could not be reached after two attempts. This submission was delivered to avoid losing a potentially legitimate lead.</p>'
+            : ''
+        }
         ${lines}
         <hr />
         <p style="color: #888; font-size: 12px;">Sent from the Boxers Bed & Biscuits website contact form.</p>
@@ -116,7 +190,10 @@ export async function POST(request: Request) {
     return NextResponse.json({success: true})
   } catch (error) {
     console.error('Contact form error:', error)
-    return NextResponse.json({error: 'Failed to send message. Please try again or contact us directly.'}, {status: 500})
+    return NextResponse.json(
+      {error: 'Failed to send message. Please try again or contact us directly.'},
+      {status: 500},
+    )
   }
 }
 

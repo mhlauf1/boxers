@@ -1,18 +1,62 @@
 # Current Milestone
 
-## Fix: True 404 Responses for Dynamic Routes
+## Fix: reCAPTCHA Failure Handling
 
 ### Status
+
 Complete — ready for review
 
 ### Goal
+
+- Prevent a missing production secret from silently disabling verification.
+- Keep legitimate leads moving during a genuine Google outage while clearly flagging the bypass.
+- Validate the expected reCAPTCHA action and hostname.
+- Add a honeypot as a second spam-defense layer.
+
+### Files
+
+- `frontend/app/api/contact/route.ts`
+- `frontend/app/components/sections/ContactForm.tsx`
+
+### Verification
+
+- `npm run type-check` passes.
+- Focused ESLint passes for both modified application files.
+- `npm run build` passes.
+- Local production API check: a filled honeypot returns `200` without reaching email delivery.
+- Local production API check: a missing `RECAPTCHA_SECRET_KEY` returns `503` before email delivery.
+
+## Verification: Production reCAPTCHA
+
+### Status
+
+Complete
+
+### Result
+
+- Confirmed `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` and `RECAPTCHA_SECRET_KEY` are configured on the Vercel `boxers-frontend` project for Production and Preview.
+- Confirmed the current production deployment was created after the variables were added.
+- Confirmed the live contact page loads the configured Google reCAPTCHA v3 script and renders the reCAPTCHA badge.
+- Reviewed the submission path without sending a live form: `ContactForm.tsx` requests a `contact_form` token and `/api/contact` verifies it server-side with `RECAPTCHA_SECRET_KEY` at a minimum score of `0.5` before email delivery.
+- No application-code or hosting-configuration changes were required.
+
+## Fix: True 404 Responses for Dynamic Routes
+
+### Status
+
+Complete — merged and deployed
+
+### Goal
+
 - Return the shared Next.js not-found page with an HTTP 404 response when a Sanity page or service slug does not exist.
 
 ### Files
+
 - `frontend/app/[slug]/page.tsx`
 - `frontend/app/services/[slug]/page.tsx`
 
 ### Verification
+
 - `npm run type-check` passes.
 - Focused ESLint passes for both modified routes.
 - `npm run build` passes.
@@ -21,9 +65,11 @@ Complete — ready for review
 ## Milestone 7: Polish & Launch Prep (Phase 1)
 
 ### Status
+
 Phase 1 complete — ready for review
 
 ### Goals (Phase 1 — Pre-Alexis)
+
 - ~~**Accessibility:** Global focus-visible styles, skip-to-content link~~
 - ~~**Nav & mobile menu:** aria-expanded, focus trap, keyboard navigation, active page highlighting~~
 - ~~**SEO:** Multi-location structured data (3 LocalBusiness JSON-LD), BreadcrumbList on all pages~~
@@ -33,11 +79,13 @@ Phase 1 complete — ready for review
 ### What's Done
 
 **Accessibility (globals.css, layout.tsx):**
+
 - Universal `*:focus-visible` rule — terracotta outline, 2px offset (replaces forest-only focus styles)
 - Skip-to-content link as first child of `<body>` (sr-only, visible on keyboard focus)
 - `id="main-content"` added to `<main>` element
 
 **Nav & Mobile Menu (Header.tsx):**
+
 - `aria-expanded` + `aria-controls` on hamburger button
 - `aria-expanded` + `aria-haspopup` on desktop Services dropdown button
 - `role="dialog"` + `aria-modal` + `aria-label` on mobile panel
@@ -48,6 +96,7 @@ Phase 1 complete — ready for review
 - Dynamic aria-label on hamburger ("Open menu" / "Close menu")
 
 **SEO — Multi-Location Structured Data (layout.tsx):**
+
 - `buildLocationJsonLd()` generates JSON-LD for all 3 locations
 - PAW-PLEX: uses existing `localBusiness` structured data (full address fields)
 - BEC: gets own LocalBusiness entry from `settings.locations[]`
@@ -55,16 +104,19 @@ Phase 1 complete — ready for review
 - Each rendered as separate `<script type="application/ld+json">`
 
 **SEO — BreadcrumbList (services/[slug]/page.tsx, [slug]/page.tsx):**
+
 - Service pages: Home > Services > {title}
 - Generic pages: Home > {title}
 - Base URL: `https://boxersbedandbiscuits.com`
 
 **Hero Cleanup (Hero.tsx):**
+
 - Hero image alt text now uses `heroImage.alt || heading || 'Hero image'` instead of hardcoded "Hero image"
 - Fixed double space in className (`text-center  mx-auto` → `text-center mx-auto`)
 - Added `alt` to HeroProps type for heroImage
 
 **404 & Error Pages (not-found.tsx, error.tsx):**
+
 - Large faded "404" text as visual anchor
 - Decorative dog illustrations (hero-left-dog.png, hero-right-image.png) at low opacity
 - `bg-cream` background matching site identity
@@ -74,6 +126,7 @@ Phase 1 complete — ready for review
 **`npm run build` passes.**
 
 ### What's Remaining (Phase 2 — Post-Alexis + Final Polish)
+
 - Lighthouse performance audit (target 90+ all categories)
 - Cross-browser testing
 - Mascot illustrations placed throughout remaining site sections
@@ -83,6 +136,7 @@ Phase 1 complete — ready for review
 - M6 Phase 2 content (staff photos, vet details, FAQs, webcam IDs — waiting on Alexis 4/2)
 
 ### Files Modified
+
 - `frontend/app/globals.css` — Universal focus-visible styles
 - `frontend/app/layout.tsx` — Skip-to-content, multi-location JSON-LD
 - `frontend/app/components/Header.tsx` — Accessibility, keyboard nav, active page, focus trap
@@ -93,6 +147,7 @@ Phase 1 complete — ready for review
 - `frontend/app/[slug]/page.tsx` — BreadcrumbList JSON-LD
 
 ### Definition of Done (Phase 1)
+
 - ~~Skip-to-content link works via keyboard~~
 - ~~Focus rings visible on all interactive elements~~
 - ~~Mobile menu traps focus and responds to Escape~~
@@ -105,6 +160,9 @@ Phase 1 complete — ready for review
 - ~~`npm run build` passes~~
 
 ### History
+
+- 2026-07-24: Hardened reCAPTCHA failure handling. Production now fails closed with `503` when `RECAPTCHA_SECRET_KEY` is missing instead of silently bypassing verification. Google verification uses two three-second attempts; a genuine Google outage still delivers the lead but flags the bypass in server logs and the email subject/body. Successful verification now also requires the expected `contact_form` action and an allowed production/preview hostname. Added a hidden `companyWebsite` honeypot that silently absorbs simple bot submissions. Type-check, focused lint, production build, and safe local API checks pass; no live email was sent.
+- 2026-07-24: Verified production reCAPTCHA configuration without submitting a live form. Both `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` and the server-only `RECAPTCHA_SECRET_KEY` are present on the Vercel `boxers-frontend` project with Production and Preview scope; the current production deployment was created after they were added. The live contact page loads reCAPTCHA v3 and renders its badge. Code review confirms tokens are verified server-side at a minimum score of 0.5 before email delivery. No code or hosting changes were needed.
 - 2026-07-24: Fixed soft 404 responses on CMS-backed dynamic routes (branch `fix/true-404-responses`). Unknown generic-page and service slugs now call Next.js `notFound()` during metadata generation and rendering, so the shared branded not-found page returns HTTP 404 instead of HTTP 200. Type-check, focused lint, and production build pass; local production checks confirm unknown page/service routes return 404 while known routes remain 200.
 - 2026-07-24: SEO crawl-audit fixes (branch `fix/seo-crawl-fixes`). Simulated a Googlebot crawl of the live site; content is fully server-rendered and indexable, but the crawl surfaced 8 issues, all fixed. **Code:** (1) `/homepage` was a live duplicate of `/` with its own canonical and sitemap entry — added permanent redirect `/homepage` → `/` in `next.config.ts` and excluded the `homepage` slug from `sitemap.ts` (also excluded `enrichment`, which 308s to daycare but was still listed). (2) `robots.ts` sitemap URL now uses the canonical www host. (3) `layout.tsx` metadataBase now falls back to `https://www.boxersbedandbiscuits.com` (Sanity `ogImage.metadataBase` is unset), making canonicals and og URLs absolute. (4) Homepage `/` title was missing the brand suffix — Next.js `title.template` only applies to child segments, and `app/page.tsx` is the same segment as the root layout, so the suffix is now appended explicitly (settings title fetched alongside homepage). (5) All three page routes now emit `og:url` plus a settings-level og:image fallback (page `openGraph` replaces the layout's wholesale, so the fallback image must be included). (6) Breadcrumb JSON-LD base URLs switched to www. (7) `/contact` and `/gallery` had no `<h1>` — PageBuilder now flags the first non-spacer block via `isFirstContent`, and ContactForm/GalleryGrid promote their heading to `<h1>` when leading a page (h2 elsewhere, e.g. employment). (8) The entire contactForm section was invisible to crawlers: `useSearchParams()` bailed the whole Suspense boundary out of static prerender — replaced with `window.location.search` in the mount effect, so the contact and employment forms now appear in server HTML. **Sanity (published):** contact/gallery metaTitles had the brand name baked in, producing "… | Boxers Bed & Biscuits | Boxers Bed & Biscuits" — stripped to "Contact Us" / "Gallery"; vet-contact and vet-staff had no seo object — added metaTitle + metaDescription (factual, from known contact info); homepage BEC spotlight CTA pointed at the removed `service-enrichment` page reference (a redirect hop) — repointed to `/services/daycare` as an href. Build passes; all fixes verified against a local production server. Lint has 111 pre-existing errors, unchanged by this work.
 - 2026-07-22 (later): Contact form spam protection ported from wags-stay-n-play: Google reCAPTCHA v3 (invisible). `ContactForm.tsx` loads the script on mount and sends a `recaptchaToken` with submissions; `/api/contact` verifies it against Google siteverify (min score 0.5) before sending email. No new npm deps. Fails open if `RECAPTCHA_SECRET_KEY` is unset or Google is unreachable, so misconfiguration never drops real leads. Applies to both forms sharing the component (contact + employment application). Env vars: `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` + `RECAPTCHA_SECRET_KEY` (documented in `.env.example`; need to be created in the Google reCAPTCHA admin console for boxersbedandbiscuits.com and added in Vercel). Same branch: `feature/contact-thank-you-page`.
