@@ -34,8 +34,13 @@ function isAllowedRecaptchaHostname(hostname: string | undefined): boolean {
   const canonicalHostnames = ['boxersbedandbiscuits.com', 'www.boxersbedandbiscuits.com']
 
   if (canonicalHostnames.includes(normalizedHostname)) return true
-  if (process.env.VERCEL_ENV === 'preview' && normalizedHostname.endsWith('.vercel.app'))
-    return true
+  if (process.env.VERCEL_ENV === 'preview') {
+    const allowedPreviewHostnames = [process.env.VERCEL_URL, process.env.VERCEL_BRANCH_URL]
+      .filter((value): value is string => Boolean(value))
+      .map((value) => value.toLowerCase())
+
+    if (allowedPreviewHostnames.includes(normalizedHostname)) return true
+  }
 
   return (
     process.env.NODE_ENV !== 'production' && ['localhost', '127.0.0.1'].includes(normalizedHostname)
@@ -92,8 +97,15 @@ const ALLOWED_RECIPIENTS = [
   'boxermarketing@outlook.com',
 ]
 
+const MAX_CONTACT_BODY_BYTES = 32 * 1024
+
 export async function POST(request: Request) {
   try {
+    const declaredLength = Number(request.headers.get('content-length'))
+    if (Number.isFinite(declaredLength) && declaredLength > MAX_CONTACT_BODY_BYTES) {
+      return NextResponse.json({error: 'Request is too large'}, {status: 413})
+    }
+
     const body = await request.json()
 
     if (!body || typeof body !== 'object') {
@@ -107,6 +119,9 @@ export async function POST(request: Request) {
     // Honeypot fields are hidden from people but commonly filled by simple bots.
     // Return the normal success response so the trap is not disclosed.
     if (typeof companyWebsite === 'string' && companyWebsite.trim()) {
+      console.warn('Contact form honeypot triggered; submission discarded', {
+        email: typeof (body as Record<string, unknown>).email === 'string' ? (body as Record<string, unknown>).email : undefined,
+      })
       return NextResponse.json({success: true})
     }
 

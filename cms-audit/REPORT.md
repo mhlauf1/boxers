@@ -1,5 +1,7 @@
 # Boxers Bed & Biscuits — Sanity CMS Audit
 
+> **SNAPSHOT — captured July 2026.** This audit reflects the codebase and dataset at the time it was written and is NOT kept up to date. Verify any finding against the current code before acting on it.
+
 Audit date: 2026-07-10  
 Model: GPT-5  
 Dataset: configured `production` dataset, queried read-only
