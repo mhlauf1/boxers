@@ -6,6 +6,7 @@ import PriceOutputCard from './PriceOutputCard'
 import {calculateBoardingPerDog} from '@/app/data/pricingData'
 import type {BoardingDogConfig, BoardingType} from '@/app/data/pricingData'
 import type {DereferencedLink} from '@/sanity/lib/types'
+import {FACILITY_PHONE_HREF} from '@/app/lib/constants'
 
 type BoardingCalculatorProps = {
   ctaText?: string
@@ -56,7 +57,7 @@ export default function BoardingCalculator({ctaText, ctaLink, taxNote, lockedTyp
           total={0}
           lineItems={[]}
           ctaText="Call Us"
-          ctaLink={{_type: 'link', linkType: 'href', href: 'tel:7404237777'}}
+          ctaLink={{_type: 'link', linkType: 'href', href: FACILITY_PHONE_HREF}}
           taxNote={taxNote}
           disabled
           disabledMessage="Please call for custom pricing for 4+ dogs."

@@ -10,6 +10,7 @@ import {FadeIn} from '@/app/components/ui/FadeIn'
 import {stegaClean} from '@sanity/client/stega'
 import Badge from '../ui/Badge'
 import type {ExtractPageBuilderType} from '@/sanity/lib/types'
+import {formatUsPhoneNumber} from '@/app/lib/formatUsPhoneNumber'
 
 type ContactFormProps = {
   block: ExtractPageBuilderType<'contactForm'>
@@ -87,7 +88,10 @@ export default function ContactForm({block, isFirstContent}: ContactFormProps) {
   }, [formFields])
 
   const handleChange = (fieldName: string, value: string) => {
-    setFormData((prev) => ({...prev, [fieldName]: value}))
+    setFormData((prev) => ({
+      ...prev,
+      [fieldName]: fieldName === 'phone' ? formatUsPhoneNumber(value) : value,
+    }))
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -205,6 +209,8 @@ export default function ContactForm({block, isFirstContent}: ContactFormProps) {
                           type={fieldType}
                           name={fieldName}
                           required={field.required || false}
+                          // 32 leaves room for country-code pastes like "+1 (740) 423-7777"
+                          {...(fieldName === 'phone' && {maxLength: 32, autoComplete: 'tel'})}
                           value={formData[fieldName] || ''}
                           onChange={(e) => handleChange(fieldName, e.target.value)}
                           className="w-full rounded-md border border-sand bg-white px-4 py-3 font-sans text-[16px] text-forest placeholder:text-charcoal/40 focus:outline-none focus:ring-2 focus:ring-terracotta/30 focus:border-terracotta transition-colors"
